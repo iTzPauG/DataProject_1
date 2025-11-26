@@ -1,38 +1,27 @@
-services:
-    db:
-        image: postgres:17-alpine
-        env_file:
-            - .env
-        volumes:
-            - postgresDB:/var/lib/postgresql/data
-        ports:
-            - "5432:5432"
-        restart: unless-stopped
-    app:
-        image: python:3.11-slim
-        working_dir: /app
-        volumes:
-            - ./:/app
-        env_file: .env
-        command: >
-            sh -c "pip install -r requirements.txt
-            && python project.py"
-        depends_on:
-        - db
+version: "3.9"
 
-    dbt:
-        build: .
-        container_name: dbt
-        volumes:
-            - ./:/usr/app/dbt
-            - ./profiles.yml:/root/.dbt/profiles.yml
-        environment:
-            - DBT_PROFILES_DIR=/usr/app/dbt
-        working_dir: /usr/app/dbt/dbt_project
-        entrypoint: ["/bin/bash"]
-        tty: true
-        depends_on:
-            - db
+services:
+  db:
+    image: postgres:17-alpine
+    env_file:
+      - .env
+    volumes:
+      - postgresDB:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+  app:
+    build: .
+    working_dir: /app
+    volumes:
+      - ./:/app
+    env_file: .env
+    depends_on:
+      - db
+    command: >
+      sh -c "pip install --no-cache-dir -r requirements.txt
+      && python project.py"
+
 volumes:
-    pg_data:
-    postgresDB:
+  postgresDB:

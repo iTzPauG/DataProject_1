@@ -2,31 +2,39 @@ import requests
 import psycopg
 import os
 import time
-from urllib.parse import urlparse
+import logging
+
+# Configuración de logging
+logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
 # -------------------------------
 # Configuración de conexión
 # -------------------------------
-print("Conectando a la base de datos")
+DATABASE_URL = os.getenv("DATABASE_URL")
+if not DATABASE_URL:
+    logging.error("No se encontró la variable de entorno DATABASE_URL")
+    exit(1)
+
+logging.info("Intentando conectar a la base de datos...")
+
+# Intentos de conexión
 intentos_conexion = 0
 conectado = False
 while intentos_conexion < 5 and not conectado:
     try:
-        # Conectamos a la base de datos
-        conexion = psycopg.connect(os.getenv("DATABASE_URL"))
-        if conexion:
-            print("Conexión exitosa a la base de datos")
-            conectado = True
+        conexion = psycopg.connect(DATABASE_URL)
         cursor = conexion.cursor()
+        conectado = True
+        logging.info("Conexión exitosa a la base de datos")
     except Exception as e:
-        print("Error al conectar a la base de datos, reintentando...")
-        print(e)
         intentos_conexion += 1
+        logging.warning(f"Error al conectar a la base de datos (intento {intentos_conexion}/5): {e}")
         time.sleep(10)
-        if intentos_conexion == 5:
-            print("No se pudo conectar a la base de datos después de varios intentos.")
-            exit(1)
-    
+
+if not conectado:
+    logging.error("No se pudo conectar a la base de datos después de 5 intentos")
+    exit(1)
+
 # -------------------------------
 # Función para descargar todos los datos de la API
 # -------------------------------
@@ -36,44 +44,44 @@ def fetch_data():
         "?dataset=estacions-contaminacio-atmosferiques-estaciones-contaminacion-atmosfericas"
         "&rows=1000"
     )
-    resp = requests.get(url)
-    resp.raise_for_status()
-    data = resp.json()
-    return data.get("records", [])
+    try:
+        resp = requests.get(url)
+        resp.raise_for_status()
+        data = resp.json()
+        return data.get("records", [])
+    except Exception as e:
+        logging.error(f"Error al obtener datos de la API: {e}")
+        return []
 
 # -------------------------------
 # Función para guardar datos en Postgres
 # -------------------------------
 def save_to_postgres(records):
-    db_url = os.getenv("DATABASE_URL")
-    if not db_url:
-        raise RuntimeError("DATABASE_URL not set")
-
     try:
-        with psycopg.connect(db_url) as conn:
+        with psycopg.connect(DATABASE_URL) as conn:
             with conn.cursor() as cur:
                 cur.execute("DROP TABLE IF EXISTS estaciones CASCADE;")
                 cur.execute("""
-                CREATE TABLE IF NOT EXISTS estaciones (
-                    id SERIAL PRIMARY KEY,
-                    objectid INTEGER NOT NULL,
-                    nombre TEXT,
-                    direccion TEXT,
-                    tipozona TEXT,
-                    so2 NUMERIC,
-                    no2 NUMERIC,
-                    o3 NUMERIC,
-                    co NUMERIC,
-                    pm10 NUMERIC,
-                    pm25 NUMERIC,
-                    tipoemisio TEXT,
-                    fecha_carg TIMESTAMP,
-                    calidad_am TEXT,
-                    fiwareid TEXT,
-                    lon NUMERIC,
-                    lat NUMERIC,
-                    created_at TIMESTAMP DEFAULT NOW()
-                );
+                    CREATE TABLE IF NOT EXISTS estaciones (
+                        id SERIAL PRIMARY KEY,
+                        objectid INTEGER NOT NULL,
+                        nombre TEXT,
+                        direccion TEXT,
+                        tipozona TEXT,
+                        so2 NUMERIC,
+                        no2 NUMERIC,
+                        o3 NUMERIC,
+                        co NUMERIC,
+                        pm10 NUMERIC,
+                        pm25 NUMERIC,
+                        tipoemisio TEXT,
+                        fecha_carg TIMESTAMP,
+                        calidad_am TEXT,
+                        fiwareid TEXT,
+                        lon NUMERIC,
+                        lat NUMERIC,
+                        created_at TIMESTAMP DEFAULT NOW()
+                    );
                 """)
                 for rec in records:
                     fields = rec.get("fields", {})
@@ -109,22 +117,21 @@ def save_to_postgres(records):
                             lat
                         )
                     )
-        # commit happens automatically when the context manager exits successfully
+        logging.info(f"{len(records)} registros guardados en Postgres correctamente")
     except Exception as e:
-        print("Error saving to Postgres:", e)
-        raise
+        logging.error(f"Error guardando datos en Postgres: {e}")
+
 # -------------------------------
-# Ejecución principal con actualización cada hora
+# Ejecución principal
 # -------------------------------
 if __name__ == "__main__":
-    print("hola")
+    logging.info("Inicio del proceso de actualización de datos")
     while True:
-        try:
-            recs = fetch_data()
-            print(f"Obtenidos {len(recs)} registros de la API")
-            save_to_postgres(recs)
-            print("Datos guardados en Postgres correctamente")
-        except Exception as e:
-            print(f"Error al actualizar datos: {e}")
-        print("Esperando 1 hora para la siguiente actualización...")
-        time.sleep(3600)  # 1 hora
+        records = fetch_data()
+        if records:
+            save_to_postgres(records)
+        else:
+            logging.warning("No se obtuvieron registros de la API")
+        logging.info("Esperando 1 hora para la siguiente actualización...")
+        time.sleep(3600)  # Espera 1 hora
+

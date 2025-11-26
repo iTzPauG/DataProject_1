@@ -1,23 +1,19 @@
 # Imagen base
 FROM python:3.11-slim
 
-# Instalamos git y dbt para Postgres
-RUN apt-get update && \
-    apt-get install -y git && \
-    rm -rf /var/lib/apt/lists/* && \
-    pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir "dbt-postgres==1.8.2" requests psycopg[binary]
-
 # Directorio de trabajo
-WORKDIR /usr/app/dbt
+WORKDIR /app
 
-# Copiamos el script y requirements.txt si lo tuvieras
-COPY project.py .
+# Copiar requirements
 COPY requirements.txt .
 
-# Instalamos dependencias adicionales si existen
-RUN pip install --no-cache-dir -r requirements.txt || echo "No requirements.txt found"
+# Instalar dependencias
+RUN pip install --no-cache-dir --upgrade pip
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Ejecutar el script continuamente
-ENTRYPOINT ["python", "project.py"]
+# Copiar tu código
+COPY project.py .
+
+# Ejecutar la app
+CMD ["python", "project.py"]
 
