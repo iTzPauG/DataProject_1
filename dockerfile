@@ -12,7 +12,8 @@ COPY project.py .
 
 # Instalar dependencias
 RUN pip install --no-cache-dir --upgrade pip \
-    && pip install --no-cache-dir -r requirements.txt
+    && pip install --no-cache-dir -r requirements.txt 
+
 
 # Cambiar a usuario no root
 USER appuser
