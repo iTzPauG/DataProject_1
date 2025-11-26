@@ -1,13 +1,13 @@
 services:
     db:
-      image: postgres:17-alpine
-      env_file:
-          - .env
-      volumes:
-        - postgresDB:/var/lib/postgresql/data
-      ports:
-          - "5433:5432"
-      restart: unless-stopped
+        image: postgres:17-alpine
+        env_file:
+            - .env
+        volumes:
+            - postgresDB:/var/lib/postgresql/data
+        ports:
+            - "5432:5432"
+        restart: unless-stopped
     app:
         image: python:3.11-slim
         working_dir: /app
@@ -19,10 +19,20 @@ services:
             && python project.py"
         depends_on:
         - db
+
+    dbt:
+        build: .
+        container_name: dbt
+        volumes:
+            - ./:/usr/app/dbt
+            - ./profiles.yml:/root/.dbt/profiles.yml
+        environment:
+            - DBT_PROFILES_DIR=/usr/app/dbt
+        working_dir: /usr/app/dbt/dbt_project
+        entrypoint: ["/bin/bash"]
+        tty: true
+        depends_on:
+            - db
 volumes:
+    pg_data:
     postgresDB:
-
-
-
-       
-

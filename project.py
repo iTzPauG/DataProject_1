@@ -9,12 +9,12 @@ from urllib.parse import urlparse
 # -------------------------------
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
-    "postgresql://postgres:postgres@db:5432/pruebadb"
+    "postgresql://postgres:postgres@db:5432/data_project_1"
 )
 
 parsed_url = urlparse(DATABASE_URL)
 PG_HOST = parsed_url.hostname
-PG_PORT = parsed_url.port or 5432
+PG_PORT = 5432
 PG_DB   = parsed_url.path.lstrip("/")
 PG_USER = parsed_url.username
 PG_PASS = parsed_url.password
