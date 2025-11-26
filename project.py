@@ -48,9 +48,10 @@ def save_to_postgres(records):
     
     # Borrar tabla antigua y crear tabla nueva
     cur.execute("""
-        DROP TABLE IF EXISTS estaciones;
+        DROP TABLE estaciones CASCADE;
         CREATE TABLE estaciones (
-            objectid INTEGER PRIMARY KEY,
+            id SERIAL PRIMARY KEY,
+            objectid INTEGER NOT NULL,
             nombre TEXT,
             direccion TEXT,
             tipozona TEXT,
@@ -65,7 +66,8 @@ def save_to_postgres(records):
             calidad_am TEXT,
             fiwareid TEXT,
             lon NUMERIC,
-            lat NUMERIC
+            lat NUMERIC,
+            created_at TIMESTAMP DEFAULT NOW()
         );
     """)
     
