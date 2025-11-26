@@ -1,0 +1,84 @@
+import requests
+import time
+
+# Panel de control
+API_URL = "https://valencia.opendatasoft.com/api/explore/v2.1/catalog/datasets/estacions-contaminacio-atmosferiques-estaciones-contaminacion-atmosfericas/records?limit=20"
+
+UMBRAL_NO2 = 50  # µg/m³
+INTERVALO_MINUTOS = 1
+TIEMPO_REPETICION_ALERTA = 2 * 60 * 60  # 24 horas en segundos
+
+# DICCIONARIO PARA GUARDAR EL ESTADO DE CADA ESTACIÓN
+# Estructura: { "NombreEstacion": { "activa": True/False, "ultimo_aviso": tiempo_unix } }
+estado_estaciones = {} 
+
+def revisar_calidad_aire():
+    ahora = time.time()
+    hora_legible = time.strftime('%H:%M:%S')
+    print(f"[{hora_legible}] ⏳ Consultando sensores...")
+    
+    try:
+        response = requests.get(API_URL)
+        data = response.json()
+        sensores = data.get('results', [])
+
+        for sensor in sensores:
+            # 1. Obtener datos básicos
+            nombre = sensor.get('nombre')
+            valor = sensor.get('no2')
+
+            # Si no hay valor o nombre, saltamos este sensor
+            if valor is None or not nombre:
+                print(f"⚠️ Datos incompletos para el sensor {nombre}, se omite.")
+                continue
+
+            # Inicializamos el estado de la estación si es la primera vez que la vemos
+            if nombre not in estado_estaciones:
+                estado_estaciones[nombre] = {"activa": False, "ultimo_aviso": 0}
+
+            estado = estado_estaciones[nombre]
+            
+
+            ##### Lógica de la alerta #####
+            
+            # CASO A: Supera el umbral
+            if valor > UMBRAL_NO2:
+                # Calculamos cuánto tiempo pasó desde el último aviso
+                tiempo_pasado = ahora - estado["ultimo_aviso"]
+                
+                # Condición: Si NO estaba activa O si ya pasó un día (recordatorio)
+                if not estado["activa"] or tiempo_pasado > TIEMPO_REPETICION_ALERTA:
+                    print("-" * 40)
+                    if estado["activa"]:
+                        print(f"⏰ RECORDATORIO DIARIO en {nombre}")
+                    else:
+                        print(f"🚨 NUEVA ALERTA en {nombre}")
+                    
+                    print(f"   Nivel NO2: {valor} µg/m³ (Límite: {UMBRAL_NO2})")
+                    print("-" * 40)
+                    
+                    # Actualizamos el estado
+                    estado["activa"] = True
+                    estado["ultimo_aviso"] = ahora
+            
+            # CASO B: Ya no supera el umbral (Bajada de nivel)
+            else:
+                # Solo avisamos si antes ESTABA activa (es decir, la situación ha mejorado)
+                if estado["activa"]:
+                    print(f"✅ NIVEL RESTABLECIDO en {nombre}")
+                    print(f"   El nivel ha bajado a {valor} µg/m³.")
+                    
+                    # Reseteamos la alerta a False
+                    estado["activa"] = False
+
+    except Exception as e:
+        print(f"❌ Error conectando la API: {e}")
+
+# Bucle
+print(f"*** Monitor Iniciado ***")
+print(f"- Umbral: {UMBRAL_NO2} µg/m³")
+print(f"- Recordatorio de alerta persistente: Cada 24 horas")
+
+while True:
+    revisar_calidad_aire()
+    time.sleep(INTERVALO_MINUTOS * 60)
