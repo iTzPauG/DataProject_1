@@ -26,6 +26,7 @@ def revisar_calidad_aire():
     print(f"[{hora_legible}] ⏳ Consultando sensores...")
     
     try:
+        mensaje = {}
         response = requests.get(API_URL)
         data = response.json()
         sensores = data.get('results', [])
