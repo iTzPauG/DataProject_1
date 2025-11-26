@@ -47,29 +47,29 @@ def save_to_postgres(records):
     cur = conn.cursor()
     
     # Borrar tabla antigua y crear tabla nueva
+    cur.execute("DROP TABLE IF EXISTS estaciones CASCADE;")
     cur.execute("""
-        CREATE TABLE IF NOT EXISTS estaciones (
-            id SERIAL PRIMARY KEY,
-            objectid INTEGER NOT NULL,
-            nombre TEXT,
-            direccion TEXT,
-            tipozona TEXT,
-            so2 NUMERIC,
-            no2 NUMERIC,
-            o3 NUMERIC,
-            co NUMERIC,
-            pm10 NUMERIC,
-            pm25 NUMERIC,
-            tipoemisio TEXT,
-            fecha_carg TIMESTAMP,
-            calidad_am TEXT,
-            fiwareid TEXT,
-            lon NUMERIC,
-            lat NUMERIC,
-            created_at TIMESTAMP DEFAULT NOW()
-        );
-    """)
-    
+    CREATE TABLE IF NOT EXISTS estaciones (
+    id SERIAL PRIMARY KEY,
+    objectid INTEGER NOT NULL,
+    nombre TEXT,
+    direccion TEXT,
+    tipozona TEXT,
+    so2 NUMERIC,
+    no2 NUMERIC,
+    o3 NUMERIC,
+    co NUMERIC,
+    pm10 NUMERIC,
+    pm25 NUMERIC,
+    tipoemisio TEXT,
+    fecha_carg TIMESTAMP,
+    calidad_am TEXT,
+    fiwareid TEXT,
+    lon NUMERIC,
+    lat NUMERIC,
+    created_at TIMESTAMP DEFAULT NOW()
+);
+""")
     # Insertar registros
     for rec in records:
         fields = rec.get("fields", {})
@@ -78,33 +78,33 @@ def save_to_postgres(records):
         lat = geo[1] if len(geo) > 1 else None
 
         cur.execute(
-            """
-            INSERT INTO estaciones (
-                objectid, nombre, direccion, tipozona,
-                so2, no2, o3, co, pm10, pm25,
-                tipoemisio, fecha_carg, calidad_am, fiwareid,
-                lon, lat
-            ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
-            """,
-            (
-                fields.get("objectid"),
-                fields.get("nombre"),
-                fields.get("direccion"),
-                fields.get("tipozona"),
-                fields.get("so2"),
-                fields.get("no2"),
-                fields.get("o3"),
-                fields.get("co"),
-                fields.get("pm10"),
-                fields.get("pm25"),
-                fields.get("tipoemisio"),
-                fields.get("fecha_carg"),
-                fields.get("calidad_am"),
-                fields.get("fiwareid"),
-                lon,
-                lat
-            )
-        )
+    """
+    INSERT INTO estaciones (
+        objectid, nombre, direccion, tipozona,
+        so2, no2, o3, co, pm10, pm25,
+        tipoemisio, fecha_carg, calidad_am, fiwareid,
+        lon, lat
+    ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+    """,
+    (
+        fields.get("objectid"),
+        fields.get("nombre"),
+        fields.get("direccion"),
+        fields.get("tipozona"),
+        fields.get("so2"),
+        fields.get("no2"),
+        fields.get("o3"),
+        fields.get("co"),
+        fields.get("pm10"),
+        fields.get("pm25"),
+        fields.get("tipoemisio"),
+        fields.get("fecha_carg"),
+        fields.get("calidad_am"),
+        fields.get("fiwareid"),
+        lon,
+        lat
+    )
+)
     
     conn.commit()
     cur.close()
