@@ -1,5 +1,13 @@
 import requests
 import time
+from confluent_kafka import Producer
+import json
+
+#configurar Kafka
+conf = {
+    'bootstrap.servers': 'localhost:9092'  
+}
+producer = Producer(conf)
 
 # Panel de control
 API_URL = "https://valencia.opendatasoft.com/api/explore/v2.1/catalog/datasets/estacions-contaminacio-atmosferiques-estaciones-contaminacion-atmosfericas/records?limit=20"
@@ -67,9 +75,21 @@ def revisar_calidad_aire():
                 if estado["activa"]:
                     print(f"✅ NIVEL RESTABLECIDO en {nombre}")
                     print(f"   El nivel ha bajado a {valor} µg/m³.")
+                    #Ahora hacemos el mensaje para Kafka
+                    mensaje= {
+                        "estacion": nombre,
+                        "nivel_no2": valor,
+                        "estado": "restablecido",
+                        "texto": f"El nivel de NO2 en {nombre} ha bajado a {valor} µg/m³."
+                    }
                     
                     # Reseteamos la alerta a False
                     estado["activa"] = False
+            producer.produce(
+                topic='alertas_poblacion',
+                value=json.dumps(mensaje, ensure_ascii=False).encode('utf-8')
+            )
+            producer.flush()
 
     except Exception as e:
         print(f"❌ Error conectando la API: {e}")
