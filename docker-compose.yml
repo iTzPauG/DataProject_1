@@ -22,16 +22,17 @@ services:
 
     dbt:
         build: .
-        container_name: dbt-valenbisi
+        container_name: dbt
         volumes:
             - ./:/usr/app/dbt
             - ./profiles.yml:/root/.dbt/profiles.yml
         environment:
             - DBT_PROFILES_DIR=/usr/app/dbt
-        working_dir: /usr/app/dbt/dbt_valenbisi
+        working_dir: /usr/app/dbt/dbt_project
         entrypoint: ["/bin/bash"]
         tty: true
         depends_on:
             - db
 volumes:
+    pg_data:
     postgresDB:
