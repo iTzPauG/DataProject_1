@@ -9,12 +9,12 @@ from urllib.parse import urlparse
 # -------------------------------
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
-    "postgresql://postgres:postgres@db:5432/pruebadb"
+    "postgresql://postgres:postgres@db:5432/data_project_1"
 )
 
 parsed_url = urlparse(DATABASE_URL)
 PG_HOST = parsed_url.hostname
-PG_PORT = parsed_url.port or 5432
+PG_PORT = 5432
 PG_DB   = parsed_url.path.lstrip("/")
 PG_USER = parsed_url.username
 PG_PASS = parsed_url.password
@@ -48,8 +48,7 @@ def save_to_postgres(records):
     
     # Borrar tabla antigua y crear tabla nueva
     cur.execute("""
-        DROP TABLE estaciones CASCADE;
-        CREATE TABLE estaciones (
+        CREATE TABLE IF NOT EXISTS estaciones (
             id SERIAL PRIMARY KEY,
             objectid INTEGER NOT NULL,
             nombre TEXT,
@@ -86,22 +85,6 @@ def save_to_postgres(records):
                 tipoemisio, fecha_carg, calidad_am, fiwareid,
                 lon, lat
             ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
-            ON CONFLICT (objectid) DO UPDATE SET
-                nombre = EXCLUDED.nombre,
-                direccion = EXCLUDED.direccion,
-                tipozona = EXCLUDED.tipozona,
-                so2 = EXCLUDED.so2,
-                no2 = EXCLUDED.no2,
-                o3 = EXCLUDED.o3,
-                co = EXCLUDED.co,
-                pm10 = EXCLUDED.pm10,
-                pm25 = EXCLUDED.pm25,
-                tipoemisio = EXCLUDED.tipoemisio,
-                fecha_carg = EXCLUDED.fecha_carg,
-                calidad_am = EXCLUDED.calidad_am,
-                fiwareid = EXCLUDED.fiwareid,
-                lon = EXCLUDED.lon,
-                lat = EXCLUDED.lat;
             """,
             (
                 fields.get("objectid"),
