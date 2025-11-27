@@ -103,8 +103,7 @@ def revisar_calidad_aire():
         for sensor in sensores:
             mensaje = {}
             nombre = sensor.get('nombre')
-            raw_valor = sensor.get('no2')
-            valor = float(raw_valor) if raw_valor is not None else 0.0
+            valor = sensor.get('no2')
 
             # Si no hay valor o nombre, saltamos este sensor
             if valor is None or not nombre:
