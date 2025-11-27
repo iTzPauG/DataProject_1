@@ -18,9 +18,4 @@ RUN pip install --no-cache-dir --upgrade pip \
 USER appuser
 
 # Ejecutar script al iniciar el contenedor
-<<<<<<< Updated upstream
 CMD ["python", "project.py"]
-=======
-CMD [ "python", "project.py"]
-
->>>>>>> Stashed changes

@@ -113,25 +113,10 @@ def fetch_data():
 # =======================================================
 # GUARDAR DATOS EN POSTGRES
 # =======================================================
-<<<<<<< Updated upstream
-def save_to_postgres(records):
-    try:
-        with psycopg.connect(DB_URL) as conn:
-            with conn.cursor() as cur:
-                cur.execute("DROP TABLE IF EXISTS estaciones CASCADE;")
-=======
-# =======================================================
-# CREAR TABLA EN POSTGRES (CORRECCIÓN FINAL)
-# =======================================================
-# =======================================================
-# CREAR TABLA EN POSTGRES (CORRECCIÓN FINAL)
-# =======================================================
 def create_table():
     try:
         with psycopg.connect(DB_URL) as conn:
             with conn.cursor() as cur:
-                # 1. Crear la tabla (sin la restricción UNIQUE)
->>>>>>> Stashed changes
                 cur.execute("""
                     CREATE TABLE IF NOT EXISTS estaciones (
                         id SERIAL PRIMARY KEY,
@@ -154,40 +139,38 @@ def create_table():
                         created_at TIMESTAMP DEFAULT NOW()
                     );
                 """)
-<<<<<<< Updated upstream
-
-=======
+                
+                # Crear constraint único para evitar duplicados por actualización
                 cur.execute("""
-                    DO $$
-                    BEGIN
-                        BEGIN
-                            ALTER TABLE estaciones
-                            ADD CONSTRAINT estaciones_unique_medicion
-                            UNIQUE (direccion, fecha_carg);
-                        EXCEPTION
-                            WHEN duplicate_object THEN
-                                NULL;  -- Ya existe, no hacer nada
-                        END;
-                    END$$;
+                    ALTER TABLE estaciones
+                    ADD CONSTRAINT IF NOT EXISTS estaciones_unique
+                    UNIQUE (direccion, fecha_carg, calidad_am);
                 """)
-
-                logging.info("Tabla 'estaciones' y UNIQUE(direccion, fecha_carg) asegurados.")
+                
+        logging.info("Tabla 'estaciones' creada correctamente (si no existía).")
     except Exception as e:
-        logging.error(f"Error asegurando tabla o índice: {e}")
-# =======================================================
-# GUARDAR DATOS EN POSTGRES
-# =======================================================
+        logging.error(f"Error creando la tabla: {e}")
+
 def insert_data(records):
     try:
         with psycopg.connect(DB_URL) as conn:
             with conn.cursor() as cur:
->>>>>>> Stashed changes
+                # Asegurar que la tabla tenga un UNIQUE sobre estación + fecha + calidad
+                cur.execute("""
+                    ALTER TABLE estaciones
+                    ADD CONSTRAINT IF NOT EXISTS estaciones_unique
+                    UNIQUE (direccion, fecha_carg, calidad_am);
+                """)
+
                 for rec in records:
                     fields = rec.get("fields", {})
                     geo = fields.get("geo_point_2d", [])
                     lon = geo[0] if len(geo) > 0 else None
                     lat = geo[1] if len(geo) > 1 else None
 
+                    fecha_carg = fields.get("fecha_carg")
+
+                    # INSERT con ON CONFLICT para evitar duplicados
                     cur.execute("""
                         INSERT INTO estaciones (
                             objectid, nombre, direccion, tipozona,
@@ -195,22 +178,8 @@ def insert_data(records):
                             tipoemisio, fecha_carg, calidad_am, fiwareid,
                             lon, lat
                         ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
-                        ON CONFLICT (direccion, fecha_carg) 
-                        DO UPDATE SET 
-                            so2 = EXCLUDED.so2,
-                            no2 = EXCLUDED.no2,
-                            o3 = EXCLUDED.o3,
-                            co = EXCLUDED.co,
-                            pm10 = EXCLUDED.pm10,
-                            pm25 = EXCLUDED.pm25,
-                            calidad_am = EXCLUDED.calidad_am,
-                            objectid = EXCLUDED.objectid,
-                            nombre = EXCLUDED.nombre,
-                            tipozona = EXCLUDED.tipozona,
-                            tipoemisio = EXCLUDED.tipoemisio,
-                            fiwareid = EXCLUDED.fiwareid,
-                            lon = EXCLUDED.lon,
-                            lat = EXCLUDED.lat
+                        ON CONFLICT (direccion, fecha_carg, calidad_am) 
+                        DO NOTHING;
                     """, (
                         fields.get("objectid"),
                         fields.get("nombre"),
@@ -223,20 +192,16 @@ def insert_data(records):
                         fields.get("pm10"),
                         fields.get("pm25"),
                         fields.get("tipoemisio"),
-                        fields.get("fecha_carg"),
+                        fecha_carg,
                         fields.get("calidad_am"),
                         fields.get("fiwareid"),
                         lon,
                         lat
                     ))
-<<<<<<< Updated upstream
 
-        logging.info(f"{len(records)} registros guardados correctamente.")
-=======
-                logging.info(f"{len(records)} registros procesados (Insertados o Actualizados).")
->>>>>>> Stashed changes
+        logging.info(f"{len(records)} registros procesados correctamente (sin duplicados).")
     except Exception as e:
-        logging.error(f"Error realizando UPSERT en Postgres: {e}")
+        logging.error(f"Error insertando datos: {e}")       logging.error(f"Error realizando UPSERT en Postgres: {e}")
 
 # =======================================================
 # EJECUCIÓN PRINCIPAL
@@ -254,10 +219,10 @@ if __name__ == "__main__":
     while True:
         records = fetch_data()
         if records:
-            save_to_postgres(records)
+            insert_data(records)  # <-- aquí llamamos a insert_data
         else:
             logging.warning("No se obtuvieron registros de la API.")
 
-        logging.info("Esperando 1 hora para la siguiente actualización...")
-        time.sleep(900)
+        logging.info("Esperando 15 minutos para la siguiente actualización...")
+        time.sleep(900)  # 900 segundos = 15 minutos
 
