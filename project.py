@@ -113,17 +113,31 @@ def fetch_data():
 # =======================================================
 # GUARDAR DATOS EN POSTGRES
 # =======================================================
+<<<<<<< Updated upstream
 def save_to_postgres(records):
     try:
         with psycopg.connect(DB_URL) as conn:
             with conn.cursor() as cur:
                 cur.execute("DROP TABLE IF EXISTS estaciones CASCADE;")
+=======
+# =======================================================
+# CREAR TABLA EN POSTGRES (CORRECCIÓN FINAL)
+# =======================================================
+# =======================================================
+# CREAR TABLA EN POSTGRES (CORRECCIÓN FINAL)
+# =======================================================
+def create_table():
+    try:
+        with psycopg.connect(DB_URL) as conn:
+            with conn.cursor() as cur:
+                # 1. Crear la tabla (sin la restricción UNIQUE)
+>>>>>>> Stashed changes
                 cur.execute("""
                     CREATE TABLE IF NOT EXISTS estaciones (
                         id SERIAL PRIMARY KEY,
                         objectid INTEGER NOT NULL,
                         nombre TEXT,
-                        direccion TEXT,
+                        direccion TEXT NOT NULL,
                         tipozona TEXT,
                         so2 NUMERIC,
                         no2 NUMERIC,
@@ -132,7 +146,7 @@ def save_to_postgres(records):
                         pm10 NUMERIC,
                         pm25 NUMERIC,
                         tipoemisio TEXT,
-                        fecha_carg TIMESTAMP,
+                        fecha_carg TIMESTAMP NOT NULL,
                         calidad_am TEXT,
                         fiwareid TEXT,
                         lon NUMERIC,
@@ -140,7 +154,34 @@ def save_to_postgres(records):
                         created_at TIMESTAMP DEFAULT NOW()
                     );
                 """)
+<<<<<<< Updated upstream
 
+=======
+                cur.execute("""
+                    DO $$
+                    BEGIN
+                        BEGIN
+                            ALTER TABLE estaciones
+                            ADD CONSTRAINT estaciones_unique_medicion
+                            UNIQUE (direccion, fecha_carg);
+                        EXCEPTION
+                            WHEN duplicate_object THEN
+                                NULL;  -- Ya existe, no hacer nada
+                        END;
+                    END$$;
+                """)
+
+                logging.info("Tabla 'estaciones' y UNIQUE(direccion, fecha_carg) asegurados.")
+    except Exception as e:
+        logging.error(f"Error asegurando tabla o índice: {e}")
+# =======================================================
+# GUARDAR DATOS EN POSTGRES
+# =======================================================
+def insert_data(records):
+    try:
+        with psycopg.connect(DB_URL) as conn:
+            with conn.cursor() as cur:
+>>>>>>> Stashed changes
                 for rec in records:
                     fields = rec.get("fields", {})
                     geo = fields.get("geo_point_2d", [])
@@ -154,6 +195,22 @@ def save_to_postgres(records):
                             tipoemisio, fecha_carg, calidad_am, fiwareid,
                             lon, lat
                         ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+                        ON CONFLICT (direccion, fecha_carg) 
+                        DO UPDATE SET 
+                            so2 = EXCLUDED.so2,
+                            no2 = EXCLUDED.no2,
+                            o3 = EXCLUDED.o3,
+                            co = EXCLUDED.co,
+                            pm10 = EXCLUDED.pm10,
+                            pm25 = EXCLUDED.pm25,
+                            calidad_am = EXCLUDED.calidad_am,
+                            objectid = EXCLUDED.objectid,
+                            nombre = EXCLUDED.nombre,
+                            tipozona = EXCLUDED.tipozona,
+                            tipoemisio = EXCLUDED.tipoemisio,
+                            fiwareid = EXCLUDED.fiwareid,
+                            lon = EXCLUDED.lon,
+                            lat = EXCLUDED.lat
                     """, (
                         fields.get("objectid"),
                         fields.get("nombre"),
@@ -172,10 +229,14 @@ def save_to_postgres(records):
                         lon,
                         lat
                     ))
+<<<<<<< Updated upstream
 
         logging.info(f"{len(records)} registros guardados correctamente.")
+=======
+                logging.info(f"{len(records)} registros procesados (Insertados o Actualizados).")
+>>>>>>> Stashed changes
     except Exception as e:
-        logging.error(f"Error guardando datos: {e}")
+        logging.error(f"Error realizando UPSERT en Postgres: {e}")
 
 # =======================================================
 # EJECUCIÓN PRINCIPAL
