@@ -1,12 +1,13 @@
 import json
 import os
 from confluent_kafka import Consumer
+import time 
 
 # 1. Configuración básica
 conf = {
-    'bootstrap.servers': os.getenv('KAFKA_BOOTSTRAP', 'localhost:9092'),
+    'bootstrap.servers': os.getenv('KAFKA_BOOTSTRAP', 'localhost:29092'),
     'group.id': 'grupo_poblacion',
-    'auto.offset.reset': 'latest'
+    'auto.offset.reset': 'earliest'
 }
 
 consumer = Consumer(conf)
@@ -20,11 +21,13 @@ try:
         msg = consumer.poll(5.0)
 
         if msg is None:
+            print(".", end="", flush=True)
             continue
         if msg.error():
             print(f"Error: {msg.error()}")
             continue
-
+        
+        print(f"\n📩 Mensaje recibido!")
         # Decodificamos el mensaje que llega en bytes
         texto = msg.value().decode('utf-8')
 
@@ -45,8 +48,8 @@ try:
 
         # Si el mensaje NO es JSON (ej. "Producer iniciado"), entra aquí
         except json.JSONDecodeError:
-            print(f"Error al decodificar JSON: {texto}")
+            print(f"Mensaje no-JSON: {texto}")
 
 except KeyboardInterrupt:
-    print("Consumidor detenido.")
+    print(f"Mensaje no-JSON: {texto}")
     consumer.close()
