@@ -52,24 +52,19 @@ def kafka_listener():
                 datos = json.loads(texto)
                 
                 # Extraemos los datos que te interesan
-                nombre = datos.get("nombre")
-                estado = datos.get("estado")
+                estacion = datos.get("estacion")
+                estado = datos.get("alerta_activa")
+                valor = datos.get("nivel_no2")
 
-                if estado == "alerta":
-                    print(f"!!! ALERTA DETECTADA en: {nombre} !!!")
+                if estado == True:
+                    print(f"!!! ALERTA DETECTADA en: {estacion} !!!")
                     print(f"Datos completos: {datos}")
-                    alertas_buffer.append({
-                        "nombre": nombre,
-                        "nivel_no2": datos.get("nivel_no2", 0),
-                        "fecha_carg": datos.get("fecha_carg")
-                    })
-                    save_alertas(alertas_buffer)
                 else:
-                    print(f"Mensaje normal de {nombre}: {estado}")
+                    print(f"Mensaje normal de {estacion}: Niveles de NO2: {valor} µg/m³")
 
-            # Si el mensaje NO es JSON (ej. "Producer iniciado"), entra aquí
+                # Si el mensaje NO es JSON (ej. "Producer iniciado"), entra aquí
             except json.JSONDecodeError:
-                print(f"Error al decodificar JSON: {texto}")
+                    print(f"Error al decodificar JSON: {texto}")
 
     except KeyboardInterrupt:
         print("Consumidor detenido.")
