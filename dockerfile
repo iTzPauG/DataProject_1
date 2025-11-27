@@ -9,6 +9,8 @@ WORKDIR /app
 # Copiar archivos
 COPY requirements.txt .
 COPY project.py .
+COPY pull_api.py .
+COPY kafka_consumer.py .
 
 # Instalar dependencias
 RUN pip install --no-cache-dir --upgrade pip \
@@ -20,3 +22,4 @@ USER appuser
 
 # Ejecutar script al iniciar el contenedor
 CMD ["python", "project.py"]
+

@@ -1,12 +1,17 @@
 import requests
 import time
+import os
+import logging
+import psycopg
 from confluent_kafka import Producer
 import json
-
 #configurar Kafka
 conf = {
-    'bootstrap.servers': 'localhost:9092'  
+    # inside docker-compose use kafka:29092 (internal advertised listener)
+    'bootstrap.servers': os.getenv("KAFKA_BOOTSTRAP", "kafka:29092")
 }
+DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://postgres:postgres@db:5432/data_project_1")
+logging.basicConfig(level=logging.INFO)
 producer = Producer(conf)
 
 #TESTEANDO KAFKA - BORRAR DESPUÉS
@@ -23,13 +28,43 @@ producer.produce(
 producer.flush()
 ## FIN DEL TEST DE KAFKA ##
 
+#####################
+# CONSULTA BD
+#####################
+def fetch_from_db():
+    """Return list of dict rows from estaciones table that share the latest created_at timestamp."""
+    try:
+        with psycopg.connect(DATABASE_URL) as conn:
+            with conn.cursor(row_factory=psycopg.rows.dict_row) as cur:
+                # fetch latest created_at timestamp
+                cur.execute("SELECT MAX(created_at) AS latest_ts FROM estaciones;")
+                row = cur.fetchone()
+                latest_ts = row["latest_ts"] if row else None
+                if not latest_ts:
+                    return []
+
+                # return rows that have that latest timestamp
+                cur.execute(
+                    """
+                    SELECT objectid, nombre, no2, lon, lat, fecha_carg, created_at
+                    FROM estaciones
+                    WHERE created_at = %s
+                    ORDER BY objectid;
+                    """,
+                    (latest_ts,),
+                )
+                return cur.fetchall()
+    except Exception as e:
+        logging.error("DB fetch error: %s", e)
+        return []
+
 def enviar_alerta_poblacion(mensaje):
     producer.produce(
         topic='alertas_poblacion',
         value=json.dumps(mensaje, ensure_ascii=False).encode('utf-8')
     )
     producer.flush()
-    print(Fore.YELLOW + f"✅ Alerta enviada al topic 'alertas_confirmadas'")
+    print(f"✅ Alerta enviada al topic 'alertas_confirmadas'")
 
 def enviar_alerta_CECOPI(mensaje):
     producer.produce(
@@ -37,7 +72,7 @@ def enviar_alerta_CECOPI(mensaje):
         value=json.dumps(mensaje, ensure_ascii=False).encode('utf-8')
     )
     producer.flush()
-    print(Fore.YELLOW + f"✅ Alerta enviada al topic 'alertas_confirmadas'")
+    print(f"✅ Alerta enviada al topic 'alertas_confirmadas'")
 
 # Panel de control
 API_URL = "https://valencia.opendatasoft.com/api/explore/v2.1/catalog/datasets/estacions-contaminacio-atmosferiques-estaciones-contaminacion-atmosfericas/records?limit=20"
@@ -53,13 +88,11 @@ estado_estaciones = {}
 def revisar_calidad_aire():
     ahora = time.time()
     hora_legible = time.strftime('%H:%M:%S')
-    print(f"[{hora_legible}] ⏳ Consultando sensores...")
+    print(f"[{hora_legible}] ⏳ Consultando sensores (desde DB)...")
     
     try:
         mensaje = {}
-        response = requests.get(API_URL)
-        data = response.json()
-        sensores = data.get('results', [])
+        sensores = fetch_from_db()
 
         for sensor in sensores:
             # 1. Obtener datos básicos
@@ -116,8 +149,10 @@ def revisar_calidad_aire():
                     
                     # Reseteamos la alerta a False
                     estado["activa"] = False
-            
-            enviar_alerta_poblacion(mensaje)
+            if mensaje:   # only send populated messages
+                enviar_alerta_poblacion(mensaje)
+                logging.info(f"Mensaje {mensaje} enviado")
+            else: logging.error("Mensaje no enviado")
 
     except Exception as e:
         print(f"❌ Error conectando la API: {e}")

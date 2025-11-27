@@ -2,3 +2,4 @@ psycopg[binary]
 requests
 duckdb
 confluent-kafka
+colorama
