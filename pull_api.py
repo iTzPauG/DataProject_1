@@ -9,6 +9,36 @@ conf = {
 }
 producer = Producer(conf)
 
+#TESTEANDO KAFKA - BORRAR DESPUÉS
+mensaje_prueba = {
+    "nombre": "Sistema",
+    "estado": "alerta",
+    "alerta_tipo": "Inicio de Producer",
+    "alerta_icono": "🔵"
+}
+producer.produce(
+    topic='alertas_poblacion',
+    value=json.dumps(mensaje_prueba, ensure_ascii=False).encode('utf-8')
+    )
+producer.flush()
+## FIN DEL TEST DE KAFKA ##
+
+def enviar_alerta_poblacion(mensaje):
+    producer.produce(
+        topic='alertas_poblacion',
+        value=json.dumps(mensaje, ensure_ascii=False).encode('utf-8')
+    )
+    producer.flush()
+    print(Fore.YELLOW + f"✅ Alerta enviada al topic 'alertas_confirmadas'")
+
+def enviar_alerta_CECOPI(mensaje):
+    producer.produce(
+        topic='alertas_CECOPI',
+        value=json.dumps(mensaje, ensure_ascii=False).encode('utf-8')
+    )
+    producer.flush()
+    print(Fore.YELLOW + f"✅ Alerta enviada al topic 'alertas_confirmadas'")
+
 # Panel de control
 API_URL = "https://valencia.opendatasoft.com/api/explore/v2.1/catalog/datasets/estacions-contaminacio-atmosferiques-estaciones-contaminacion-atmosfericas/records?limit=20"
 
@@ -72,7 +102,7 @@ def revisar_calidad_aire():
             
             # CASO B: Ya no supera el umbral (Bajada de nivel)
             else:
-                # Solo avisamos si antes ESTABA activa (es decir, la situación ha mejorado)
+                # Solo avisamos si antes ESTABA activa (la situación ha mejorado)
                 if estado["activa"]:
                     print(f"✅ NIVEL RESTABLECIDO en {nombre}")
                     print(f"   El nivel ha bajado a {valor} µg/m³.")
@@ -86,11 +116,8 @@ def revisar_calidad_aire():
                     
                     # Reseteamos la alerta a False
                     estado["activa"] = False
-            producer.produce(
-                topic='alertas_poblacion',
-                value=json.dumps(mensaje, ensure_ascii=False).encode('utf-8')
-            )
-            producer.flush()
+            
+            enviar_alerta_poblacion(mensaje)
 
     except Exception as e:
         print(f"❌ Error conectando la API: {e}")
