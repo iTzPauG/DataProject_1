@@ -11,6 +11,7 @@ COPY requirements.txt .
 COPY project.py .
 COPY pull_api.py .
 COPY kafka_consumer.py .
+COPY dashboard_alertas.py .
 
 # Instalar dependencias
 RUN pip install --no-cache-dir --upgrade pip \

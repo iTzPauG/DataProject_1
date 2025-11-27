@@ -125,10 +125,43 @@ services:
       tty: true             # Permite sesión interactiva
       networks:
         - kafka-net
+  consumer:
+    build: .
+    container_name: kafka_consumer
+    env_file: .env
+    depends_on:
+      db:
+        condition: service_healthy
+      kafka:
+        condition: service_started
+    command: ["python", "kafka_consumer.py"]
+    restart: unless-stopped
+    networks:
+      - default
+      - kafka-net
+    volumes:
+      - shared_data:/shared
+  dashboard:
+    build: .
+    container_name: dashboard_alertas
+    env_file: .env
+    depends_on:
+      db:
+        condition: service_healthy
+    command: ["python", "dashboard_alertas.py"]
+    volumes:
+      - shared_data:/shared
+    ports:
+      - "8050:8050"
+    restart: unless-stopped
+    networks:
+      - default
+      - kafka-net
 
 volumes:
     pg_data:
     postgresDB:
+    shared_data:
 
 networks:
   kafka-net:
