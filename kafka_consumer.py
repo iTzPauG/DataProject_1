@@ -1,9 +1,10 @@
 import json
+import os
 from confluent_kafka import Consumer
 
 # 1. Configuración básica
 conf = {
-    'bootstrap.servers': 'localhost:9092',
+    'bootstrap.servers': os.getenv('KAFKA_BOOTSTRAP', 'localhost:9092'),
     'group.id': 'grupo_poblacion',
     'auto.offset.reset': 'latest'
 }
@@ -11,7 +12,7 @@ conf = {
 consumer = Consumer(conf)
 consumer.subscribe(['alertas_poblacion'])
 
-print("--- Consumidor Iniciado. Esperando mensajes ---")
+print(f"Conectado a: {conf['bootstrap.servers']}, esperando mensajes")
 
 try:
     while True:
