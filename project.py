@@ -22,27 +22,36 @@ DB_URL = f"postgresql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
 # ====================================
-# CREAR BASE DE DATOS SI NO EXISTE
+# CREAR BASE DE DATOS
 # ====================================
-def create_database_if_not_exists():
-    logging.info(f"Verificando base '{DB_NAME}'...")
-
-    try:
-        with psycopg.connect(SERVER_URL) as conn:
+def create_database():
+    for _ in range(10):  # intenta 10 veces
+        try:
+            logging.info("Verificando base '%s'...", DB_NAME)
+            conn = psycopg.connect(
+                host=DB_HOST,
+                port=DB_PORT,
+                user=DB_USER,
+                password=DB_PASS,
+                dbname="postgres"  # se conecta a postgres para crear la BD
+            )
             conn.autocommit = True
-            with conn.cursor() as cur:
-                cur.execute("SELECT 1 FROM pg_database WHERE datname = %s;", (DB_NAME,))
-                exists = cur.fetchone()
+            cur = conn.cursor()
 
-                if not exists:
-                    logging.info(f"No existe. Creando '{DB_NAME}'...")
-                    cur.execute(f"CREATE DATABASE {DB_NAME};")
-                    logging.info("Base creada correctamente.")
-                else:
-                    logging.info("La base ya existe.")
-    except Exception as e:
-        logging.error(f"Error creando/verificando base: {e}")
-        exit(1)
+            cur.execute(f"SELECT 1 FROM pg_database WHERE datname = '{DB_NAME}';")
+            exists = cur.fetchone()
+            
+            if not exists:
+                logging.info("Base no existe. Creándola...")
+                cur.execute(f"CREATE DATABASE {DB_NAME};")
+            else:
+                logging.info("La base ya existe.")
+                break
+        except Exception as e:
+            logging.error(f"Error creando database: {e}")
+            time.sleep(3)
+    cur.close()
+    conn.close()
 
 # ====================================
 # FUNCION ESPERAR CONEXIÓN
@@ -76,49 +85,14 @@ def fetch_data():
     except Exception as e:
         logging.error(f"Error al obtener datos de la API: {e}")
         return []
-
-
-def ensure_database():
-    for _ in range(10):  # intenta 10 veces
-        try:
-            logging.info("Verificando base '%s'...", DB_NAME)
-            conn = psycopg.connect(
-                host=DB_HOST,
-                port=DB_PORT,
-                user=DB_USER,
-                password=DB_PASS,
-                dbname="postgres"  # se conecta a postgres para crear la BD
-            )
-            conn.autocommit = True
-            cur = conn.cursor()
-
-            cur.execute(f"SELECT 1 FROM pg_database WHERE datname = '{DB_NAME}';")
-            exists = cur.fetchone()
-
-            if not exists:
-                logging.info("Base no existe. Creándola...")
-                cur.execute(f"CREATE DATABASE {DB_NAME};")
-            else:
-                logging.info("La base ya existe.")
-
-            cur.close()
-            conn.close()
-            return
-        except Exception as e:
-            logging.error("Error creando/verificando base: %s", e)
-            time.sleep(3)
-
-    raise Exception("Postgres no respondió después de varios intentos")
-
-
 # =======================================================
-# GUARDAR DATOS EN POSTGRES
+# CREAR TABLA EN POSTGRES
 # =======================================================
-def save_to_postgres(records):
+def create_table():
     try:
         with psycopg.connect(DB_URL) as conn:
             with conn.cursor() as cur:
-                cur.execute("DROP TABLE IF EXISTS estaciones CASCADE;")
+                # cur.execute("DROP TABLE IF EXISTS estaciones CASCADE;")
                 cur.execute("""
                     CREATE TABLE IF NOT EXISTS estaciones (
                         id SERIAL PRIMARY KEY,
@@ -141,7 +115,16 @@ def save_to_postgres(records):
                         created_at TIMESTAMP DEFAULT NOW()
                     );
                 """)
+    except Exception as e:
+        logging.error(f"Error guardando datos: {e}")
 
+# =======================================================
+# GUARDAR DATOS EN POSTGRES
+# =======================================================
+def insert_data(records):
+    try:
+        with psycopg.connect(DB_URL) as conn:
+            with conn.cursor() as cur:
                 for rec in records:
                     fields = rec.get("fields", {})
                     geo = fields.get("geo_point_2d", [])
@@ -173,7 +156,6 @@ def save_to_postgres(records):
                         lon,
                         lat
                     ))
-
         logging.info(f"{len(records)} registros guardados correctamente.")
     except Exception as e:
         logging.error(f"Error guardando datos: {e}")
@@ -183,20 +165,23 @@ def save_to_postgres(records):
 # =======================================================
 if __name__ == "__main__":
     logging.info("Iniciando script...")
-    ensure_database()
+
     # 1. Crear DB desde cero si falta
-    create_database_if_not_exists()
+    create_database()
 
     # 2. Esperar conexión a nueva DB
     wait_for_connection()
 
-    # 3. Bucle de actualización
+    # 3. Crear Tabla
+    create_table()
+
+    # 4. Bucle de actualización
     while True:
         records = fetch_data()
         if records:
-            save_to_postgres(records)
+            insert_data(records)
         else:
             logging.warning("No se obtuvieron registros de la API.")
 
         logging.info("Esperando 1 hora para la siguiente actualización...")
-        time.sleep(3600)
+        time.sleep(900)
