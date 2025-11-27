@@ -125,42 +125,56 @@ services:
       tty: true             # Permite sesión interactiva
       networks:
         - kafka-net
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgesparterpubli@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: 'False'
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - db
+    restart: unless-stopped
+    networks:
+      - kafka-net
+  
+  kafbat:
+    image: ghcr.io/kafbat/kafka-ui:latest
+    container_name: kafbat_ui
+    ports:
+      - "8080:8080"
+    environment:
+      DYNAMIC_CONFIG_ENABLED: 'true'
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
+      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+    depends_on:
+      - kafka
+    restart: unless-stopped
+    networks:
+      - kafka-net
+  
   consumer:
     build: .
     container_name: kafka_consumer
     env_file: .env
     depends_on:
-      db:
-        condition: service_healthy
       kafka:
         condition: service_started
     command: ["python", "kafka_consumer.py"]
     restart: unless-stopped
     networks:
-      - default
-      - kafka-net
-    volumes:
-      - shared_data:/shared
-  dashboard:
-    build: .
-    container_name: dashboard_alertas
-    env_file: .env
-    depends_on:
-      db:
-        condition: service_healthy
-    command: ["python", "dashboard_alertas.py"]
-    volumes:
-      - shared_data:/shared
-    ports:
-      - "8050:8050"
-    restart: unless-stopped
-    networks:
-      - default
       - kafka-net
 
 volumes:
     pg_data:
     postgresDB:
+    pgadmin_data:
     shared_data:
 
 networks:
