@@ -96,16 +96,16 @@ services:
 
       networks:
         - kafka-net
-  pull_api:
+  producer:
     build: .
-    container_name: pull_api
+    container_name: producer
     env_file: .env
     depends_on:
       db:
         condition: service_healthy
       kafka:
         condition: service_started
-    command: ["python", "pull_api.py"]
+    command: ["python", "producer.py"]
     restart: unless-stopped
     logging:
       driver: "json-file"
@@ -165,14 +165,31 @@ services:
     container_name: kafka_consumer
     env_file: .env
     depends_on:
-      pull_api:
+      producer:
         condition: service_started
       kafka:
         condition: service_started
     command: ["python", "kafka_consumer.py"]
     restart: unless-stopped
+    volumes:
+      - shared_data:/shared
     networks:
       - kafka-net
+  dashboard:
+    build: .
+    container_name: dashboard_alertas
+    env_file: .env
+    depends_on:
+      - consumer
+    ports:
+      - "8050:8050"
+    command: ["python", "dashboard_alertas.py"]
+    restart: unless-stopped
+    volumes:
+          - shared_data:/shared
+    networks:
+      - kafka-net
+
 volumes:
     pg_data:
     postgresDB:

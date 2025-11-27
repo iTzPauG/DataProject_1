@@ -71,7 +71,6 @@ def enviar_alerta_poblacion(mensaje): # Manda la alerta a Kafka (alertas_poblaci
         topic='alertas_poblacion',
         value=json.dumps(mensaje, default=json_serializer, ensure_ascii=False).encode('utf-8')
     )
-    print(mensaje)
     producer.flush()
     print(f"✅ Alerta enviada al topic 'alertas_confirmadas'")
 
@@ -153,6 +152,7 @@ def revisar_calidad_aire():
                     
                     print(f"   Nivel NO2: {valor} µg/m³ (Límite: {UMBRAL_NO2})")
                     print("-" * 40)
+                    
                     # Actualizamos el estado
                     estado["activa"] = True
                     estado["ultimo_aviso"] = ahora
@@ -174,9 +174,11 @@ def revisar_calidad_aire():
                     print(f"   El nivel ha bajado a {valor} µg/m³.")
 
                     estado["activa"] = False
-                    enviar_alerta_poblacion(mensaje)
-                    logging.info(f"Mensaje {mensaje} enviado")
-                else : print(f"Mensaje no enviado en {nombre}, valores correctos")
+            if mensaje:   # only send populated messages
+                enviar_alerta_poblacion(mensaje)
+                logging.info(f"Mensaje {mensaje} enviado")
+            else: logging.error("Mensaje no enviado")
+
     except Exception as e:
         print(f"❌ Error conectando la Base de datos: {e}")
 
