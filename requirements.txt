@@ -1,3 +1,4 @@
 psycopg[binary]
 requests
 duckdb
+dbt-postgres==1.9.1
