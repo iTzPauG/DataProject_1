@@ -1,4 +1,9 @@
 psycopg[binary]
 requests
 duckdb
+<<<<<<< HEAD
 dbt-postgres==1.9.1
+=======
+confluent-kafka
+colorama
+>>>>>>> main
