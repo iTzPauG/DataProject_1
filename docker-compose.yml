@@ -19,11 +19,6 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
-<<<<<<< HEAD
-=======
-    networks:
-        - kafka-net
->>>>>>> main
 
   app:
     build: .
@@ -31,11 +26,6 @@ services:
     depends_on:
       db: 
         condition: service_healthy
-<<<<<<< HEAD
-=======
-    networks:
-        - kafka-net
->>>>>>> main
 
   dbt:
       build: .
@@ -50,11 +40,6 @@ services:
       tty: true
       depends_on:
           - db
-<<<<<<< HEAD
-=======
-      networks:
-        - kafka-net
->>>>>>> main
 
   zookeeper:
       image: confluentinc/cp-zookeeper:7.3.0
@@ -98,41 +83,12 @@ services:
       ports:
         - "8088:8088"                # Puerto para la API REST de KSQL
       environment:
-<<<<<<< HEAD
         KSQL_BOOTSTRAP_SERVERS: kafka:29092  # Conexión al broker Kafka
         KSQL_LISTENERS: http://0.0.0.0:8088  # Dirección donde escucha KSQL
         KSQL_KSQL_SERVICE_ID: ksql_service   # Identificador del servicio KSQL
 
       networks:
         - kafka-net
-=======
-        KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,PLAINTEXT_INTERNAL://0.0.0.0:29092
-        KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_INTERNAL://kafka:29092
-        KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT_INTERNAL
-
-      networks:
-        - kafka-net
-  pull_api:
-    build: .
-    container_name: pull_api
-    env_file: .env
-    depends_on:
-      db:
-        condition: service_healthy
-      kafka:
-        condition: service_started
-    command: ["python", "pull_api.py"]
-    restart: unless-stopped
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "3"
-    networks:
-      - default
-      - kafka-net
-    
->>>>>>> main
 
   ksql-cli:
       image: confluentinc/cp-ksqldb-cli:7.3.0
