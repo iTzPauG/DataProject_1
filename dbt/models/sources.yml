@@ -1,37 +1,52 @@
 version: 2
 
 sources:
-  - name: valenbisi           # Nombre lógico del source dentro de dbt
-    database: valenbisi_db    # Nombre de la base de datos PostgreSQL
+  - name: data_project_raw                                        
+    database: data_project_1 #Nombre de la base de datos PostgreSQL
     schema: public            # Esquema donde está la tabla
     tables:
-      - name: valenbisi_raw   # Nombre de la tabla en la base de datos
-        description: "Tabla cruda de estaciones Valenbisi con disponibilidad de bicicletas."
+      - name: estaciones 
+        description: "Tabla cruda de estaciones de contaminación atmosférica en Valencia."
         columns:
           - name: id
-            description: "ID único de la fila"
+            description: "ID interno autoincremental"
             tests:
+              - not_null
+          - name: objectid
+            description: "Identificador único de la estación"
+            tests:
+              - not_null
               - unique
-              - not_null
-          - name: station_id
-            description: "ID de la estación"
-            tests:
-              - not_null
-          - name: station_name
+          - name: nombre 
             description: "Nombre de la estación"
-          - name: latitude
-            description: "Latitud de la estación"
-          - name: longitude
-            description: "Longitud de la estación"
-          - name: available_bikes
-            description: "Número de bicicletas disponibles"
-          - name: available_slots
-            description: "Número de huecos disponibles"
-          - name: station_status
-            description: "Estado de la estación"
-          - name: total_capacity
-            description: "Capacidad total de la estación"
-          - name: timestamp
-            description: "Momento de la medición"
-            tests:
-              - not_null
+          - name:  direccion
+            description: "Dirección física"
+          - name: tipozona
+            description: "Tipo de zona (urbana, suburbana, etc.)"
+          - name: so2
+            description: "Medición de SO2"
+          - name: no2
+            description: "Medición de NO2"
+          - name: o3
+            description: "Medición de O3"
+          - name: co
+            description: "Medición de CO"
+          - name: pm10
+            description: "Particulas PM10"
+          - name: pm25
+            description: "Particulas PM2.5"
+          - name: fecha_carg
+            description: "Fecha de la carga del dato"
+          - name: tipoemisio
+            description: "Tipo de emisión
+          - name: calidad_am
+            description: "calidad ambiental"
+          - name: fiwareid
+            description: "ID en FIWARE"
+          - name: lon 
+            description: "longitud geográfica"
+          - name: lat 
+            description: "Latitud geográfica"
+          - name: created_at
+            description: "Fecha de inserción en la base de datos"
+            
