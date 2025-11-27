@@ -43,7 +43,7 @@ try:
 
         # Si el mensaje NO es JSON (ej. "Producer iniciado"), entra aquí
         except json.JSONDecodeError:
-            print(f"Texto recibido: {texto}")
+            print(f"Error al decodificar JSON: {texto}")
 
 except KeyboardInterrupt:
     print("Consumidor detenido.")
