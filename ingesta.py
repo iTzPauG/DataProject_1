@@ -1,4 +1,5 @@
 import time
+import os
 import logging
 import psycopg
 import requests
@@ -7,19 +8,22 @@ from urllib.parse import urlparse, urlunparse
 # =======================================================
 # CONFIGURACIÓN DIRECTA (SIN VARIABLES DE ENTORNO)
 # =======================================================
-DB_USER = "postgres"
-DB_PASS = "postgres"
-DB_HOST = "db"
-DB_PORT = "5432"
-DB_NAME = "data_project_1"  
+DB_USER = os.getenv("POSTGRES_USER")
+DB_PASS = os.getenv("POSTGRES_PASSWORD")
+DB_HOST = os.getenv("DB_HOST")
+DB_PORT = os.getenv("DB_PORT")
+DB_NAME = os.getenv("POSTGRES_DB")
 
 SERVER_URL = f"postgresql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/postgres"
 DB_URL = f"postgresql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
+SLEEPTIME=900
+
 # =======================================================
 # LOGGING
 # =======================================================
-logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
+log_level = os.getenv("LOG_LEVEL")
+logging.basicConfig(level=getattr(logging, log_level), format="%(asctime)s [%(levelname)s] %(message)s")
 
 # ====================================
 # CREAR BASE DE DATOS
@@ -194,5 +198,5 @@ if __name__ == "__main__":
         else:
             logging.warning("No se obtuvieron registros de la API.")
 
-        logging.info("Esperando 1 hora para la siguiente actualización...")
-        time.sleep(900)
+        logging.info(f"Esperando {int(SLEEPTIME / 60)} minutos para la siguiente actualización...")
+        time.sleep(SLEEPTIME)
