@@ -4,8 +4,6 @@ services:
   db:
     image: postgres:17-alpine
     container_name: db
-    env_file:
-      - .env
     volumes:
       - postgresDB:/var/lib/postgresql/data
     ports:
@@ -13,14 +11,15 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: data_project_1
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d data_project_1"]
       interval: 5s
       timeout: 5s
       retries: 5
     networks:
-        - kafka-net
+      - kafka-net
 
   app:
     build: 
