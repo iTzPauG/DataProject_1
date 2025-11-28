@@ -96,10 +96,11 @@ services:
       ports:
         - "8088:8088"                # Puerto para la API REST de KSQL
       environment:
-        KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,PLAINTEXT_INTERNAL://0.0.0.0:29092
-        KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_INTERNAL://kafka:29092
-        KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT_INTERNAL
-
+        KSQL_BOOTSTRAP_SERVERS: kafka:29092
+        KSQL_LISTENERS: http://0.0.0.0:8088
+        KSQL_KSQL_SERVICE_ID: ksql_air_service
+        KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE: 'true'
+        KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE: 'true'
       networks:
         - kafka-net
   producer:
