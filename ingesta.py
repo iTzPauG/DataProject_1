@@ -6,7 +6,7 @@ import requests
 from urllib.parse import urlparse, urlunparse
 
 # =======================================================
-# CONFIGURACIÓN DIRECTA (SIN VARIABLES DE ENTORNO)
+# VARIABLES GLOBALES
 # =======================================================
 DB_USER = os.getenv("POSTGRES_USER")
 DB_PASS = os.getenv("POSTGRES_PASSWORD")
@@ -29,6 +29,8 @@ logging.basicConfig(level=getattr(logging, log_level), format="%(asctime)s [%(le
 # CREAR BASE DE DATOS
 # ====================================
 def create_database():
+    conn = None
+    cur = None
     for _ in range(10):  # intenta 10 veces
         try:
             logging.info("Verificando base '%s'...", DB_NAME)
@@ -37,7 +39,8 @@ def create_database():
                 port=DB_PORT,
                 user=DB_USER,
                 password=DB_PASS,
-                dbname="postgres"  # se conecta a postgres para crear la BD
+                dbname="postgres",  # se conecta a postgres para crear la BD
+                connect_timeout=5
             )
             conn.autocommit = True
             cur = conn.cursor()
@@ -48,15 +51,22 @@ def create_database():
             if not exists:
                 logging.info("Base no existe. Creándola...")
                 cur.execute(f"CREATE DATABASE {DB_NAME};")
+                logging.info(f"Base de datos '{DB_NAME}' creada correctamente.")
             else:
                 logging.info("La base ya existe.")
-                break
+            cur.close()
+            conn.close()
+            return
+            
         except Exception as e:
             logging.error(f"Error creando database: {e}")
+            if cur:
+                cur.close()
+            if conn:
+                conn.close()
             time.sleep(3)
-    cur.close()
-    conn.close()
-
+    logging.error("No se pudo crear/verificar la base de datos después de 10 intentos.")
+    exit(1)
 # ====================================
 # FUNCION ESPERAR CONEXIÓN
 # ====================================
@@ -176,7 +186,7 @@ def insert_data(records):
         logging.error(f"Error guardando datos: {e}")
 
 # =======================================================
-# EJECUCIÓN PRINCIPAL
+# MAIN
 # =======================================================
 if __name__ == "__main__":
     logging.info("Iniciando script...")
