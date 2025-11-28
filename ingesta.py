@@ -115,6 +115,12 @@ def create_table():
                         created_at TIMESTAMP DEFAULT NOW()
                     );
                 """)
+                # Crear índice único para evitar duplicados
+                cur.execute("""
+                    CREATE UNIQUE INDEX IF NOT EXISTS idx_estaciones_objectid_fecha 
+                    ON estaciones(objectid, fecha_carg);
+                """)
+                logging.info("Tabla e índice único creados correctamente.")
     except Exception as e:
         logging.error(f"Error guardando datos: {e}")
 
@@ -125,6 +131,7 @@ def insert_data(records):
     try:
         with psycopg.connect(DB_URL) as conn:
             with conn.cursor() as cur:
+                inserted_count=0
                 for rec in records:
                     fields = rec.get("fields", {})
                     geo = fields.get("geo_point_2d", [])
@@ -138,6 +145,7 @@ def insert_data(records):
                             tipoemisio, fecha_carg, calidad_am, fiwareid,
                             lon, lat
                         ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+                        ON CONFLICT (objectid, fecha_carg) DO NOTHING
                     """, (
                         fields.get("objectid"),
                         fields.get("nombre"),
@@ -156,7 +164,10 @@ def insert_data(records):
                         lon,
                         lat
                     ))
-        logging.info(f"{len(records)} registros guardados correctamente.")
+                    if cur.rowcount > 0:
+                        inserted_count += 1
+
+        logging.info(f"✅ {inserted_count} registros nuevos insertados de {len(records)} procesados.")
     except Exception as e:
         logging.error(f"Error guardando datos: {e}")
 
