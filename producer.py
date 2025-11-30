@@ -15,7 +15,7 @@ API_URL = "https://valencia.opendatasoft.com/api/explore/v2.1/catalog/datasets/e
 
 UMBRAL_NO2 = 10 # µg/m³
 INTERVALO_MINUTOS = 1
-TIEMPO_REPETICION_ALERTA = 2 * 1 * 60  # 24 horas en segundos
+TIEMPO_REPETICION_ALERTA = 60  # 24 horas en segundos
 
 
 ### Configurar el producer de Kafka
@@ -134,9 +134,10 @@ def revisar_calidad_aire():
                             "nivel_no2": valor,
                             "alerta_activa": True,
                             "texto": f"Recordatorio: El nivel de NO2 en {nombre} sigue alto: {valor} µg/m³.",
-                            "fecha_carg": sensor.get('fecha_carg')
+                            "fecha_carg": sensor.get('fecha_carg'),
+                            "fecha_envío" : time.ctime()
                         }
-                        print(f"⏰ RECORDATORIO DIARIO en {nombre}")
+                        print(f"⏰ RECORDATORIO DIARIO en {nombre} a las {time.ctime()}")
                     else:
                         mensaje = {
                             "estacion": nombre,
@@ -144,9 +145,10 @@ def revisar_calidad_aire():
                             "nivel_no2": valor,
                             "alerta_activa": True,
                             "texto": f"ALERTA: El nivel de NO2 en {nombre} ha subido por encima del límite seguro. Valor actual: {valor} µg/m³.",
-                            "fecha_carg": sensor.get('fecha_carg')
+                            "fecha_carg": sensor.get('fecha_carg'),
+                            "fecha_envío" : time.ctime()
                         }
-                        print(f"🚨 NUEVA ALERTA en {nombre}")
+                        print(f"🚨 NUEVA ALERTA en {nombre}. Fecha de envío:{time.ctime()}")
                     
                     print(f"   Nivel NO2: {valor} µg/m³ (Límite: {UMBRAL_NO2})")
                     print("-" * 40)
@@ -165,7 +167,8 @@ def revisar_calidad_aire():
                             "nivel_no2": valor,
                             "alerta_activa": False,
                             "texto": f"ALERTA: El nivel de NO2 en {nombre} se ha restablecido a niveles seguros. Valor actual: {valor} µg/m³.",
-                            "fecha_carg": sensor.get('fecha_carg')
+                            "fecha_carg": sensor.get('fecha_carg'),
+                            "fecha_envío" : time.ctime()
                     }
                     print(f"✅ NIVEL RESTABLECIDO en {nombre}")
                     print(f"   El nivel ha bajado a {valor} µg/m³.")

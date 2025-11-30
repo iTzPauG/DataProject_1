@@ -4,8 +4,6 @@ services:
   db:
     image: postgres:17-alpine
     container_name: db
-    env_file:
-      - .env
     volumes:
       - postgresDB:/var/lib/postgresql/data
     ports:
@@ -13,17 +11,21 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: data_project_1
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d data_project_1"]
       interval: 5s
       timeout: 5s
       retries: 5
     networks:
-        - kafka-net
+      - kafka-net
 
   app:
-    build: .
+    build: 
+      context: .
+      dockerfile: dockerfile
+    pull_policy: build
     env_file: .env
     depends_on:
       db: 
@@ -32,7 +34,10 @@ services:
         - kafka-net
 
   dbt:
-      build: .
+      build:
+        context: .
+        dockerfile: dockerfile
+      pull_policy: build
       container_name: dbt
       volumes:
           - ./:/usr/app/dbt
@@ -68,16 +73,17 @@ services:
         KAFKA_BROKER_ID: 1
         KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
     # Listener para aceptar conexiones en todas las interfaces
-        KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,PLAINTEXT_INTERNAL://0.0.0.0:29092
+        KAFKA_LISTENERS: EXTERNAL://0.0.0.0:9092,INTERNAL://0.0.0.0:29092
     # Advertised listeners: cómo se anuncia el broker a los clientes
-        KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_INTERNAL://kafka:29092
+        KAFKA_ADVERTISED_LISTENERS: EXTERNAL://localhost:9092,INTERNAL://kafka:29092
     # Mapeo de protocolos
-        KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
+        KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: EXTERNAL:PLAINTEXT,INTERNAL:PLAINTEXT
     # Listener interno para comunicación entre brokers
-        KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT_INTERNAL
+        KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
         KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
         KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
         KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+        KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
       networks:
         - kafka-net
 
@@ -89,22 +95,26 @@ services:
       ports:
         - "8088:8088"                # Puerto para la API REST de KSQL
       environment:
-        KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,PLAINTEXT_INTERNAL://0.0.0.0:29092
-        KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_INTERNAL://kafka:29092
-        KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT_INTERNAL
-
+        KSQL_BOOTSTRAP_SERVERS: kafka:29092
+        KSQL_LISTENERS: http://0.0.0.0:8088
+        KSQL_KSQL_SERVICE_ID: ksql_air_service
+        KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE: 'true'
+        KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE: 'true'
       networks:
         - kafka-net
-  pull_api:
-    build: .
-    container_name: pull_api
+  producer:
+    build:
+      context: .
+      dockerfile: dockerfile
+    pull_policy: build
+    container_name: producer
     env_file: .env
     depends_on:
       db:
         condition: service_healthy
       kafka:
         condition: service_started
-    command: ["python", "pull_api.py"]
+    command: ["python", "producer.py"]
     restart: unless-stopped
     logging:
       driver: "json-file"
@@ -125,10 +135,81 @@ services:
       tty: true             # Permite sesión interactiva
       networks:
         - kafka-net
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgesparterpubli@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: 'False'
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - db
+    restart: unless-stopped
+    networks:
+      - kafka-net
+  
+  kafbat:
+    image: ghcr.io/kafbat/kafka-ui:latest
+    container_name: kafbat_ui
+    ports:
+      - "8080:8080"
+    environment:
+      DYNAMIC_CONFIG_ENABLED: 'true'
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
+      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+    depends_on:
+      - kafka
+    restart: unless-stopped
+    networks:
+      - kafka-net
+  
+  consumer:
+    build:
+      context: .
+      dockerfile: dockerfile
+    pull_policy: build
+    container_name: kafka_consumer
+    env_file: .env
+    depends_on:
+      producer:
+        condition: service_started
+      kafka:
+        condition: service_started
+    command: ["python", "kafka_consumer.py"]
+    restart: unless-stopped
+    volumes:
+      - shared_data:/shared
+    networks:
+      - kafka-net
+  dashboard:
+    build:
+      context: .
+      dockerfile: dockerfile
+    pull_policy: build
+    container_name: dashboard_alertas
+    env_file: .env
+    depends_on:
+      - consumer
+    ports:
+      - "8050:8050"
+    command: ["python", "dashboard_alertas.py"]
+    restart: unless-stopped
+    volumes:
+          - shared_data:/shared
+    networks:
+      - kafka-net
 
 volumes:
     pg_data:
     postgresDB:
+    pgadmin_data:
+    shared_data:
 
 networks:
   kafka-net:

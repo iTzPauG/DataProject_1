@@ -6,11 +6,13 @@ RUN useradd -m appuser
 # Directorio de trabajo
 WORKDIR /app
 
+RUN mkdir -p /shared && chown -R appuser:appuser /shared
 # Copiar archivos
 COPY requirements.txt .
-COPY project.py .
-COPY pull_api.py .
+COPY ingesta.py .
+COPY producer.py .
 COPY kafka_consumer.py .
+COPY dashboard_alertas.py .
 
 # Instalar dependencias
 RUN pip install --no-cache-dir --upgrade pip \
@@ -21,5 +23,5 @@ RUN pip install --no-cache-dir --upgrade pip \
 USER appuser
 
 # Ejecutar script al iniciar el contenedor
-CMD ["python", "project.py"]
+CMD ["python", "ingesta.py"]
 

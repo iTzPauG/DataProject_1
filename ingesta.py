@@ -1,58 +1,72 @@
 import time
+import os
 import logging
 import psycopg
 import requests
 from urllib.parse import urlparse, urlunparse
 
 # =======================================================
-# CONFIGURACIÓN DIRECTA (SIN VARIABLES DE ENTORNO)
+# VARIABLES GLOBALES
 # =======================================================
-DB_USER = "postgres"
-DB_PASS = "postgres"
-DB_HOST = "db"
-DB_PORT = "5432"
-DB_NAME = "data_project_1"  
+DB_USER = os.getenv("POSTGRES_USER")
+DB_PASS = os.getenv("POSTGRES_PASSWORD")
+DB_HOST = os.getenv("DB_HOST")
+DB_PORT = os.getenv("DB_PORT")
+DB_NAME = os.getenv("POSTGRES_DB")
 
 SERVER_URL = f"postgresql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/postgres"
 DB_URL = f"postgresql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
+SLEEPTIME=900
+
 # =======================================================
 # LOGGING
 # =======================================================
-logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
+log_level = os.getenv("LOG_LEVEL")
+logging.basicConfig(level=getattr(logging, log_level), format="%(asctime)s [%(levelname)s] %(message)s")
 
-# ====================================
-# CREAR BASE DE DATOS
-# ====================================
-def create_database():
-    for _ in range(10):  # intenta 10 veces
-        try:
-            logging.info("Verificando base '%s'...", DB_NAME)
-            conn = psycopg.connect(
-                host=DB_HOST,
-                port=DB_PORT,
-                user=DB_USER,
-                password=DB_PASS,
-                dbname="postgres"  # se conecta a postgres para crear la BD
-            )
-            conn.autocommit = True
-            cur = conn.cursor()
+# # ====================================
+# # CREAR BASE DE DATOS
+# # ====================================
+# def create_database():
+#     conn = None
+#     cur = None
+#     for _ in range(10):  # intenta 10 veces
+#         try:
+#             logging.info("Verificando base '%s'...", DB_NAME)
+#             conn = psycopg.connect(
+#                 host=DB_HOST,
+#                 port=DB_PORT,
+#                 user=DB_USER,
+#                 password=DB_PASS,
+#                 dbname="postgres",  # se conecta a postgres para crear la BD
+#                 connect_timeout=5
+#             )
+#             conn.autocommit = True
+#             cur = conn.cursor()
 
-            cur.execute(f"SELECT 1 FROM pg_database WHERE datname = '{DB_NAME}';")
-            exists = cur.fetchone()
+#             cur.execute(f"SELECT 1 FROM pg_database WHERE datname = '{DB_NAME}';")
+#             exists = cur.fetchone()
             
-            if not exists:
-                logging.info("Base no existe. Creándola...")
-                cur.execute(f"CREATE DATABASE {DB_NAME};")
-            else:
-                logging.info("La base ya existe.")
-                break
-        except Exception as e:
-            logging.error(f"Error creando database: {e}")
-            time.sleep(3)
-    cur.close()
-    conn.close()
-
+#             if not exists:
+#                 logging.info("Base no existe. Creándola...")
+#                 cur.execute(f"CREATE DATABASE {DB_NAME};")
+#                 logging.info(f"Base de datos '{DB_NAME}' creada correctamente.")
+#             else:
+#                 logging.info("La base ya existe.")
+#             cur.close()
+#             conn.close()
+#             return
+            
+#         except Exception as e:
+#             logging.error(f"Error creando database: {e}")
+#             if cur:
+#                 cur.close()
+#             if conn:
+#                 conn.close()
+#             time.sleep(3)
+#     logging.error("No se pudo crear/verificar la base de datos después de 10 intentos.")
+#     exit(1)
 # ====================================
 # FUNCION ESPERAR CONEXIÓN
 # ====================================
@@ -115,6 +129,12 @@ def create_table():
                         created_at TIMESTAMP DEFAULT NOW()
                     );
                 """)
+                # Crear índice único para evitar duplicados
+                cur.execute("""
+                    CREATE UNIQUE INDEX IF NOT EXISTS idx_estaciones_objectid_fecha 
+                    ON estaciones(objectid, fecha_carg);
+                """)
+                logging.info("Tabla e índice único creados correctamente.")
     except Exception as e:
         logging.error(f"Error guardando datos: {e}")
 
@@ -125,6 +145,7 @@ def insert_data(records):
     try:
         with psycopg.connect(DB_URL) as conn:
             with conn.cursor() as cur:
+                inserted_count=0
                 for rec in records:
                     fields = rec.get("fields", {})
                     geo = fields.get("geo_point_2d", [])
@@ -138,6 +159,7 @@ def insert_data(records):
                             tipoemisio, fecha_carg, calidad_am, fiwareid,
                             lon, lat
                         ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+                        ON CONFLICT (objectid, fecha_carg) DO NOTHING
                     """, (
                         fields.get("objectid"),
                         fields.get("nombre"),
@@ -156,18 +178,21 @@ def insert_data(records):
                         lon,
                         lat
                     ))
-        logging.info(f"{len(records)} registros guardados correctamente.")
+                    if cur.rowcount > 0:
+                        inserted_count += 1
+
+        logging.info(f"✅ {inserted_count} registros nuevos insertados de {len(records)} procesados.")
     except Exception as e:
         logging.error(f"Error guardando datos: {e}")
 
 # =======================================================
-# EJECUCIÓN PRINCIPAL
+# MAIN
 # =======================================================
 if __name__ == "__main__":
     logging.info("Iniciando script...")
 
-    # 1. Crear DB desde cero si falta
-    create_database()
+    # # 1. Crear DB desde cero si falta
+    # create_database()
 
     # 2. Esperar conexión a nueva DB
     wait_for_connection()
@@ -183,5 +208,5 @@ if __name__ == "__main__":
         else:
             logging.warning("No se obtuvieron registros de la API.")
 
-        logging.info("Esperando 1 hora para la siguiente actualización...")
-        time.sleep(900)
+        logging.info(f"Esperando {int(SLEEPTIME / 60)} minutos para la siguiente actualización...")
+        time.sleep(SLEEPTIME)
