@@ -1,12 +1,12 @@
-tu_proyecto:
+data_project_1:
   target: dev
   outputs:
     dev:
       type: postgres
-      host: db-1   
+      host: db 
       user: postgres
       password: postgres
       port: 5432
-      dbname: valenbisi_db   
+      dbname: data_project_1  
       schema: public         
       threads: 4

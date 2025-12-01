@@ -1,0 +1,99 @@
+[0m15:31:43.995397 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002549F72EBC0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000254A1A289A0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000254A1A287F0>]}
+
+
+============================== 15:31:44.005437 | 6db29970-6bff-4c27-9008-0a63a1495bfd ==============================
+[0m15:31:44.005437 [info ] [MainThread]: Running with dbt=1.10.15
+[0m15:31:44.007452 [debug] [MainThread]: running dbt with arguments {'profiles_dir': 'C:\\Users\\gbala\\OneDrive\\Escritorio\\Máster Big Data\\apis\\DataProject_1', 'no_print': 'None', 'target_path': 'None', 'cache_selected_only': 'False', 'invocation_command': 'dbt debug', 'warn_error': 'None', 'indirect_selection': 'eager', 'fail_fast': 'False', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True', 'log_path': 'logs', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'partial_parse': 'True', 'version_check': 'True', 'use_experimental_parser': 'False', 'quiet': 'False', 'introspect': 'True', 'empty': 'None', 'log_cache_events': 'False', 'debug': 'False', 'log_format': 'default', 'use_colors': 'True', 'printer_width': '80', 'write_json': 'True'}
+[0m15:31:44.065724 [info ] [MainThread]: dbt version: 1.10.15
+[0m15:31:44.066721 [info ] [MainThread]: python version: 3.10.11
+[0m15:31:44.068227 [info ] [MainThread]: python path: C:\Users\gbala\AppData\Local\Programs\Python\Python310\python.exe
+[0m15:31:44.068227 [info ] [MainThread]: os info: Windows-10-10.0.26200-SP0
+[0m15:31:44.069238 [error] [MainThread]: Encountered an error:
+[Errno 13] Permission denied: 'C:\\Users\\gbala\\OneDrive\\Escritorio\\Máster Big Data\\apis\\DataProject_1\\profiles.yml'
+[0m15:31:44.104010 [error] [MainThread]: Traceback (most recent call last):
+  File "C:\Users\gbala\AppData\Local\Programs\Python\Python310\lib\site-packages\dbt\cli\requires.py", line 178, in wrapper
+    result, success = func(*args, **kwargs)
+  File "C:\Users\gbala\AppData\Local\Programs\Python\Python310\lib\site-packages\dbt\cli\requires.py", line 128, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\gbala\AppData\Local\Programs\Python\Python310\lib\site-packages\dbt\cli\main.py", line 420, in debug
+    results = task.run()
+  File "C:\Users\gbala\AppData\Local\Programs\Python\Python310\lib\site-packages\dbt\task\debug.py", line 114, in run
+    load_profile_status: SubtaskStatus = self._load_profile()
+  File "C:\Users\gbala\AppData\Local\Programs\Python\Python310\lib\site-packages\dbt\task\debug.py", line 195, in _load_profile
+    dbt_common.clients.system.load_file_contents(self.profile_path)
+  File "C:\Users\gbala\AppData\Local\Programs\Python\Python310\lib\site-packages\dbt_common\record.py", line 538, in record_replay_wrapper
+    return func_to_record(*call_args, **kwargs)
+  File "C:\Users\gbala\AppData\Local\Programs\Python\Python310\lib\site-packages\dbt_common\clients\system.py", line 182, in load_file_contents
+    with open(path, "rb") as handle:
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\gbala\\OneDrive\\Escritorio\\Máster Big Data\\apis\\DataProject_1\\profiles.yml'
+
+[0m15:31:44.107010 [debug] [MainThread]: Command `dbt debug` failed at 15:31:44.107010 after 0.37 seconds
+[0m15:31:44.108016 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002549F72EBC0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000254A1A287C0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000254A1A27850>]}
+[0m15:31:44.109011 [debug] [MainThread]: Flushing usage events
+[0m15:31:45.207455 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m15:32:19.293568 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E56AB4AC20>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E56CE3CAC0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E56CE3C8E0>]}
+
+
+============================== 15:32:19.301272 | 33370a72-00ce-40a9-8199-8793e5783dc5 ==============================
+[0m15:32:19.301272 [info ] [MainThread]: Running with dbt=1.10.15
+[0m15:32:19.302273 [debug] [MainThread]: running dbt with arguments {'cache_selected_only': 'False', 'invocation_command': 'dbt debug', 'log_format': 'default', 'write_json': 'True', 'profiles_dir': 'C:\\Users\\gbala\\OneDrive\\Escritorio\\Máster Big Data\\apis\\DataProject_1', 'warn_error': 'None', 'log_path': 'logs', 'fail_fast': 'False', 'indirect_selection': 'eager', 'send_anonymous_usage_stats': 'True', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'partial_parse': 'True', 'use_experimental_parser': 'False', 'version_check': 'True', 'quiet': 'False', 'introspect': 'True', 'empty': 'None', 'log_cache_events': 'False', 'debug': 'False', 'no_print': 'None', 'use_colors': 'True', 'printer_width': '80', 'target_path': 'None'}
+[0m15:32:19.325818 [info ] [MainThread]: dbt version: 1.10.15
+[0m15:32:19.327830 [info ] [MainThread]: python version: 3.10.11
+[0m15:32:19.328829 [info ] [MainThread]: python path: C:\Users\gbala\AppData\Local\Programs\Python\Python310\python.exe
+[0m15:32:19.329833 [info ] [MainThread]: os info: Windows-10-10.0.26200-SP0
+[0m15:32:19.330829 [error] [MainThread]: Encountered an error:
+[Errno 13] Permission denied: 'C:\\Users\\gbala\\OneDrive\\Escritorio\\Máster Big Data\\apis\\DataProject_1\\profiles.yml'
+[0m15:32:19.335827 [error] [MainThread]: Traceback (most recent call last):
+  File "C:\Users\gbala\AppData\Local\Programs\Python\Python310\lib\site-packages\dbt\cli\requires.py", line 178, in wrapper
+    result, success = func(*args, **kwargs)
+  File "C:\Users\gbala\AppData\Local\Programs\Python\Python310\lib\site-packages\dbt\cli\requires.py", line 128, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\gbala\AppData\Local\Programs\Python\Python310\lib\site-packages\dbt\cli\main.py", line 420, in debug
+    results = task.run()
+  File "C:\Users\gbala\AppData\Local\Programs\Python\Python310\lib\site-packages\dbt\task\debug.py", line 114, in run
+    load_profile_status: SubtaskStatus = self._load_profile()
+  File "C:\Users\gbala\AppData\Local\Programs\Python\Python310\lib\site-packages\dbt\task\debug.py", line 195, in _load_profile
+    dbt_common.clients.system.load_file_contents(self.profile_path)
+  File "C:\Users\gbala\AppData\Local\Programs\Python\Python310\lib\site-packages\dbt_common\record.py", line 538, in record_replay_wrapper
+    return func_to_record(*call_args, **kwargs)
+  File "C:\Users\gbala\AppData\Local\Programs\Python\Python310\lib\site-packages\dbt_common\clients\system.py", line 182, in load_file_contents
+    with open(path, "rb") as handle:
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\gbala\\OneDrive\\Escritorio\\Máster Big Data\\apis\\DataProject_1\\profiles.yml'
+
+[0m15:32:19.339001 [debug] [MainThread]: Command `dbt debug` failed at 15:32:19.337343 after 0.25 seconds
+[0m15:32:19.340230 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E56AB4AC20>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E56CE3C7F0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E56CE438E0>]}
+[0m15:32:19.341946 [debug] [MainThread]: Flushing usage events
+[0m15:32:20.400402 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m15:41:02.074692 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002BFB346EC20>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002BFB5768AC0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002BFB57688E0>]}
+
+
+============================== 15:41:02.081740 | e3cca4c3-84d6-4a45-b238-73523860399a ==============================
+[0m15:41:02.081740 [info ] [MainThread]: Running with dbt=1.10.15
+[0m15:41:02.082742 [debug] [MainThread]: running dbt with arguments {'cache_selected_only': 'False', 'invocation_command': 'dbt debug', 'log_format': 'default', 'target_path': 'None', 'profiles_dir': 'C:\\Users\\gbala\\OneDrive\\Escritorio\\Máster Big Data\\apis\\DataProject_1', 'warn_error': 'None', 'log_path': 'logs', 'partial_parse': 'True', 'indirect_selection': 'eager', 'send_anonymous_usage_stats': 'True', 'fail_fast': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'static_parser': 'True', 'use_experimental_parser': 'False', 'version_check': 'True', 'quiet': 'False', 'introspect': 'True', 'empty': 'None', 'log_cache_events': 'False', 'debug': 'False', 'no_print': 'None', 'use_colors': 'True', 'printer_width': '80', 'write_json': 'True'}
+[0m15:41:02.108635 [info ] [MainThread]: dbt version: 1.10.15
+[0m15:41:02.116547 [info ] [MainThread]: python version: 3.10.11
+[0m15:41:02.119003 [info ] [MainThread]: python path: C:\Users\gbala\AppData\Local\Programs\Python\Python310\python.exe
+[0m15:41:02.120016 [info ] [MainThread]: os info: Windows-10-10.0.26200-SP0
+[0m15:41:02.121780 [error] [MainThread]: Encountered an error:
+[Errno 13] Permission denied: 'C:\\Users\\gbala\\OneDrive\\Escritorio\\Máster Big Data\\apis\\DataProject_1\\profiles.yml'
+[0m15:41:02.127776 [error] [MainThread]: Traceback (most recent call last):
+  File "C:\Users\gbala\AppData\Local\Programs\Python\Python310\lib\site-packages\dbt\cli\requires.py", line 178, in wrapper
+    result, success = func(*args, **kwargs)
+  File "C:\Users\gbala\AppData\Local\Programs\Python\Python310\lib\site-packages\dbt\cli\requires.py", line 128, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\gbala\AppData\Local\Programs\Python\Python310\lib\site-packages\dbt\cli\main.py", line 420, in debug
+    results = task.run()
+  File "C:\Users\gbala\AppData\Local\Programs\Python\Python310\lib\site-packages\dbt\task\debug.py", line 114, in run
+    load_profile_status: SubtaskStatus = self._load_profile()
+  File "C:\Users\gbala\AppData\Local\Programs\Python\Python310\lib\site-packages\dbt\task\debug.py", line 195, in _load_profile
+    dbt_common.clients.system.load_file_contents(self.profile_path)
+  File "C:\Users\gbala\AppData\Local\Programs\Python\Python310\lib\site-packages\dbt_common\record.py", line 538, in record_replay_wrapper
+    return func_to_record(*call_args, **kwargs)
+  File "C:\Users\gbala\AppData\Local\Programs\Python\Python310\lib\site-packages\dbt_common\clients\system.py", line 182, in load_file_contents
+    with open(path, "rb") as handle:
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\gbala\\OneDrive\\Escritorio\\Máster Big Data\\apis\\DataProject_1\\profiles.yml'
+
+[0m15:41:02.129795 [debug] [MainThread]: Command `dbt debug` failed at 15:41:02.129795 after 0.24 seconds
+[0m15:41:02.131812 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002BFB346EC20>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002BFB57687F0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002BFB57678E0>]}
+[0m15:41:02.131812 [debug] [MainThread]: Flushing usage events
+[0m15:41:02.633423 [debug] [MainThread]: An error was encountered while trying to flush usage events
