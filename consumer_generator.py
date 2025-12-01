@@ -1,4 +1,5 @@
-from producer.py import fetch_from_db
+import psycopg
+from producer import fetch_from_db
 
 sensores = fetch_from_db()
 
