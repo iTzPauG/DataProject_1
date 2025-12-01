@@ -29,48 +29,7 @@ logging.basicConfig(
     level=getattr(logging, log_level.upper(), logging.INFO),
     format="%(asctime)s [%(levelname)s] %(message)s"
 )
-# ====================================
-# CREAR BASE DE DATOS
-# ====================================
-# def create_database():
-#     conn = None
-#     cur = None
-#     for _ in range(10):  # intenta 10 veces
-#         try:
-#             logging.info("Verificando base '%s'...", DB_NAME)
-#             conn = psycopg.connect(
-#                 host=DB_HOST,
-#                 port=DB_PORT,
-#                 user=DB_USER,
-#                 password=DB_PASS,
-#                 dbname="postgres",  # se conecta a postgres para crear la BD
-#                 connect_timeout=5
-#             )
-#             conn.autocommit = True
-#             cur = conn.cursor()
 
-#             cur.execute(f"SELECT 1 FROM pg_database WHERE datname = '{DB_NAME}';")
-#             exists = cur.fetchone()
-            
-#             if not exists:
-#                 logging.info("Base no existe. Creándola...")
-#                 cur.execute(f"CREATE DATABASE {DB_NAME};")
-#                 logging.info(f"Base de datos '{DB_NAME}' creada correctamente.")
-#             else:
-#                 logging.info("La base ya existe.")
-#             cur.close()
-#             conn.close()
-#             return
-            
-#         except Exception as e:
-#             logging.error(f"Error creando database: {e}")
-#             if cur:
-#                 cur.close()
-#             if conn:
-#                 conn.close()
-#             time.sleep(3)
-#     logging.error("No se pudo crear/verificar la base de datos después de 10 intentos.")
-#     exit(1)
 # ====================================
 # FUNCION ESPERAR CONEXIÓN
 # ====================================
@@ -195,8 +154,6 @@ def insert_data(records):
 if __name__ == "__main__":
     logging.info("Iniciando script...")
 
-    # # 1. Crear DB desde cero si falta
-    # create_database()
 
     # 2. Esperar conexión a nueva DB
     wait_for_connection()
