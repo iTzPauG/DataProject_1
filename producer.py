@@ -69,7 +69,7 @@ def fetch_from_db(): # Consulta la BD
 
 def enviar_alerta_poblacion(mensaje): # Manda la alerta al topic específico de la zona afectada 
     producer.produce(
-        topic=f'alertas_poblacion_{mensaje['nombre']}',
+        topic=f'alertas_zona_7', # Puesto a ZONA 7 (Olivereta) para testear el consumer_generator.py. Hay que cambiarlo.
         value=json.dumps(mensaje, default=json_serializer, ensure_ascii=False).encode('utf-8')
     )
     producer.flush()
