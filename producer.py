@@ -66,13 +66,14 @@ def fetch_from_db(): # Consulta la BD
         logging.error("DB fetch error: %s", e)
         return []
 
-def enviar_alerta_poblacion(mensaje): # Manda la alerta a Kafka (alertas_poblacion)
+
+def enviar_alerta_poblacion(mensaje): # Manda la alerta al topic específico de la zona afectada 
     producer.produce(
-        topic='alertas_poblacion',
+        topic=f'alertas_poblacion_{mensaje['nombre']}',
         value=json.dumps(mensaje, default=json_serializer, ensure_ascii=False).encode('utf-8')
     )
     producer.flush()
-    print(f"✅ Alerta enviada al topic 'alertas_confirmadas'")
+    print(f"✅ Alerta enviada al topic 'alertas_poblacion_{mensaje['nombre']}'")
 
 def enviar_alerta_CECOPI(mensaje): # Manda la alerta a Kafka (alertas_CECOPI))
     producer.produce(
