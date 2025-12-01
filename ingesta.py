@@ -162,7 +162,8 @@ def insert_data(records):
                             so2, no2, o3, co, pm10, pm25,
                             tipoemisio, fecha_carg, calidad_am, fiwareid,
                             lon, lat
-                        ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)   
+                        ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+                        ON CONFLICT (objectid, fecha_carg) DO NOTHING
                     """, (
                         fields.get("objectid"),
                         fields.get("nombre"),
