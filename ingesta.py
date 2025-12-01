@@ -22,12 +22,16 @@ SLEEPTIME=900
 # =======================================================
 # LOGGING
 # =======================================================
-log_level = os.getenv("LOG_LEVEL")
-logging.basicConfig(level=getattr(logging, log_level), format="%(asctime)s [%(levelname)s] %(message)s")
-
-# # ====================================
-# # CREAR BASE DE DATOS
-# # ====================================
+# log_level = os.getenv("LOG_LEVEL")
+# logging.basicConfig(level=getattr(logging, log_level), format="%(asctime)s [%(levelname)s] %(message)s")
+log_level = os.getenv("LOG_LEVEL", "INFO")
+logging.basicConfig(
+    level=getattr(logging, log_level.upper(), logging.INFO),
+    format="%(asctime)s [%(levelname)s] %(message)s"
+)
+# ====================================
+# CREAR BASE DE DATOS
+# ====================================
 # def create_database():
 #     conn = None
 #     cur = None
@@ -158,8 +162,7 @@ def insert_data(records):
                             so2, no2, o3, co, pm10, pm25,
                             tipoemisio, fecha_carg, calidad_am, fiwareid,
                             lon, lat
-                        ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
-                        ON CONFLICT (objectid, fecha_carg) DO NOTHING
+                        ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)   
                     """, (
                         fields.get("objectid"),
                         fields.get("nombre"),
