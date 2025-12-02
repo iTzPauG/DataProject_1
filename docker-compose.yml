@@ -32,7 +32,20 @@ services:
         condition: service_healthy
     networks:
         - kafka-net
-
+  ingestavalencia:
+    build:
+      context: .
+      dockerfile: dockerfile
+    pull_policy: build
+    container_name: ingesta
+    env_file: .env
+    depends_on:
+      api:
+        condition: service_started
+    command: ["python", "ingesta_valencia.py"]
+    restart: unless-stopped
+    networks:
+      - kafka-net
   dbt:
       build:
         context: .

@@ -26,15 +26,14 @@ DB_NAME = os.getenv("POSTGRES_DB")
 SERVER_URL = f"postgresql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/postgres"
 DB_URL = f"postgresql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
-
 # =======================================================
 # MAPEO
 # =======================================================
 MAP_CIUDADES = {
     "valencia": {
         "nombre_estacion": "nombre",
-        "lon": ["geo_point_2d", "lon"],
-        "lat": ["geo_point_2d", "lat"],
+        "lon": ["geo_point_2d", 1],
+        "lat": ["geo_point_2d", 0],
         "no2": "no2",
         "o3": "o3",
         "pm10": "pm10",
@@ -62,16 +61,13 @@ def create_table_if_not_exists():
                         pm10 NUMERIC,
                         pm25 NUMERIC,
                         fecha_carg TIMESTAMP,
-                        created_at TIMESTAMP DEFAULT NOW()
+                        created_at TIMESTAMP DEFAULT NOW(),
+                        CONSTRAINT unique_estacion_fecha UNIQUE (nombre_estacion, fecha_carg)
                     );
                 """)
                 cur.execute("""
                     CREATE INDEX IF NOT EXISTS idx_mediciones_fecha 
-                    ON mediciones(fecha_carg);
-                """)
-                cur.execute("""
-                    CREATE INDEX IF NOT EXISTS idx_mediciones_city 
-                    ON mediciones(city);
+                    ON mediciones(nombre_estacion, fecha_carg);
                 """)
                 logging.info("✅ Tabla 'mediciones' verificada/creada")
     except Exception as e:
@@ -88,15 +84,21 @@ def extraer_campo(data, field_path):
     if isinstance(field_path, list):
         value = data
         for key in field_path:
-            if isinstance(value, dict):
+            if value is None:
+                return None
+            if isinstance(key, int):
+                # Index for list
+                if isinstance(value, list) and key < len(value):
+                    value = value[key]
+                else:
+                    return None
+            elif isinstance(value, dict):
                 value = value.get(key)
             else:
                 return None
         return value
     
-    # Simple field
     return data.get(field_path)
-
 # =======================================================
 # INSERT MEASUREMENT
 # =======================================================
@@ -109,6 +111,7 @@ def insertar(nombre_estacion, lon, lat, city, no2, o3, pm10, pm25, fecha_carg):
                         nombre_estacion, lon, lat, city,
                         no2, o3, pm10, pm25, fecha_carg
                     ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+                    ON CONFLICT (nombre_estacion, fecha_carg) DO NOTHING        
                     RETURNING id
                 """, (
                     nombre_estacion,
@@ -121,15 +124,19 @@ def insertar(nombre_estacion, lon, lat, city, no2, o3, pm10, pm25, fecha_carg):
                     pm25,
                     fecha_carg
                 ))
-                inserted_id = cur.fetchone()[0]
-                logging.info(f"✅ Registro insertado con id: {inserted_id} para {city}")
-                return inserted_id
+                result = cur.fetchone()
+                if result:
+                    inserted_id = result[0]
+                    logging.info(f"✅ Registro insertado con id: {inserted_id} para {city}")
+                    return inserted_id
+                else:
+                    logging.info(f"ℹ️ Registro duplicado ignorado: {nombre_estacion} - {fecha_carg}")
+                    return None
     except Exception as e:
         logging.error(f"Error insertando datos: {e}")
         raise e
-
 # =======================================================
-# GENERIC CITY HANDLER
+# Manejar POST
 # =======================================================
 def handle_city_request(city):
     try:
@@ -143,11 +150,12 @@ def handle_city_request(city):
             return jsonify({'error': f'Ciudad {city} no implementada'}), 400
         
         create_table_if_not_exists()
+
         
         inserted_id = insertar(
             nombre_estacion=extraer_campo(data, mapping.get("nombre_estacion")),
-            lon=extraer_campo(data, mapping.get("lon")),
-            lat=extraer_campo(data, mapping.get("lat")),
+            lon = extraer_campo(data, mapping.get("lon")),
+            lat = extraer_campo(data, mapping.get("lat")),
             city=city,
             no2=extraer_campo(data, mapping.get("no2")),
             o3=extraer_campo(data, mapping.get("o3")),
@@ -156,11 +164,17 @@ def handle_city_request(city):
             fecha_carg=extraer_campo(data, mapping.get("fecha_carg"))
         )
         
-        return jsonify({
-            'message': 'Insertado con éxito',
-            'id': inserted_id,
-            'city': city
-        }), 201
+        if inserted_id:
+            return jsonify({
+                'message': 'Insertado con éxito',
+                'id': inserted_id,
+                'city': city
+            }), 201
+        else:
+            return jsonify({
+                'message': 'Registro duplicado, ignorado',
+                'city': city
+            }), 200
         
     except Exception as e:
         logging.error(f"Error en /{city}: {e}")
