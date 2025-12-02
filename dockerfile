@@ -17,7 +17,8 @@ COPY dashboard_alertas.py .
 # Instalar dependencias
 RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt \
-    && pip install --no-cache-dir dbt-postgres==1.10.15
+    # Dockerfile, Línea 20
+    && pip install --no-cache-dir dbt-postgres
 
 # Cambiar a usuario no root
 USER appuser

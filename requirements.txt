@@ -5,3 +5,4 @@ confluent-kafka
 colorama
 dash
 plotly
+dbt-postgres
