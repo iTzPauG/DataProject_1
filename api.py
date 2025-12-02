@@ -50,7 +50,7 @@ def create_table_if_not_exists():
         with psycopg.connect(DB_URL) as conn:
             with conn.cursor() as cur:
                 cur.execute("""
-                    CREATE TABLE IF NOT EXISTS valencia (
+                    CREATE TABLE IF NOT EXISTS mediciones(
                         id SERIAL PRIMARY KEY,
                         nombre_estacion TEXT,
                         lon NUMERIC,
