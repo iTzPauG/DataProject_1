@@ -18,7 +18,7 @@ WITH raw_data AS (
         pm25,
         lon,
         lat
-    FROM {{ source('raw_data', 'estaciones') }}
+    FROM "data_project_1"."public"."estaciones"
 ),
 
 unpivoted_data AS (
@@ -113,7 +113,7 @@ unpivoted_data AS (
 )
 
 SELECT
-    {{ dbt_utils.generate_surrogate_key(['measurement_timestamp', 'location_id', 'pollutant_type']) }} AS air_quality_pk,
+    md5(cast(coalesce(cast(measurement_timestamp as TEXT), '') || '-' || coalesce(cast(location_id as TEXT), '') || '-' || coalesce(cast(pollutant_type as TEXT), '') as TEXT)) AS air_quality_pk,
     location_id,
     station_name,
     station_address,

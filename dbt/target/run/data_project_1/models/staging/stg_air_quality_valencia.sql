@@ -1,4 +1,9 @@
--- Toma los datos directamente de la tabla fuente (estaciones) y los prepara para que se puedan consumir de forma sencilla en las capas intermedias. 
+
+  create view "data_project_1"."public"."stg_air_quality_valencia__dbt_tmp"
+    
+    
+  as (
+    -- Toma los datos directamente de la tabla fuente (estaciones) y los prepara para que se puedan consumir de forma sencilla en las capas intermedias. 
 --1) DESPIVOTEAMOS:
 --La tabla fuente(estaciones) tiene un formato ancho (wide), donde cada contaminante es una columna separada (so2, no2 ...)
 --Necesitamos calcular promedios de forma genérica para cualquier contaminante, de modo que necesitamos un formato ancho (long) donde los contaminantes se apilan en filas. Esto lo conseguimos utilizando los UNION ALL.
@@ -18,7 +23,7 @@ WITH raw_data AS (
         pm25,
         lon,
         lat
-    FROM {{ source('raw_data', 'estaciones') }}
+    FROM "data_project_1"."public"."estaciones"
 ),
 
 unpivoted_data AS (
@@ -113,7 +118,7 @@ unpivoted_data AS (
 )
 
 SELECT
-    {{ dbt_utils.generate_surrogate_key(['measurement_timestamp', 'location_id', 'pollutant_type']) }} AS air_quality_pk,
+    md5(cast(coalesce(cast(measurement_timestamp as TEXT), '') || '-' || coalesce(cast(location_id as TEXT), '') || '-' || coalesce(cast(pollutant_type as TEXT), '') as TEXT)) AS air_quality_pk,
     location_id,
     station_name,
     station_address,
@@ -131,3 +136,4 @@ SELECT
     END AS pollutant_category
 FROM unpivoted_data
 WHERE concentration_ug_m3 >= 0
+  );

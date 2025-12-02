@@ -30,11 +30,11 @@ services:
     container_name: dbt
     restart: unless-stopped
     volumes:
-      - ./:/usr/app/dbt                # monta todo el proyecto (incluye dbt/profiles.yml)
+      - ./:/usr/app/dbt               
     environment:
-      - DBT_PROFILES_DIR=/usr/app/dbt  # apunta al directorio donde estará profiles.yml dentro del contenedor
-    working_dir: /usr/app/dbt
-    command: ["dbt", "run"]           # ejecuta los modelos al levantar el servicio
+      - DBT_PROFILES_DIR=/usr/app/dbt/dbt  
+    working_dir: /usr/app/dbt/dbt    
+    command: ["dbt", "run"]
     depends_on:
       db:
         condition: service_healthy
