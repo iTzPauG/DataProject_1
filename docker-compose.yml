@@ -87,21 +87,6 @@ services:
       networks:
         - kafka-net
 
-  ksql:
-      image: confluentinc/cp-ksqldb-server:7.3.0
-      container_name: ksql_air
-      depends_on:
-        - kafka
-      ports:
-        - "8088:8088"                # Puerto para la API REST de KSQL
-      environment:
-        KSQL_BOOTSTRAP_SERVERS: kafka:29092
-        KSQL_LISTENERS: http://0.0.0.0:8088
-        KSQL_KSQL_SERVICE_ID: ksql_air_service
-        KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE: 'true'
-        KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE: 'true'
-      networks:
-        - kafka-net
   producer:
     build:
       context: .
@@ -125,16 +110,6 @@ services:
       - default
       - kafka-net
     
-
-  ksql-cli:
-      image: confluentinc/cp-ksqldb-cli:7.3.0
-      container_name: ksql-cli_air
-      depends_on:
-        - ksql
-      entrypoint: /bin/sh   # Para que puedas entrar al contenedor y ejecutar comandos
-      tty: true             # Permite sesión interactiva
-      networks:
-        - kafka-net
   pgadmin:
     image: dpage/pgadmin4:latest
     container_name: pgadmin
