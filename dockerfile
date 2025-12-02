@@ -13,6 +13,7 @@ COPY ingesta.py .
 COPY producer.py .
 COPY kafka_consumer.py .
 COPY dashboard_alertas.py .
+COPY api.py .
 
 # Instalar dependencias
 RUN pip install --no-cache-dir --upgrade pip \

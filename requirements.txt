@@ -5,3 +5,6 @@ confluent-kafka
 colorama
 dash
 plotly
+flask
+flask_httpauth
+flask_jwt_extended
