@@ -11,8 +11,6 @@ from decimal import Decimal
 
 ### Panel de control
 
-API_URL = "https://valencia.opendatasoft.com/api/explore/v2.1/catalog/datasets/estacions-contaminacio-atmosferiques-estaciones-contaminacion-atmosfericas/records?limit=20"
-
 UMBRAL_NO2 = 10 # µg/m³
 INTERVALO_MINUTOS = 1
 TIEMPO_REPETICION_ALERTA = 60  # 24 horas en segundos
@@ -38,28 +36,18 @@ def json_serializer(obj): # Cambia las variables datetime y decimal a formatos s
         return float(obj)       # Convierte Decimal a float
     raise TypeError(f"Type {type(obj)} not serializable")
 
-
-def fetch_from_db(): # Consulta la BD
-    """Return list of dict rows from estaciones table that share the latest created_at timestamp."""
+def fetch_from_db():
+    """Return list of dict rows with the latest record for each station."""
     try:
         with psycopg.connect(DATABASE_URL) as conn:
             with conn.cursor(row_factory=psycopg.rows.dict_row) as cur:
-                # fetch latest created_at timestamp
-                cur.execute("SELECT MAX(created_at) AS latest_ts FROM estaciones;")
-                row = cur.fetchone()
-                latest_ts = row["latest_ts"] if row else None
-                if not latest_ts:
-                    return []
-
-                # return rows that have that latest timestamp
                 cur.execute(
                     """
-                    SELECT objectid, nombre, no2, lon, lat, fecha_carg, created_at
-                    FROM estaciones
-                    WHERE created_at = %s
-                    ORDER BY objectid;
-                    """,
-                    (latest_ts,),
+                    SELECT DISTINCT ON (nombre_estacion)
+                        id, nombre_estacion, lon, lat, city, no2, o3, pm10, pm25, fecha_carg, created_at
+                    FROM mediciones
+                    ORDER BY nombre_estacion, fecha_carg DESC;
+                    """
                 )
                 return cur.fetchall()
     except Exception as e:
@@ -102,8 +90,9 @@ def revisar_calidad_aire():
 
         for sensor in sensores:
             mensaje = {}
-            nombre = sensor.get('nombre')
+            nombre = sensor.get('nombre_estacion')  # Cambiado de 'nombre' a 'nombre_estacion'
             valor = sensor.get('no2')
+            city = sensor.get('city')
 
             # Si no hay valor o nombre, saltamos este sensor
             if valor is None or not nombre:
@@ -130,23 +119,29 @@ def revisar_calidad_aire():
                     if estado["activa"]:
                         mensaje = {
                             "estacion": nombre,
+                            "city": city,
                             "tipo_aviso": "Recordatorio",
                             "nivel_no2": valor,
                             "alerta_activa": True,
-                            "texto": f"Recordatorio: El nivel de NO2 en {nombre} sigue alto: {valor} µg/m³.",
+                            "texto": f"Recordatorio: El nivel de NO2 en {nombre} ({city}) sigue alto: {valor} µg/m³.",
+                            "lon": sensor.get('lon'),
+                            "lat": sensor.get('lat'),
                             "fecha_carg": sensor.get('fecha_carg'),
-                            "fecha_envío" : time.ctime()
+                            "fecha_envio": time.ctime()
                         }
                         print(f"⏰ RECORDATORIO DIARIO en {nombre} a las {time.ctime()}")
                     else:
                         mensaje = {
                             "estacion": nombre,
+                            "city": city,
                             "tipo_aviso": "Activation",
                             "nivel_no2": valor,
                             "alerta_activa": True,
-                            "texto": f"ALERTA: El nivel de NO2 en {nombre} ha subido por encima del límite seguro. Valor actual: {valor} µg/m³.",
+                            "texto": f"ALERTA: El nivel de NO2 en {nombre} ({city}) ha subido por encima del límite seguro. Valor actual: {valor} µg/m³.",
+                            "lon": sensor.get('lon'),
+                            "lat": sensor.get('lat'),
                             "fecha_carg": sensor.get('fecha_carg'),
-                            "fecha_envío" : time.ctime()
+                            "fecha_envio": time.ctime()
                         }
                         print(f"🚨 NUEVA ALERTA en {nombre}. Fecha de envío:{time.ctime()}")
                     
@@ -163,21 +158,25 @@ def revisar_calidad_aire():
                 if estado["activa"]:
                     mensaje = {
                             "estacion": nombre,
+                            "city": city,
                             "tipo_aviso": "Deactivation",
                             "nivel_no2": valor,
                             "alerta_activa": False,
-                            "texto": f"ALERTA: El nivel de NO2 en {nombre} se ha restablecido a niveles seguros. Valor actual: {valor} µg/m³.",
+                            "texto": f"ALERTA: El nivel de NO2 en {nombre} ({city}) se ha restablecido a niveles seguros. Valor actual: {valor} µg/m³.",
+                            "lon": sensor.get('lon'),
+                            "lat": sensor.get('lat'),
                             "fecha_carg": sensor.get('fecha_carg'),
-                            "fecha_envío" : time.ctime()
+                            "fecha_envio": time.ctime()
                     }
                     print(f"✅ NIVEL RESTABLECIDO en {nombre}")
                     print(f"   El nivel ha bajado a {valor} µg/m³.")
 
                     estado["activa"] = False
-            if mensaje:   # only send populated messages
+            if mensaje:
                 enviar_alerta_poblacion(mensaje)
                 logging.info(f"Mensaje {mensaje} enviado")
-            else: logging.error("Mensaje no enviado")
+            else:
+                logging.debug("Sin cambios de estado para %s", nombre)
 
     except Exception as e:
         print(f"❌ Error conectando la Base de datos: {e}")

@@ -32,7 +32,20 @@ services:
         condition: service_healthy
     networks:
         - kafka-net
-
+  ingestavalencia:
+    build:
+      context: .
+      dockerfile: dockerfile
+    pull_policy: build
+    container_name: ingesta
+    env_file: .env
+    depends_on:
+      api:
+        condition: service_started
+    command: ["python", "ingesta_valencia.py"]
+    restart: unless-stopped
+    networks:
+      - kafka-net
   dbt:
       build:
         context: .
@@ -86,7 +99,22 @@ services:
         KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
       networks:
         - kafka-net
-
+  api:
+    build:
+      context: .
+      dockerfile: dockerfile
+    pull_policy: build
+    container_name: api
+    env_file: .env
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5001:5000"
+    command: ["python", "api.py"]
+    restart: unless-stopped
+    networks:
+      - kafka-net
   producer:
     build:
       context: .
