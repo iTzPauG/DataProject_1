@@ -7917,3 +7917,35 @@ drop view if exists "data_project_1"."public"."stg_air_quality_valencia__dbt_bac
 [0m22:23:58.122240 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e6046151610>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e6046151fd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e604a9aadd0>]}
 [0m22:23:58.123697 [debug] [MainThread]: Flushing usage events
 [0m22:23:58.667235 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m23:09:59.829211 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ae8c08aa7d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ae8c08aa390>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ae8c0849190>]}
+
+
+============================== 23:09:59.835268 | 9f4959a4-01b3-4069-ae6b-a999b098efef ==============================
+[0m23:09:59.835268 [info ] [MainThread]: Running with dbt=1.10.15
+[0m23:09:59.837842 [debug] [MainThread]: running dbt with arguments {'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'use_experimental_parser': 'False', 'invocation_command': 'dbt run', 'indirect_selection': 'eager', 'quiet': 'False', 'no_print': 'None', 'partial_parse': 'True', 'printer_width': '80', 'send_anonymous_usage_stats': 'True', 'log_path': '/usr/app/dbt/dbt/logs', 'log_cache_events': 'False', 'fail_fast': 'False', 'write_json': 'True', 'empty': 'False', 'static_parser': 'True', 'version_check': 'True', 'introspect': 'True', 'profiles_dir': '/usr/app/dbt/dbt', 'use_colors': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'warn_error': 'None', 'target_path': 'None'}
+[0m23:10:00.018994 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '9f4959a4-01b3-4069-ae6b-a999b098efef', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ae8c1864790>]}
+[0m23:10:00.069935 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '9f4959a4-01b3-4069-ae6b-a999b098efef', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ae8c35a4850>]}
+[0m23:10:00.074206 [info ] [MainThread]: Registered adapter: postgres=1.9.1
+[0m23:10:00.236367 [debug] [MainThread]: checksum: 14a228079bd6df63ba81633f9a3cf44ecfaa31056ac397c602753ec895dbf885, vars: {}, profile: , target: , version: 1.10.15
+[0m23:10:00.580557 [error] [MainThread]: Encountered an error:
+Parsing Error
+  Error reading data_project_1: staging/sources.yml - Runtime Error
+    Syntax error near line 11
+    ------------------------------
+    8  | tables:
+    9  | - name: estaciones
+    10 | description: "Información de las estaciones de medición"
+    11 | - name: air_quality
+    12 | description: "Mediciones de calidad del aire por estación y contaminante"
+    
+    Raw Error:
+    ------------------------------
+    while parsing a block mapping
+      in "<unicode string>", line 1, column 1
+    did not find expected key
+      in "<unicode string>", line 11, column 1
+[0m23:10:00.584358 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 0.8839717, "process_in_blocks": "0", "process_kernel_time": 0.383822, "process_mem_max_rss": "115272", "process_out_blocks": "0", "process_user_time": 1.618386}
+[0m23:10:00.588102 [debug] [MainThread]: Command `dbt run` failed at 23:10:00.587737 after 0.89 seconds
+[0m23:10:00.590708 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ae8c0bac450>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ae8bed8d990>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ae8bed8de90>]}
+[0m23:10:00.592353 [debug] [MainThread]: Flushing usage events
+[0m23:10:01.186063 [debug] [MainThread]: An error was encountered while trying to flush usage events
