@@ -1,0 +1,13 @@
+data_project_1: # <-- Nombre de tu proyecto (debe coincidir con dbt_project.yml)
+  target: dev
+  outputs:
+    dev:
+      type: postgres       # Tipo de base de datos
+      host: localhost      # O la IP/nombre del host si usas Docker/servidor
+      port: 5432           # Puerto por defecto de PostgreSQL
+      user: postgres    # Tu nombre de usuario de PostgreSQL
+      password: postgres # Tu contraseña
+      dbname: data_project_1 # Nombre de la base de datos a usar (ej: valencia_data)
+      schema: public       # Esquema donde dbt creará modelos de desarrollo
+      threads: 4           # Número de hilos para ejecutar modelos en paralelo
+      keepalives_idle: 0   # Deshabilita keepalives
