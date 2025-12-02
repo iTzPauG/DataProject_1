@@ -6,3 +6,6 @@ colorama
 dash
 plotly
 gspread
+flask
+flask_httpauth
+flask_jwt_extended

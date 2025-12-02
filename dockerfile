@@ -9,10 +9,11 @@ WORKDIR /app
 RUN mkdir -p /shared && chown -R appuser:appuser /shared
 # Copiar archivos
 COPY requirements.txt .
-COPY ingesta.py .
+COPY ingesta_valencia.py .
 COPY producer.py .
 COPY kafka_consumer.py .
 COPY dashboard_alertas.py .
+COPY api.py .
 
 # Instalar dependencias
 RUN pip install --no-cache-dir --upgrade pip \
@@ -21,7 +22,4 @@ RUN pip install --no-cache-dir --upgrade pip \
 
 # Cambiar a usuario no root
 USER appuser
-
-# Ejecutar script al iniciar el contenedor
-CMD ["python", "ingesta.py"]
 
