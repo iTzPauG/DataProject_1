@@ -1,9 +1,9 @@
-tu_proyecto:
+data_project_1:
   target: dev
   outputs:
     dev:
       type: postgres
-      host: db-1   
+      host: db-1  
       user: postgres
       password: postgres
       port: 5432

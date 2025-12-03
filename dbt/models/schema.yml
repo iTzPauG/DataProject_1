@@ -1,51 +1,61 @@
-version: 1
+version: 2
 
 models:
-  - name: staging_valenbisi
+  - name: stg_air_quality_valencia
     description: >
-      Limpieza básica, traducción y clarificación de algunas variables
-  - name: int_evolucion_temporal
-    description: >
-      Calcular variaciones importantes dentro del uso de las estaciones
-  - name: int_last_update
-    description: >
-      Última actualización de los datos de Valenbisi. Quita duplicados y se queda con el último registro
-  - name: int_ocupacion
-    description: >
-      Calculos relacionados con la ocupación de las paradas.
+      Datos de calidad del aire de Valencia, estandarizados y transformados de formato
+      ancho (wide) a formato largo (long) para facilitar el análisis intermedio.
+      Se realiza la limpieza inicial de nulos y valores atípicos.
+
     columns:
-      - name: capacidad_real
-        description: >
-          Capacidad real de la estación, teniendo en cuenta postas fuera de servicio
-      - name: situacion_ocupacion
-        descripcion: >
-          Discretizar la ocupación media para mejor análisis posterior
-      - name: no_disponibles
-        descripcion: >
-          Número de postas no disponibles en la estación
-  - name: marts_ocupacion_por_hora
-    description: >
-      Medidas de ocupación agregadas por hora  
-  - name: marts_situacion_actual
-    descripction: >
-      Estado actual de las estaciones listo para el cliente
-  - name: marts_top_vacías
-    description: >
-      Estaciones ordenadas por situacion de vacíado más preocupante a menos preocupante
-    columns:
-      - name: avg_vacia
-        description: >
-          Porcentaje de veces que la estación ha estado vacía
-      - name: avg_casi_vacia
-        description: >
-          Porcentaje de veces que la estación ha estado casi vacía
-  - name: marts_top_llenas
-    description: >
-      Estaciones ordenadas por situacion de llenado más preocupante a menos preocupante
-    columns:
-      - name: avg_llena
-        description: >
-          Porcentaje de veces que la estación ha estado llena
-      - name: avg_casi_llena
-        description: >
-          Porcentaje de veces que la estación ha estado casi llena
+      - name: air_quality_pk
+        description: Clave primaria (PK) única generada para cada fila (timestamp + location_id + pollutant_type).
+        tests:
+          - unique
+          - not_null
+      
+      - name: location_id
+        description: Identificador único de la estación de medición (OBJECTID original).
+        tests:
+          - not_null
+
+      - name: station_name
+        description: Nombre legible de la estación de calidad del aire.
+      
+      - name: station_address
+        description: Dirección de la estación.
+      
+      - name: zona_type
+        description: Tipo de zona donde se ubica la estación (e.g., urbana, industrial, etc.).
+
+      - name: measurement_timestamp
+        description: Fecha y hora exacta de la medición.
+        tests:
+          - not_null
+      
+      - name: longitude
+        description: Longitud de la ubicación de la estación (columna LON original).
+      
+      - name: latitude
+        description: Latitud de la ubicación de la estación (columna LAT original).
+
+      - name: pollution_type
+        description: Tipo de contaminante medido (resultado del despivotado).
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['SO2', 'NO2', 'O3', 'CO', 'PM10', 'PM2.5', 'S02'] # Incluye S02 y SO2 por si hay typo en la fuente
+              
+      - name: concentratios_ug_m3
+        description: Concentración del contaminante en microgramos por metro cúbico (ug/m3).
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+              
+      - name: pollutant_category
+        description: Clasificación del contaminante para agregación ('Particulates', 'Gases_Inorgánicos', 'Gases_Monóxido').
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Particulates', 'Gases_Inorgánicos', 'Gases_Monóxido', 'Otro']
