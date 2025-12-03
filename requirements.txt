@@ -1,3 +1,4 @@
+# ...existing code...
 psycopg[binary]
 requests
 duckdb
@@ -5,7 +6,16 @@ confluent-kafka
 colorama
 dash
 plotly
+<<<<<<< Updated upstream
 gspread
 flask
 flask_httpauth
 flask_jwt_extended
+=======
+dbt-postgres
+flask
+Flask-HTTPAuth
+flask-jwt-extended
+diagrams
+fire
+>>>>>>> Stashed changes

@@ -208,6 +208,20 @@ services:
     networks:
       - kafka-net
 
+  docs:
+    build:
+      context: .
+      dockerfile: Dockerfile.docs
+    container_name: mkdocs
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./docs:/usr/app/docs
+    working_dir: /usr/app/docs
+    restart: unless-stopped
+    networks:
+      - kafka-net
+
 volumes:
     pg_data:
     postgresDB:
@@ -217,4 +231,3 @@ volumes:
 networks:
   kafka-net:
     driver: bridge
-
