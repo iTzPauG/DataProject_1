@@ -32,7 +32,7 @@ services:
         condition: service_healthy
     networks:
         - kafka-net
-  ingestavalencia:
+  ingestas:
     build:
       context: .
       dockerfile: dockerfile
@@ -42,7 +42,7 @@ services:
     depends_on:
       api:
         condition: service_started
-    command: ["python", "ingesta_valencia.py"]
+    command: ["python", "ingesta.py"]
     restart: unless-stopped
     networks:
       - kafka-net
