@@ -57,6 +57,7 @@ def fetch_data():
 # =======================================================
 def post_api(records):
     inserted_count = 0
+    dup_count = 0
     error_count = 0
     
     for rec in records:
@@ -71,15 +72,17 @@ def post_api(records):
             
             if resp.status_code == 201:
                 inserted_count += 1
-            else:
+            elif resp.status_code== 200:
+                dup_count +=1
+            else :
                 error_count += 1
-                logging.warning(f"Error al insertar registro: {resp.json()}")
+                logging.warning(f"{resp.json()}")
                 
         except Exception as e:
             error_count += 1
             logging.error(f"Error enviando datos a API: {e}")
     
-    logging.info(f"✅ {inserted_count} registros enviados correctamente, {error_count} errores.")
+    logging.info(f"✅ {inserted_count} registros enviados correctamente,{dup_count} duplicados, {error_count} errores.")
 
 # =======================================================
 # MAIN
