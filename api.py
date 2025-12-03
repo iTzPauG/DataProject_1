@@ -39,6 +39,16 @@ MAP_CIUDADES = {
         "pm10": "pm10",
         "pm25": "pm25",
         "fecha_carg": "fecha_carg"
+    },
+    "madrid": {
+        "nombre_estacion": "nombre",
+        "lon": "lon",
+        "lat": "lat",
+        "no2": "no2",
+        "o3": "o3",
+        "pm10": "pm10",
+        "pm25": "pm25",
+        "fecha_carg": "fecha_carg"
     }
 }
 
@@ -187,6 +197,9 @@ def handle_city_request(city):
 def valencia():
     return handle_city_request("valencia")
 
+@app.route('/madrid', methods=['POST'])
+def madrid():
+    return handle_city_request("madrid")
 
 @app.route('/health', methods=['GET'])
 def health():
