@@ -38,39 +38,7 @@ services:
       db:
         condition: service_healthy
     networks:
-        - kafka-net
-  ingestas:
-    build:
-      context: .
-      dockerfile: dockerfile
-    pull_policy: build
-    container_name: ingesta
-    env_file: .env
-    depends_on:
-      api:
-        condition: service_started
-    command: ["python", "ingesta.py"]
-    restart: unless-stopped
-    networks:
       - kafka-net
-  dbt:
-      build:
-        context: .
-        dockerfile: dockerfile
-      pull_policy: build
-      container_name: dbt
-      volumes:
-          - ./:/usr/app/dbt
-          - ./profiles.yml:/root/.dbt/profiles.yml
-      environment:
-          - DBT_PROFILES_DIR=/usr/app/dbt
-      working_dir: /usr/app/dbt/dbt_project
-      entrypoint: ["/bin/bash"]
-      tty: true
-      depends_on:
-          - db
-      networks:
-        - kafka-net
 
   zookeeper:
     image: confluentinc/cp-zookeeper:7.3.0

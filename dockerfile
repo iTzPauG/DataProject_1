@@ -9,9 +9,7 @@ WORKDIR /app
 RUN mkdir -p /shared && chown -R appuser:appuser /shared
 
 COPY requirements.txt .
-COPY ingesta.py .
-COPY /ingestas/ingesta_valencia.py .
-COPY /ingestas/ingesta_madrid.py .
+COPY ingesta_valencia.py .
 COPY producer.py .
 COPY kafka_consumer.py .
 COPY dashboard_alertas.py .
