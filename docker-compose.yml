@@ -29,16 +29,17 @@ services:
     container_name: dbt
     restart: unless-stopped
     volumes:
-      - ./:/usr/app/dbt               
+      - ./:/usr/app/dbt
     environment:
-      - DBT_PROFILES_DIR=/usr/app/dbt/dbt  
-    working_dir: /usr/app/dbt/dbt    
+      - DBT_PROFILES_DIR=/usr/app/dbt/dbt
+    working_dir: /usr/app/dbt/dbt
     command: ["dbt", "run"]
     depends_on:
       db:
         condition: service_healthy
     networks:
       - kafka-net
+
 
   zookeeper:
     image: confluentinc/cp-zookeeper:7.3.0
