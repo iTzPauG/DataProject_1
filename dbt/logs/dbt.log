@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 [0m23:13:22.854118 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x754d584dbb50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x754d58485690>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x754d5848bfd0>]}
 
 
@@ -139,3 +140,33 @@ Runtime Error
 [0m00:29:45.770111 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014E6A1CECB0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014E687262F0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014E6A553F40>]}
 [0m00:29:45.771122 [debug] [MainThread]: Flushing usage events
 [0m00:29:46.377522 [debug] [MainThread]: An error was encountered while trying to flush usage events
+=======
+[0m23:11:16.678606 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7855a05de6d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7855a05de590>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7855a05dea10>]}
+
+
+============================== 23:11:16.685984 | ab98ff54-3038-463c-906d-6fc7b3c74c74 ==============================
+[0m23:11:16.685984 [info ] [MainThread]: Running with dbt=1.10.15
+[0m23:11:16.687982 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'quiet': 'False', 'send_anonymous_usage_stats': 'True', 'debug': 'False', 'target_path': 'None', 'use_experimental_parser': 'False', 'fail_fast': 'False', 'log_path': '/usr/app/dbt/dbt/logs', 'version_check': 'True', 'empty': 'False', 'no_print': 'None', 'partial_parse': 'True', 'warn_error': 'None', 'introspect': 'True', 'static_parser': 'True', 'invocation_command': 'dbt run', 'log_cache_events': 'False', 'log_format': 'default', 'profiles_dir': '/usr/app/dbt/dbt', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'use_colors': 'True', 'write_json': 'True', 'cache_selected_only': 'False'}
+[0m23:11:16.702826 [error] [MainThread]: Encountered an error:
+Runtime Error
+  Could not find profile named 'dbt_valenbisi'
+[0m23:11:16.706208 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 0.10321008, "process_in_blocks": "0", "process_kernel_time": 0.572034, "process_mem_max_rss": "103988", "process_out_blocks": "0", "process_user_time": 1.168069}
+[0m23:11:16.708006 [debug] [MainThread]: Command `dbt run` failed at 23:11:16.707772 after 0.11 seconds
+[0m23:11:16.710114 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7855a05a99d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7855a0586a90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7855a05dff10>]}
+[0m23:11:16.711789 [debug] [MainThread]: Flushing usage events
+[0m23:11:17.356516 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m23:12:19.810558 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7049dc79b450>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7049dd609890>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7049dc79b190>]}
+
+
+============================== 23:12:19.817270 | ab865479-e31f-4260-87e2-5d8baf288573 ==============================
+[0m23:12:19.817270 [info ] [MainThread]: Running with dbt=1.10.15
+[0m23:12:19.818550 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'send_anonymous_usage_stats': 'True', 'indirect_selection': 'eager', 'introspect': 'True', 'printer_width': '80', 'log_cache_events': 'False', 'use_colors': 'True', 'target_path': 'None', 'warn_error': 'None', 'debug': 'False', 'log_path': '/usr/app/dbt/dbt/logs', 'partial_parse': 'True', 'log_format': 'default', 'profiles_dir': '/usr/app/dbt/dbt', 'use_experimental_parser': 'False', 'write_json': 'True', 'quiet': 'False', 'invocation_command': 'dbt run', 'empty': 'False', 'fail_fast': 'False', 'no_print': 'None', 'cache_selected_only': 'False', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])'}
+[0m23:12:19.826253 [error] [MainThread]: Encountered an error:
+Runtime Error
+  Could not find profile named 'dbt_valenbisi'
+[0m23:12:19.827552 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 0.08750401, "process_in_blocks": "0", "process_kernel_time": 0.652714, "process_mem_max_rss": "104068", "process_out_blocks": "0", "process_user_time": 1.107636}
+[0m23:12:19.829244 [debug] [MainThread]: Command `dbt run` failed at 23:12:19.829143 after 0.09 seconds
+[0m23:12:19.830052 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7049e0f86e50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7049dcbc82d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7049dcacc6d0>]}
+[0m23:12:19.831333 [debug] [MainThread]: Flushing usage events
+[0m23:12:20.363483 [debug] [MainThread]: An error was encountered while trying to flush usage events
+>>>>>>> Stashed changes

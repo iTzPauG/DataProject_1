@@ -3,10 +3,14 @@ data_project_1:
   outputs:
     dev:
       type: postgres
+<<<<<<< Updated upstream
       host: db-1  
+=======
+      host: db
+      port: 5432
+>>>>>>> Stashed changes
       user: postgres
       password: postgres
-      port: 5432
-      dbname: valenbisi_db   
-      schema: public         
+      dbname: data_project_1
+      schema: public
       threads: 4
