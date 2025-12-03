@@ -27,12 +27,14 @@ services:
       context: .
       dockerfile: dockerfile
     container_name: dbt
-    restart: unless-stopped
     volumes:
-      - ./:/usr/app/dbt               
+      - ./:/usr/app/dbt
+      - ./profiles.yml:/root/.dbt/profiles.yml
     environment:
-      - DBT_PROFILES_DIR=/usr/app/dbt/dbt  
-    working_dir: /usr/app/dbt/dbt    
+      - DBT_PROFILES_DIR=/usr/app/dbt
+    restart: unless-stopped 
+    working_dir: /usr/app/dbt/dbt   
+    entrypoint: ["/bin/bash"] 
     command: ["dbt", "run"]
     depends_on:
       db:
@@ -51,26 +53,9 @@ services:
         condition: service_started
     command: ["python", "ingesta.py"]
     restart: unless-stopped
+    tty: true
     networks:
       - kafka-net
-  dbt:
-      build:
-        context: .
-        dockerfile: dockerfile
-      pull_policy: build
-      container_name: dbt
-      volumes:
-          - ./:/usr/app/dbt
-          - ./profiles.yml:/root/.dbt/profiles.yml
-      environment:
-          - DBT_PROFILES_DIR=/usr/app/dbt
-      working_dir: /usr/app/dbt/dbt_project
-      entrypoint: ["/bin/bash"]
-      tty: true
-      depends_on:
-          - db
-      networks:
-        - kafka-net
 
   zookeeper:
     image: confluentinc/cp-zookeeper:7.3.0
