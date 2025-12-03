@@ -1,0 +1,68 @@
+version: 2
+
+models:
+  - name: mart_air_quality_hourly
+    description: "MART de concentraciones horarias de contaminantes por estación."
+    columns:
+      - name: location_id
+        description: "ID de la ubicación de la estación."
+      - name: station_name
+        description: "Nombre de la estación de medición."
+      - name: pollutant_type
+        description: "Tipo de contaminante medido."
+      - name: measurement_hour
+        description: "Hora de medición truncada al inicio de la hora."
+      - name: avg_hourly
+        description: "Concentración promedio por hora."
+      - name: max_hourly
+        description: "Concentración máxima por hora."
+      - name: min_hourly
+        description: "Concentración mínima por hora."
+      - name: num_measurements
+        description: "Número de mediciones por hora."
+      - name: variation_vs_prev_hour
+        description: "Variación respecto a la hora anterior."
+
+  - name: mart_air_quality_daily
+    description: "MART de concentraciones diarias de contaminantes por estación."
+    columns:
+      - name: location_id
+        description: "ID de la ubicación de la estación."
+      - name: station_name
+        description: "Nombre de la estación de medición."
+      - name: pollutant_type
+        description: "Tipo de contaminante medido."
+      - name: measurement_day
+        description: "Día de medición truncado al inicio del día."
+      - name: avg_daily
+        description: "Concentración promedio diaria."
+      - name: max_daily
+        description: "Concentración máxima diaria."
+      - name: min_daily
+        description: "Concentración mínima diaria."
+      - name: num_measurements
+        description: "Número de mediciones por día."
+      - name: variation_vs_prev_day
+        description: "Variación respecto al día anterior."
+
+  - name: mart_air_quality_monthly
+    description: "MART de concentraciones mensuales de contaminantes por estación."
+    columns:
+      - name: location_id
+        description: "ID de la ubicación de la estación."
+      - name: station_name
+        description: "Nombre de la estación de medición."
+      - name: pollutant_type
+        description: "Tipo de contaminante medido."
+      - name: measurement_month
+        description: "Mes de medición truncado al inicio del mes."
+      - name: avg_monthly
+        description: "Concentración promedio mensual."
+      - name: max_monthly
+        description: "Concentración máxima mensual."
+      - name: min_monthly
+        description: "Concentración mínima mensual."
+      - name: num_measurements
+        description: "Número de mediciones por mes."
+      - name: variation_vs_prev_month
+        description: "Variación respecto al mes anterior."
