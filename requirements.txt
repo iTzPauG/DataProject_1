@@ -5,11 +5,4 @@ confluent-kafka
 colorama
 dash
 plotly
-<<<<<<< HEAD
 dbt-postgres
-=======
-gspread
-flask
-flask_httpauth
-flask_jwt_extended
->>>>>>> main

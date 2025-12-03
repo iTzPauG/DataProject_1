@@ -6907,3 +6907,1541 @@ drop table if exists "data_project_1"."public"."mart_air_quality_hourly__dbt_bac
 [0m18:07:05.769424 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e8db09c49d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e8db550b910>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e8db52c2b90>]}
 [0m18:07:05.771144 [debug] [MainThread]: Flushing usage events
 [0m18:07:06.589241 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m18:08:09.180380 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d1595f183d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d1595a9bf50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d15987b3cd0>]}
+
+
+============================== 18:08:09.187447 | aeadfee4-b4e2-4333-a3fd-70c27ad59711 ==============================
+[0m18:08:09.187447 [info ] [MainThread]: Running with dbt=1.10.15
+[0m18:08:09.190881 [debug] [MainThread]: running dbt with arguments {'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'profiles_dir': '/usr/app/dbt/dbt', 'send_anonymous_usage_stats': 'True', 'log_format': 'default', 'warn_error': 'None', 'version_check': 'True', 'no_print': 'None', 'debug': 'False', 'introspect': 'True', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'invocation_command': 'dbt run', 'static_parser': 'True', 'log_cache_events': 'False', 'indirect_selection': 'eager', 'use_colors': 'True', 'use_experimental_parser': 'False', 'target_path': 'None', 'fail_fast': 'False', 'quiet': 'False', 'log_path': '/usr/app/dbt/dbt/logs', 'printer_width': '80', 'empty': 'False'}
+[0m18:08:09.371827 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'aeadfee4-b4e2-4333-a3fd-70c27ad59711', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d15950c9bd0>]}
+[0m18:08:09.425172 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'aeadfee4-b4e2-4333-a3fd-70c27ad59711', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d1595154990>]}
+[0m18:08:09.427454 [info ] [MainThread]: Registered adapter: postgres=1.9.1
+[0m18:08:09.598316 [debug] [MainThread]: checksum: 14a228079bd6df63ba81633f9a3cf44ecfaa31056ac397c602753ec895dbf885, vars: {}, profile: , target: , version: 1.10.15
+[0m18:08:12.129063 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m18:08:12.131043 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m18:08:12.189246 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'aeadfee4-b4e2-4333-a3fd-70c27ad59711', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d15949ac0d0>]}
+[0m18:08:12.339440 [debug] [MainThread]: Wrote artifact WritableManifest to /usr/app/dbt/dbt/target/manifest.json
+[0m18:08:12.349545 [debug] [MainThread]: Wrote artifact SemanticManifest to /usr/app/dbt/dbt/target/semantic_manifest.json
+[0m18:08:12.487342 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'aeadfee4-b4e2-4333-a3fd-70c27ad59711', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d15949509d0>]}
+[0m18:08:12.489744 [info ] [MainThread]: Found 7 models, 2 data tests, 1 source, 738 macros
+[0m18:08:12.493127 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'aeadfee4-b4e2-4333-a3fd-70c27ad59711', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d1593d1d850>]}
+[0m18:08:12.496269 [info ] [MainThread]: 
+[0m18:08:12.498990 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m18:08:12.501323 [info ] [MainThread]: 
+[0m18:08:12.503936 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m18:08:12.509923 [debug] [ThreadPool]: Acquiring new postgres connection 'list_data_project_1'
+[0m18:08:12.644623 [debug] [ThreadPool]: Using postgres connection "list_data_project_1"
+[0m18:08:12.647167 [debug] [ThreadPool]: On list_data_project_1: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "connection_name": "list_data_project_1"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m18:08:12.648661 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m18:08:12.673889 [debug] [ThreadPool]: SQL status: SELECT 4 in 0.025 seconds
+[0m18:08:12.677066 [debug] [ThreadPool]: On list_data_project_1: Close
+[0m18:08:12.680302 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_data_project_1, now list_data_project_1_public)
+[0m18:08:12.688012 [debug] [ThreadPool]: Using postgres connection "list_data_project_1_public"
+[0m18:08:12.689560 [debug] [ThreadPool]: On list_data_project_1_public: BEGIN
+[0m18:08:12.690985 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m18:08:12.703663 [debug] [ThreadPool]: SQL status: BEGIN in 0.013 seconds
+[0m18:08:12.705420 [debug] [ThreadPool]: Using postgres connection "list_data_project_1_public"
+[0m18:08:12.707034 [debug] [ThreadPool]: On list_data_project_1_public: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "connection_name": "list_data_project_1_public"} */
+select
+      'data_project_1' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'public'
+    union all
+    select
+      'data_project_1' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'public'
+    union all
+    select
+      'data_project_1' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'public'
+  
+[0m18:08:12.714447 [debug] [ThreadPool]: SQL status: SELECT 8 in 0.006 seconds
+[0m18:08:12.717316 [debug] [ThreadPool]: On list_data_project_1_public: ROLLBACK
+[0m18:08:12.719309 [debug] [ThreadPool]: On list_data_project_1_public: Close
+[0m18:08:12.727588 [debug] [MainThread]: Using postgres connection "master"
+[0m18:08:12.729414 [debug] [MainThread]: On master: BEGIN
+[0m18:08:12.730768 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m18:08:12.742498 [debug] [MainThread]: SQL status: BEGIN in 0.012 seconds
+[0m18:08:12.744082 [debug] [MainThread]: Using postgres connection "master"
+[0m18:08:12.745498 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "connection_name": "master"} */
+select distinct
+        dependent_namespace.nspname as dependent_schema,
+        dependent_class.relname as dependent_name,
+        referenced_namespace.nspname as referenced_schema,
+        referenced_class.relname as referenced_name
+
+    -- Query for views: views are entries in pg_class with an entry in pg_rewrite, but we avoid
+    -- a seq scan on pg_rewrite by leveraging the fact there is an "internal" row in pg_depend for
+    -- the view...
+    from pg_class as dependent_class
+    join pg_namespace as dependent_namespace on dependent_namespace.oid = dependent_class.relnamespace
+    join pg_depend as dependent_depend on dependent_depend.refobjid = dependent_class.oid
+        and dependent_depend.classid = 'pg_rewrite'::regclass
+        and dependent_depend.refclassid = 'pg_class'::regclass
+        and dependent_depend.deptype = 'i'
+
+    -- ... and via pg_depend (that has a row per column, hence the need for "distinct" above, and
+    -- making sure to exclude the internal row to avoid a view appearing to depend on itself)...
+    join pg_depend as joining_depend on joining_depend.objid = dependent_depend.objid
+        and joining_depend.classid = 'pg_rewrite'::regclass
+        and joining_depend.refclassid = 'pg_class'::regclass
+        and joining_depend.refobjid != dependent_depend.refobjid
+
+    -- ... we can find the tables they query from in pg_class, but excluding system tables. Note we
+    -- don't need need to exclude _dependent_ system tables, because they only query from other
+    -- system tables, and so are automatically excluded by excluding _referenced_ system tables
+    join pg_class as referenced_class on referenced_class.oid = joining_depend.refobjid
+    join pg_namespace as referenced_namespace on referenced_namespace.oid = referenced_class.relnamespace
+        and referenced_namespace.nspname != 'information_schema'
+        and referenced_namespace.nspname not like 'pg\_%'
+
+    order by
+        dependent_schema, dependent_name, referenced_schema, referenced_name;
+[0m18:08:12.753362 [debug] [MainThread]: SQL status: SELECT 1 in 0.006 seconds
+[0m18:08:12.756381 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'aeadfee4-b4e2-4333-a3fd-70c27ad59711', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d1595cda750>]}
+[0m18:08:12.757895 [debug] [MainThread]: On master: ROLLBACK
+[0m18:08:12.759532 [debug] [MainThread]: Using postgres connection "master"
+[0m18:08:12.760698 [debug] [MainThread]: On master: BEGIN
+[0m18:08:12.762169 [debug] [MainThread]: SQL status: BEGIN in 0.000 seconds
+[0m18:08:12.763497 [debug] [MainThread]: On master: COMMIT
+[0m18:08:12.764376 [debug] [MainThread]: Using postgres connection "master"
+[0m18:08:12.765407 [debug] [MainThread]: On master: COMMIT
+[0m18:08:12.766737 [debug] [MainThread]: SQL status: COMMIT in 0.000 seconds
+[0m18:08:12.768886 [debug] [MainThread]: On master: Close
+[0m18:08:12.776905 [debug] [Thread-1 (]: Began running node model.data_project_1.stg_air_quality_valencia
+[0m18:08:12.778660 [info ] [Thread-1 (]: 1 of 7 START sql view model public.stg_air_quality_valencia .................... [RUN]
+[0m18:08:12.780194 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_data_project_1_public, now model.data_project_1.stg_air_quality_valencia)
+[0m18:08:12.781459 [debug] [Thread-1 (]: Began compiling node model.data_project_1.stg_air_quality_valencia
+[0m18:08:12.799795 [debug] [Thread-1 (]: Writing injected SQL for node "model.data_project_1.stg_air_quality_valencia"
+[0m18:08:12.814044 [debug] [Thread-1 (]: Began executing node model.data_project_1.stg_air_quality_valencia
+[0m18:08:12.840332 [debug] [Thread-1 (]: Writing runtime sql for node "model.data_project_1.stg_air_quality_valencia"
+[0m18:08:12.858053 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.stg_air_quality_valencia"
+[0m18:08:12.859831 [debug] [Thread-1 (]: On model.data_project_1.stg_air_quality_valencia: BEGIN
+[0m18:08:12.861402 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m18:08:12.873107 [debug] [Thread-1 (]: SQL status: BEGIN in 0.012 seconds
+[0m18:08:12.874574 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.stg_air_quality_valencia"
+[0m18:08:12.876237 [debug] [Thread-1 (]: On model.data_project_1.stg_air_quality_valencia: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.stg_air_quality_valencia"} */
+
+  create view "data_project_1"."public"."stg_air_quality_valencia__dbt_tmp"
+    
+    
+  as (
+    -- Toma los datos directamente de la tabla fuente (estaciones) y los prepara para que se puedan consumir de forma sencilla en las capas intermedias. 
+--1) DESPIVOTEAMOS:
+--La tabla fuente(estaciones) tiene un formato ancho (wide), donde cada contaminante es una columna separada (so2, no2 ...)
+--Necesitamos calcular promedios de forma genérica para cualquier contaminante, de modo que necesitamos un formato ancho (long) donde los contaminantes se apilan en filas. Esto lo conseguimos utilizando los UNION ALL.
+-- Toma los datos directamente de la tabla fuente (estaciones) y los prepara para que se puedan consumir de forma sencilla en las capas intermedias.
+WITH raw_data AS (
+    SELECT
+        objectid,
+        nombre,
+        direccion,
+        tipozona,
+        fecha_carg,
+        so2,
+        no2,
+        o3,
+        co,
+        pm10,
+        pm25,
+        lon,
+        lat
+    FROM "data_project_1"."public"."estaciones"
+),
+
+unpivoted_data AS (
+
+    SELECT
+        objectid AS location_id,
+        nombre AS station_name,
+        direccion AS station_address,
+        tipozona AS zona_type,
+        lon,
+        lat,
+        fecha_carg AS measurement_timestamp,
+        'SO2' AS pollutant_type,
+        so2 AS concentration_ug_m3
+    FROM raw_data
+    WHERE so2 IS NOT NULL AND so2 >= 0 AND so2 < 1000
+
+    UNION ALL
+
+    SELECT
+        objectid AS location_id,
+        nombre AS station_name,
+        direccion AS station_address,
+        tipozona AS zona_type,
+        lon,
+        lat,
+        fecha_carg AS measurement_timestamp,
+        'NO2' AS pollutant_type,
+        no2 AS concentration_ug_m3
+    FROM raw_data
+    WHERE no2 IS NOT NULL AND no2 >= 0 AND no2 < 1000
+
+    UNION ALL
+
+    SELECT
+        objectid AS location_id,
+        nombre AS station_name,
+        direccion AS station_address,
+        tipozona AS zona_type,
+        lon,
+        lat,
+        fecha_carg AS measurement_timestamp,
+        'O3' AS pollutant_type,
+        o3 AS concentration_ug_m3
+    FROM raw_data
+    WHERE o3 IS NOT NULL AND o3 >= 0 AND o3 < 1000
+
+    UNION ALL
+
+    SELECT
+        objectid AS location_id,
+        nombre AS station_name,
+        direccion AS station_address,
+        tipozona AS zona_type,
+        lon,
+        lat,
+        fecha_carg AS measurement_timestamp,
+        'CO' AS pollutant_type,
+        co AS concentration_ug_m3
+    FROM raw_data
+    WHERE co IS NOT NULL AND co >= 0 AND co < 50
+
+    UNION ALL
+
+    SELECT
+        objectid AS location_id,
+        nombre AS station_name,
+        direccion AS station_address,
+        tipozona AS zona_type,
+        lon,
+        lat,
+        fecha_carg AS measurement_timestamp,
+        'PM10' AS pollutant_type,
+        pm10 AS concentration_ug_m3
+    FROM raw_data
+    WHERE pm10 IS NOT NULL AND pm10 >= 0 AND pm10 < 1000
+
+    UNION ALL
+
+    SELECT
+        objectid AS location_id,
+        nombre AS station_name,
+        direccion AS station_address,
+        tipozona AS zona_type,
+        lon,
+        lat,
+        fecha_carg AS measurement_timestamp,
+        'PM25' AS pollutant_type,
+        pm25 AS concentration_ug_m3
+    FROM raw_data
+    WHERE pm25 IS NOT NULL AND pm25 >= 0 AND pm25 < 1000
+)
+
+SELECT
+    md5(cast(coalesce(cast(measurement_timestamp as TEXT), '') || '-' || coalesce(cast(location_id as TEXT), '') || '-' || coalesce(cast(pollutant_type as TEXT), '') as TEXT)) AS air_quality_pk,
+    location_id,
+    station_name,
+    station_address,
+    zona_type,
+    measurement_timestamp,
+    lon AS longitude,
+    lat AS latitude,
+    pollutant_type,
+    concentration_ug_m3,
+    CASE
+        WHEN pollutant_type IN ('PM10', 'PM25') THEN 'Particulates'
+        WHEN pollutant_type IN ('NO2', 'SO2') THEN 'Gases_Inorgánicos'
+        WHEN pollutant_type IN ('O3', 'CO') THEN 'Gases_Monóxido'
+        ELSE 'Otro'
+    END AS pollutant_category
+FROM unpivoted_data
+WHERE concentration_ug_m3 >= 0
+  );
+[0m18:08:12.888797 [debug] [Thread-1 (]: SQL status: CREATE VIEW in 0.011 seconds
+[0m18:08:12.896126 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.stg_air_quality_valencia"
+[0m18:08:12.898422 [debug] [Thread-1 (]: On model.data_project_1.stg_air_quality_valencia: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.stg_air_quality_valencia"} */
+alter table "data_project_1"."public"."stg_air_quality_valencia" rename to "stg_air_quality_valencia__dbt_backup"
+[0m18:08:12.905039 [debug] [Thread-1 (]: SQL status: ALTER TABLE in 0.004 seconds
+[0m18:08:12.909460 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.stg_air_quality_valencia"
+[0m18:08:12.910928 [debug] [Thread-1 (]: On model.data_project_1.stg_air_quality_valencia: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.stg_air_quality_valencia"} */
+alter table "data_project_1"."public"."stg_air_quality_valencia__dbt_tmp" rename to "stg_air_quality_valencia"
+[0m18:08:12.914603 [debug] [Thread-1 (]: SQL status: ALTER TABLE in 0.002 seconds
+[0m18:08:12.935054 [debug] [Thread-1 (]: On model.data_project_1.stg_air_quality_valencia: COMMIT
+[0m18:08:12.937576 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.stg_air_quality_valencia"
+[0m18:08:12.939163 [debug] [Thread-1 (]: On model.data_project_1.stg_air_quality_valencia: COMMIT
+[0m18:08:12.947079 [debug] [Thread-1 (]: SQL status: COMMIT in 0.006 seconds
+[0m18:08:12.955080 [debug] [Thread-1 (]: Applying DROP to: "data_project_1"."public"."stg_air_quality_valencia__dbt_backup"
+[0m18:08:12.966883 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.stg_air_quality_valencia"
+[0m18:08:12.971789 [debug] [Thread-1 (]: On model.data_project_1.stg_air_quality_valencia: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.stg_air_quality_valencia"} */
+drop view if exists "data_project_1"."public"."stg_air_quality_valencia__dbt_backup" cascade
+[0m18:08:12.983084 [debug] [Thread-1 (]: SQL status: DROP VIEW in 0.007 seconds
+[0m18:08:12.990501 [debug] [Thread-1 (]: On model.data_project_1.stg_air_quality_valencia: Close
+[0m18:08:12.994359 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'aeadfee4-b4e2-4333-a3fd-70c27ad59711', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d1595c30bd0>]}
+[0m18:08:12.997405 [info ] [Thread-1 (]: 1 of 7 OK created sql view model public.stg_air_quality_valencia ............... [[32mCREATE VIEW[0m in 0.21s]
+[0m18:08:12.999390 [debug] [Thread-1 (]: Finished running node model.data_project_1.stg_air_quality_valencia
+[0m18:08:13.001825 [debug] [Thread-3 (]: Began running node model.data_project_1.int_air_quality_daily
+[0m18:08:13.002612 [debug] [Thread-4 (]: Began running node model.data_project_1.int_air_quality_hourly
+[0m18:08:13.003249 [debug] [Thread-2 (]: Began running node model.data_project_1.int_air_quality_monthly
+[0m18:08:13.004564 [info ] [Thread-3 (]: 2 of 7 START sql table model public.int_air_quality_daily ...................... [RUN]
+[0m18:08:13.006530 [info ] [Thread-4 (]: 3 of 7 START sql table model public.int_air_quality_hourly ..................... [RUN]
+[0m18:08:13.008274 [info ] [Thread-2 (]: 4 of 7 START sql table model public.int_air_quality_monthly .................... [RUN]
+[0m18:08:13.010113 [debug] [Thread-3 (]: Acquiring new postgres connection 'model.data_project_1.int_air_quality_daily'
+[0m18:08:13.012240 [debug] [Thread-4 (]: Acquiring new postgres connection 'model.data_project_1.int_air_quality_hourly'
+[0m18:08:13.014789 [debug] [Thread-2 (]: Acquiring new postgres connection 'model.data_project_1.int_air_quality_monthly'
+[0m18:08:13.016951 [debug] [Thread-3 (]: Began compiling node model.data_project_1.int_air_quality_daily
+[0m18:08:13.019679 [debug] [Thread-4 (]: Began compiling node model.data_project_1.int_air_quality_hourly
+[0m18:08:13.021543 [debug] [Thread-2 (]: Began compiling node model.data_project_1.int_air_quality_monthly
+[0m18:08:13.029333 [debug] [Thread-3 (]: Writing injected SQL for node "model.data_project_1.int_air_quality_daily"
+[0m18:08:13.034006 [debug] [Thread-4 (]: Writing injected SQL for node "model.data_project_1.int_air_quality_hourly"
+[0m18:08:13.040775 [debug] [Thread-2 (]: Writing injected SQL for node "model.data_project_1.int_air_quality_monthly"
+[0m18:08:13.053545 [debug] [Thread-3 (]: Began executing node model.data_project_1.int_air_quality_daily
+[0m18:08:13.054943 [debug] [Thread-4 (]: Began executing node model.data_project_1.int_air_quality_hourly
+[0m18:08:13.056117 [debug] [Thread-2 (]: Began executing node model.data_project_1.int_air_quality_monthly
+[0m18:08:13.075957 [debug] [Thread-3 (]: Writing runtime sql for node "model.data_project_1.int_air_quality_daily"
+[0m18:08:13.079223 [debug] [Thread-4 (]: Writing runtime sql for node "model.data_project_1.int_air_quality_hourly"
+[0m18:08:13.083559 [debug] [Thread-2 (]: Writing runtime sql for node "model.data_project_1.int_air_quality_monthly"
+[0m18:08:13.095818 [debug] [Thread-3 (]: Using postgres connection "model.data_project_1.int_air_quality_daily"
+[0m18:08:13.096388 [debug] [Thread-2 (]: Using postgres connection "model.data_project_1.int_air_quality_monthly"
+[0m18:08:13.097624 [debug] [Thread-3 (]: On model.data_project_1.int_air_quality_daily: BEGIN
+[0m18:08:13.099044 [debug] [Thread-4 (]: Using postgres connection "model.data_project_1.int_air_quality_hourly"
+[0m18:08:13.102302 [debug] [Thread-2 (]: On model.data_project_1.int_air_quality_monthly: BEGIN
+[0m18:08:13.104556 [debug] [Thread-3 (]: Opening a new connection, currently in state init
+[0m18:08:13.106275 [debug] [Thread-4 (]: On model.data_project_1.int_air_quality_hourly: BEGIN
+[0m18:08:13.107704 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m18:08:13.110405 [debug] [Thread-4 (]: Opening a new connection, currently in state init
+[0m18:08:13.123822 [debug] [Thread-3 (]: SQL status: BEGIN in 0.019 seconds
+[0m18:08:13.124358 [debug] [Thread-2 (]: SQL status: BEGIN in 0.017 seconds
+[0m18:08:13.125954 [debug] [Thread-3 (]: Using postgres connection "model.data_project_1.int_air_quality_daily"
+[0m18:08:13.126538 [debug] [Thread-4 (]: SQL status: BEGIN in 0.016 seconds
+[0m18:08:13.127553 [debug] [Thread-2 (]: Using postgres connection "model.data_project_1.int_air_quality_monthly"
+[0m18:08:13.129004 [debug] [Thread-3 (]: On model.data_project_1.int_air_quality_daily: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.int_air_quality_daily"} */
+
+  
+    
+
+  create  table "data_project_1"."public"."int_air_quality_daily__dbt_tmp"
+  
+  
+    as
+  
+  (
+    
+
+WITH base AS (
+    SELECT
+        location_id,
+        station_name,
+        pollutant_type,
+        DATE_TRUNC('day', measurement_timestamp) AS measurement_day,
+        concentration_ug_m3
+    FROM "data_project_1"."public"."stg_air_quality_valencia"
+),
+
+daily AS (
+    SELECT
+        location_id,
+        station_name,
+        pollutant_type,
+        measurement_day,
+        AVG(concentration_ug_m3) AS avg_daily,
+        MAX(concentration_ug_m3) AS max_daily,
+        MIN(concentration_ug_m3) AS min_daily,
+        COUNT(*) AS num_measurements
+    FROM base
+    GROUP BY 
+        location_id, 
+        station_name, 
+        pollutant_type, 
+        measurement_day
+),
+
+variation AS (
+    SELECT
+        *,
+        avg_daily - LAG(avg_daily) OVER (
+            PARTITION BY location_id, pollutant_type
+            ORDER BY measurement_day
+        ) AS variation_vs_prev_day
+    FROM daily
+)
+
+SELECT *
+FROM variation
+  );
+  
+[0m18:08:13.130161 [debug] [Thread-4 (]: Using postgres connection "model.data_project_1.int_air_quality_hourly"
+[0m18:08:13.131476 [debug] [Thread-2 (]: On model.data_project_1.int_air_quality_monthly: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.int_air_quality_monthly"} */
+
+  
+    
+
+  create  table "data_project_1"."public"."int_air_quality_monthly__dbt_tmp"
+  
+  
+    as
+  
+  (
+    
+
+WITH base AS (
+    SELECT
+        location_id,
+        station_name,
+        pollutant_type,
+        DATE_TRUNC('month', measurement_timestamp) AS measurement_month,
+        concentration_ug_m3
+    FROM "data_project_1"."public"."stg_air_quality_valencia"
+),
+
+monthly AS (
+    SELECT
+        location_id,
+        station_name,
+        pollutant_type,
+        measurement_month,
+        AVG(concentration_ug_m3) AS avg_monthly,
+        MAX(concentration_ug_m3) AS max_monthly,
+        MIN(concentration_ug_m3) AS min_monthly,
+        COUNT(*) AS num_measurements
+    FROM base
+    GROUP BY 
+        location_id,
+        station_name,
+        pollutant_type,
+        measurement_month
+),
+
+variation AS (
+    SELECT
+        monthly.*,
+        avg_monthly 
+            - LAG(avg_monthly) OVER (
+                PARTITION BY location_id, pollutant_type
+                ORDER BY measurement_month
+            ) AS variation_vs_prev_month
+    FROM monthly
+)
+
+SELECT *
+FROM variation
+  );
+  
+[0m18:08:13.134713 [debug] [Thread-4 (]: On model.data_project_1.int_air_quality_hourly: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.int_air_quality_hourly"} */
+
+  
+    
+
+  create  table "data_project_1"."public"."int_air_quality_hourly__dbt_tmp"
+  
+  
+    as
+  
+  (
+    
+
+WITH base AS (
+    SELECT
+        location_id,
+        station_name,
+        pollutant_type,
+        DATE_TRUNC('hour', measurement_timestamp) AS measurement_hour,
+        concentration_ug_m3
+    FROM "data_project_1"."public"."stg_air_quality_valencia"
+),
+
+hourly AS (
+    SELECT
+        location_id,
+        station_name,
+        pollutant_type,
+        measurement_hour,
+        AVG(concentration_ug_m3) AS avg_hourly,
+        MAX(concentration_ug_m3) AS max_hourly,
+        MIN(concentration_ug_m3) AS min_hourly,
+        COUNT(*) AS num_measurements
+    FROM base
+    GROUP BY 
+        location_id,
+        station_name,
+        pollutant_type,
+        measurement_hour
+),
+
+variation AS (
+    SELECT
+        hourly.*,
+        avg_hourly 
+            - LAG(avg_hourly) OVER (
+                PARTITION BY location_id, pollutant_type
+                ORDER BY measurement_hour
+            ) AS variation_vs_prev_hour
+    FROM hourly
+)
+
+SELECT *
+FROM variation
+  );
+  
+[0m18:08:13.152805 [debug] [Thread-3 (]: SQL status: SELECT 132 in 0.019 seconds
+[0m18:08:13.153709 [debug] [Thread-2 (]: SQL status: SELECT 44 in 0.017 seconds
+[0m18:08:13.161267 [debug] [Thread-3 (]: Using postgres connection "model.data_project_1.int_air_quality_daily"
+[0m18:08:13.161702 [debug] [Thread-4 (]: SQL status: SELECT 704 in 0.024 seconds
+[0m18:08:13.166693 [debug] [Thread-2 (]: Using postgres connection "model.data_project_1.int_air_quality_monthly"
+[0m18:08:13.168899 [debug] [Thread-3 (]: On model.data_project_1.int_air_quality_daily: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.int_air_quality_daily"} */
+alter table "data_project_1"."public"."int_air_quality_daily" rename to "int_air_quality_daily__dbt_backup"
+[0m18:08:13.175054 [debug] [Thread-4 (]: Using postgres connection "model.data_project_1.int_air_quality_hourly"
+[0m18:08:13.176927 [debug] [Thread-2 (]: On model.data_project_1.int_air_quality_monthly: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.int_air_quality_monthly"} */
+alter table "data_project_1"."public"."int_air_quality_monthly" rename to "int_air_quality_monthly__dbt_backup"
+[0m18:08:13.179796 [debug] [Thread-4 (]: On model.data_project_1.int_air_quality_hourly: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.int_air_quality_hourly"} */
+alter table "data_project_1"."public"."int_air_quality_hourly" rename to "int_air_quality_hourly__dbt_backup"
+[0m18:08:13.180199 [debug] [Thread-3 (]: SQL status: ALTER TABLE in 0.002 seconds
+[0m18:08:13.182836 [debug] [Thread-2 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m18:08:13.184098 [debug] [Thread-4 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m18:08:13.188186 [debug] [Thread-3 (]: Using postgres connection "model.data_project_1.int_air_quality_daily"
+[0m18:08:13.192022 [debug] [Thread-2 (]: Using postgres connection "model.data_project_1.int_air_quality_monthly"
+[0m18:08:13.195360 [debug] [Thread-4 (]: Using postgres connection "model.data_project_1.int_air_quality_hourly"
+[0m18:08:13.196628 [debug] [Thread-3 (]: On model.data_project_1.int_air_quality_daily: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.int_air_quality_daily"} */
+alter table "data_project_1"."public"."int_air_quality_daily__dbt_tmp" rename to "int_air_quality_daily"
+[0m18:08:13.197906 [debug] [Thread-2 (]: On model.data_project_1.int_air_quality_monthly: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.int_air_quality_monthly"} */
+alter table "data_project_1"."public"."int_air_quality_monthly__dbt_tmp" rename to "int_air_quality_monthly"
+[0m18:08:13.199058 [debug] [Thread-4 (]: On model.data_project_1.int_air_quality_hourly: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.int_air_quality_hourly"} */
+alter table "data_project_1"."public"."int_air_quality_hourly__dbt_tmp" rename to "int_air_quality_hourly"
+[0m18:08:13.202679 [debug] [Thread-3 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m18:08:13.204482 [debug] [Thread-2 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m18:08:13.205368 [debug] [Thread-4 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m18:08:13.206569 [debug] [Thread-3 (]: On model.data_project_1.int_air_quality_daily: COMMIT
+[0m18:08:13.208810 [debug] [Thread-2 (]: On model.data_project_1.int_air_quality_monthly: COMMIT
+[0m18:08:13.210677 [debug] [Thread-4 (]: On model.data_project_1.int_air_quality_hourly: COMMIT
+[0m18:08:13.211859 [debug] [Thread-3 (]: Using postgres connection "model.data_project_1.int_air_quality_daily"
+[0m18:08:13.213310 [debug] [Thread-2 (]: Using postgres connection "model.data_project_1.int_air_quality_monthly"
+[0m18:08:13.216933 [debug] [Thread-4 (]: Using postgres connection "model.data_project_1.int_air_quality_hourly"
+[0m18:08:13.219016 [debug] [Thread-3 (]: On model.data_project_1.int_air_quality_daily: COMMIT
+[0m18:08:13.221211 [debug] [Thread-2 (]: On model.data_project_1.int_air_quality_monthly: COMMIT
+[0m18:08:13.222654 [debug] [Thread-4 (]: On model.data_project_1.int_air_quality_hourly: COMMIT
+[0m18:08:13.245335 [debug] [Thread-3 (]: SQL status: COMMIT in 0.021 seconds
+[0m18:08:13.247113 [debug] [Thread-4 (]: SQL status: COMMIT in 0.021 seconds
+[0m18:08:13.247697 [debug] [Thread-2 (]: SQL status: COMMIT in 0.022 seconds
+[0m18:08:13.250722 [debug] [Thread-3 (]: Applying DROP to: "data_project_1"."public"."int_air_quality_daily__dbt_backup"
+[0m18:08:13.256675 [debug] [Thread-4 (]: Applying DROP to: "data_project_1"."public"."int_air_quality_hourly__dbt_backup"
+[0m18:08:13.264346 [debug] [Thread-2 (]: Applying DROP to: "data_project_1"."public"."int_air_quality_monthly__dbt_backup"
+[0m18:08:13.271843 [debug] [Thread-3 (]: Using postgres connection "model.data_project_1.int_air_quality_daily"
+[0m18:08:13.274267 [debug] [Thread-4 (]: Using postgres connection "model.data_project_1.int_air_quality_hourly"
+[0m18:08:13.276169 [debug] [Thread-2 (]: Using postgres connection "model.data_project_1.int_air_quality_monthly"
+[0m18:08:13.278839 [debug] [Thread-3 (]: On model.data_project_1.int_air_quality_daily: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.int_air_quality_daily"} */
+drop table if exists "data_project_1"."public"."int_air_quality_daily__dbt_backup" cascade
+[0m18:08:13.281448 [debug] [Thread-4 (]: On model.data_project_1.int_air_quality_hourly: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.int_air_quality_hourly"} */
+drop table if exists "data_project_1"."public"."int_air_quality_hourly__dbt_backup" cascade
+[0m18:08:13.283167 [debug] [Thread-2 (]: On model.data_project_1.int_air_quality_monthly: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.int_air_quality_monthly"} */
+drop table if exists "data_project_1"."public"."int_air_quality_monthly__dbt_backup" cascade
+[0m18:08:13.292868 [debug] [Thread-3 (]: SQL status: DROP TABLE in 0.007 seconds
+[0m18:08:13.296104 [debug] [Thread-3 (]: On model.data_project_1.int_air_quality_daily: Close
+[0m18:08:13.296499 [debug] [Thread-4 (]: SQL status: DROP TABLE in 0.010 seconds
+[0m18:08:13.296879 [debug] [Thread-2 (]: SQL status: DROP TABLE in 0.009 seconds
+[0m18:08:13.298337 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'aeadfee4-b4e2-4333-a3fd-70c27ad59711', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d159061a9d0>]}
+[0m18:08:13.301580 [debug] [Thread-4 (]: On model.data_project_1.int_air_quality_hourly: Close
+[0m18:08:13.304004 [debug] [Thread-2 (]: On model.data_project_1.int_air_quality_monthly: Close
+[0m18:08:13.305797 [info ] [Thread-3 (]: 2 of 7 OK created sql table model public.int_air_quality_daily ................. [[32mSELECT 132[0m in 0.29s]
+[0m18:08:13.307669 [debug] [Thread-4 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'aeadfee4-b4e2-4333-a3fd-70c27ad59711', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d1590635210>]}
+[0m18:08:13.309584 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'aeadfee4-b4e2-4333-a3fd-70c27ad59711', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d159511c210>]}
+[0m18:08:13.312054 [debug] [Thread-3 (]: Finished running node model.data_project_1.int_air_quality_daily
+[0m18:08:13.313849 [info ] [Thread-4 (]: 3 of 7 OK created sql table model public.int_air_quality_hourly ................ [[32mSELECT 704[0m in 0.30s]
+[0m18:08:13.315637 [info ] [Thread-2 (]: 4 of 7 OK created sql table model public.int_air_quality_monthly ............... [[32mSELECT 44[0m in 0.30s]
+[0m18:08:13.317927 [debug] [Thread-1 (]: Began running node model.data_project_1.mart_air_quality_daily
+[0m18:08:13.318924 [debug] [Thread-4 (]: Finished running node model.data_project_1.int_air_quality_hourly
+[0m18:08:13.320609 [debug] [Thread-2 (]: Finished running node model.data_project_1.int_air_quality_monthly
+[0m18:08:13.321984 [info ] [Thread-1 (]: 5 of 7 START sql table model public.mart_air_quality_daily ..................... [RUN]
+[0m18:08:13.323649 [debug] [Thread-3 (]: Began running node model.data_project_1.mart_air_quality_hourly
+[0m18:08:13.324796 [debug] [Thread-4 (]: Began running node model.data_project_1.mart_air_quality_monthly
+[0m18:08:13.325773 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.data_project_1.stg_air_quality_valencia, now model.data_project_1.mart_air_quality_daily)
+[0m18:08:13.327205 [info ] [Thread-3 (]: 6 of 7 START sql table model public.mart_air_quality_hourly .................... [RUN]
+[0m18:08:13.328710 [info ] [Thread-4 (]: 7 of 7 START sql table model public.mart_air_quality_monthly ................... [RUN]
+[0m18:08:13.330995 [debug] [Thread-1 (]: Began compiling node model.data_project_1.mart_air_quality_daily
+[0m18:08:13.332388 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly model.data_project_1.int_air_quality_daily, now model.data_project_1.mart_air_quality_hourly)
+[0m18:08:13.333610 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly model.data_project_1.int_air_quality_hourly, now model.data_project_1.mart_air_quality_monthly)
+[0m18:08:13.337466 [debug] [Thread-1 (]: Writing injected SQL for node "model.data_project_1.mart_air_quality_daily"
+[0m18:08:13.338924 [debug] [Thread-3 (]: Began compiling node model.data_project_1.mart_air_quality_hourly
+[0m18:08:13.340226 [debug] [Thread-4 (]: Began compiling node model.data_project_1.mart_air_quality_monthly
+[0m18:08:13.344862 [debug] [Thread-3 (]: Writing injected SQL for node "model.data_project_1.mart_air_quality_hourly"
+[0m18:08:13.349196 [debug] [Thread-4 (]: Writing injected SQL for node "model.data_project_1.mart_air_quality_monthly"
+[0m18:08:13.352824 [debug] [Thread-1 (]: Began executing node model.data_project_1.mart_air_quality_daily
+[0m18:08:13.357724 [debug] [Thread-1 (]: Writing runtime sql for node "model.data_project_1.mart_air_quality_daily"
+[0m18:08:13.359363 [debug] [Thread-3 (]: Began executing node model.data_project_1.mart_air_quality_hourly
+[0m18:08:13.361008 [debug] [Thread-4 (]: Began executing node model.data_project_1.mart_air_quality_monthly
+[0m18:08:13.364023 [debug] [Thread-3 (]: Writing runtime sql for node "model.data_project_1.mart_air_quality_hourly"
+[0m18:08:13.367934 [debug] [Thread-4 (]: Writing runtime sql for node "model.data_project_1.mart_air_quality_monthly"
+[0m18:08:13.371161 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.mart_air_quality_daily"
+[0m18:08:13.372700 [debug] [Thread-1 (]: On model.data_project_1.mart_air_quality_daily: BEGIN
+[0m18:08:13.374377 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m18:08:13.374843 [debug] [Thread-3 (]: Using postgres connection "model.data_project_1.mart_air_quality_hourly"
+[0m18:08:13.376250 [debug] [Thread-4 (]: Using postgres connection "model.data_project_1.mart_air_quality_monthly"
+[0m18:08:13.377000 [debug] [Thread-3 (]: On model.data_project_1.mart_air_quality_hourly: BEGIN
+[0m18:08:13.378303 [debug] [Thread-4 (]: On model.data_project_1.mart_air_quality_monthly: BEGIN
+[0m18:08:13.379655 [debug] [Thread-3 (]: Opening a new connection, currently in state closed
+[0m18:08:13.380780 [debug] [Thread-4 (]: Opening a new connection, currently in state closed
+[0m18:08:13.383150 [debug] [Thread-1 (]: SQL status: BEGIN in 0.009 seconds
+[0m18:08:13.384668 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.mart_air_quality_daily"
+[0m18:08:13.385775 [debug] [Thread-1 (]: On model.data_project_1.mart_air_quality_daily: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.mart_air_quality_daily"} */
+
+  
+    
+
+  create  table "data_project_1"."public"."mart_air_quality_daily__dbt_tmp"
+  
+  
+    as
+  
+  (
+    
+
+SELECT
+    location_id,
+    station_name,
+    pollutant_type,
+    measurement_day,
+    avg_daily,
+    max_daily,
+    min_daily,
+    num_measurements,
+    variation_vs_prev_day
+FROM "data_project_1"."public"."int_air_quality_daily"
+--Este mart proporciona un resumen diario de las mediciones de calidad del aire, incluyendo promedios, máximos, mínimos y variaciones respecto al día anterior. Es útil para análisis diarios y reportes de cumplimiento.
+  );
+  
+[0m18:08:13.390811 [debug] [Thread-3 (]: SQL status: BEGIN in 0.011 seconds
+[0m18:08:13.392183 [debug] [Thread-4 (]: SQL status: BEGIN in 0.011 seconds
+[0m18:08:13.393094 [debug] [Thread-3 (]: Using postgres connection "model.data_project_1.mart_air_quality_hourly"
+[0m18:08:13.393893 [debug] [Thread-1 (]: SQL status: SELECT 132 in 0.007 seconds
+[0m18:08:13.394620 [debug] [Thread-4 (]: Using postgres connection "model.data_project_1.mart_air_quality_monthly"
+[0m18:08:13.395782 [debug] [Thread-3 (]: On model.data_project_1.mart_air_quality_hourly: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.mart_air_quality_hourly"} */
+
+  
+    
+
+  create  table "data_project_1"."public"."mart_air_quality_hourly__dbt_tmp"
+  
+  
+    as
+  
+  (
+    
+
+SELECT
+    location_id,
+    station_name,
+    pollutant_type,
+    measurement_hour,
+    avg_hourly,
+    max_hourly,
+    min_hourly,
+    num_measurements,
+    variation_vs_prev_hour
+FROM "data_project_1"."public"."int_air_quality_hourly"
+--Este mart proporciona un resumen horario de las mediciones de calidad del aire, incluyendo promedios, máximos, mínimos y variaciones respecto a la hora anterior. Es útil para análisis detallados y monitoreo en tiempo real.
+  );
+  
+[0m18:08:13.401534 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.mart_air_quality_daily"
+[0m18:08:13.403370 [debug] [Thread-4 (]: On model.data_project_1.mart_air_quality_monthly: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.mart_air_quality_monthly"} */
+
+  
+    
+
+  create  table "data_project_1"."public"."mart_air_quality_monthly__dbt_tmp"
+  
+  
+    as
+  
+  (
+    
+
+SELECT
+    location_id,
+    station_name,
+    pollutant_type,
+    measurement_month,
+    avg_monthly,
+    max_monthly,
+    min_monthly,
+    num_measurements,
+    variation_vs_prev_month
+FROM "data_project_1"."public"."int_air_quality_monthly"
+  );
+  
+[0m18:08:13.405938 [debug] [Thread-1 (]: On model.data_project_1.mart_air_quality_daily: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.mart_air_quality_daily"} */
+alter table "data_project_1"."public"."mart_air_quality_daily" rename to "mart_air_quality_daily__dbt_backup"
+[0m18:08:13.408881 [debug] [Thread-1 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m18:08:13.414081 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.mart_air_quality_daily"
+[0m18:08:13.414546 [debug] [Thread-3 (]: SQL status: SELECT 704 in 0.010 seconds
+[0m18:08:13.415088 [debug] [Thread-4 (]: SQL status: SELECT 44 in 0.008 seconds
+[0m18:08:13.415915 [debug] [Thread-1 (]: On model.data_project_1.mart_air_quality_daily: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.mart_air_quality_daily"} */
+alter table "data_project_1"."public"."mart_air_quality_daily__dbt_tmp" rename to "mart_air_quality_daily"
+[0m18:08:13.420035 [debug] [Thread-3 (]: Using postgres connection "model.data_project_1.mart_air_quality_hourly"
+[0m18:08:13.424650 [debug] [Thread-4 (]: Using postgres connection "model.data_project_1.mart_air_quality_monthly"
+[0m18:08:13.427431 [debug] [Thread-1 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m18:08:13.427905 [debug] [Thread-3 (]: On model.data_project_1.mart_air_quality_hourly: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.mart_air_quality_hourly"} */
+alter table "data_project_1"."public"."mart_air_quality_hourly" rename to "mart_air_quality_hourly__dbt_backup"
+[0m18:08:13.429333 [debug] [Thread-4 (]: On model.data_project_1.mart_air_quality_monthly: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.mart_air_quality_monthly"} */
+alter table "data_project_1"."public"."mart_air_quality_monthly" rename to "mart_air_quality_monthly__dbt_backup"
+[0m18:08:13.431778 [debug] [Thread-1 (]: On model.data_project_1.mart_air_quality_daily: COMMIT
+[0m18:08:13.434069 [debug] [Thread-3 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m18:08:13.435468 [debug] [Thread-4 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m18:08:13.436497 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.mart_air_quality_daily"
+[0m18:08:13.440535 [debug] [Thread-3 (]: Using postgres connection "model.data_project_1.mart_air_quality_hourly"
+[0m18:08:13.444745 [debug] [Thread-4 (]: Using postgres connection "model.data_project_1.mart_air_quality_monthly"
+[0m18:08:13.446273 [debug] [Thread-1 (]: On model.data_project_1.mart_air_quality_daily: COMMIT
+[0m18:08:13.447648 [debug] [Thread-3 (]: On model.data_project_1.mart_air_quality_hourly: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.mart_air_quality_hourly"} */
+alter table "data_project_1"."public"."mart_air_quality_hourly__dbt_tmp" rename to "mart_air_quality_hourly"
+[0m18:08:13.448990 [debug] [Thread-4 (]: On model.data_project_1.mart_air_quality_monthly: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.mart_air_quality_monthly"} */
+alter table "data_project_1"."public"."mart_air_quality_monthly__dbt_tmp" rename to "mart_air_quality_monthly"
+[0m18:08:13.454286 [debug] [Thread-3 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m18:08:13.455706 [debug] [Thread-4 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m18:08:13.457248 [debug] [Thread-3 (]: On model.data_project_1.mart_air_quality_hourly: COMMIT
+[0m18:08:13.460163 [debug] [Thread-4 (]: On model.data_project_1.mart_air_quality_monthly: COMMIT
+[0m18:08:13.462405 [debug] [Thread-3 (]: Using postgres connection "model.data_project_1.mart_air_quality_hourly"
+[0m18:08:13.463978 [debug] [Thread-4 (]: Using postgres connection "model.data_project_1.mart_air_quality_monthly"
+[0m18:08:13.464307 [debug] [Thread-1 (]: SQL status: COMMIT in 0.014 seconds
+[0m18:08:13.465299 [debug] [Thread-3 (]: On model.data_project_1.mart_air_quality_hourly: COMMIT
+[0m18:08:13.467418 [debug] [Thread-4 (]: On model.data_project_1.mart_air_quality_monthly: COMMIT
+[0m18:08:13.472393 [debug] [Thread-1 (]: Applying DROP to: "data_project_1"."public"."mart_air_quality_daily__dbt_backup"
+[0m18:08:13.476642 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.mart_air_quality_daily"
+[0m18:08:13.477068 [debug] [Thread-3 (]: SQL status: COMMIT in 0.003 seconds
+[0m18:08:13.478174 [debug] [Thread-1 (]: On model.data_project_1.mart_air_quality_daily: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.mart_air_quality_daily"} */
+drop table if exists "data_project_1"."public"."mart_air_quality_daily__dbt_backup" cascade
+[0m18:08:13.478589 [debug] [Thread-4 (]: SQL status: COMMIT in 0.003 seconds
+[0m18:08:13.482356 [debug] [Thread-3 (]: Applying DROP to: "data_project_1"."public"."mart_air_quality_hourly__dbt_backup"
+[0m18:08:13.489556 [debug] [Thread-4 (]: Applying DROP to: "data_project_1"."public"."mart_air_quality_monthly__dbt_backup"
+[0m18:08:13.489974 [debug] [Thread-1 (]: SQL status: DROP TABLE in 0.006 seconds
+[0m18:08:13.491211 [debug] [Thread-3 (]: Using postgres connection "model.data_project_1.mart_air_quality_hourly"
+[0m18:08:13.492857 [debug] [Thread-4 (]: Using postgres connection "model.data_project_1.mart_air_quality_monthly"
+[0m18:08:13.495295 [debug] [Thread-1 (]: On model.data_project_1.mart_air_quality_daily: Close
+[0m18:08:13.496660 [debug] [Thread-3 (]: On model.data_project_1.mart_air_quality_hourly: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.mart_air_quality_hourly"} */
+drop table if exists "data_project_1"."public"."mart_air_quality_hourly__dbt_backup" cascade
+[0m18:08:13.498911 [debug] [Thread-4 (]: On model.data_project_1.mart_air_quality_monthly: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.mart_air_quality_monthly"} */
+drop table if exists "data_project_1"."public"."mart_air_quality_monthly__dbt_backup" cascade
+[0m18:08:13.501649 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'aeadfee4-b4e2-4333-a3fd-70c27ad59711', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d1590504b50>]}
+[0m18:08:13.506159 [info ] [Thread-1 (]: 5 of 7 OK created sql table model public.mart_air_quality_daily ................ [[32mSELECT 132[0m in 0.18s]
+[0m18:08:13.508023 [debug] [Thread-1 (]: Finished running node model.data_project_1.mart_air_quality_daily
+[0m18:08:13.510196 [debug] [Thread-3 (]: SQL status: DROP TABLE in 0.007 seconds
+[0m18:08:13.511071 [debug] [Thread-4 (]: SQL status: DROP TABLE in 0.006 seconds
+[0m18:08:13.512793 [debug] [Thread-3 (]: On model.data_project_1.mart_air_quality_hourly: Close
+[0m18:08:13.515565 [debug] [Thread-4 (]: On model.data_project_1.mart_air_quality_monthly: Close
+[0m18:08:13.517547 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'aeadfee4-b4e2-4333-a3fd-70c27ad59711', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d15906d8a10>]}
+[0m18:08:13.519853 [debug] [Thread-4 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'aeadfee4-b4e2-4333-a3fd-70c27ad59711', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d15906d8210>]}
+[0m18:08:13.521517 [info ] [Thread-3 (]: 6 of 7 OK created sql table model public.mart_air_quality_hourly ............... [[32mSELECT 704[0m in 0.19s]
+[0m18:08:13.523774 [info ] [Thread-4 (]: 7 of 7 OK created sql table model public.mart_air_quality_monthly .............. [[32mSELECT 44[0m in 0.19s]
+[0m18:08:13.525223 [debug] [Thread-3 (]: Finished running node model.data_project_1.mart_air_quality_hourly
+[0m18:08:13.527010 [debug] [Thread-4 (]: Finished running node model.data_project_1.mart_air_quality_monthly
+[0m18:08:13.532111 [debug] [MainThread]: Using postgres connection "master"
+[0m18:08:13.534044 [debug] [MainThread]: On master: BEGIN
+[0m18:08:13.535921 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m18:08:13.546405 [debug] [MainThread]: SQL status: BEGIN in 0.010 seconds
+[0m18:08:13.548274 [debug] [MainThread]: On master: COMMIT
+[0m18:08:13.549804 [debug] [MainThread]: Using postgres connection "master"
+[0m18:08:13.552170 [debug] [MainThread]: On master: COMMIT
+[0m18:08:13.554070 [debug] [MainThread]: SQL status: COMMIT in 0.000 seconds
+[0m18:08:13.555596 [debug] [MainThread]: On master: Close
+[0m18:08:13.556987 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m18:08:13.558239 [debug] [MainThread]: Connection 'model.data_project_1.mart_air_quality_daily' was properly closed.
+[0m18:08:13.559217 [debug] [MainThread]: Connection 'model.data_project_1.mart_air_quality_hourly' was properly closed.
+[0m18:08:13.560374 [debug] [MainThread]: Connection 'model.data_project_1.mart_air_quality_monthly' was properly closed.
+[0m18:08:13.561515 [debug] [MainThread]: Connection 'model.data_project_1.int_air_quality_monthly' was properly closed.
+[0m18:08:13.563295 [info ] [MainThread]: 
+[0m18:08:13.564756 [info ] [MainThread]: Finished running 6 table models, 1 view model in 0 hours 0 minutes and 1.06 seconds (1.06s).
+[0m18:08:13.567573 [debug] [MainThread]: Command end result
+[0m18:08:13.642890 [debug] [MainThread]: Wrote artifact WritableManifest to /usr/app/dbt/dbt/target/manifest.json
+[0m18:08:13.653914 [debug] [MainThread]: Wrote artifact SemanticManifest to /usr/app/dbt/dbt/target/semantic_manifest.json
+[0m18:08:13.666609 [debug] [MainThread]: Wrote artifact RunExecutionResult to /usr/app/dbt/dbt/target/run_results.json
+[0m18:08:13.669138 [info ] [MainThread]: 
+[0m18:08:13.671017 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m18:08:13.672247 [info ] [MainThread]: 
+[0m18:08:13.673405 [info ] [MainThread]: Done. PASS=7 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=7
+[0m18:08:13.675671 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 4.5703835, "process_in_blocks": "0", "process_kernel_time": 1.000565, "process_mem_max_rss": "131700", "process_out_blocks": "0", "process_user_time": 2.465394}
+[0m18:08:13.676845 [debug] [MainThread]: Command `dbt run` succeeded at 18:08:13.676718 after 4.57 seconds
+[0m18:08:13.677976 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d1595e1cc10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d159a373890>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d159a38eb10>]}
+[0m18:08:13.679420 [debug] [MainThread]: Flushing usage events
+[0m18:08:14.480045 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m18:09:17.059102 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f2f6f384dd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f2f6f3e23d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f2f6f3a4b50>]}
+
+
+============================== 18:09:17.065386 | 4f196558-48d0-40fc-9ad9-19872044a80b ==============================
+[0m18:09:17.065386 [info ] [MainThread]: Running with dbt=1.10.15
+[0m18:09:17.067239 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'cache_selected_only': 'False', 'target_path': 'None', 'send_anonymous_usage_stats': 'True', 'printer_width': '80', 'log_format': 'default', 'partial_parse': 'True', 'invocation_command': 'dbt run', 'empty': 'False', 'debug': 'False', 'introspect': 'True', 'log_cache_events': 'False', 'use_experimental_parser': 'False', 'fail_fast': 'False', 'use_colors': 'True', 'write_json': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'profiles_dir': '/usr/app/dbt/dbt', 'warn_error': 'None', 'quiet': 'False', 'indirect_selection': 'eager', 'static_parser': 'True', 'log_path': '/usr/app/dbt/dbt/logs', 'no_print': 'None'}
+[0m18:09:17.231663 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '4f196558-48d0-40fc-9ad9-19872044a80b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f2f6f384310>]}
+[0m18:09:17.276821 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '4f196558-48d0-40fc-9ad9-19872044a80b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f2f6e7e5fd0>]}
+[0m18:09:17.279672 [info ] [MainThread]: Registered adapter: postgres=1.9.1
+[0m18:09:17.436736 [debug] [MainThread]: checksum: 14a228079bd6df63ba81633f9a3cf44ecfaa31056ac397c602753ec895dbf885, vars: {}, profile: , target: , version: 1.10.15
+[0m18:09:19.635099 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m18:09:19.636606 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m18:09:19.678634 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '4f196558-48d0-40fc-9ad9-19872044a80b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f2f6dfc7e10>]}
+[0m18:09:19.788188 [debug] [MainThread]: Wrote artifact WritableManifest to /usr/app/dbt/dbt/target/manifest.json
+[0m18:09:19.794672 [debug] [MainThread]: Wrote artifact SemanticManifest to /usr/app/dbt/dbt/target/semantic_manifest.json
+[0m18:09:19.902258 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '4f196558-48d0-40fc-9ad9-19872044a80b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f2f6e745950>]}
+[0m18:09:19.903733 [info ] [MainThread]: Found 7 models, 2 data tests, 1 source, 738 macros
+[0m18:09:19.904977 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '4f196558-48d0-40fc-9ad9-19872044a80b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f2f6df06510>]}
+[0m18:09:19.908107 [info ] [MainThread]: 
+[0m18:09:19.909227 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m18:09:19.910295 [info ] [MainThread]: 
+[0m18:09:19.911522 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m18:09:19.917796 [debug] [ThreadPool]: Acquiring new postgres connection 'list_data_project_1'
+[0m18:09:20.017605 [debug] [ThreadPool]: Using postgres connection "list_data_project_1"
+[0m18:09:20.021027 [debug] [ThreadPool]: On list_data_project_1: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "connection_name": "list_data_project_1"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m18:09:20.022341 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m18:09:20.040642 [debug] [ThreadPool]: SQL status: SELECT 4 in 0.018 seconds
+[0m18:09:20.044050 [debug] [ThreadPool]: On list_data_project_1: Close
+[0m18:09:20.047596 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_data_project_1, now list_data_project_1_public)
+[0m18:09:20.055478 [debug] [ThreadPool]: Using postgres connection "list_data_project_1_public"
+[0m18:09:20.056411 [debug] [ThreadPool]: On list_data_project_1_public: BEGIN
+[0m18:09:20.057296 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m18:09:20.067529 [debug] [ThreadPool]: SQL status: BEGIN in 0.010 seconds
+[0m18:09:20.068824 [debug] [ThreadPool]: Using postgres connection "list_data_project_1_public"
+[0m18:09:20.069769 [debug] [ThreadPool]: On list_data_project_1_public: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "connection_name": "list_data_project_1_public"} */
+select
+      'data_project_1' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'public'
+    union all
+    select
+      'data_project_1' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'public'
+    union all
+    select
+      'data_project_1' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'public'
+  
+[0m18:09:20.076317 [debug] [ThreadPool]: SQL status: SELECT 8 in 0.006 seconds
+[0m18:09:20.078343 [debug] [ThreadPool]: On list_data_project_1_public: ROLLBACK
+[0m18:09:20.079897 [debug] [ThreadPool]: On list_data_project_1_public: Close
+[0m18:09:20.086681 [debug] [MainThread]: Using postgres connection "master"
+[0m18:09:20.087736 [debug] [MainThread]: On master: BEGIN
+[0m18:09:20.088713 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m18:09:20.097590 [debug] [MainThread]: SQL status: BEGIN in 0.009 seconds
+[0m18:09:20.099144 [debug] [MainThread]: Using postgres connection "master"
+[0m18:09:20.100238 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "connection_name": "master"} */
+select distinct
+        dependent_namespace.nspname as dependent_schema,
+        dependent_class.relname as dependent_name,
+        referenced_namespace.nspname as referenced_schema,
+        referenced_class.relname as referenced_name
+
+    -- Query for views: views are entries in pg_class with an entry in pg_rewrite, but we avoid
+    -- a seq scan on pg_rewrite by leveraging the fact there is an "internal" row in pg_depend for
+    -- the view...
+    from pg_class as dependent_class
+    join pg_namespace as dependent_namespace on dependent_namespace.oid = dependent_class.relnamespace
+    join pg_depend as dependent_depend on dependent_depend.refobjid = dependent_class.oid
+        and dependent_depend.classid = 'pg_rewrite'::regclass
+        and dependent_depend.refclassid = 'pg_class'::regclass
+        and dependent_depend.deptype = 'i'
+
+    -- ... and via pg_depend (that has a row per column, hence the need for "distinct" above, and
+    -- making sure to exclude the internal row to avoid a view appearing to depend on itself)...
+    join pg_depend as joining_depend on joining_depend.objid = dependent_depend.objid
+        and joining_depend.classid = 'pg_rewrite'::regclass
+        and joining_depend.refclassid = 'pg_class'::regclass
+        and joining_depend.refobjid != dependent_depend.refobjid
+
+    -- ... we can find the tables they query from in pg_class, but excluding system tables. Note we
+    -- don't need need to exclude _dependent_ system tables, because they only query from other
+    -- system tables, and so are automatically excluded by excluding _referenced_ system tables
+    join pg_class as referenced_class on referenced_class.oid = joining_depend.refobjid
+    join pg_namespace as referenced_namespace on referenced_namespace.oid = referenced_class.relnamespace
+        and referenced_namespace.nspname != 'information_schema'
+        and referenced_namespace.nspname not like 'pg\_%'
+
+    order by
+        dependent_schema, dependent_name, referenced_schema, referenced_name;
+[0m18:09:20.106503 [debug] [MainThread]: SQL status: SELECT 1 in 0.005 seconds
+[0m18:09:20.109581 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '4f196558-48d0-40fc-9ad9-19872044a80b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f2f6f395290>]}
+[0m18:09:20.110931 [debug] [MainThread]: On master: ROLLBACK
+[0m18:09:20.112352 [debug] [MainThread]: Using postgres connection "master"
+[0m18:09:20.113389 [debug] [MainThread]: On master: BEGIN
+[0m18:09:20.114737 [debug] [MainThread]: SQL status: BEGIN in 0.000 seconds
+[0m18:09:20.116161 [debug] [MainThread]: On master: COMMIT
+[0m18:09:20.117300 [debug] [MainThread]: Using postgres connection "master"
+[0m18:09:20.118097 [debug] [MainThread]: On master: COMMIT
+[0m18:09:20.119304 [debug] [MainThread]: SQL status: COMMIT in 0.000 seconds
+[0m18:09:20.120342 [debug] [MainThread]: On master: Close
+[0m18:09:20.127764 [debug] [Thread-1 (]: Began running node model.data_project_1.stg_air_quality_valencia
+[0m18:09:20.129710 [info ] [Thread-1 (]: 1 of 7 START sql view model public.stg_air_quality_valencia .................... [RUN]
+[0m18:09:20.131114 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_data_project_1_public, now model.data_project_1.stg_air_quality_valencia)
+[0m18:09:20.132076 [debug] [Thread-1 (]: Began compiling node model.data_project_1.stg_air_quality_valencia
+[0m18:09:20.151248 [debug] [Thread-1 (]: Writing injected SQL for node "model.data_project_1.stg_air_quality_valencia"
+[0m18:09:20.161272 [debug] [Thread-1 (]: Began executing node model.data_project_1.stg_air_quality_valencia
+[0m18:09:20.185965 [debug] [Thread-1 (]: Writing runtime sql for node "model.data_project_1.stg_air_quality_valencia"
+[0m18:09:20.196814 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.stg_air_quality_valencia"
+[0m18:09:20.198077 [debug] [Thread-1 (]: On model.data_project_1.stg_air_quality_valencia: BEGIN
+[0m18:09:20.199913 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m18:09:20.209993 [debug] [Thread-1 (]: SQL status: BEGIN in 0.010 seconds
+[0m18:09:20.211305 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.stg_air_quality_valencia"
+[0m18:09:20.212510 [debug] [Thread-1 (]: On model.data_project_1.stg_air_quality_valencia: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.stg_air_quality_valencia"} */
+
+  create view "data_project_1"."public"."stg_air_quality_valencia__dbt_tmp"
+    
+    
+  as (
+    -- Toma los datos directamente de la tabla fuente (estaciones) y los prepara para que se puedan consumir de forma sencilla en las capas intermedias. 
+--1) DESPIVOTEAMOS:
+--La tabla fuente(estaciones) tiene un formato ancho (wide), donde cada contaminante es una columna separada (so2, no2 ...)
+--Necesitamos calcular promedios de forma genérica para cualquier contaminante, de modo que necesitamos un formato ancho (long) donde los contaminantes se apilan en filas. Esto lo conseguimos utilizando los UNION ALL.
+-- Toma los datos directamente de la tabla fuente (estaciones) y los prepara para que se puedan consumir de forma sencilla en las capas intermedias.
+WITH raw_data AS (
+    SELECT
+        objectid,
+        nombre,
+        direccion,
+        tipozona,
+        fecha_carg,
+        so2,
+        no2,
+        o3,
+        co,
+        pm10,
+        pm25,
+        lon,
+        lat
+    FROM "data_project_1"."public"."estaciones"
+),
+
+unpivoted_data AS (
+
+    SELECT
+        objectid AS location_id,
+        nombre AS station_name,
+        direccion AS station_address,
+        tipozona AS zona_type,
+        lon,
+        lat,
+        fecha_carg AS measurement_timestamp,
+        'SO2' AS pollutant_type,
+        so2 AS concentration_ug_m3
+    FROM raw_data
+    WHERE so2 IS NOT NULL AND so2 >= 0 AND so2 < 1000
+
+    UNION ALL
+
+    SELECT
+        objectid AS location_id,
+        nombre AS station_name,
+        direccion AS station_address,
+        tipozona AS zona_type,
+        lon,
+        lat,
+        fecha_carg AS measurement_timestamp,
+        'NO2' AS pollutant_type,
+        no2 AS concentration_ug_m3
+    FROM raw_data
+    WHERE no2 IS NOT NULL AND no2 >= 0 AND no2 < 1000
+
+    UNION ALL
+
+    SELECT
+        objectid AS location_id,
+        nombre AS station_name,
+        direccion AS station_address,
+        tipozona AS zona_type,
+        lon,
+        lat,
+        fecha_carg AS measurement_timestamp,
+        'O3' AS pollutant_type,
+        o3 AS concentration_ug_m3
+    FROM raw_data
+    WHERE o3 IS NOT NULL AND o3 >= 0 AND o3 < 1000
+
+    UNION ALL
+
+    SELECT
+        objectid AS location_id,
+        nombre AS station_name,
+        direccion AS station_address,
+        tipozona AS zona_type,
+        lon,
+        lat,
+        fecha_carg AS measurement_timestamp,
+        'CO' AS pollutant_type,
+        co AS concentration_ug_m3
+    FROM raw_data
+    WHERE co IS NOT NULL AND co >= 0 AND co < 50
+
+    UNION ALL
+
+    SELECT
+        objectid AS location_id,
+        nombre AS station_name,
+        direccion AS station_address,
+        tipozona AS zona_type,
+        lon,
+        lat,
+        fecha_carg AS measurement_timestamp,
+        'PM10' AS pollutant_type,
+        pm10 AS concentration_ug_m3
+    FROM raw_data
+    WHERE pm10 IS NOT NULL AND pm10 >= 0 AND pm10 < 1000
+
+    UNION ALL
+
+    SELECT
+        objectid AS location_id,
+        nombre AS station_name,
+        direccion AS station_address,
+        tipozona AS zona_type,
+        lon,
+        lat,
+        fecha_carg AS measurement_timestamp,
+        'PM25' AS pollutant_type,
+        pm25 AS concentration_ug_m3
+    FROM raw_data
+    WHERE pm25 IS NOT NULL AND pm25 >= 0 AND pm25 < 1000
+)
+
+SELECT
+    md5(cast(coalesce(cast(measurement_timestamp as TEXT), '') || '-' || coalesce(cast(location_id as TEXT), '') || '-' || coalesce(cast(pollutant_type as TEXT), '') as TEXT)) AS air_quality_pk,
+    location_id,
+    station_name,
+    station_address,
+    zona_type,
+    measurement_timestamp,
+    lon AS longitude,
+    lat AS latitude,
+    pollutant_type,
+    concentration_ug_m3,
+    CASE
+        WHEN pollutant_type IN ('PM10', 'PM25') THEN 'Particulates'
+        WHEN pollutant_type IN ('NO2', 'SO2') THEN 'Gases_Inorgánicos'
+        WHEN pollutant_type IN ('O3', 'CO') THEN 'Gases_Monóxido'
+        ELSE 'Otro'
+    END AS pollutant_category
+FROM unpivoted_data
+WHERE concentration_ug_m3 >= 0
+  );
+[0m18:09:20.225063 [debug] [Thread-1 (]: SQL status: CREATE VIEW in 0.011 seconds
+[0m18:09:20.231698 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.stg_air_quality_valencia"
+[0m18:09:20.232900 [debug] [Thread-1 (]: On model.data_project_1.stg_air_quality_valencia: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.stg_air_quality_valencia"} */
+alter table "data_project_1"."public"."stg_air_quality_valencia" rename to "stg_air_quality_valencia__dbt_backup"
+[0m18:09:20.235520 [debug] [Thread-1 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m18:09:20.238450 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.stg_air_quality_valencia"
+[0m18:09:20.239363 [debug] [Thread-1 (]: On model.data_project_1.stg_air_quality_valencia: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.stg_air_quality_valencia"} */
+alter table "data_project_1"."public"."stg_air_quality_valencia__dbt_tmp" rename to "stg_air_quality_valencia"
+[0m18:09:20.241352 [debug] [Thread-1 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m18:09:20.257420 [debug] [Thread-1 (]: On model.data_project_1.stg_air_quality_valencia: COMMIT
+[0m18:09:20.258873 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.stg_air_quality_valencia"
+[0m18:09:20.259814 [debug] [Thread-1 (]: On model.data_project_1.stg_air_quality_valencia: COMMIT
+[0m18:09:20.273779 [debug] [Thread-1 (]: SQL status: COMMIT in 0.013 seconds
+[0m18:09:20.281152 [debug] [Thread-1 (]: Applying DROP to: "data_project_1"."public"."stg_air_quality_valencia__dbt_backup"
+[0m18:09:20.288935 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.stg_air_quality_valencia"
+[0m18:09:20.289984 [debug] [Thread-1 (]: On model.data_project_1.stg_air_quality_valencia: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.stg_air_quality_valencia"} */
+drop view if exists "data_project_1"."public"."stg_air_quality_valencia__dbt_backup" cascade
+[0m18:09:20.302919 [debug] [Thread-1 (]: SQL status: DROP VIEW in 0.012 seconds
+[0m18:09:20.306225 [debug] [Thread-1 (]: On model.data_project_1.stg_air_quality_valencia: Close
+[0m18:09:20.308567 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '4f196558-48d0-40fc-9ad9-19872044a80b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f2f6c129f50>]}
+[0m18:09:20.310184 [info ] [Thread-1 (]: 1 of 7 OK created sql view model public.stg_air_quality_valencia ............... [[32mCREATE VIEW[0m in 0.18s]
+[0m18:09:20.312332 [debug] [Thread-1 (]: Finished running node model.data_project_1.stg_air_quality_valencia
+[0m18:09:20.314084 [debug] [Thread-3 (]: Began running node model.data_project_1.int_air_quality_daily
+[0m18:09:20.314430 [debug] [Thread-4 (]: Began running node model.data_project_1.int_air_quality_hourly
+[0m18:09:20.314993 [debug] [Thread-2 (]: Began running node model.data_project_1.int_air_quality_monthly
+[0m18:09:20.316308 [info ] [Thread-3 (]: 2 of 7 START sql table model public.int_air_quality_daily ...................... [RUN]
+[0m18:09:20.317494 [info ] [Thread-4 (]: 3 of 7 START sql table model public.int_air_quality_hourly ..................... [RUN]
+[0m18:09:20.318642 [info ] [Thread-2 (]: 4 of 7 START sql table model public.int_air_quality_monthly .................... [RUN]
+[0m18:09:20.319852 [debug] [Thread-3 (]: Acquiring new postgres connection 'model.data_project_1.int_air_quality_daily'
+[0m18:09:20.320724 [debug] [Thread-4 (]: Acquiring new postgres connection 'model.data_project_1.int_air_quality_hourly'
+[0m18:09:20.321678 [debug] [Thread-2 (]: Acquiring new postgres connection 'model.data_project_1.int_air_quality_monthly'
+[0m18:09:20.322568 [debug] [Thread-3 (]: Began compiling node model.data_project_1.int_air_quality_daily
+[0m18:09:20.323496 [debug] [Thread-4 (]: Began compiling node model.data_project_1.int_air_quality_hourly
+[0m18:09:20.324284 [debug] [Thread-2 (]: Began compiling node model.data_project_1.int_air_quality_monthly
+[0m18:09:20.328301 [debug] [Thread-3 (]: Writing injected SQL for node "model.data_project_1.int_air_quality_daily"
+[0m18:09:20.331260 [debug] [Thread-4 (]: Writing injected SQL for node "model.data_project_1.int_air_quality_hourly"
+[0m18:09:20.335820 [debug] [Thread-2 (]: Writing injected SQL for node "model.data_project_1.int_air_quality_monthly"
+[0m18:09:20.343657 [debug] [Thread-3 (]: Began executing node model.data_project_1.int_air_quality_daily
+[0m18:09:20.344230 [debug] [Thread-2 (]: Began executing node model.data_project_1.int_air_quality_monthly
+[0m18:09:20.344863 [debug] [Thread-4 (]: Began executing node model.data_project_1.int_air_quality_hourly
+[0m18:09:20.363716 [debug] [Thread-3 (]: Writing runtime sql for node "model.data_project_1.int_air_quality_daily"
+[0m18:09:20.368341 [debug] [Thread-2 (]: Writing runtime sql for node "model.data_project_1.int_air_quality_monthly"
+[0m18:09:20.371482 [debug] [Thread-4 (]: Writing runtime sql for node "model.data_project_1.int_air_quality_hourly"
+[0m18:09:20.379250 [debug] [Thread-2 (]: Using postgres connection "model.data_project_1.int_air_quality_monthly"
+[0m18:09:20.379858 [debug] [Thread-3 (]: Using postgres connection "model.data_project_1.int_air_quality_daily"
+[0m18:09:20.381014 [debug] [Thread-2 (]: On model.data_project_1.int_air_quality_monthly: BEGIN
+[0m18:09:20.382325 [debug] [Thread-4 (]: Using postgres connection "model.data_project_1.int_air_quality_hourly"
+[0m18:09:20.382699 [debug] [Thread-3 (]: On model.data_project_1.int_air_quality_daily: BEGIN
+[0m18:09:20.383675 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m18:09:20.384501 [debug] [Thread-4 (]: On model.data_project_1.int_air_quality_hourly: BEGIN
+[0m18:09:20.385404 [debug] [Thread-3 (]: Opening a new connection, currently in state init
+[0m18:09:20.387027 [debug] [Thread-4 (]: Opening a new connection, currently in state init
+[0m18:09:20.400967 [debug] [Thread-3 (]: SQL status: BEGIN in 0.015 seconds
+[0m18:09:20.402010 [debug] [Thread-4 (]: SQL status: BEGIN in 0.015 seconds
+[0m18:09:20.402517 [debug] [Thread-2 (]: SQL status: BEGIN in 0.019 seconds
+[0m18:09:20.402886 [debug] [Thread-3 (]: Using postgres connection "model.data_project_1.int_air_quality_daily"
+[0m18:09:20.403650 [debug] [Thread-4 (]: Using postgres connection "model.data_project_1.int_air_quality_hourly"
+[0m18:09:20.404415 [debug] [Thread-2 (]: Using postgres connection "model.data_project_1.int_air_quality_monthly"
+[0m18:09:20.405166 [debug] [Thread-3 (]: On model.data_project_1.int_air_quality_daily: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.int_air_quality_daily"} */
+
+  
+    
+
+  create  table "data_project_1"."public"."int_air_quality_daily__dbt_tmp"
+  
+  
+    as
+  
+  (
+    
+
+WITH base AS (
+    SELECT
+        location_id,
+        station_name,
+        pollutant_type,
+        DATE_TRUNC('day', measurement_timestamp) AS measurement_day,
+        concentration_ug_m3
+    FROM "data_project_1"."public"."stg_air_quality_valencia"
+),
+
+daily AS (
+    SELECT
+        location_id,
+        station_name,
+        pollutant_type,
+        measurement_day,
+        AVG(concentration_ug_m3) AS avg_daily,
+        MAX(concentration_ug_m3) AS max_daily,
+        MIN(concentration_ug_m3) AS min_daily,
+        COUNT(*) AS num_measurements
+    FROM base
+    GROUP BY 
+        location_id, 
+        station_name, 
+        pollutant_type, 
+        measurement_day
+),
+
+variation AS (
+    SELECT
+        *,
+        avg_daily - LAG(avg_daily) OVER (
+            PARTITION BY location_id, pollutant_type
+            ORDER BY measurement_day
+        ) AS variation_vs_prev_day
+    FROM daily
+)
+
+SELECT *
+FROM variation
+  );
+  
+[0m18:09:20.406029 [debug] [Thread-4 (]: On model.data_project_1.int_air_quality_hourly: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.int_air_quality_hourly"} */
+
+  
+    
+
+  create  table "data_project_1"."public"."int_air_quality_hourly__dbt_tmp"
+  
+  
+    as
+  
+  (
+    
+
+WITH base AS (
+    SELECT
+        location_id,
+        station_name,
+        pollutant_type,
+        DATE_TRUNC('hour', measurement_timestamp) AS measurement_hour,
+        concentration_ug_m3
+    FROM "data_project_1"."public"."stg_air_quality_valencia"
+),
+
+hourly AS (
+    SELECT
+        location_id,
+        station_name,
+        pollutant_type,
+        measurement_hour,
+        AVG(concentration_ug_m3) AS avg_hourly,
+        MAX(concentration_ug_m3) AS max_hourly,
+        MIN(concentration_ug_m3) AS min_hourly,
+        COUNT(*) AS num_measurements
+    FROM base
+    GROUP BY 
+        location_id,
+        station_name,
+        pollutant_type,
+        measurement_hour
+),
+
+variation AS (
+    SELECT
+        hourly.*,
+        avg_hourly 
+            - LAG(avg_hourly) OVER (
+                PARTITION BY location_id, pollutant_type
+                ORDER BY measurement_hour
+            ) AS variation_vs_prev_hour
+    FROM hourly
+)
+
+SELECT *
+FROM variation
+  );
+  
+[0m18:09:20.406991 [debug] [Thread-2 (]: On model.data_project_1.int_air_quality_monthly: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.int_air_quality_monthly"} */
+
+  
+    
+
+  create  table "data_project_1"."public"."int_air_quality_monthly__dbt_tmp"
+  
+  
+    as
+  
+  (
+    
+
+WITH base AS (
+    SELECT
+        location_id,
+        station_name,
+        pollutant_type,
+        DATE_TRUNC('month', measurement_timestamp) AS measurement_month,
+        concentration_ug_m3
+    FROM "data_project_1"."public"."stg_air_quality_valencia"
+),
+
+monthly AS (
+    SELECT
+        location_id,
+        station_name,
+        pollutant_type,
+        measurement_month,
+        AVG(concentration_ug_m3) AS avg_monthly,
+        MAX(concentration_ug_m3) AS max_monthly,
+        MIN(concentration_ug_m3) AS min_monthly,
+        COUNT(*) AS num_measurements
+    FROM base
+    GROUP BY 
+        location_id,
+        station_name,
+        pollutant_type,
+        measurement_month
+),
+
+variation AS (
+    SELECT
+        monthly.*,
+        avg_monthly 
+            - LAG(avg_monthly) OVER (
+                PARTITION BY location_id, pollutant_type
+                ORDER BY measurement_month
+            ) AS variation_vs_prev_month
+    FROM monthly
+)
+
+SELECT *
+FROM variation
+  );
+  
+[0m18:09:20.421933 [debug] [Thread-2 (]: SQL status: SELECT 44 in 0.013 seconds
+[0m18:09:20.422302 [debug] [Thread-3 (]: SQL status: SELECT 132 in 0.014 seconds
+[0m18:09:20.427580 [debug] [Thread-2 (]: Using postgres connection "model.data_project_1.int_air_quality_monthly"
+[0m18:09:20.427885 [debug] [Thread-4 (]: SQL status: SELECT 704 in 0.019 seconds
+[0m18:09:20.431306 [debug] [Thread-3 (]: Using postgres connection "model.data_project_1.int_air_quality_daily"
+[0m18:09:20.432416 [debug] [Thread-2 (]: On model.data_project_1.int_air_quality_monthly: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.int_air_quality_monthly"} */
+alter table "data_project_1"."public"."int_air_quality_monthly" rename to "int_air_quality_monthly__dbt_backup"
+[0m18:09:20.435115 [debug] [Thread-4 (]: Using postgres connection "model.data_project_1.int_air_quality_hourly"
+[0m18:09:20.436180 [debug] [Thread-3 (]: On model.data_project_1.int_air_quality_daily: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.int_air_quality_daily"} */
+alter table "data_project_1"."public"."int_air_quality_daily" rename to "int_air_quality_daily__dbt_backup"
+[0m18:09:20.437977 [debug] [Thread-2 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m18:09:20.438457 [debug] [Thread-4 (]: On model.data_project_1.int_air_quality_hourly: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.int_air_quality_hourly"} */
+alter table "data_project_1"."public"."int_air_quality_hourly" rename to "int_air_quality_hourly__dbt_backup"
+[0m18:09:20.442735 [debug] [Thread-2 (]: Using postgres connection "model.data_project_1.int_air_quality_monthly"
+[0m18:09:20.443121 [debug] [Thread-3 (]: SQL status: ALTER TABLE in 0.004 seconds
+[0m18:09:20.444369 [debug] [Thread-4 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m18:09:20.444646 [debug] [Thread-2 (]: On model.data_project_1.int_air_quality_monthly: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.int_air_quality_monthly"} */
+alter table "data_project_1"."public"."int_air_quality_monthly__dbt_tmp" rename to "int_air_quality_monthly"
+[0m18:09:20.447155 [debug] [Thread-3 (]: Using postgres connection "model.data_project_1.int_air_quality_daily"
+[0m18:09:20.452234 [debug] [Thread-4 (]: Using postgres connection "model.data_project_1.int_air_quality_hourly"
+[0m18:09:20.453950 [debug] [Thread-2 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m18:09:20.454283 [debug] [Thread-3 (]: On model.data_project_1.int_air_quality_daily: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.int_air_quality_daily"} */
+alter table "data_project_1"."public"."int_air_quality_daily__dbt_tmp" rename to "int_air_quality_daily"
+[0m18:09:20.455244 [debug] [Thread-4 (]: On model.data_project_1.int_air_quality_hourly: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.int_air_quality_hourly"} */
+alter table "data_project_1"."public"."int_air_quality_hourly__dbt_tmp" rename to "int_air_quality_hourly"
+[0m18:09:20.456847 [debug] [Thread-2 (]: On model.data_project_1.int_air_quality_monthly: COMMIT
+[0m18:09:20.458219 [debug] [Thread-3 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m18:09:20.459022 [debug] [Thread-4 (]: SQL status: ALTER TABLE in 0.000 seconds
+[0m18:09:20.459809 [debug] [Thread-2 (]: Using postgres connection "model.data_project_1.int_air_quality_monthly"
+[0m18:09:20.461205 [debug] [Thread-3 (]: On model.data_project_1.int_air_quality_daily: COMMIT
+[0m18:09:20.462513 [debug] [Thread-4 (]: On model.data_project_1.int_air_quality_hourly: COMMIT
+[0m18:09:20.463446 [debug] [Thread-2 (]: On model.data_project_1.int_air_quality_monthly: COMMIT
+[0m18:09:20.464238 [debug] [Thread-3 (]: Using postgres connection "model.data_project_1.int_air_quality_daily"
+[0m18:09:20.465449 [debug] [Thread-4 (]: Using postgres connection "model.data_project_1.int_air_quality_hourly"
+[0m18:09:20.467391 [debug] [Thread-3 (]: On model.data_project_1.int_air_quality_daily: COMMIT
+[0m18:09:20.468417 [debug] [Thread-4 (]: On model.data_project_1.int_air_quality_hourly: COMMIT
+[0m18:09:20.474238 [debug] [Thread-2 (]: SQL status: COMMIT in 0.008 seconds
+[0m18:09:20.475404 [debug] [Thread-4 (]: SQL status: COMMIT in 0.005 seconds
+[0m18:09:20.475794 [debug] [Thread-3 (]: SQL status: COMMIT in 0.006 seconds
+[0m18:09:20.479974 [debug] [Thread-2 (]: Applying DROP to: "data_project_1"."public"."int_air_quality_monthly__dbt_backup"
+[0m18:09:20.484501 [debug] [Thread-4 (]: Applying DROP to: "data_project_1"."public"."int_air_quality_hourly__dbt_backup"
+[0m18:09:20.489392 [debug] [Thread-3 (]: Applying DROP to: "data_project_1"."public"."int_air_quality_daily__dbt_backup"
+[0m18:09:20.494370 [debug] [Thread-2 (]: Using postgres connection "model.data_project_1.int_air_quality_monthly"
+[0m18:09:20.495949 [debug] [Thread-4 (]: Using postgres connection "model.data_project_1.int_air_quality_hourly"
+[0m18:09:20.497410 [debug] [Thread-3 (]: Using postgres connection "model.data_project_1.int_air_quality_daily"
+[0m18:09:20.499130 [debug] [Thread-2 (]: On model.data_project_1.int_air_quality_monthly: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.int_air_quality_monthly"} */
+drop table if exists "data_project_1"."public"."int_air_quality_monthly__dbt_backup" cascade
+[0m18:09:20.500471 [debug] [Thread-4 (]: On model.data_project_1.int_air_quality_hourly: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.int_air_quality_hourly"} */
+drop table if exists "data_project_1"."public"."int_air_quality_hourly__dbt_backup" cascade
+[0m18:09:20.501710 [debug] [Thread-3 (]: On model.data_project_1.int_air_quality_daily: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.int_air_quality_daily"} */
+drop table if exists "data_project_1"."public"."int_air_quality_daily__dbt_backup" cascade
+[0m18:09:20.509229 [debug] [Thread-4 (]: SQL status: DROP TABLE in 0.006 seconds
+[0m18:09:20.510697 [debug] [Thread-3 (]: SQL status: DROP TABLE in 0.006 seconds
+[0m18:09:20.511283 [debug] [Thread-2 (]: SQL status: DROP TABLE in 0.008 seconds
+[0m18:09:20.513079 [debug] [Thread-4 (]: On model.data_project_1.int_air_quality_hourly: Close
+[0m18:09:20.515138 [debug] [Thread-3 (]: On model.data_project_1.int_air_quality_daily: Close
+[0m18:09:20.516976 [debug] [Thread-2 (]: On model.data_project_1.int_air_quality_monthly: Close
+[0m18:09:20.519654 [debug] [Thread-4 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '4f196558-48d0-40fc-9ad9-19872044a80b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f2f6c1072d0>]}
+[0m18:09:20.521289 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '4f196558-48d0-40fc-9ad9-19872044a80b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f2f6e77c590>]}
+[0m18:09:20.524425 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '4f196558-48d0-40fc-9ad9-19872044a80b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f2f6eac1a50>]}
+[0m18:09:20.526032 [info ] [Thread-4 (]: 3 of 7 OK created sql table model public.int_air_quality_hourly ................ [[32mSELECT 704[0m in 0.20s]
+[0m18:09:20.528155 [info ] [Thread-3 (]: 2 of 7 OK created sql table model public.int_air_quality_daily ................. [[32mSELECT 132[0m in 0.20s]
+[0m18:09:20.529769 [info ] [Thread-2 (]: 4 of 7 OK created sql table model public.int_air_quality_monthly ............... [[32mSELECT 44[0m in 0.20s]
+[0m18:09:20.530887 [debug] [Thread-4 (]: Finished running node model.data_project_1.int_air_quality_hourly
+[0m18:09:20.533138 [debug] [Thread-3 (]: Finished running node model.data_project_1.int_air_quality_daily
+[0m18:09:20.534210 [debug] [Thread-2 (]: Finished running node model.data_project_1.int_air_quality_monthly
+[0m18:09:20.535556 [debug] [Thread-1 (]: Began running node model.data_project_1.mart_air_quality_hourly
+[0m18:09:20.536598 [debug] [Thread-4 (]: Began running node model.data_project_1.mart_air_quality_daily
+[0m18:09:20.537587 [debug] [Thread-3 (]: Began running node model.data_project_1.mart_air_quality_monthly
+[0m18:09:20.538347 [info ] [Thread-1 (]: 5 of 7 START sql table model public.mart_air_quality_hourly .................... [RUN]
+[0m18:09:20.539680 [info ] [Thread-4 (]: 6 of 7 START sql table model public.mart_air_quality_daily ..................... [RUN]
+[0m18:09:20.540578 [info ] [Thread-3 (]: 7 of 7 START sql table model public.mart_air_quality_monthly ................... [RUN]
+[0m18:09:20.541482 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.data_project_1.stg_air_quality_valencia, now model.data_project_1.mart_air_quality_hourly)
+[0m18:09:20.542302 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly model.data_project_1.int_air_quality_hourly, now model.data_project_1.mart_air_quality_daily)
+[0m18:09:20.543425 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly model.data_project_1.int_air_quality_daily, now model.data_project_1.mart_air_quality_monthly)
+[0m18:09:20.544404 [debug] [Thread-1 (]: Began compiling node model.data_project_1.mart_air_quality_hourly
+[0m18:09:20.545198 [debug] [Thread-4 (]: Began compiling node model.data_project_1.mart_air_quality_daily
+[0m18:09:20.546211 [debug] [Thread-3 (]: Began compiling node model.data_project_1.mart_air_quality_monthly
+[0m18:09:20.551870 [debug] [Thread-1 (]: Writing injected SQL for node "model.data_project_1.mart_air_quality_hourly"
+[0m18:09:20.583099 [debug] [Thread-4 (]: Writing injected SQL for node "model.data_project_1.mart_air_quality_daily"
+[0m18:09:20.589212 [debug] [Thread-3 (]: Writing injected SQL for node "model.data_project_1.mart_air_quality_monthly"
+[0m18:09:20.598777 [debug] [Thread-3 (]: Began executing node model.data_project_1.mart_air_quality_monthly
+[0m18:09:20.600133 [debug] [Thread-4 (]: Began executing node model.data_project_1.mart_air_quality_daily
+[0m18:09:20.604067 [debug] [Thread-3 (]: Writing runtime sql for node "model.data_project_1.mart_air_quality_monthly"
+[0m18:09:20.604428 [debug] [Thread-1 (]: Began executing node model.data_project_1.mart_air_quality_hourly
+[0m18:09:20.610397 [debug] [Thread-4 (]: Writing runtime sql for node "model.data_project_1.mart_air_quality_daily"
+[0m18:09:20.618642 [debug] [Thread-1 (]: Writing runtime sql for node "model.data_project_1.mart_air_quality_hourly"
+[0m18:09:20.631283 [debug] [Thread-3 (]: Using postgres connection "model.data_project_1.mart_air_quality_monthly"
+[0m18:09:20.634615 [debug] [Thread-4 (]: Using postgres connection "model.data_project_1.mart_air_quality_daily"
+[0m18:09:20.636954 [debug] [Thread-3 (]: On model.data_project_1.mart_air_quality_monthly: BEGIN
+[0m18:09:20.638716 [debug] [Thread-4 (]: On model.data_project_1.mart_air_quality_daily: BEGIN
+[0m18:09:20.639361 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.mart_air_quality_hourly"
+[0m18:09:20.640754 [debug] [Thread-3 (]: Opening a new connection, currently in state closed
+[0m18:09:20.642397 [debug] [Thread-4 (]: Opening a new connection, currently in state closed
+[0m18:09:20.643592 [debug] [Thread-1 (]: On model.data_project_1.mart_air_quality_hourly: BEGIN
+[0m18:09:20.646819 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m18:09:20.655288 [debug] [Thread-3 (]: SQL status: BEGIN in 0.014 seconds
+[0m18:09:20.655859 [debug] [Thread-4 (]: SQL status: BEGIN in 0.013 seconds
+[0m18:09:20.657267 [debug] [Thread-3 (]: Using postgres connection "model.data_project_1.mart_air_quality_monthly"
+[0m18:09:20.658691 [debug] [Thread-4 (]: Using postgres connection "model.data_project_1.mart_air_quality_daily"
+[0m18:09:20.661251 [debug] [Thread-1 (]: SQL status: BEGIN in 0.015 seconds
+[0m18:09:20.661531 [debug] [Thread-3 (]: On model.data_project_1.mart_air_quality_monthly: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.mart_air_quality_monthly"} */
+
+  
+    
+
+  create  table "data_project_1"."public"."mart_air_quality_monthly__dbt_tmp"
+  
+  
+    as
+  
+  (
+    
+
+SELECT
+    location_id,
+    station_name,
+    pollutant_type,
+    measurement_month,
+    avg_monthly,
+    max_monthly,
+    min_monthly,
+    num_measurements,
+    variation_vs_prev_month
+FROM "data_project_1"."public"."int_air_quality_monthly"
+  );
+  
+[0m18:09:20.662464 [debug] [Thread-4 (]: On model.data_project_1.mart_air_quality_daily: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.mart_air_quality_daily"} */
+
+  
+    
+
+  create  table "data_project_1"."public"."mart_air_quality_daily__dbt_tmp"
+  
+  
+    as
+  
+  (
+    
+
+SELECT
+    location_id,
+    station_name,
+    pollutant_type,
+    measurement_day,
+    avg_daily,
+    max_daily,
+    min_daily,
+    num_measurements,
+    variation_vs_prev_day
+FROM "data_project_1"."public"."int_air_quality_daily"
+--Este mart proporciona un resumen diario de las mediciones de calidad del aire, incluyendo promedios, máximos, mínimos y variaciones respecto al día anterior. Es útil para análisis diarios y reportes de cumplimiento.
+  );
+  
+[0m18:09:20.663553 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.mart_air_quality_hourly"
+[0m18:09:20.668473 [debug] [Thread-1 (]: On model.data_project_1.mart_air_quality_hourly: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.mart_air_quality_hourly"} */
+
+  
+    
+
+  create  table "data_project_1"."public"."mart_air_quality_hourly__dbt_tmp"
+  
+  
+    as
+  
+  (
+    
+
+SELECT
+    location_id,
+    station_name,
+    pollutant_type,
+    measurement_hour,
+    avg_hourly,
+    max_hourly,
+    min_hourly,
+    num_measurements,
+    variation_vs_prev_hour
+FROM "data_project_1"."public"."int_air_quality_hourly"
+--Este mart proporciona un resumen horario de las mediciones de calidad del aire, incluyendo promedios, máximos, mínimos y variaciones respecto a la hora anterior. Es útil para análisis detallados y monitoreo en tiempo real.
+  );
+  
+[0m18:09:20.669802 [debug] [Thread-3 (]: SQL status: SELECT 44 in 0.004 seconds
+[0m18:09:20.676169 [debug] [Thread-3 (]: Using postgres connection "model.data_project_1.mart_air_quality_monthly"
+[0m18:09:20.676474 [debug] [Thread-4 (]: SQL status: SELECT 132 in 0.009 seconds
+[0m18:09:20.676723 [debug] [Thread-1 (]: SQL status: SELECT 704 in 0.006 seconds
+[0m18:09:20.677530 [debug] [Thread-3 (]: On model.data_project_1.mart_air_quality_monthly: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.mart_air_quality_monthly"} */
+alter table "data_project_1"."public"."mart_air_quality_monthly" rename to "mart_air_quality_monthly__dbt_backup"
+[0m18:09:20.680294 [debug] [Thread-4 (]: Using postgres connection "model.data_project_1.mart_air_quality_daily"
+[0m18:09:20.684147 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.mart_air_quality_hourly"
+[0m18:09:20.686561 [debug] [Thread-3 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m18:09:20.687133 [debug] [Thread-4 (]: On model.data_project_1.mart_air_quality_daily: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.mart_air_quality_daily"} */
+alter table "data_project_1"."public"."mart_air_quality_daily" rename to "mart_air_quality_daily__dbt_backup"
+[0m18:09:20.688064 [debug] [Thread-1 (]: On model.data_project_1.mart_air_quality_hourly: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.mart_air_quality_hourly"} */
+alter table "data_project_1"."public"."mart_air_quality_hourly" rename to "mart_air_quality_hourly__dbt_backup"
+[0m18:09:20.690823 [debug] [Thread-3 (]: Using postgres connection "model.data_project_1.mart_air_quality_monthly"
+[0m18:09:20.692586 [debug] [Thread-4 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m18:09:20.693077 [debug] [Thread-3 (]: On model.data_project_1.mart_air_quality_monthly: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.mart_air_quality_monthly"} */
+alter table "data_project_1"."public"."mart_air_quality_monthly__dbt_tmp" rename to "mart_air_quality_monthly"
+[0m18:09:20.693339 [debug] [Thread-1 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m18:09:20.695938 [debug] [Thread-4 (]: Using postgres connection "model.data_project_1.mart_air_quality_daily"
+[0m18:09:20.697294 [debug] [Thread-3 (]: SQL status: ALTER TABLE in 0.000 seconds
+[0m18:09:20.701002 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.mart_air_quality_hourly"
+[0m18:09:20.702578 [debug] [Thread-4 (]: On model.data_project_1.mart_air_quality_daily: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.mart_air_quality_daily"} */
+alter table "data_project_1"."public"."mart_air_quality_daily__dbt_tmp" rename to "mart_air_quality_daily"
+[0m18:09:20.704846 [debug] [Thread-3 (]: On model.data_project_1.mart_air_quality_monthly: COMMIT
+[0m18:09:20.706108 [debug] [Thread-1 (]: On model.data_project_1.mart_air_quality_hourly: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.mart_air_quality_hourly"} */
+alter table "data_project_1"."public"."mart_air_quality_hourly__dbt_tmp" rename to "mart_air_quality_hourly"
+[0m18:09:20.707732 [debug] [Thread-4 (]: SQL status: ALTER TABLE in 0.001 seconds
+[0m18:09:20.708161 [debug] [Thread-3 (]: Using postgres connection "model.data_project_1.mart_air_quality_monthly"
+[0m18:09:20.710662 [debug] [Thread-4 (]: On model.data_project_1.mart_air_quality_daily: COMMIT
+[0m18:09:20.710971 [debug] [Thread-1 (]: SQL status: ALTER TABLE in 0.002 seconds
+[0m18:09:20.711655 [debug] [Thread-3 (]: On model.data_project_1.mart_air_quality_monthly: COMMIT
+[0m18:09:20.712366 [debug] [Thread-4 (]: Using postgres connection "model.data_project_1.mart_air_quality_daily"
+[0m18:09:20.713625 [debug] [Thread-1 (]: On model.data_project_1.mart_air_quality_hourly: COMMIT
+[0m18:09:20.716104 [debug] [Thread-4 (]: On model.data_project_1.mart_air_quality_daily: COMMIT
+[0m18:09:20.717840 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.mart_air_quality_hourly"
+[0m18:09:20.720266 [debug] [Thread-1 (]: On model.data_project_1.mart_air_quality_hourly: COMMIT
+[0m18:09:20.723401 [debug] [Thread-3 (]: SQL status: COMMIT in 0.008 seconds
+[0m18:09:20.727489 [debug] [Thread-3 (]: Applying DROP to: "data_project_1"."public"."mart_air_quality_monthly__dbt_backup"
+[0m18:09:20.727816 [debug] [Thread-1 (]: SQL status: COMMIT in 0.007 seconds
+[0m18:09:20.728127 [debug] [Thread-4 (]: SQL status: COMMIT in 0.009 seconds
+[0m18:09:20.729196 [debug] [Thread-3 (]: Using postgres connection "model.data_project_1.mart_air_quality_monthly"
+[0m18:09:20.731822 [debug] [Thread-1 (]: Applying DROP to: "data_project_1"."public"."mart_air_quality_hourly__dbt_backup"
+[0m18:09:20.739260 [debug] [Thread-4 (]: Applying DROP to: "data_project_1"."public"."mart_air_quality_daily__dbt_backup"
+[0m18:09:20.740162 [debug] [Thread-3 (]: On model.data_project_1.mart_air_quality_monthly: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.mart_air_quality_monthly"} */
+drop table if exists "data_project_1"."public"."mart_air_quality_monthly__dbt_backup" cascade
+[0m18:09:20.741258 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.mart_air_quality_hourly"
+[0m18:09:20.742283 [debug] [Thread-4 (]: Using postgres connection "model.data_project_1.mart_air_quality_daily"
+[0m18:09:20.744189 [debug] [Thread-1 (]: On model.data_project_1.mart_air_quality_hourly: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.mart_air_quality_hourly"} */
+drop table if exists "data_project_1"."public"."mart_air_quality_hourly__dbt_backup" cascade
+[0m18:09:20.745561 [debug] [Thread-4 (]: On model.data_project_1.mart_air_quality_daily: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.mart_air_quality_daily"} */
+drop table if exists "data_project_1"."public"."mart_air_quality_daily__dbt_backup" cascade
+[0m18:09:20.747565 [debug] [Thread-3 (]: SQL status: DROP TABLE in 0.004 seconds
+[0m18:09:20.752314 [debug] [Thread-3 (]: On model.data_project_1.mart_air_quality_monthly: Close
+[0m18:09:20.753456 [debug] [Thread-1 (]: SQL status: DROP TABLE in 0.007 seconds
+[0m18:09:20.754273 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '4f196558-48d0-40fc-9ad9-19872044a80b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f2f64ee8fd0>]}
+[0m18:09:20.756856 [debug] [Thread-1 (]: On model.data_project_1.mart_air_quality_hourly: Close
+[0m18:09:20.759025 [info ] [Thread-3 (]: 7 of 7 OK created sql table model public.mart_air_quality_monthly .............. [[32mSELECT 44[0m in 0.21s]
+[0m18:09:20.759715 [debug] [Thread-4 (]: SQL status: DROP TABLE in 0.011 seconds
+[0m18:09:20.761002 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '4f196558-48d0-40fc-9ad9-19872044a80b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f2f64d037d0>]}
+[0m18:09:20.762229 [debug] [Thread-3 (]: Finished running node model.data_project_1.mart_air_quality_monthly
+[0m18:09:20.764321 [debug] [Thread-4 (]: On model.data_project_1.mart_air_quality_daily: Close
+[0m18:09:20.766161 [info ] [Thread-1 (]: 5 of 7 OK created sql table model public.mart_air_quality_hourly ............... [[32mSELECT 704[0m in 0.22s]
+[0m18:09:20.769168 [debug] [Thread-4 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '4f196558-48d0-40fc-9ad9-19872044a80b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f2f64d08b10>]}
+[0m18:09:20.770668 [debug] [Thread-1 (]: Finished running node model.data_project_1.mart_air_quality_hourly
+[0m18:09:20.772114 [info ] [Thread-4 (]: 6 of 7 OK created sql table model public.mart_air_quality_daily ................ [[32mSELECT 132[0m in 0.23s]
+[0m18:09:20.774030 [debug] [Thread-4 (]: Finished running node model.data_project_1.mart_air_quality_daily
+[0m18:09:20.776424 [debug] [MainThread]: Using postgres connection "master"
+[0m18:09:20.777312 [debug] [MainThread]: On master: BEGIN
+[0m18:09:20.778080 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m18:09:20.787857 [debug] [MainThread]: SQL status: BEGIN in 0.010 seconds
+[0m18:09:20.789009 [debug] [MainThread]: On master: COMMIT
+[0m18:09:20.789972 [debug] [MainThread]: Using postgres connection "master"
+[0m18:09:20.790877 [debug] [MainThread]: On master: COMMIT
+[0m18:09:20.791853 [debug] [MainThread]: SQL status: COMMIT in 0.000 seconds
+[0m18:09:20.792749 [debug] [MainThread]: On master: Close
+[0m18:09:20.794001 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m18:09:20.794976 [debug] [MainThread]: Connection 'model.data_project_1.mart_air_quality_hourly' was properly closed.
+[0m18:09:20.796040 [debug] [MainThread]: Connection 'model.data_project_1.mart_air_quality_monthly' was properly closed.
+[0m18:09:20.796900 [debug] [MainThread]: Connection 'model.data_project_1.mart_air_quality_daily' was properly closed.
+[0m18:09:20.800208 [debug] [MainThread]: Connection 'model.data_project_1.int_air_quality_monthly' was properly closed.
+[0m18:09:20.804906 [info ] [MainThread]: 
+[0m18:09:20.822607 [info ] [MainThread]: Finished running 6 table models, 1 view model in 0 hours 0 minutes and 0.89 seconds (0.89s).
+[0m18:09:20.825746 [debug] [MainThread]: Command end result
+[0m18:09:20.882233 [debug] [MainThread]: Wrote artifact WritableManifest to /usr/app/dbt/dbt/target/manifest.json
+[0m18:09:20.889083 [debug] [MainThread]: Wrote artifact SemanticManifest to /usr/app/dbt/dbt/target/semantic_manifest.json
+[0m18:09:20.903522 [debug] [MainThread]: Wrote artifact RunExecutionResult to /usr/app/dbt/dbt/target/run_results.json
+[0m18:09:20.904379 [info ] [MainThread]: 
+[0m18:09:20.905528 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m18:09:20.906819 [info ] [MainThread]: 
+[0m18:09:20.907863 [info ] [MainThread]: Done. PASS=7 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=7
+[0m18:09:20.909443 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 3.916915, "process_in_blocks": "0", "process_kernel_time": 0.878383, "process_mem_max_rss": "131628", "process_out_blocks": "0", "process_user_time": 2.332823}
+[0m18:09:20.910678 [debug] [MainThread]: Command `dbt run` succeeded at 18:09:20.910566 after 3.92 seconds
+[0m18:09:20.911534 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f2f6f70cd50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f2f70249950>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f2f73eeb910>]}
+[0m18:09:20.912355 [debug] [MainThread]: Flushing usage events
+[0m18:09:21.680493 [debug] [MainThread]: An error was encountered while trying to flush usage events

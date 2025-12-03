@@ -22,35 +22,6 @@ services:
     networks:
       - kafka-net
 
-<<<<<<< HEAD
-
-=======
-  app:
-    build: 
-      context: .
-      dockerfile: dockerfile
-    pull_policy: build
-    env_file: .env
-    depends_on:
-      db: 
-        condition: service_healthy
-    networks:
-        - kafka-net
-  ingestavalencia:
-    build:
-      context: .
-      dockerfile: dockerfile
-    pull_policy: build
-    container_name: ingesta
-    env_file: .env
-    depends_on:
-      api:
-        condition: service_started
-    command: ["python", "ingesta_valencia.py"]
-    restart: unless-stopped
-    networks:
-      - kafka-net
->>>>>>> main
   dbt:
     build:
       context: .
@@ -81,7 +52,6 @@ services:
       - kafka-net
 
   kafka:
-<<<<<<< HEAD
     image: confluentinc/cp-kafka:7.3.0
     container_name: kafka_air
     depends_on:
@@ -102,47 +72,6 @@ services:
     networks:
       - kafka-net
 
-=======
-      image: confluentinc/cp-kafka:7.3.0
-      container_name: kafka_air
-      depends_on:
-        - zookeeper
-      ports:
-        - "9092:9092"                # Puerto para clientes locales
-      environment:
-        KAFKA_BROKER_ID: 1
-        KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-    # Listener para aceptar conexiones en todas las interfaces
-        KAFKA_LISTENERS: EXTERNAL://0.0.0.0:9092,INTERNAL://0.0.0.0:29092
-    # Advertised listeners: cómo se anuncia el broker a los clientes
-        KAFKA_ADVERTISED_LISTENERS: EXTERNAL://localhost:9092,INTERNAL://kafka:29092
-    # Mapeo de protocolos
-        KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: EXTERNAL:PLAINTEXT,INTERNAL:PLAINTEXT
-    # Listener interno para comunicación entre brokers
-        KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
-        KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-        KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
-        KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
-        KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
-      networks:
-        - kafka-net
-  api:
-    build:
-      context: .
-      dockerfile: dockerfile
-    pull_policy: build
-    container_name: api
-    env_file: .env
-    depends_on:
-      db:
-        condition: service_healthy
-    ports:
-      - "5001:5000"
-    command: ["python", "api.py"]
-    restart: unless-stopped
-    networks:
-      - kafka-net
->>>>>>> main
   producer:
     build:
       context: .
