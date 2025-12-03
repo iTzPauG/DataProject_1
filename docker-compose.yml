@@ -190,10 +190,6 @@ services:
       - shared_data:/shared
     networks:
       - kafka-net
-<<<<<<< Updated upstream
-=======
-  
->>>>>>> Stashed changes
   dashboard:
     build:
       context: .

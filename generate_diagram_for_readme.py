@@ -1,6 +1,5 @@
-# generate_readme_diagram.py
+# generate_diagram_for_readme.py
 from diagrams import Diagram, Edge
-from diagrams.onprem.client import User
 from diagrams.onprem.database import PostgreSQL
 from diagrams.onprem.queue import Kafka
 from diagrams.aws.compute import EC2
@@ -8,13 +7,13 @@ from diagrams.onprem.workflow import Airflow
 from diagrams.onprem.analytics import Tableau
 from diagrams.generic.device import Mobile
 
-# Generar la imagen para el README
+# Generar la imagen directamente en la carpeta actual
 with Diagram(
-    "Arquitectura Proyecto DataFlow", 
-    filename="arquitectura_readme",  # Nombre del archivo PNG que se generará
-    outformat="png",                # Formato de la imagen
-    show=False,                      # No abrir automáticamente
-    direction="LR"                   # Flujo izquierda → derecha
+    "Arquitectura Proyecto DataFlow",
+    filename="arquitectura_readme",  # Esto creará arquitectura_readme.png
+    outformat="png",
+    show=False,                       # No abrir automáticamente
+    direction="LR"                    # Flujo izquierda → derecha
 ):
     # APIs de ingesta
     api_val = Mobile("API Valencia")
@@ -35,7 +34,7 @@ with Diagram(
     drive_csv = EC2("Export CSV / Drive")
     tableau = Tableau("Tableau BI")
 
-    # Flujos
+    # Flujo de datos
     api_val >> Edge(label="Llamada API") >> api_gateway
     api_mad >> Edge(label="Llamada API") >> api_gateway
     api_zar >> Edge(label="Llamada API") >> api_gateway
