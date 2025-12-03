@@ -3,12 +3,7 @@ data_project_1:
   outputs:
     dev:
       type: postgres
-<<<<<<< Updated upstream
       host: db-1  
-=======
-      host: db
-      port: 5432
->>>>>>> Stashed changes
       user: postgres
       password: postgres
       dbname: data_project_1
