@@ -31,7 +31,8 @@ services:
     volumes:
       - ./:/usr/app/dbt               
     environment:
-      - DBT_PROFILES_DIR=/usr/app/dbt/dbt  
+      - DBT_PROFILES_DIR=/usr/app/dbt/dbt
+      - ./profiles.yml:/root/.dbt/profiles.yml  
     working_dir: /usr/app/dbt/dbt    
     command: ["dbt", "run"]
     depends_on:
@@ -53,24 +54,6 @@ services:
     restart: unless-stopped
     networks:
       - kafka-net
-  dbt:
-      build:
-        context: .
-        dockerfile: dockerfile
-      pull_policy: build
-      container_name: dbt
-      volumes:
-          - ./:/usr/app/dbt
-          - ./profiles.yml:/root/.dbt/profiles.yml
-      environment:
-          - DBT_PROFILES_DIR=/usr/app/dbt
-      working_dir: /usr/app/dbt/dbt_project
-      entrypoint: ["/bin/bash"]
-      tty: true
-      depends_on:
-          - db
-      networks:
-        - kafka-net
 
   zookeeper:
     image: confluentinc/cp-zookeeper:7.3.0
