@@ -22,4 +22,3 @@ RUN pip install --no-cache-dir --upgrade pip \
 
 # Cambiar a usuario no root
 USER appuser
-
