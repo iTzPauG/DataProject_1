@@ -14,10 +14,10 @@ datos_contaminantes = {}
 lock = threading.Lock()
 
 LIMITES = {
-    "NO₂": 200,
-    "O₃": 180,
-    "PM10": 50,
-    "PM2.5": 25
+    "NO₂": 100,
+    "O₃": 90,
+    "PM10": 25,
+    "PM2.5": 15
 }
 
 ZONAS_POR_CIUDAD = {
@@ -136,7 +136,7 @@ def crear_grafico_radar(datos):
     fig.update_layout(
         polar=dict(
             radialaxis=dict(visible=True, range=[0, 150], tickvals=[0, 50, 100, 150],
-                           ticktext=['0%', '50%', '100%', '150%'], tickfont=dict(size=9), gridcolor='rgba(0,0,0,0.1)'),
+                        ticktext=['0%', '50%', '100%', '150%'], tickfont=dict(size=9), gridcolor='rgba(0,0,0,0.1)'),
             angularaxis=dict(tickfont=dict(size=11), gridcolor='rgba(0,0,0,0.1)'),
             bgcolor='rgba(255,255,255,0.9)'
         ),
