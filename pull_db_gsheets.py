@@ -12,7 +12,7 @@ nombre_hoja = "DatosAire"
 archivo_llave = "credentials.json"
 
 # variables de conexión
-# usamos 'localhost' porque el script corre en tu windows
+# usamos 'localhost' porque el script corre en windows
 host = "localhost"
 port = os.getenv("DB_PORT")
 db_name = os.getenv("POSTGRES_DB")
@@ -23,7 +23,7 @@ def exportar_a_google():
     print("Descargando datos de la DB...")
     
     try:
-        # conexión: ponemos los argumentos uno a uno con las variables en minúsculas
+        # conexión con la DB
         with psycopg.connect(host=host, port=port, dbname=db_name, user=db_user, password=db_pass) as conn:
             with conn.cursor() as cur:
                 cur.execute("SELECT * FROM estaciones")
