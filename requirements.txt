@@ -9,3 +9,4 @@ gspread
 flask
 flask_httpauth
 flask_jwt_extended
+dbt-postgres

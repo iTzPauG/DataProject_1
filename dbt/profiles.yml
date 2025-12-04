@@ -1,12 +1,12 @@
-tu_proyecto:
+data_project_1:      # <-- Debe coincidir con "profile" en dbt_project.yml
   target: dev
   outputs:
     dev:
       type: postgres
-      host: db-1   
+      threads: 4
+      host: db                 # nombre del servicio de la base de datos en docker-compose
+      port: 5432
       user: postgres
       password: postgres
-      port: 5432
-      dbname: valenbisi_db   
-      schema: public         
-      threads: 4
+      dbname: data_project_1
+      schema: analytics

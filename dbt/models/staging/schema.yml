@@ -1,0 +1,39 @@
+# models/staging/schema.yml
+models:
+  - name: stg_mediciones_valencia
+    description: Modelo staging que filtra las mediciones de Valencia
+    columns:
+      - name: id
+        description: Clave primaria
+        tests:
+          - not_null
+          - unique
+      - name: nombre_estacion
+        description: Nombre de la estación
+        tests:
+          - not_null
+      - name: fecha_carg
+        description: Timestamp de la medición
+        tests:
+          - not_null
+      - name: created_at
+        description: Timestamp de creación de la fila en la tabla de origen.
+
+  - name: stg_mediciones_madrid
+    description: Modelo staging que filtra las mediciones de Madrid
+    columns:
+      - name: id
+        description: Clave primaria
+        tests:
+          - not_null
+          - unique
+      - name: nombre_estacion
+        description: Nombre de la estación
+        tests:
+          - not_null
+      - name: fecha_carg
+        description: Timestamp de la medición
+        tests:
+          - not_null
+      - name: created_at
+        description: Timestamp de creación de la fila en la tabla de origen.
