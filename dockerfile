@@ -14,7 +14,7 @@ COPY /ingestas/ingesta_valencia.py .
 COPY /ingestas/ingesta_madrid.py .
 COPY producer.py .
 COPY kafka_consumer.py .
-COPY dashboard_alertas.py .
+COPY dashboard_consumer.py .
 COPY api.py .
 
 # Instalar dependencias
