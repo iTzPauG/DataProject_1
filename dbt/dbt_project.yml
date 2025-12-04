@@ -1,23 +1,15 @@
-name: dbt_valenbisi
+name: 'data_project_1'
+version: '1.0'
+config-version: 2
 
-profile: dbt_valenbisi
+profile: 'data_project_1'     # <-- debe coincidir con profiles.yml
 
-seed-paths: ["seeds"]
 model-paths: ["models"]
-macro-paths: ["macros"]
-snapshot-paths: ["snapshots"]
-test-paths: ["tests"]
-
 target-path: "target"
-clean-targets:
-  - "target"
-  - "dbt_packages"
+clean-targets: ["target"]
+
+vars:
+  surrogate_key_treat_nulls_as_empty_strings: True
 
 models:
-  dbt_valenbisi:
-    # Materialize staging models as views, and marts as tables
-    staging:
-      +materialized: view
-      +tags: ["staging"]
-    marts:
-      +materialized: table
+  +materialized: view

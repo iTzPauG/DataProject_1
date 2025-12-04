@@ -1,0 +1,7 @@
+# models/sources.yml
+sources:
+  - name: raw
+    schema: public  # Esquema donde está la tabla mediciones en tu Postgres
+    tables:
+      - name: mediciones
+        description: Tabla cruda con todas las mediciones de Madrid y Valencia
