@@ -170,3 +170,1348 @@ Runtime Error
 [0m23:12:19.831333 [debug] [MainThread]: Flushing usage events
 [0m23:12:20.363483 [debug] [MainThread]: An error was encountered while trying to flush usage events
 >>>>>>> Stashed changes
+[0m01:25:48.308718 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f6124b1b9d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f6124b103d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f6124ac60d0>]}
+
+
+============================== 01:25:48.326708 | 477b63f2-8634-46ed-bb25-74ac6f2d093e ==============================
+[0m01:25:48.326708 [info ] [MainThread]: Running with dbt=1.10.15
+[0m01:25:48.329062 [debug] [MainThread]: running dbt with arguments {'debug': 'False', 'fail_fast': 'False', 'send_anonymous_usage_stats': 'True', 'introspect': 'True', 'quiet': 'False', 'cache_selected_only': 'False', 'write_json': 'True', 'invocation_command': 'dbt deps', 'log_cache_events': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'no_print': 'None', 'partial_parse': 'True', 'warn_error': 'None', 'printer_width': '80', 'static_parser': 'True', 'use_colors': 'True', 'log_format': 'default', 'indirect_selection': 'eager', 'use_experimental_parser': 'False', 'profiles_dir': '/usr/app/dbt', 'log_path': 'logs', 'empty': 'None', 'target_path': 'None', 'version_check': 'True'}
+[0m01:25:48.331765 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path /usr/app/dbt/dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m01:25:48.336827 [debug] [MainThread]: Resource report: {"command_name": "deps", "command_success": false, "command_wall_clock_time": 0.10832373, "process_in_blocks": "24", "process_kernel_time": 3.764981, "process_mem_max_rss": "103616", "process_out_blocks": "0", "process_user_time": 1.868487}
+[0m01:25:48.339107 [debug] [MainThread]: Command `dbt deps` failed at 01:25:48.338898 after 0.11 seconds
+[0m01:25:48.341513 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f6124b09410>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f6124ac7950>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f6124b1b650>]}
+[0m01:25:48.343862 [debug] [MainThread]: Flushing usage events
+[0m01:25:48.902330 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m01:31:12.106224 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c3d61bc2dd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c3d6190e7d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c3d61963590>]}
+
+
+============================== 01:31:12.115869 | 6f3a19f7-7970-4227-9322-76705ae6982a ==============================
+[0m01:31:12.115869 [info ] [MainThread]: Running with dbt=1.10.15
+[0m01:31:12.118104 [debug] [MainThread]: running dbt with arguments {'cache_selected_only': 'False', 'use_colors': 'True', 'log_cache_events': 'False', 'no_print': 'None', 'quiet': 'False', 'printer_width': '80', 'use_experimental_parser': 'False', 'version_check': 'True', 'send_anonymous_usage_stats': 'True', 'debug': 'False', 'fail_fast': 'False', 'log_path': '/usr/app/dbt/logs', 'write_json': 'True', 'invocation_command': 'dbt deps', 'log_format': 'default', 'warn_error': 'None', 'indirect_selection': 'eager', 'target_path': 'None', 'partial_parse': 'True', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'profiles_dir': '/usr/app/dbt', 'introspect': 'True', 'empty': 'None'}
+[0m01:31:12.226018 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '6f3a19f7-7970-4227-9322-76705ae6982a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c3d618fc410>]}
+[0m01:31:12.246178 [info ] [MainThread]: Warning: No packages were found in packages.yml
+[0m01:31:13.611031 [info ] [MainThread]: Warning: No packages were found in packages.yml
+[0m01:31:13.615369 [debug] [MainThread]: Resource report: {"command_name": "deps", "command_success": true, "command_wall_clock_time": 1.5907362, "process_in_blocks": "0", "process_kernel_time": 1.265991, "process_mem_max_rss": "105228", "process_out_blocks": "0", "process_user_time": 1.974156}
+[0m01:31:13.617917 [debug] [MainThread]: Command `dbt deps` succeeded at 01:31:13.617535 after 1.59 seconds
+[0m01:31:13.620416 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c3d61951010>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c3d618ff890>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7c3d66226d10>]}
+[0m01:31:13.622821 [debug] [MainThread]: Flushing usage events
+[0m01:31:14.278790 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m01:31:18.037691 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x705d0bbbe910>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x705d0bcc4d10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x705d0bc17910>]}
+
+
+============================== 01:31:18.052325 | 46ae181b-b80e-4235-b68e-f10c5dc0cc94 ==============================
+[0m01:31:18.052325 [info ] [MainThread]: Running with dbt=1.10.15
+[0m01:31:18.058964 [debug] [MainThread]: running dbt with arguments {'target_path': 'None', 'log_format': 'default', 'cache_selected_only': 'False', 'log_path': '/usr/app/dbt/logs', 'write_json': 'True', 'log_cache_events': 'False', 'printer_width': '80', 'no_print': 'None', 'quiet': 'False', 'fail_fast': 'False', 'use_experimental_parser': 'False', 'partial_parse': 'True', 'invocation_command': 'dbt build --target dev', 'introspect': 'True', 'profiles_dir': '/usr/app/dbt', 'send_anonymous_usage_stats': 'True', 'debug': 'False', 'warn_error': 'None', 'indirect_selection': 'eager', 'version_check': 'True', 'empty': 'False', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'use_colors': 'True'}
+[0m01:31:18.389575 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '46ae181b-b80e-4235-b68e-f10c5dc0cc94', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x705d0e8e7950>]}
+[0m01:31:18.489765 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '46ae181b-b80e-4235-b68e-f10c5dc0cc94', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x705d0e90ca50>]}
+[0m01:31:18.494108 [info ] [MainThread]: Registered adapter: postgres=1.9.1
+[0m01:31:18.617241 [debug] [MainThread]: checksum: 0f45fdd67cc51382d6521f874e757e7afa214ac7bb0178b13f1819cbe813499c, vars: {}, profile: , target: dev, version: 1.10.15
+[0m01:31:18.624001 [info ] [MainThread]: Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m01:31:18.626075 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '46ae181b-b80e-4235-b68e-f10c5dc0cc94', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x705d0af58590>]}
+[0m01:31:20.338292 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '46ae181b-b80e-4235-b68e-f10c5dc0cc94', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x705d0a3b9b10>]}
+[0m01:31:20.442447 [debug] [MainThread]: Wrote artifact WritableManifest to /usr/app/dbt/target/manifest.json
+[0m01:31:20.453697 [debug] [MainThread]: Wrote artifact SemanticManifest to /usr/app/dbt/target/semantic_manifest.json
+[0m01:31:20.500083 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '46ae181b-b80e-4235-b68e-f10c5dc0cc94', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x705d0278b4d0>]}
+[0m01:31:20.501231 [info ] [MainThread]: Found 1 model, 6 data tests, 2 sources, 459 macros
+[0m01:31:20.505849 [info ] [MainThread]: 
+[0m01:31:20.510839 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m01:31:20.512426 [info ] [MainThread]: 
+[0m01:31:20.514608 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m01:31:20.517528 [debug] [ThreadPool]: Acquiring new postgres connection 'list_data_project_1'
+[0m01:31:20.575120 [debug] [ThreadPool]: Using postgres connection "list_data_project_1"
+[0m01:31:20.577067 [debug] [ThreadPool]: On list_data_project_1: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "connection_name": "list_data_project_1"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m01:31:20.579336 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m01:31:20.611139 [debug] [ThreadPool]: SQL status: SELECT 4 in 0.032 seconds
+[0m01:31:20.614008 [debug] [ThreadPool]: On list_data_project_1: Close
+[0m01:31:20.616053 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_data_project_1, now create_data_project_1_analytics)
+[0m01:31:20.619089 [debug] [ThreadPool]: Creating schema "database: "data_project_1"
+schema: "analytics"
+"
+[0m01:31:20.627351 [debug] [ThreadPool]: Using postgres connection "create_data_project_1_analytics"
+[0m01:31:20.630278 [debug] [ThreadPool]: On create_data_project_1_analytics: BEGIN
+[0m01:31:20.631784 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m01:31:20.649411 [debug] [ThreadPool]: SQL status: BEGIN in 0.017 seconds
+[0m01:31:20.652218 [debug] [ThreadPool]: Using postgres connection "create_data_project_1_analytics"
+[0m01:31:20.654329 [debug] [ThreadPool]: On create_data_project_1_analytics: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "connection_name": "create_data_project_1_analytics"} */
+create schema if not exists "analytics"
+[0m01:31:20.667684 [debug] [ThreadPool]: SQL status: CREATE SCHEMA in 0.010 seconds
+[0m01:31:20.670573 [debug] [ThreadPool]: On create_data_project_1_analytics: COMMIT
+[0m01:31:20.672555 [debug] [ThreadPool]: Using postgres connection "create_data_project_1_analytics"
+[0m01:31:20.674826 [debug] [ThreadPool]: On create_data_project_1_analytics: COMMIT
+[0m01:31:20.678752 [debug] [ThreadPool]: SQL status: COMMIT in 0.002 seconds
+[0m01:31:20.680873 [debug] [ThreadPool]: On create_data_project_1_analytics: Close
+[0m01:31:20.685837 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly create_data_project_1_analytics, now list_data_project_1_analytics)
+[0m01:31:20.696072 [debug] [ThreadPool]: Using postgres connection "list_data_project_1_analytics"
+[0m01:31:20.698812 [debug] [ThreadPool]: On list_data_project_1_analytics: BEGIN
+[0m01:31:20.701000 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m01:31:20.718321 [debug] [ThreadPool]: SQL status: BEGIN in 0.017 seconds
+[0m01:31:20.719966 [debug] [ThreadPool]: Using postgres connection "list_data_project_1_analytics"
+[0m01:31:20.721912 [debug] [ThreadPool]: On list_data_project_1_analytics: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "connection_name": "list_data_project_1_analytics"} */
+select
+      'data_project_1' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'analytics'
+    union all
+    select
+      'data_project_1' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'analytics'
+    union all
+    select
+      'data_project_1' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'analytics'
+  
+[0m01:31:20.764960 [debug] [ThreadPool]: SQL status: SELECT 0 in 0.040 seconds
+[0m01:31:20.770421 [debug] [ThreadPool]: On list_data_project_1_analytics: ROLLBACK
+[0m01:31:20.774386 [debug] [ThreadPool]: On list_data_project_1_analytics: Close
+[0m01:31:20.781604 [debug] [MainThread]: Using postgres connection "master"
+[0m01:31:20.783507 [debug] [MainThread]: On master: BEGIN
+[0m01:31:20.785494 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m01:31:20.803825 [debug] [MainThread]: SQL status: BEGIN in 0.018 seconds
+[0m01:31:20.807579 [debug] [MainThread]: Using postgres connection "master"
+[0m01:31:20.809800 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "connection_name": "master"} */
+select distinct
+        dependent_namespace.nspname as dependent_schema,
+        dependent_class.relname as dependent_name,
+        referenced_namespace.nspname as referenced_schema,
+        referenced_class.relname as referenced_name
+
+    -- Query for views: views are entries in pg_class with an entry in pg_rewrite, but we avoid
+    -- a seq scan on pg_rewrite by leveraging the fact there is an "internal" row in pg_depend for
+    -- the view...
+    from pg_class as dependent_class
+    join pg_namespace as dependent_namespace on dependent_namespace.oid = dependent_class.relnamespace
+    join pg_depend as dependent_depend on dependent_depend.refobjid = dependent_class.oid
+        and dependent_depend.classid = 'pg_rewrite'::regclass
+        and dependent_depend.refclassid = 'pg_class'::regclass
+        and dependent_depend.deptype = 'i'
+
+    -- ... and via pg_depend (that has a row per column, hence the need for "distinct" above, and
+    -- making sure to exclude the internal row to avoid a view appearing to depend on itself)...
+    join pg_depend as joining_depend on joining_depend.objid = dependent_depend.objid
+        and joining_depend.classid = 'pg_rewrite'::regclass
+        and joining_depend.refclassid = 'pg_class'::regclass
+        and joining_depend.refobjid != dependent_depend.refobjid
+
+    -- ... we can find the tables they query from in pg_class, but excluding system tables. Note we
+    -- don't need need to exclude _dependent_ system tables, because they only query from other
+    -- system tables, and so are automatically excluded by excluding _referenced_ system tables
+    join pg_class as referenced_class on referenced_class.oid = joining_depend.refobjid
+    join pg_namespace as referenced_namespace on referenced_namespace.oid = referenced_class.relnamespace
+        and referenced_namespace.nspname != 'information_schema'
+        and referenced_namespace.nspname not like 'pg\_%'
+
+    order by
+        dependent_schema, dependent_name, referenced_schema, referenced_name;
+[0m01:31:20.841834 [debug] [MainThread]: SQL status: SELECT 0 in 0.030 seconds
+[0m01:31:20.845655 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '46ae181b-b80e-4235-b68e-f10c5dc0cc94', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x705d027bae90>]}
+[0m01:31:20.847925 [debug] [MainThread]: On master: ROLLBACK
+[0m01:31:20.850523 [debug] [MainThread]: Using postgres connection "master"
+[0m01:31:20.852421 [debug] [MainThread]: On master: BEGIN
+[0m01:31:20.855279 [debug] [MainThread]: SQL status: BEGIN in 0.001 seconds
+[0m01:31:20.857079 [debug] [MainThread]: On master: COMMIT
+[0m01:31:20.858971 [debug] [MainThread]: Using postgres connection "master"
+[0m01:31:20.860648 [debug] [MainThread]: On master: COMMIT
+[0m01:31:20.863159 [debug] [MainThread]: SQL status: COMMIT in 0.001 seconds
+[0m01:31:20.865667 [debug] [MainThread]: On master: Close
+[0m01:31:20.880512 [debug] [Thread-1 (]: Began running node test.data_project_1.source_not_null_raw_data_mediciones_fecha_carg.7430f4d198
+[0m01:31:20.881092 [debug] [Thread-2 (]: Began running node test.data_project_1.source_not_null_raw_data_mediciones_id.656c995844
+[0m01:31:20.882185 [debug] [Thread-3 (]: Began running node test.data_project_1.source_not_null_raw_data_mediciones_nombre_estacion.01d660d9a0
+[0m01:31:20.882750 [debug] [Thread-4 (]: Began running node test.data_project_1.source_not_null_schema_ingesta_mediciones_id.d90936153e
+[0m01:31:20.883877 [info ] [Thread-1 (]: 1 of 7 START test source_not_null_raw_data_mediciones_fecha_carg ............... [RUN]
+[0m01:31:20.888195 [info ] [Thread-2 (]: 2 of 7 START test source_not_null_raw_data_mediciones_id ....................... [RUN]
+[0m01:31:20.893107 [info ] [Thread-3 (]: 3 of 7 START test source_not_null_raw_data_mediciones_nombre_estacion .......... [RUN]
+[0m01:31:20.901894 [info ] [Thread-4 (]: 4 of 7 START test source_not_null_schema_ingesta_mediciones_id ................. [RUN]
+[0m01:31:20.904213 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_data_project_1_analytics, now test.data_project_1.source_not_null_raw_data_mediciones_fecha_carg.7430f4d198)
+[0m01:31:20.907533 [debug] [Thread-2 (]: Acquiring new postgres connection 'test.data_project_1.source_not_null_raw_data_mediciones_id.656c995844'
+[0m01:31:20.910000 [debug] [Thread-3 (]: Acquiring new postgres connection 'test.data_project_1.source_not_null_raw_data_mediciones_nombre_estacion.01d660d9a0'
+[0m01:31:20.912510 [debug] [Thread-4 (]: Acquiring new postgres connection 'test.data_project_1.source_not_null_schema_ingesta_mediciones_id.d90936153e'
+[0m01:31:20.915259 [debug] [Thread-1 (]: Began compiling node test.data_project_1.source_not_null_raw_data_mediciones_fecha_carg.7430f4d198
+[0m01:31:20.917244 [debug] [Thread-2 (]: Began compiling node test.data_project_1.source_not_null_raw_data_mediciones_id.656c995844
+[0m01:31:20.919191 [debug] [Thread-3 (]: Began compiling node test.data_project_1.source_not_null_raw_data_mediciones_nombre_estacion.01d660d9a0
+[0m01:31:20.921079 [debug] [Thread-4 (]: Began compiling node test.data_project_1.source_not_null_schema_ingesta_mediciones_id.d90936153e
+[0m01:31:20.942372 [debug] [Thread-1 (]: Writing injected SQL for node "test.data_project_1.source_not_null_raw_data_mediciones_fecha_carg.7430f4d198"
+[0m01:31:20.948976 [debug] [Thread-2 (]: Writing injected SQL for node "test.data_project_1.source_not_null_raw_data_mediciones_id.656c995844"
+[0m01:31:20.955608 [debug] [Thread-3 (]: Writing injected SQL for node "test.data_project_1.source_not_null_raw_data_mediciones_nombre_estacion.01d660d9a0"
+[0m01:31:20.963653 [debug] [Thread-4 (]: Writing injected SQL for node "test.data_project_1.source_not_null_schema_ingesta_mediciones_id.d90936153e"
+[0m01:31:21.016235 [debug] [Thread-2 (]: Began executing node test.data_project_1.source_not_null_raw_data_mediciones_id.656c995844
+[0m01:31:21.021023 [debug] [Thread-4 (]: Began executing node test.data_project_1.source_not_null_schema_ingesta_mediciones_id.d90936153e
+[0m01:31:21.021961 [debug] [Thread-3 (]: Began executing node test.data_project_1.source_not_null_raw_data_mediciones_nombre_estacion.01d660d9a0
+[0m01:31:21.042163 [debug] [Thread-1 (]: Began executing node test.data_project_1.source_not_null_raw_data_mediciones_fecha_carg.7430f4d198
+[0m01:31:21.055127 [debug] [Thread-4 (]: Writing runtime sql for node "test.data_project_1.source_not_null_schema_ingesta_mediciones_id.d90936153e"
+[0m01:31:21.057255 [debug] [Thread-2 (]: Writing runtime sql for node "test.data_project_1.source_not_null_raw_data_mediciones_id.656c995844"
+[0m01:31:21.062761 [debug] [Thread-3 (]: Writing runtime sql for node "test.data_project_1.source_not_null_raw_data_mediciones_nombre_estacion.01d660d9a0"
+[0m01:31:21.067696 [debug] [Thread-1 (]: Writing runtime sql for node "test.data_project_1.source_not_null_raw_data_mediciones_fecha_carg.7430f4d198"
+[0m01:31:21.116729 [debug] [Thread-4 (]: Using postgres connection "test.data_project_1.source_not_null_schema_ingesta_mediciones_id.d90936153e"
+[0m01:31:21.117446 [debug] [Thread-2 (]: Using postgres connection "test.data_project_1.source_not_null_raw_data_mediciones_id.656c995844"
+[0m01:31:21.119065 [debug] [Thread-4 (]: On test.data_project_1.source_not_null_schema_ingesta_mediciones_id.d90936153e: BEGIN
+[0m01:31:21.121018 [debug] [Thread-1 (]: Using postgres connection "test.data_project_1.source_not_null_raw_data_mediciones_fecha_carg.7430f4d198"
+[0m01:31:21.122213 [debug] [Thread-2 (]: On test.data_project_1.source_not_null_raw_data_mediciones_id.656c995844: BEGIN
+[0m01:31:21.123930 [debug] [Thread-4 (]: Opening a new connection, currently in state init
+[0m01:31:21.124767 [debug] [Thread-3 (]: Using postgres connection "test.data_project_1.source_not_null_raw_data_mediciones_nombre_estacion.01d660d9a0"
+[0m01:31:21.126082 [debug] [Thread-1 (]: On test.data_project_1.source_not_null_raw_data_mediciones_fecha_carg.7430f4d198: BEGIN
+[0m01:31:21.128056 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m01:31:21.133242 [debug] [Thread-3 (]: On test.data_project_1.source_not_null_raw_data_mediciones_nombre_estacion.01d660d9a0: BEGIN
+[0m01:31:21.135220 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m01:31:21.138432 [debug] [Thread-3 (]: Opening a new connection, currently in state init
+[0m01:31:21.143715 [debug] [Thread-4 (]: SQL status: BEGIN in 0.020 seconds
+[0m01:31:21.147811 [debug] [Thread-4 (]: Using postgres connection "test.data_project_1.source_not_null_schema_ingesta_mediciones_id.d90936153e"
+[0m01:31:21.149683 [debug] [Thread-2 (]: SQL status: BEGIN in 0.022 seconds
+[0m01:31:21.150719 [debug] [Thread-4 (]: On test.data_project_1.source_not_null_schema_ingesta_mediciones_id.d90936153e: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "test.data_project_1.source_not_null_schema_ingesta_mediciones_id.d90936153e"} */
+
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select id
+from "data_project_1"."public"."mediciones"
+where id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m01:31:21.151848 [debug] [Thread-1 (]: SQL status: BEGIN in 0.017 seconds
+[0m01:31:21.152921 [debug] [Thread-2 (]: Using postgres connection "test.data_project_1.source_not_null_raw_data_mediciones_id.656c995844"
+[0m01:31:21.154334 [debug] [Thread-3 (]: SQL status: BEGIN in 0.016 seconds
+[0m01:31:21.156715 [debug] [Thread-1 (]: Using postgres connection "test.data_project_1.source_not_null_raw_data_mediciones_fecha_carg.7430f4d198"
+[0m01:31:21.158964 [debug] [Thread-2 (]: On test.data_project_1.source_not_null_raw_data_mediciones_id.656c995844: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "test.data_project_1.source_not_null_raw_data_mediciones_id.656c995844"} */
+
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select id
+from "data_project_1"."public"."mediciones"
+where id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m01:31:21.161181 [debug] [Thread-3 (]: Using postgres connection "test.data_project_1.source_not_null_raw_data_mediciones_nombre_estacion.01d660d9a0"
+[0m01:31:21.163851 [debug] [Thread-1 (]: On test.data_project_1.source_not_null_raw_data_mediciones_fecha_carg.7430f4d198: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "test.data_project_1.source_not_null_raw_data_mediciones_fecha_carg.7430f4d198"} */
+
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select fecha_carg
+from "data_project_1"."public"."mediciones"
+where fecha_carg is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m01:31:21.164641 [debug] [Thread-4 (]: SQL status: SELECT 1 in 0.009 seconds
+[0m01:31:21.167614 [debug] [Thread-3 (]: On test.data_project_1.source_not_null_raw_data_mediciones_nombre_estacion.01d660d9a0: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "test.data_project_1.source_not_null_raw_data_mediciones_nombre_estacion.01d660d9a0"} */
+
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select nombre_estacion
+from "data_project_1"."public"."mediciones"
+where nombre_estacion is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m01:31:21.168268 [debug] [Thread-2 (]: SQL status: SELECT 1 in 0.002 seconds
+[0m01:31:21.176204 [debug] [Thread-4 (]: On test.data_project_1.source_not_null_schema_ingesta_mediciones_id.d90936153e: ROLLBACK
+[0m01:31:21.176798 [debug] [Thread-1 (]: SQL status: SELECT 1 in 0.007 seconds
+[0m01:31:21.182535 [debug] [Thread-2 (]: On test.data_project_1.source_not_null_raw_data_mediciones_id.656c995844: ROLLBACK
+[0m01:31:21.183725 [debug] [Thread-3 (]: SQL status: SELECT 1 in 0.004 seconds
+[0m01:31:21.186058 [debug] [Thread-4 (]: On test.data_project_1.source_not_null_schema_ingesta_mediciones_id.d90936153e: Close
+[0m01:31:21.189494 [debug] [Thread-1 (]: On test.data_project_1.source_not_null_raw_data_mediciones_fecha_carg.7430f4d198: ROLLBACK
+[0m01:31:21.192114 [debug] [Thread-2 (]: On test.data_project_1.source_not_null_raw_data_mediciones_id.656c995844: Close
+[0m01:31:21.194931 [debug] [Thread-3 (]: On test.data_project_1.source_not_null_raw_data_mediciones_nombre_estacion.01d660d9a0: ROLLBACK
+[0m01:31:21.197811 [info ] [Thread-4 (]: 4 of 7 PASS source_not_null_schema_ingesta_mediciones_id ....................... [[32mPASS[0m in 0.29s]
+[0m01:31:21.199601 [debug] [Thread-1 (]: On test.data_project_1.source_not_null_raw_data_mediciones_fecha_carg.7430f4d198: Close
+[0m01:31:21.200923 [info ] [Thread-2 (]: 2 of 7 PASS source_not_null_raw_data_mediciones_id ............................. [[32mPASS[0m in 0.29s]
+[0m01:31:21.203344 [debug] [Thread-3 (]: On test.data_project_1.source_not_null_raw_data_mediciones_nombre_estacion.01d660d9a0: Close
+[0m01:31:21.204765 [debug] [Thread-4 (]: Finished running node test.data_project_1.source_not_null_schema_ingesta_mediciones_id.d90936153e
+[0m01:31:21.207315 [info ] [Thread-1 (]: 1 of 7 PASS source_not_null_raw_data_mediciones_fecha_carg ..................... [[32mPASS[0m in 0.30s]
+[0m01:31:21.208999 [debug] [Thread-2 (]: Finished running node test.data_project_1.source_not_null_raw_data_mediciones_id.656c995844
+[0m01:31:21.211377 [info ] [Thread-3 (]: 3 of 7 PASS source_not_null_raw_data_mediciones_nombre_estacion ................ [[32mPASS[0m in 0.30s]
+[0m01:31:21.212831 [debug] [Thread-4 (]: Began running node test.data_project_1.source_unique_raw_data_mediciones_id.97427a1f73
+[0m01:31:21.214751 [debug] [Thread-1 (]: Finished running node test.data_project_1.source_not_null_raw_data_mediciones_fecha_carg.7430f4d198
+[0m01:31:21.216456 [debug] [Thread-2 (]: Began running node test.data_project_1.source_unique_schema_ingesta_mediciones_id.34482bfd5a
+[0m01:31:21.219493 [debug] [Thread-3 (]: Finished running node test.data_project_1.source_not_null_raw_data_mediciones_nombre_estacion.01d660d9a0
+[0m01:31:21.221290 [info ] [Thread-4 (]: 5 of 7 START test source_unique_raw_data_mediciones_id ......................... [RUN]
+[0m01:31:21.225030 [info ] [Thread-2 (]: 6 of 7 START test source_unique_schema_ingesta_mediciones_id ................... [RUN]
+[0m01:31:21.229125 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly test.data_project_1.source_not_null_schema_ingesta_mediciones_id.d90936153e, now test.data_project_1.source_unique_raw_data_mediciones_id.97427a1f73)
+[0m01:31:21.231457 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.data_project_1.source_not_null_raw_data_mediciones_id.656c995844, now test.data_project_1.source_unique_schema_ingesta_mediciones_id.34482bfd5a)
+[0m01:31:21.233412 [debug] [Thread-4 (]: Began compiling node test.data_project_1.source_unique_raw_data_mediciones_id.97427a1f73
+[0m01:31:21.235471 [debug] [Thread-2 (]: Began compiling node test.data_project_1.source_unique_schema_ingesta_mediciones_id.34482bfd5a
+[0m01:31:21.244293 [debug] [Thread-4 (]: Writing injected SQL for node "test.data_project_1.source_unique_raw_data_mediciones_id.97427a1f73"
+[0m01:31:21.249647 [debug] [Thread-2 (]: Writing injected SQL for node "test.data_project_1.source_unique_schema_ingesta_mediciones_id.34482bfd5a"
+[0m01:31:21.261227 [debug] [Thread-4 (]: Began executing node test.data_project_1.source_unique_raw_data_mediciones_id.97427a1f73
+[0m01:31:21.264909 [debug] [Thread-2 (]: Began executing node test.data_project_1.source_unique_schema_ingesta_mediciones_id.34482bfd5a
+[0m01:31:21.268091 [debug] [Thread-4 (]: Writing runtime sql for node "test.data_project_1.source_unique_raw_data_mediciones_id.97427a1f73"
+[0m01:31:21.272404 [debug] [Thread-2 (]: Writing runtime sql for node "test.data_project_1.source_unique_schema_ingesta_mediciones_id.34482bfd5a"
+[0m01:31:21.287009 [debug] [Thread-4 (]: Using postgres connection "test.data_project_1.source_unique_raw_data_mediciones_id.97427a1f73"
+[0m01:31:21.289704 [debug] [Thread-4 (]: On test.data_project_1.source_unique_raw_data_mediciones_id.97427a1f73: BEGIN
+[0m01:31:21.291690 [debug] [Thread-2 (]: Using postgres connection "test.data_project_1.source_unique_schema_ingesta_mediciones_id.34482bfd5a"
+[0m01:31:21.292588 [debug] [Thread-4 (]: Opening a new connection, currently in state closed
+[0m01:31:21.294713 [debug] [Thread-2 (]: On test.data_project_1.source_unique_schema_ingesta_mediciones_id.34482bfd5a: BEGIN
+[0m01:31:21.298351 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m01:31:21.307444 [debug] [Thread-4 (]: SQL status: BEGIN in 0.015 seconds
+[0m01:31:21.309406 [debug] [Thread-4 (]: Using postgres connection "test.data_project_1.source_unique_raw_data_mediciones_id.97427a1f73"
+[0m01:31:21.311156 [debug] [Thread-4 (]: On test.data_project_1.source_unique_raw_data_mediciones_id.97427a1f73: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "test.data_project_1.source_unique_raw_data_mediciones_id.97427a1f73"} */
+
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+select
+    id as unique_field,
+    count(*) as n_records
+
+from "data_project_1"."public"."mediciones"
+where id is not null
+group by id
+having count(*) > 1
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m01:31:21.312472 [debug] [Thread-2 (]: SQL status: BEGIN in 0.014 seconds
+[0m01:31:21.314254 [debug] [Thread-2 (]: Using postgres connection "test.data_project_1.source_unique_schema_ingesta_mediciones_id.34482bfd5a"
+[0m01:31:21.316193 [debug] [Thread-2 (]: On test.data_project_1.source_unique_schema_ingesta_mediciones_id.34482bfd5a: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "test.data_project_1.source_unique_schema_ingesta_mediciones_id.34482bfd5a"} */
+
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+select
+    id as unique_field,
+    count(*) as n_records
+
+from "data_project_1"."public"."mediciones"
+where id is not null
+group by id
+having count(*) > 1
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m01:31:21.318484 [debug] [Thread-4 (]: SQL status: SELECT 1 in 0.005 seconds
+[0m01:31:21.322081 [debug] [Thread-4 (]: On test.data_project_1.source_unique_raw_data_mediciones_id.97427a1f73: ROLLBACK
+[0m01:31:21.322713 [debug] [Thread-2 (]: SQL status: SELECT 1 in 0.005 seconds
+[0m01:31:21.324708 [debug] [Thread-4 (]: On test.data_project_1.source_unique_raw_data_mediciones_id.97427a1f73: Close
+[0m01:31:21.326586 [debug] [Thread-2 (]: On test.data_project_1.source_unique_schema_ingesta_mediciones_id.34482bfd5a: ROLLBACK
+[0m01:31:21.328930 [info ] [Thread-4 (]: 5 of 7 PASS source_unique_raw_data_mediciones_id ............................... [[32mPASS[0m in 0.10s]
+[0m01:31:21.331016 [debug] [Thread-2 (]: On test.data_project_1.source_unique_schema_ingesta_mediciones_id.34482bfd5a: Close
+[0m01:31:21.332637 [debug] [Thread-4 (]: Finished running node test.data_project_1.source_unique_raw_data_mediciones_id.97427a1f73
+[0m01:31:21.334767 [info ] [Thread-2 (]: 6 of 7 PASS source_unique_schema_ingesta_mediciones_id ......................... [[32mPASS[0m in 0.10s]
+[0m01:31:21.337742 [debug] [Thread-2 (]: Finished running node test.data_project_1.source_unique_schema_ingesta_mediciones_id.34482bfd5a
+[0m01:31:21.340617 [debug] [Thread-1 (]: Began running node model.data_project_1.stg_air_quality_valencia
+[0m01:31:21.342485 [info ] [Thread-1 (]: 7 of 7 START sql view model analytics.stg_air_quality_valencia ................. [RUN]
+[0m01:31:21.343980 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.data_project_1.source_not_null_raw_data_mediciones_fecha_carg.7430f4d198, now model.data_project_1.stg_air_quality_valencia)
+[0m01:31:21.345661 [debug] [Thread-1 (]: Began compiling node model.data_project_1.stg_air_quality_valencia
+[0m01:31:21.349997 [debug] [Thread-1 (]: Writing injected SQL for node "model.data_project_1.stg_air_quality_valencia"
+[0m01:31:21.365358 [debug] [Thread-1 (]: Began executing node model.data_project_1.stg_air_quality_valencia
+[0m01:31:21.516347 [debug] [Thread-1 (]: Writing runtime sql for node "model.data_project_1.stg_air_quality_valencia"
+[0m01:31:21.533546 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.stg_air_quality_valencia"
+[0m01:31:21.535628 [debug] [Thread-1 (]: On model.data_project_1.stg_air_quality_valencia: BEGIN
+[0m01:31:21.537740 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m01:31:21.554246 [debug] [Thread-1 (]: SQL status: BEGIN in 0.017 seconds
+[0m01:31:21.556659 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.stg_air_quality_valencia"
+[0m01:31:21.558701 [debug] [Thread-1 (]: On model.data_project_1.stg_air_quality_valencia: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.stg_air_quality_valencia"} */
+
+  create view "data_project_1"."analytics"."stg_air_quality_valencia__dbt_tmp"
+    
+    
+  as (
+    -- models/staging/stg_mediciones.sql
+
+WITH source AS (
+    -- 1. Selección de la tabla de origen (asumiendo que está en el esquema 'public')
+    SELECT
+        id,
+        nombre_estacion,
+        lon,
+        lat,
+        city,
+        no2,
+        o3,
+        pm10,
+        pm25,
+        fecha_carg,
+        created_at
+    FROM "data_project_1"."public"."mediciones" -- Usar la macro source() es la mejor práctica
+),
+
+renamed AS (
+    SELECT
+        -- Claves primarias y foráneas
+        CAST(id AS INTEGER) AS medicion_id,
+        
+        -- Dimensiones (estandarización)
+        TRIM(nombre_estacion) AS station_name,
+        TRIM(LOWER(city)) AS city_name,
+        
+        -- Hechos (conversión de tipos y limpieza de valores)
+        CAST(lon AS NUMERIC) AS longitude,
+        CAST(lat AS NUMERIC) AS latitude,
+        
+        -- Métricas de contaminación (convertir a tipo FLOAT para cálculos)
+        NULLIF(no2, 0) AS no2_ug_m3, -- Ejemplo: si 0 es un valor nulo/ausente
+        NULLIF(o3, 0) AS o3_ug_m3,
+        NULLIF(pm10, 0) AS pm10_ug_m3,
+        NULLIF(pm25, 0) AS pm25_ug_m3,
+        
+        -- Timestamps
+        fecha_carg AS loaded_at_utc,
+        created_at AS created_at_utc
+        
+    FROM source
+)
+
+SELECT * FROM renamed
+  );
+[0m01:31:21.596405 [debug] [Thread-1 (]: SQL status: CREATE VIEW in 0.036 seconds
+[0m01:31:21.606483 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.stg_air_quality_valencia"
+[0m01:31:21.610764 [debug] [Thread-1 (]: On model.data_project_1.stg_air_quality_valencia: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.stg_air_quality_valencia"} */
+alter table "data_project_1"."analytics"."stg_air_quality_valencia__dbt_tmp" rename to "stg_air_quality_valencia"
+[0m01:31:21.615188 [debug] [Thread-1 (]: SQL status: ALTER TABLE in 0.003 seconds
+[0m01:31:21.630200 [debug] [Thread-1 (]: On model.data_project_1.stg_air_quality_valencia: COMMIT
+[0m01:31:21.638822 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.stg_air_quality_valencia"
+[0m01:31:21.640286 [debug] [Thread-1 (]: On model.data_project_1.stg_air_quality_valencia: COMMIT
+[0m01:31:21.644099 [debug] [Thread-1 (]: SQL status: COMMIT in 0.002 seconds
+[0m01:31:21.652678 [debug] [Thread-1 (]: Applying DROP to: "data_project_1"."analytics"."stg_air_quality_valencia__dbt_backup"
+[0m01:31:21.659331 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.stg_air_quality_valencia"
+[0m01:31:21.660828 [debug] [Thread-1 (]: On model.data_project_1.stg_air_quality_valencia: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.stg_air_quality_valencia"} */
+drop view if exists "data_project_1"."analytics"."stg_air_quality_valencia__dbt_backup" cascade
+[0m01:31:21.664757 [debug] [Thread-1 (]: SQL status: DROP VIEW in 0.003 seconds
+[0m01:31:21.667413 [debug] [Thread-1 (]: On model.data_project_1.stg_air_quality_valencia: Close
+[0m01:31:21.671226 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '46ae181b-b80e-4235-b68e-f10c5dc0cc94', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x705d097f9dd0>]}
+[0m01:31:21.674212 [info ] [Thread-1 (]: 7 of 7 OK created sql view model analytics.stg_air_quality_valencia ............ [[32mCREATE VIEW[0m in 0.33s]
+[0m01:31:21.676380 [debug] [Thread-1 (]: Finished running node model.data_project_1.stg_air_quality_valencia
+[0m01:31:21.680231 [debug] [MainThread]: Using postgres connection "master"
+[0m01:31:21.681656 [debug] [MainThread]: On master: BEGIN
+[0m01:31:21.683054 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m01:31:21.694473 [debug] [MainThread]: SQL status: BEGIN in 0.011 seconds
+[0m01:31:21.696191 [debug] [MainThread]: On master: COMMIT
+[0m01:31:21.697646 [debug] [MainThread]: Using postgres connection "master"
+[0m01:31:21.698851 [debug] [MainThread]: On master: COMMIT
+[0m01:31:21.700760 [debug] [MainThread]: SQL status: COMMIT in 0.000 seconds
+[0m01:31:21.701968 [debug] [MainThread]: On master: Close
+[0m01:31:21.703742 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m01:31:21.705202 [debug] [MainThread]: Connection 'model.data_project_1.stg_air_quality_valencia' was properly closed.
+[0m01:31:21.706709 [debug] [MainThread]: Connection 'test.data_project_1.source_unique_schema_ingesta_mediciones_id.34482bfd5a' was properly closed.
+[0m01:31:21.708447 [debug] [MainThread]: Connection 'test.data_project_1.source_not_null_raw_data_mediciones_nombre_estacion.01d660d9a0' was properly closed.
+[0m01:31:21.710342 [debug] [MainThread]: Connection 'test.data_project_1.source_unique_raw_data_mediciones_id.97427a1f73' was properly closed.
+[0m01:31:21.713218 [info ] [MainThread]: 
+[0m01:31:21.714839 [info ] [MainThread]: Finished running 6 data tests, 1 view model in 0 hours 0 minutes and 1.20 seconds (1.20s).
+[0m01:31:21.717747 [debug] [MainThread]: Command end result
+[0m01:31:21.779808 [debug] [MainThread]: Wrote artifact WritableManifest to /usr/app/dbt/target/manifest.json
+[0m01:31:21.789157 [debug] [MainThread]: Wrote artifact SemanticManifest to /usr/app/dbt/target/semantic_manifest.json
+[0m01:31:21.803143 [debug] [MainThread]: Wrote artifact RunExecutionResult to /usr/app/dbt/target/run_results.json
+[0m01:31:21.804857 [info ] [MainThread]: 
+[0m01:31:21.807006 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m01:31:21.808439 [info ] [MainThread]: 
+[0m01:31:21.810256 [info ] [MainThread]: Done. PASS=7 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=7
+[0m01:31:21.812891 [debug] [MainThread]: Resource report: {"command_name": "build", "command_success": true, "command_wall_clock_time": 3.8926466, "process_in_blocks": "152", "process_kernel_time": 1.142154, "process_mem_max_rss": "134764", "process_out_blocks": "0", "process_user_time": 4.841131}
+[0m01:31:21.814546 [debug] [MainThread]: Command `dbt build` succeeded at 01:31:21.814351 after 3.89 seconds
+[0m01:31:21.815922 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x705d10402f50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x705d10713910>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x705d0a379250>]}
+[0m01:31:21.817611 [debug] [MainThread]: Flushing usage events
+[0m01:31:22.416542 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m01:46:22.882899 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x77f8e1833f50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x77f8e183bfd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x77f8e1c585d0>]}
+
+
+============================== 01:46:22.892187 | e0638b42-1a81-481a-82a5-504e82bb923b ==============================
+[0m01:46:22.892187 [info ] [MainThread]: Running with dbt=1.10.15
+[0m01:46:22.893986 [debug] [MainThread]: running dbt with arguments {'static_parser': 'True', 'introspect': 'True', 'indirect_selection': 'eager', 'partial_parse': 'True', 'invocation_command': 'dbt deps', 'printer_width': '80', 'log_path': '/usr/app/dbt/logs', 'debug': 'False', 'cache_selected_only': 'False', 'empty': 'None', 'profiles_dir': '/usr/app/dbt', 'log_format': 'default', 'no_print': 'None', 'fail_fast': 'False', 'target_path': 'None', 'use_colors': 'True', 'send_anonymous_usage_stats': 'True', 'log_cache_events': 'False', 'use_experimental_parser': 'False', 'quiet': 'False', 'version_check': 'True', 'warn_error': 'None', 'write_json': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])'}
+[0m01:46:23.006022 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'e0638b42-1a81-481a-82a5-504e82bb923b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x77f8e17e5d50>]}
+[0m01:46:23.034717 [info ] [MainThread]: Warning: No packages were found in packages.yml
+[0m01:46:23.050465 [info ] [MainThread]: Warning: No packages were found in packages.yml
+[0m01:46:23.054039 [debug] [MainThread]: Resource report: {"command_name": "deps", "command_success": true, "command_wall_clock_time": 0.26215333, "process_in_blocks": "12184", "process_kernel_time": 0.436196, "process_mem_max_rss": "104488", "process_out_blocks": "0", "process_user_time": 1.431516}
+[0m01:46:23.055467 [debug] [MainThread]: Command `dbt deps` succeeded at 01:46:23.055329 after 0.26 seconds
+[0m01:46:23.056556 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x77f8e1829290>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x77f8e1833550>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x77f8e1833450>]}
+[0m01:46:23.057721 [debug] [MainThread]: Flushing usage events
+[0m01:46:23.692438 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m01:46:25.575629 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d4fc9a9ce90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d4fc9eb8650>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d4fc9a9fd10>]}
+
+
+============================== 01:46:25.582378 | 96500ae4-84d8-40fe-a3c3-3f9bdeb058bd ==============================
+[0m01:46:25.582378 [info ] [MainThread]: Running with dbt=1.10.15
+[0m01:46:25.584849 [debug] [MainThread]: running dbt with arguments {'send_anonymous_usage_stats': 'True', 'invocation_command': 'dbt build --target dev', 'fail_fast': 'False', 'debug': 'False', 'write_json': 'True', 'profiles_dir': '/usr/app/dbt', 'empty': 'False', 'log_path': '/usr/app/dbt/logs', 'quiet': 'False', 'warn_error': 'None', 'use_colors': 'True', 'no_print': 'None', 'printer_width': '80', 'introspect': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'log_format': 'default', 'partial_parse': 'True', 'use_experimental_parser': 'False', 'cache_selected_only': 'False', 'log_cache_events': 'False', 'static_parser': 'True', 'version_check': 'True', 'indirect_selection': 'eager'}
+[0m01:46:25.760276 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '96500ae4-84d8-40fe-a3c3-3f9bdeb058bd', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d4fc8757250>]}
+[0m01:46:25.827621 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '96500ae4-84d8-40fe-a3c3-3f9bdeb058bd', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d4fcc7c4fd0>]}
+[0m01:46:25.833738 [info ] [MainThread]: Registered adapter: postgres=1.9.1
+[0m01:46:25.898946 [debug] [MainThread]: checksum: 0f45fdd67cc51382d6521f874e757e7afa214ac7bb0178b13f1819cbe813499c, vars: {}, profile: , target: dev, version: 1.10.15
+[0m01:46:26.196574 [error] [MainThread]: Encountered an error:
+Parsing Error
+  Error reading data_project_1: intermediate/schema.yml - Runtime Error
+    Contents of file 'models/intermediate/schema.yml' are not valid. Dictionary expected.
+[0m01:46:26.199903 [debug] [MainThread]: Resource report: {"command_name": "build", "command_success": false, "command_wall_clock_time": 0.69682163, "process_in_blocks": "2960", "process_kernel_time": 0.254188, "process_mem_max_rss": "114312", "process_out_blocks": "0", "process_user_time": 1.585654}
+[0m01:46:26.201888 [debug] [MainThread]: Command `dbt build` failed at 01:46:26.201717 after 0.70 seconds
+[0m01:46:26.203807 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d4fc9a4f010>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d4fc9a4fd50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d4fc83de410>]}
+[0m01:46:26.205354 [debug] [MainThread]: Flushing usage events
+[0m01:46:26.693998 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m01:54:35.506065 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x72fd87c44850>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x72fd84f77910>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x72fd84f23f50>]}
+
+
+============================== 01:54:35.516276 | 937b19b7-12f7-4424-914a-c4e19edd299e ==============================
+[0m01:54:35.516276 [info ] [MainThread]: Running with dbt=1.10.15
+[0m01:54:35.518075 [debug] [MainThread]: running dbt with arguments {'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'invocation_command': 'dbt deps', 'fail_fast': 'False', 'cache_selected_only': 'False', 'warn_error': 'None', 'write_json': 'True', 'profiles_dir': '/usr/app/dbt', 'version_check': 'True', 'log_cache_events': 'False', 'send_anonymous_usage_stats': 'True', 'printer_width': '80', 'log_path': '/usr/app/dbt/logs', 'indirect_selection': 'eager', 'target_path': 'None', 'introspect': 'True', 'partial_parse': 'True', 'use_colors': 'True', 'no_print': 'None', 'log_format': 'default', 'debug': 'False', 'static_parser': 'True', 'empty': 'None', 'quiet': 'False', 'use_experimental_parser': 'False'}
+[0m01:54:35.636358 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '937b19b7-12f7-4424-914a-c4e19edd299e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x72fd84e5af50>]}
+[0m01:54:35.652796 [info ] [MainThread]: Warning: No packages were found in packages.yml
+[0m01:54:35.671133 [info ] [MainThread]: Warning: No packages were found in packages.yml
+[0m01:54:35.674641 [debug] [MainThread]: Resource report: {"command_name": "deps", "command_success": true, "command_wall_clock_time": 0.24850404, "process_in_blocks": "20840", "process_kernel_time": 0.563603, "process_mem_max_rss": "104180", "process_out_blocks": "0", "process_user_time": 1.433163}
+[0m01:54:35.676354 [debug] [MainThread]: Command `dbt deps` succeeded at 01:54:35.676192 after 0.25 seconds
+[0m01:54:35.677647 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x72fd84f65390>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x72fd84f23010>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x72fd89816d10>]}
+[0m01:54:35.678921 [debug] [MainThread]: Flushing usage events
+[0m01:54:36.411292 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m01:54:38.277152 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7eaf8bc529d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7eaf8bc8be90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7eaf8bfb9990>]}
+
+
+============================== 01:54:38.286731 | 16a9367c-5557-4930-a2af-307a62ff59df ==============================
+[0m01:54:38.286731 [info ] [MainThread]: Running with dbt=1.10.15
+[0m01:54:38.289522 [debug] [MainThread]: running dbt with arguments {'log_path': '/usr/app/dbt/logs', 'partial_parse': 'True', 'use_experimental_parser': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'fail_fast': 'False', 'no_print': 'None', 'warn_error': 'None', 'debug': 'False', 'cache_selected_only': 'False', 'printer_width': '80', 'write_json': 'True', 'quiet': 'False', 'empty': 'False', 'use_colors': 'True', 'introspect': 'True', 'profiles_dir': '/usr/app/dbt', 'log_cache_events': 'False', 'static_parser': 'True', 'version_check': 'True', 'log_format': 'default', 'target_path': 'None', 'indirect_selection': 'eager', 'send_anonymous_usage_stats': 'True', 'invocation_command': 'dbt build --target dev'}
+[0m01:54:38.448784 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '16a9367c-5557-4930-a2af-307a62ff59df', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7eaf8ad48190>]}
+[0m01:54:38.498130 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '16a9367c-5557-4930-a2af-307a62ff59df', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7eaf8e982090>]}
+[0m01:54:38.500336 [info ] [MainThread]: Registered adapter: postgres=1.9.1
+[0m01:54:38.562956 [debug] [MainThread]: checksum: 0f45fdd67cc51382d6521f874e757e7afa214ac7bb0178b13f1819cbe813499c, vars: {}, profile: , target: dev, version: 1.10.15
+[0m01:54:38.862103 [debug] [MainThread]: Partial parsing enabled: 1 files deleted, 6 files added, 2 files changed.
+[0m01:54:38.863975 [debug] [MainThread]: Partial parsing: added file: data_project_1://models/staging/strg_mediciones_madrid.sql
+[0m01:54:38.865484 [debug] [MainThread]: Partial parsing: added file: data_project_1://models/intermediate/schema.yml
+[0m01:54:38.867009 [debug] [MainThread]: Partial parsing: added file: data_project_1://models/marts/schema.yml
+[0m01:54:38.868276 [debug] [MainThread]: Partial parsing: added file: data_project_1://models/marts/marts_mediciones.sql
+[0m01:54:38.869551 [debug] [MainThread]: Partial parsing: added file: data_project_1://models/staging/stag_mediciones_valencia..sql
+[0m01:54:38.870631 [debug] [MainThread]: Partial parsing: added file: data_project_1://models/intermediate/int_mediciones_tiempo.sql
+[0m01:54:38.872085 [debug] [MainThread]: Partial parsing: updated file: data_project_1://models/staging/sources.yml
+[0m01:54:38.873244 [debug] [MainThread]: Partial parsing: updated file: data_project_1://models/staging/schema.yml
+[0m01:54:38.874264 [debug] [MainThread]: Partial parsing: deleted file: data_project_1://models/staging/stg_air_quality_valencia.sql
+[0m01:54:39.095750 [warn ] [MainThread]: [[33mWARNING[0m]: Did not find matching node for patch with name 'int_mediciones_agregadas' in the 'models' section of file 'models/intermediate/schema.yml'
+[0m01:54:39.265454 [warn ] [MainThread]: [[33mWARNING[0m]: Did not find matching node for patch with name 'mkt_mediciones_tableau' in the 'models' section of file 'models/marts/schema.yml'
+[0m01:54:39.339897 [warn ] [MainThread]: [[33mWARNING[0m]: Did not find matching node for patch with name 'stg_valencia' in the 'models' section of file 'models/staging/schema.yml'
+[0m01:54:39.343150 [warn ] [MainThread]: [[33mWARNING[0m]: Did not find matching node for patch with name 'stg_madrid' in the 'models' section of file 'models/staging/schema.yml'
+[0m01:54:39.380229 [error] [MainThread]: Encountered an error:
+Compilation Error
+  Model 'model.data_project_1.strg_mediciones_madrid' (models/staging/strg_mediciones_madrid.sql) depends on a source named 'raw.mediciones' which was not found
+[0m01:54:39.382524 [debug] [MainThread]: Resource report: {"command_name": "build", "command_success": false, "command_wall_clock_time": 1.1770904, "process_in_blocks": "3200", "process_kernel_time": 0.335738, "process_mem_max_rss": "119532", "process_out_blocks": "0", "process_user_time": 2.026424}
+[0m01:54:39.383859 [debug] [MainThread]: Command `dbt build` failed at 01:54:39.383743 after 1.18 seconds
+[0m01:54:39.385083 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7eaf6a7a6310>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7eaf6a772850>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7eaf8a99a050>]}
+[0m01:54:39.386158 [debug] [MainThread]: Flushing usage events
+[0m01:54:39.981610 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m01:59:46.989548 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x70c2e7788990>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x70c2e775e590>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x70c2e773f4d0>]}
+
+
+============================== 01:59:47.000183 | 7e5bd93e-a80f-4da7-9ea2-a83b161f5b0a ==============================
+[0m01:59:47.000183 [info ] [MainThread]: Running with dbt=1.10.15
+[0m01:59:47.002368 [debug] [MainThread]: running dbt with arguments {'indirect_selection': 'eager', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'log_format': 'default', 'log_cache_events': 'False', 'debug': 'False', 'target_path': 'None', 'use_colors': 'True', 'log_path': '/usr/app/dbt/logs', 'invocation_command': 'dbt deps', 'warn_error': 'None', 'static_parser': 'True', 'no_print': 'None', 'introspect': 'True', 'version_check': 'True', 'write_json': 'True', 'empty': 'None', 'quiet': 'False', 'partial_parse': 'True', 'printer_width': '80', 'profiles_dir': '/usr/app/dbt', 'send_anonymous_usage_stats': 'True', 'use_experimental_parser': 'False', 'fail_fast': 'False', 'cache_selected_only': 'False'}
+[0m01:59:47.132736 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '7e5bd93e-a80f-4da7-9ea2-a83b161f5b0a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x70c2e772d490>]}
+[0m01:59:47.146184 [info ] [MainThread]: Warning: No packages were found in packages.yml
+[0m01:59:47.180639 [info ] [MainThread]: Warning: No packages were found in packages.yml
+[0m01:59:47.185084 [debug] [MainThread]: Resource report: {"command_name": "deps", "command_success": true, "command_wall_clock_time": 0.28503355, "process_in_blocks": "12376", "process_kernel_time": 0.84858, "process_mem_max_rss": "104564", "process_out_blocks": "0", "process_user_time": 1.460537}
+[0m01:59:47.186741 [debug] [MainThread]: Command `dbt deps` succeeded at 01:59:47.186528 after 0.29 seconds
+[0m01:59:47.188554 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x70c2e7781450>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x70c2ec02eb50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x70c2e7bb0650>]}
+[0m01:59:47.189871 [debug] [MainThread]: Flushing usage events
+[0m01:59:47.861328 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m01:59:49.657655 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b9b9fc448d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b9b9fc4ff10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b9b9fbf6f50>]}
+
+
+============================== 01:59:49.666450 | 6ef16600-c0b9-43ce-9d85-08b35d1dce84 ==============================
+[0m01:59:49.666450 [info ] [MainThread]: Running with dbt=1.10.15
+[0m01:59:49.668739 [debug] [MainThread]: running dbt with arguments {'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'partial_parse': 'True', 'target_path': 'None', 'use_experimental_parser': 'False', 'fail_fast': 'False', 'quiet': 'False', 'debug': 'False', 'cache_selected_only': 'False', 'profiles_dir': '/usr/app/dbt', 'introspect': 'True', 'printer_width': '80', 'log_path': '/usr/app/dbt/logs', 'warn_error': 'None', 'indirect_selection': 'eager', 'write_json': 'True', 'send_anonymous_usage_stats': 'True', 'empty': 'False', 'version_check': 'True', 'invocation_command': 'dbt build --target dev', 'log_format': 'default', 'log_cache_events': 'False', 'no_print': 'None', 'static_parser': 'True', 'use_colors': 'True'}
+[0m01:59:49.821101 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '6ef16600-c0b9-43ce-9d85-08b35d1dce84', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b9b9ed23890>]}
+[0m01:59:49.883775 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '6ef16600-c0b9-43ce-9d85-08b35d1dce84', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b9ba2952a10>]}
+[0m01:59:49.886976 [info ] [MainThread]: Registered adapter: postgres=1.9.1
+[0m01:59:49.991550 [debug] [MainThread]: checksum: 0f45fdd67cc51382d6521f874e757e7afa214ac7bb0178b13f1819cbe813499c, vars: {}, profile: , target: dev, version: 1.10.15
+[0m01:59:50.290714 [debug] [MainThread]: Partial parsing enabled: 1 files deleted, 6 files added, 2 files changed.
+[0m01:59:50.292844 [debug] [MainThread]: Partial parsing: added file: data_project_1://models/staging/strg_mediciones_valencia..sql
+[0m01:59:50.294742 [debug] [MainThread]: Partial parsing: added file: data_project_1://models/intermediate/schema.yml
+[0m01:59:50.296091 [debug] [MainThread]: Partial parsing: added file: data_project_1://models/staging/strg_mediciones_madrid.sql
+[0m01:59:50.297360 [debug] [MainThread]: Partial parsing: added file: data_project_1://models/marts/schema.yml
+[0m01:59:50.298645 [debug] [MainThread]: Partial parsing: added file: data_project_1://models/intermediate/int_mediciones_tiempo.sql
+[0m01:59:50.299985 [debug] [MainThread]: Partial parsing: added file: data_project_1://models/marts/marts_mediciones.sql
+[0m01:59:50.301339 [debug] [MainThread]: Partial parsing: updated file: data_project_1://models/staging/sources.yml
+[0m01:59:50.302532 [debug] [MainThread]: Partial parsing: updated file: data_project_1://models/staging/schema.yml
+[0m01:59:50.304294 [debug] [MainThread]: Partial parsing: deleted file: data_project_1://models/staging/stg_air_quality_valencia.sql
+[0m01:59:50.772733 [warn ] [MainThread]: [[33mWARNING[0m]: Did not find matching node for patch with name 'strg_mediciones_valencia' in the 'models' section of file 'models/staging/schema.yml'
+[0m01:59:50.807297 [error] [MainThread]: Encountered an error:
+Compilation Error
+  Model 'model.data_project_1.strg_mediciones_valencia.' (models/staging/strg_mediciones_valencia..sql) depends on a source named 'raw.mediciones' which was not found
+[0m01:59:50.809435 [debug] [MainThread]: Resource report: {"command_name": "build", "command_success": false, "command_wall_clock_time": 1.2248753, "process_in_blocks": "3000", "process_kernel_time": 0.332265, "process_mem_max_rss": "119724", "process_out_blocks": "0", "process_user_time": 2.021279}
+[0m01:59:50.811059 [debug] [MainThread]: Command `dbt build` failed at 01:59:50.810951 after 1.23 seconds
+[0m01:59:50.812022 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b9ba4512bd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b9b9d96c850>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7b9b9fd8c410>]}
+[0m01:59:50.813408 [debug] [MainThread]: Flushing usage events
+[0m01:59:51.374082 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m02:03:24.188370 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d367bb17990>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d367baca1d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d367bb1ff90>]}
+
+
+============================== 02:03:24.198515 | 64563983-1138-47e7-96df-99277afa241f ==============================
+[0m02:03:24.198515 [info ] [MainThread]: Running with dbt=1.10.15
+[0m02:03:24.200425 [debug] [MainThread]: running dbt with arguments {'cache_selected_only': 'False', 'use_colors': 'True', 'static_parser': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'printer_width': '80', 'debug': 'False', 'profiles_dir': '/usr/app/dbt', 'partial_parse': 'True', 'introspect': 'True', 'indirect_selection': 'eager', 'log_format': 'default', 'version_check': 'True', 'log_path': '/usr/app/dbt/logs', 'no_print': 'None', 'invocation_command': 'dbt deps', 'send_anonymous_usage_stats': 'True', 'empty': 'None', 'fail_fast': 'False', 'quiet': 'False', 'write_json': 'True', 'log_cache_events': 'False', 'use_experimental_parser': 'False', 'warn_error': 'None'}
+[0m02:03:24.306541 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '64563983-1138-47e7-96df-99277afa241f', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d367baaa050>]}
+[0m02:03:24.331151 [info ] [MainThread]: Warning: No packages were found in packages.yml
+[0m02:03:24.344479 [info ] [MainThread]: Warning: No packages were found in packages.yml
+[0m02:03:24.347291 [debug] [MainThread]: Resource report: {"command_name": "deps", "command_success": true, "command_wall_clock_time": 0.22930431, "process_in_blocks": "16840", "process_kernel_time": 0.861909, "process_mem_max_rss": "104100", "process_out_blocks": "0", "process_user_time": 1.646572}
+[0m02:03:24.348957 [debug] [MainThread]: Command `dbt deps` succeeded at 02:03:24.348817 after 0.23 seconds
+[0m02:03:24.350210 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d367bb0d350>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d367bab8bd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d367b9f4190>]}
+[0m02:03:24.351610 [debug] [MainThread]: Flushing usage events
+[0m02:03:25.049179 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m02:03:26.940963 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ff58d8fb610>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ff58d8f81d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ff58d8fbad0>]}
+
+
+============================== 02:03:26.949341 | 7d2c7340-c17f-46b6-bef8-cd6fa9535626 ==============================
+[0m02:03:26.949341 [info ] [MainThread]: Running with dbt=1.10.15
+[0m02:03:26.951795 [debug] [MainThread]: running dbt with arguments {'invocation_command': 'dbt build --target dev', 'profiles_dir': '/usr/app/dbt', 'write_json': 'True', 'cache_selected_only': 'False', 'quiet': 'False', 'debug': 'False', 'log_cache_events': 'False', 'log_path': '/usr/app/dbt/logs', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'empty': 'False', 'warn_error': 'None', 'no_print': 'None', 'printer_width': '80', 'log_format': 'default', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True', 'fail_fast': 'False', 'partial_parse': 'True', 'version_check': 'True', 'target_path': 'None', 'indirect_selection': 'eager', 'use_colors': 'True', 'introspect': 'True', 'use_experimental_parser': 'False'}
+[0m02:03:27.107474 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '7d2c7340-c17f-46b6-bef8-cd6fa9535626', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ff58e8cc9d0>]}
+[0m02:03:27.158476 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '7d2c7340-c17f-46b6-bef8-cd6fa9535626', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ff590622e50>]}
+[0m02:03:27.161961 [info ] [MainThread]: Registered adapter: postgres=1.9.1
+[0m02:03:27.247671 [debug] [MainThread]: checksum: 0f45fdd67cc51382d6521f874e757e7afa214ac7bb0178b13f1819cbe813499c, vars: {}, profile: , target: dev, version: 1.10.15
+[0m02:03:27.608147 [debug] [MainThread]: Partial parsing enabled: 1 files deleted, 6 files added, 2 files changed.
+[0m02:03:27.611038 [debug] [MainThread]: Partial parsing: added file: data_project_1://models/staging/strg_mediciones_madrid.sql
+[0m02:03:27.613133 [debug] [MainThread]: Partial parsing: added file: data_project_1://models/intermediate/int_mediciones_tiempo.sql
+[0m02:03:27.614803 [debug] [MainThread]: Partial parsing: added file: data_project_1://models/marts/marts_mediciones.sql
+[0m02:03:27.616484 [debug] [MainThread]: Partial parsing: added file: data_project_1://models/marts/schema.yml
+[0m02:03:27.618280 [debug] [MainThread]: Partial parsing: added file: data_project_1://models/staging/strg_mediciones_valencia..sql
+[0m02:03:27.620458 [debug] [MainThread]: Partial parsing: added file: data_project_1://models/intermediate/schema.yml
+[0m02:03:27.622506 [debug] [MainThread]: Partial parsing: updated file: data_project_1://models/staging/sources.yml
+[0m02:03:27.624411 [debug] [MainThread]: Partial parsing: updated file: data_project_1://models/staging/schema.yml
+[0m02:03:27.626288 [debug] [MainThread]: Partial parsing: deleted file: data_project_1://models/staging/stg_air_quality_valencia.sql
+[0m02:03:28.073009 [warn ] [MainThread]: [[33mWARNING[0m]: Did not find matching node for patch with name 'stg_mediciones_madrid' in the 'models' section of file 'models/staging/schema.yml'
+[0m02:03:28.076401 [warn ] [MainThread]: [[33mWARNING[0m]: Did not find matching node for patch with name 'stg_mediciones_valencia' in the 'models' section of file 'models/staging/schema.yml'
+[0m02:03:28.110796 [error] [MainThread]: Encountered an error:
+Compilation Error
+  Model 'model.data_project_1.int_mediciones_tiempo' (models/intermediate/int_mediciones_tiempo.sql) depends on a node named 'stg_mediciones_valencia' which was not found
+[0m02:03:28.113078 [debug] [MainThread]: Resource report: {"command_name": "build", "command_success": false, "command_wall_clock_time": 1.2440578, "process_in_blocks": "2776", "process_kernel_time": 0.360011, "process_mem_max_rss": "120340", "process_out_blocks": "0", "process_user_time": 2.037429}
+[0m02:03:28.114925 [debug] [MainThread]: Command `dbt build` failed at 02:03:28.114638 after 1.25 seconds
+[0m02:03:28.116433 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ff58b929050>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ff58b9b9850>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7ff58b979a90>]}
+[0m02:03:28.117625 [debug] [MainThread]: Flushing usage events
+[0m02:03:28.677665 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m02:12:06.528637 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x73e3242cb310>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x73e32427fcd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x73e32427f990>]}
+
+
+============================== 02:12:06.537273 | 4e70bd20-0f9f-4af3-b5e0-3c89dea67a7e ==============================
+[0m02:12:06.537273 [info ] [MainThread]: Running with dbt=1.10.15
+[0m02:12:06.539469 [debug] [MainThread]: running dbt with arguments {'static_parser': 'True', 'target_path': 'None', 'empty': 'None', 'send_anonymous_usage_stats': 'True', 'use_experimental_parser': 'False', 'partial_parse': 'True', 'indirect_selection': 'eager', 'cache_selected_only': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'introspect': 'True', 'no_print': 'None', 'version_check': 'True', 'quiet': 'False', 'log_format': 'default', 'write_json': 'True', 'debug': 'False', 'invocation_command': 'dbt deps', 'use_colors': 'True', 'printer_width': '80', 'fail_fast': 'False', 'log_path': '/usr/app/dbt/logs', 'log_cache_events': 'False', 'profiles_dir': '/usr/app/dbt', 'warn_error': 'None'}
+[0m02:12:06.674866 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '4e70bd20-0f9f-4af3-b5e0-3c89dea67a7e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x73e3241942d0>]}
+[0m02:12:06.689061 [info ] [MainThread]: Warning: No packages were found in packages.yml
+[0m02:12:06.870377 [info ] [MainThread]: Warning: No packages were found in packages.yml
+[0m02:12:06.877471 [debug] [MainThread]: Resource report: {"command_name": "deps", "command_success": true, "command_wall_clock_time": 0.43857276, "process_in_blocks": "18840", "process_kernel_time": 0.868298, "process_mem_max_rss": "105400", "process_out_blocks": "0", "process_user_time": 1.607362}
+[0m02:12:06.879787 [debug] [MainThread]: Command `dbt deps` succeeded at 02:12:06.879457 after 0.44 seconds
+[0m02:12:06.883901 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x73e3242c17d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x73e32540f590>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x73e328ad3090>]}
+[0m02:12:06.886290 [debug] [MainThread]: Flushing usage events
+[0m02:12:07.520518 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m02:12:09.566631 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78530df0b150>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78530df63d90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78530e235a50>]}
+
+
+============================== 02:12:09.576676 | ffca559d-8974-4195-934a-3c642480835c ==============================
+[0m02:12:09.576676 [info ] [MainThread]: Running with dbt=1.10.15
+[0m02:12:09.578456 [debug] [MainThread]: running dbt with arguments {'use_experimental_parser': 'False', 'partial_parse': 'True', 'printer_width': '80', 'indirect_selection': 'eager', 'invocation_command': 'dbt build --target dev', 'write_json': 'True', 'debug': 'False', 'log_format': 'default', 'log_cache_events': 'False', 'introspect': 'True', 'send_anonymous_usage_stats': 'True', 'fail_fast': 'False', 'cache_selected_only': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'empty': 'False', 'static_parser': 'True', 'warn_error': 'None', 'no_print': 'None', 'quiet': 'False', 'version_check': 'True', 'profiles_dir': '/usr/app/dbt', 'log_path': '/usr/app/dbt/logs', 'use_colors': 'True', 'target_path': 'None'}
+[0m02:12:09.724232 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'ffca559d-8974-4195-934a-3c642480835c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78530de97910>]}
+[0m02:12:09.770765 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'ffca559d-8974-4195-934a-3c642480835c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x785310c58fd0>]}
+[0m02:12:09.773089 [info ] [MainThread]: Registered adapter: postgres=1.9.1
+[0m02:12:09.840449 [debug] [MainThread]: checksum: 0f45fdd67cc51382d6521f874e757e7afa214ac7bb0178b13f1819cbe813499c, vars: {}, profile: , target: dev, version: 1.10.15
+[0m02:12:10.119548 [debug] [MainThread]: Partial parsing enabled: 1 files deleted, 2 files added, 2 files changed.
+[0m02:12:10.122593 [debug] [MainThread]: Partial parsing: added file: data_project_1://models/staging/stg_mediciones_madrid.sql
+[0m02:12:10.124893 [debug] [MainThread]: Partial parsing: added file: data_project_1://models/staging/stg_mediciones_valencia.sql
+[0m02:12:10.127397 [debug] [MainThread]: Partial parsing: updated file: data_project_1://models/staging/sources.yml
+[0m02:12:10.130008 [debug] [MainThread]: Partial parsing: updated file: data_project_1://models/staging/schema.yml
+[0m02:12:10.131533 [debug] [MainThread]: Partial parsing: deleted file: data_project_1://models/staging/stg_air_quality_valencia.sql
+[0m02:12:10.661535 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'ffca559d-8974-4195-934a-3c642480835c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7853107c2a50>]}
+[0m02:12:10.766102 [debug] [MainThread]: Wrote artifact WritableManifest to /usr/app/dbt/target/manifest.json
+[0m02:12:10.777811 [debug] [MainThread]: Wrote artifact SemanticManifest to /usr/app/dbt/target/semantic_manifest.json
+[0m02:12:10.841686 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'ffca559d-8974-4195-934a-3c642480835c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x785308937f50>]}
+[0m02:12:10.843108 [info ] [MainThread]: Found 2 models, 8 data tests, 1 source, 459 macros
+[0m02:12:10.846520 [info ] [MainThread]: 
+[0m02:12:10.847854 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m02:12:10.849163 [info ] [MainThread]: 
+[0m02:12:10.850882 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m02:12:10.857716 [debug] [ThreadPool]: Acquiring new postgres connection 'list_data_project_1'
+[0m02:12:10.921756 [debug] [ThreadPool]: Using postgres connection "list_data_project_1"
+[0m02:12:10.923357 [debug] [ThreadPool]: On list_data_project_1: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "connection_name": "list_data_project_1"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m02:12:10.924455 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m02:12:10.948211 [debug] [ThreadPool]: SQL status: SELECT 5 in 0.024 seconds
+[0m02:12:10.951134 [debug] [ThreadPool]: On list_data_project_1: Close
+[0m02:12:10.954336 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_data_project_1, now list_data_project_1_analytics)
+[0m02:12:10.962407 [debug] [ThreadPool]: Using postgres connection "list_data_project_1_analytics"
+[0m02:12:10.968513 [debug] [ThreadPool]: On list_data_project_1_analytics: BEGIN
+[0m02:12:10.973161 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m02:12:10.988827 [debug] [ThreadPool]: SQL status: BEGIN in 0.016 seconds
+[0m02:12:10.991063 [debug] [ThreadPool]: Using postgres connection "list_data_project_1_analytics"
+[0m02:12:10.993441 [debug] [ThreadPool]: On list_data_project_1_analytics: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "connection_name": "list_data_project_1_analytics"} */
+select
+      'data_project_1' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'analytics'
+    union all
+    select
+      'data_project_1' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'analytics'
+    union all
+    select
+      'data_project_1' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'analytics'
+  
+[0m02:12:11.036925 [debug] [ThreadPool]: SQL status: SELECT 1 in 0.042 seconds
+[0m02:12:11.039359 [debug] [ThreadPool]: On list_data_project_1_analytics: ROLLBACK
+[0m02:12:11.040914 [debug] [ThreadPool]: On list_data_project_1_analytics: Close
+[0m02:12:11.046923 [debug] [MainThread]: Using postgres connection "master"
+[0m02:12:11.048354 [debug] [MainThread]: On master: BEGIN
+[0m02:12:11.049875 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m02:12:11.058427 [debug] [MainThread]: SQL status: BEGIN in 0.008 seconds
+[0m02:12:11.062255 [debug] [MainThread]: Using postgres connection "master"
+[0m02:12:11.063549 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "connection_name": "master"} */
+select distinct
+        dependent_namespace.nspname as dependent_schema,
+        dependent_class.relname as dependent_name,
+        referenced_namespace.nspname as referenced_schema,
+        referenced_class.relname as referenced_name
+
+    -- Query for views: views are entries in pg_class with an entry in pg_rewrite, but we avoid
+    -- a seq scan on pg_rewrite by leveraging the fact there is an "internal" row in pg_depend for
+    -- the view...
+    from pg_class as dependent_class
+    join pg_namespace as dependent_namespace on dependent_namespace.oid = dependent_class.relnamespace
+    join pg_depend as dependent_depend on dependent_depend.refobjid = dependent_class.oid
+        and dependent_depend.classid = 'pg_rewrite'::regclass
+        and dependent_depend.refclassid = 'pg_class'::regclass
+        and dependent_depend.deptype = 'i'
+
+    -- ... and via pg_depend (that has a row per column, hence the need for "distinct" above, and
+    -- making sure to exclude the internal row to avoid a view appearing to depend on itself)...
+    join pg_depend as joining_depend on joining_depend.objid = dependent_depend.objid
+        and joining_depend.classid = 'pg_rewrite'::regclass
+        and joining_depend.refclassid = 'pg_class'::regclass
+        and joining_depend.refobjid != dependent_depend.refobjid
+
+    -- ... we can find the tables they query from in pg_class, but excluding system tables. Note we
+    -- don't need need to exclude _dependent_ system tables, because they only query from other
+    -- system tables, and so are automatically excluded by excluding _referenced_ system tables
+    join pg_class as referenced_class on referenced_class.oid = joining_depend.refobjid
+    join pg_namespace as referenced_namespace on referenced_namespace.oid = referenced_class.relnamespace
+        and referenced_namespace.nspname != 'information_schema'
+        and referenced_namespace.nspname not like 'pg\_%'
+
+    order by
+        dependent_schema, dependent_name, referenced_schema, referenced_name;
+[0m02:12:11.089553 [debug] [MainThread]: SQL status: SELECT 1 in 0.025 seconds
+[0m02:12:11.091636 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'ffca559d-8974-4195-934a-3c642480835c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x785308952250>]}
+[0m02:12:11.093298 [debug] [MainThread]: On master: ROLLBACK
+[0m02:12:11.094756 [debug] [MainThread]: Using postgres connection "master"
+[0m02:12:11.095821 [debug] [MainThread]: On master: BEGIN
+[0m02:12:11.097493 [debug] [MainThread]: SQL status: BEGIN in 0.000 seconds
+[0m02:12:11.098679 [debug] [MainThread]: On master: COMMIT
+[0m02:12:11.099359 [debug] [MainThread]: Using postgres connection "master"
+[0m02:12:11.100071 [debug] [MainThread]: On master: COMMIT
+[0m02:12:11.101560 [debug] [MainThread]: SQL status: COMMIT in 0.000 seconds
+[0m02:12:11.102522 [debug] [MainThread]: On master: Close
+[0m02:12:11.111384 [debug] [Thread-1 (]: Began running node model.data_project_1.stg_mediciones_madrid
+[0m02:12:11.111790 [debug] [Thread-2 (]: Began running node model.data_project_1.stg_mediciones_valencia
+[0m02:12:11.113274 [info ] [Thread-1 (]: 1 of 10 START sql view model analytics.stg_mediciones_madrid ................... [RUN]
+[0m02:12:11.114999 [info ] [Thread-2 (]: 2 of 10 START sql view model analytics.stg_mediciones_valencia ................. [RUN]
+[0m02:12:11.116667 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_data_project_1_analytics, now model.data_project_1.stg_mediciones_madrid)
+[0m02:12:11.118298 [debug] [Thread-2 (]: Acquiring new postgres connection 'model.data_project_1.stg_mediciones_valencia'
+[0m02:12:11.119613 [debug] [Thread-1 (]: Began compiling node model.data_project_1.stg_mediciones_madrid
+[0m02:12:11.121001 [debug] [Thread-2 (]: Began compiling node model.data_project_1.stg_mediciones_valencia
+[0m02:12:11.129731 [debug] [Thread-1 (]: Writing injected SQL for node "model.data_project_1.stg_mediciones_madrid"
+[0m02:12:11.133149 [debug] [Thread-2 (]: Writing injected SQL for node "model.data_project_1.stg_mediciones_valencia"
+[0m02:12:11.146328 [debug] [Thread-1 (]: Began executing node model.data_project_1.stg_mediciones_madrid
+[0m02:12:11.171827 [debug] [Thread-2 (]: Began executing node model.data_project_1.stg_mediciones_valencia
+[0m02:12:11.174871 [debug] [Thread-1 (]: Writing runtime sql for node "model.data_project_1.stg_mediciones_madrid"
+[0m02:12:11.179546 [debug] [Thread-2 (]: Writing runtime sql for node "model.data_project_1.stg_mediciones_valencia"
+[0m02:12:11.188729 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.stg_mediciones_madrid"
+[0m02:12:11.190386 [debug] [Thread-1 (]: On model.data_project_1.stg_mediciones_madrid: BEGIN
+[0m02:12:11.192024 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m02:12:11.193316 [debug] [Thread-2 (]: Using postgres connection "model.data_project_1.stg_mediciones_valencia"
+[0m02:12:11.195001 [debug] [Thread-2 (]: On model.data_project_1.stg_mediciones_valencia: BEGIN
+[0m02:12:11.196537 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m02:12:11.203019 [debug] [Thread-1 (]: SQL status: BEGIN in 0.011 seconds
+[0m02:12:11.205567 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.stg_mediciones_madrid"
+[0m02:12:11.206907 [debug] [Thread-2 (]: SQL status: BEGIN in 0.010 seconds
+[0m02:12:11.208023 [debug] [Thread-1 (]: On model.data_project_1.stg_mediciones_madrid: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.stg_mediciones_madrid"} */
+
+  create view "data_project_1"."analytics"."stg_mediciones_madrid__dbt_tmp"
+    
+    
+  as (
+    
+
+select
+    id,
+    nombre_estacion,
+    'madrid' as city,
+    cast(lon as numeric) as lon,
+    cast(lat as numeric) as lat,
+    cast(no2 as numeric) as no2,
+    cast(o3 as numeric) as o3,
+    cast(pm10 as numeric) as pm10,
+    cast(pm25 as numeric) as pm25,
+    fecha_carg,
+    created_at, 
+    date_trunc('hour', fecha_carg) as fecha_hour,
+    date_trunc('day', fecha_carg) as fecha_day,
+    date_trunc('month', fecha_carg) as fecha_month
+from "data_project_1"."public"."mediciones"
+where city='madrid'
+  );
+[0m02:12:11.209462 [debug] [Thread-2 (]: Using postgres connection "model.data_project_1.stg_mediciones_valencia"
+[0m02:12:11.212531 [debug] [Thread-2 (]: On model.data_project_1.stg_mediciones_valencia: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.stg_mediciones_valencia"} */
+
+  create view "data_project_1"."analytics"."stg_mediciones_valencia__dbt_tmp"
+    
+    
+  as (
+    
+
+select
+    id,
+    nombre_estacion,
+    'valencia' as city,
+    cast(lon as numeric) as lon,
+    cast(lat as numeric) as lat,
+    cast(no2 as numeric) as no2,
+    cast(o3 as numeric) as o3,
+    cast(pm10 as numeric) as pm10,
+    cast(pm25 as numeric) as pm25,
+    fecha_carg,
+    created_at, 
+    date_trunc('hour', fecha_carg) as fecha_hour,
+    date_trunc('day', fecha_carg) as fecha_day,
+    date_trunc('month', fecha_carg) as fecha_month
+from "data_project_1"."public"."mediciones"
+where city='valencia'
+  );
+[0m02:12:11.247939 [debug] [Thread-2 (]: SQL status: CREATE VIEW in 0.034 seconds
+[0m02:12:11.248480 [debug] [Thread-1 (]: SQL status: CREATE VIEW in 0.037 seconds
+[0m02:12:11.257977 [debug] [Thread-2 (]: Using postgres connection "model.data_project_1.stg_mediciones_valencia"
+[0m02:12:11.261867 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.stg_mediciones_madrid"
+[0m02:12:11.263334 [debug] [Thread-2 (]: On model.data_project_1.stg_mediciones_valencia: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.stg_mediciones_valencia"} */
+alter table "data_project_1"."analytics"."stg_mediciones_valencia__dbt_tmp" rename to "stg_mediciones_valencia"
+[0m02:12:11.264802 [debug] [Thread-1 (]: On model.data_project_1.stg_mediciones_madrid: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.stg_mediciones_madrid"} */
+alter table "data_project_1"."analytics"."stg_mediciones_madrid__dbt_tmp" rename to "stg_mediciones_madrid"
+[0m02:12:11.270154 [debug] [Thread-1 (]: SQL status: ALTER TABLE in 0.003 seconds
+[0m02:12:11.270732 [debug] [Thread-2 (]: SQL status: ALTER TABLE in 0.005 seconds
+[0m02:12:11.281819 [debug] [Thread-1 (]: On model.data_project_1.stg_mediciones_madrid: COMMIT
+[0m02:12:11.284139 [debug] [Thread-2 (]: On model.data_project_1.stg_mediciones_valencia: COMMIT
+[0m02:12:11.286311 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.stg_mediciones_madrid"
+[0m02:12:11.288569 [debug] [Thread-2 (]: Using postgres connection "model.data_project_1.stg_mediciones_valencia"
+[0m02:12:11.290013 [debug] [Thread-1 (]: On model.data_project_1.stg_mediciones_madrid: COMMIT
+[0m02:12:11.291606 [debug] [Thread-2 (]: On model.data_project_1.stg_mediciones_valencia: COMMIT
+[0m02:12:11.296953 [debug] [Thread-1 (]: SQL status: COMMIT in 0.004 seconds
+[0m02:12:11.297632 [debug] [Thread-2 (]: SQL status: COMMIT in 0.003 seconds
+[0m02:12:11.304396 [debug] [Thread-1 (]: Applying DROP to: "data_project_1"."analytics"."stg_mediciones_madrid__dbt_backup"
+[0m02:12:11.307237 [debug] [Thread-2 (]: Applying DROP to: "data_project_1"."analytics"."stg_mediciones_valencia__dbt_backup"
+[0m02:12:11.312168 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.stg_mediciones_madrid"
+[0m02:12:11.313523 [debug] [Thread-2 (]: Using postgres connection "model.data_project_1.stg_mediciones_valencia"
+[0m02:12:11.314583 [debug] [Thread-1 (]: On model.data_project_1.stg_mediciones_madrid: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.stg_mediciones_madrid"} */
+drop view if exists "data_project_1"."analytics"."stg_mediciones_madrid__dbt_backup" cascade
+[0m02:12:11.315607 [debug] [Thread-2 (]: On model.data_project_1.stg_mediciones_valencia: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.stg_mediciones_valencia"} */
+drop view if exists "data_project_1"."analytics"."stg_mediciones_valencia__dbt_backup" cascade
+[0m02:12:11.327760 [debug] [Thread-2 (]: SQL status: DROP VIEW in 0.010 seconds
+[0m02:12:11.328421 [debug] [Thread-1 (]: SQL status: DROP VIEW in 0.012 seconds
+[0m02:12:11.332082 [debug] [Thread-2 (]: On model.data_project_1.stg_mediciones_valencia: Close
+[0m02:12:11.335253 [debug] [Thread-1 (]: On model.data_project_1.stg_mediciones_madrid: Close
+[0m02:12:11.338897 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'ffca559d-8974-4195-934a-3c642480835c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7852c3ef4e10>]}
+[0m02:12:11.340395 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'ffca559d-8974-4195-934a-3c642480835c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7852c3daee50>]}
+[0m02:12:11.342131 [info ] [Thread-2 (]: 2 of 10 OK created sql view model analytics.stg_mediciones_valencia ............ [[32mCREATE VIEW[0m in 0.22s]
+[0m02:12:11.344302 [info ] [Thread-1 (]: 1 of 10 OK created sql view model analytics.stg_mediciones_madrid .............. [[32mCREATE VIEW[0m in 0.22s]
+[0m02:12:11.345776 [debug] [Thread-2 (]: Finished running node model.data_project_1.stg_mediciones_valencia
+[0m02:12:11.346905 [debug] [Thread-1 (]: Finished running node model.data_project_1.stg_mediciones_madrid
+[0m02:12:11.348655 [debug] [Thread-4 (]: Began running node test.data_project_1.not_null_stg_mediciones_valencia_fecha_carg.582baa8f9e
+[0m02:12:11.349232 [debug] [Thread-3 (]: Began running node test.data_project_1.not_null_stg_mediciones_valencia_id.e44a3bfb4e
+[0m02:12:11.349849 [debug] [Thread-2 (]: Began running node test.data_project_1.not_null_stg_mediciones_valencia_nombre_estacion.e581163046
+[0m02:12:11.350425 [debug] [Thread-1 (]: Began running node test.data_project_1.unique_stg_mediciones_valencia_id.fcb6324170
+[0m02:12:11.352013 [info ] [Thread-4 (]: 3 of 10 START test not_null_stg_mediciones_valencia_fecha_carg ................. [RUN]
+[0m02:12:11.353714 [info ] [Thread-3 (]: 4 of 10 START test not_null_stg_mediciones_valencia_id ......................... [RUN]
+[0m02:12:11.355464 [info ] [Thread-2 (]: 5 of 10 START test not_null_stg_mediciones_valencia_nombre_estacion ............ [RUN]
+[0m02:12:11.357078 [info ] [Thread-1 (]: 6 of 10 START test unique_stg_mediciones_valencia_id ........................... [RUN]
+[0m02:12:11.358519 [debug] [Thread-4 (]: Acquiring new postgres connection 'test.data_project_1.not_null_stg_mediciones_valencia_fecha_carg.582baa8f9e'
+[0m02:12:11.359939 [debug] [Thread-3 (]: Acquiring new postgres connection 'test.data_project_1.not_null_stg_mediciones_valencia_id.e44a3bfb4e'
+[0m02:12:11.361496 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly model.data_project_1.stg_mediciones_valencia, now test.data_project_1.not_null_stg_mediciones_valencia_nombre_estacion.e581163046)
+[0m02:12:11.363030 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.data_project_1.stg_mediciones_madrid, now test.data_project_1.unique_stg_mediciones_valencia_id.fcb6324170)
+[0m02:12:11.364316 [debug] [Thread-4 (]: Began compiling node test.data_project_1.not_null_stg_mediciones_valencia_fecha_carg.582baa8f9e
+[0m02:12:11.365571 [debug] [Thread-3 (]: Began compiling node test.data_project_1.not_null_stg_mediciones_valencia_id.e44a3bfb4e
+[0m02:12:11.366965 [debug] [Thread-2 (]: Began compiling node test.data_project_1.not_null_stg_mediciones_valencia_nombre_estacion.e581163046
+[0m02:12:11.368728 [debug] [Thread-1 (]: Began compiling node test.data_project_1.unique_stg_mediciones_valencia_id.fcb6324170
+[0m02:12:11.380239 [debug] [Thread-4 (]: Writing injected SQL for node "test.data_project_1.not_null_stg_mediciones_valencia_fecha_carg.582baa8f9e"
+[0m02:12:11.385314 [debug] [Thread-3 (]: Writing injected SQL for node "test.data_project_1.not_null_stg_mediciones_valencia_id.e44a3bfb4e"
+[0m02:12:11.393932 [debug] [Thread-2 (]: Writing injected SQL for node "test.data_project_1.not_null_stg_mediciones_valencia_nombre_estacion.e581163046"
+[0m02:12:11.401611 [debug] [Thread-1 (]: Writing injected SQL for node "test.data_project_1.unique_stg_mediciones_valencia_id.fcb6324170"
+[0m02:12:11.413189 [debug] [Thread-3 (]: Began executing node test.data_project_1.not_null_stg_mediciones_valencia_id.e44a3bfb4e
+[0m02:12:11.435133 [debug] [Thread-1 (]: Began executing node test.data_project_1.unique_stg_mediciones_valencia_id.fcb6324170
+[0m02:12:11.441773 [debug] [Thread-2 (]: Began executing node test.data_project_1.not_null_stg_mediciones_valencia_nombre_estacion.e581163046
+[0m02:12:11.442662 [debug] [Thread-3 (]: Writing runtime sql for node "test.data_project_1.not_null_stg_mediciones_valencia_id.e44a3bfb4e"
+[0m02:12:11.449349 [debug] [Thread-4 (]: Began executing node test.data_project_1.not_null_stg_mediciones_valencia_fecha_carg.582baa8f9e
+[0m02:12:11.449081 [debug] [Thread-1 (]: Writing runtime sql for node "test.data_project_1.unique_stg_mediciones_valencia_id.fcb6324170"
+[0m02:12:11.453957 [debug] [Thread-2 (]: Writing runtime sql for node "test.data_project_1.not_null_stg_mediciones_valencia_nombre_estacion.e581163046"
+[0m02:12:11.460011 [debug] [Thread-4 (]: Writing runtime sql for node "test.data_project_1.not_null_stg_mediciones_valencia_fecha_carg.582baa8f9e"
+[0m02:12:11.474232 [debug] [Thread-2 (]: Using postgres connection "test.data_project_1.not_null_stg_mediciones_valencia_nombre_estacion.e581163046"
+[0m02:12:11.476493 [debug] [Thread-2 (]: On test.data_project_1.not_null_stg_mediciones_valencia_nombre_estacion.e581163046: BEGIN
+[0m02:12:11.478123 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m02:12:11.478885 [debug] [Thread-4 (]: Using postgres connection "test.data_project_1.not_null_stg_mediciones_valencia_fecha_carg.582baa8f9e"
+[0m02:12:11.481620 [debug] [Thread-3 (]: Using postgres connection "test.data_project_1.not_null_stg_mediciones_valencia_id.e44a3bfb4e"
+[0m02:12:11.482883 [debug] [Thread-4 (]: On test.data_project_1.not_null_stg_mediciones_valencia_fecha_carg.582baa8f9e: BEGIN
+[0m02:12:11.485017 [debug] [Thread-1 (]: Using postgres connection "test.data_project_1.unique_stg_mediciones_valencia_id.fcb6324170"
+[0m02:12:11.485705 [debug] [Thread-3 (]: On test.data_project_1.not_null_stg_mediciones_valencia_id.e44a3bfb4e: BEGIN
+[0m02:12:11.487311 [debug] [Thread-4 (]: Opening a new connection, currently in state init
+[0m02:12:11.489110 [debug] [Thread-1 (]: On test.data_project_1.unique_stg_mediciones_valencia_id.fcb6324170: BEGIN
+[0m02:12:11.491082 [debug] [Thread-3 (]: Opening a new connection, currently in state init
+[0m02:12:11.493255 [debug] [Thread-2 (]: SQL status: BEGIN in 0.015 seconds
+[0m02:12:11.493705 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m02:12:11.496284 [debug] [Thread-2 (]: Using postgres connection "test.data_project_1.not_null_stg_mediciones_valencia_nombre_estacion.e581163046"
+[0m02:12:11.498969 [debug] [Thread-2 (]: On test.data_project_1.not_null_stg_mediciones_valencia_nombre_estacion.e581163046: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "test.data_project_1.not_null_stg_mediciones_valencia_nombre_estacion.e581163046"} */
+
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select nombre_estacion
+from "data_project_1"."analytics"."stg_mediciones_valencia"
+where nombre_estacion is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m02:12:11.503908 [debug] [Thread-4 (]: SQL status: BEGIN in 0.016 seconds
+[0m02:12:11.505940 [debug] [Thread-4 (]: Using postgres connection "test.data_project_1.not_null_stg_mediciones_valencia_fecha_carg.582baa8f9e"
+[0m02:12:11.507355 [debug] [Thread-3 (]: SQL status: BEGIN in 0.016 seconds
+[0m02:12:11.507875 [debug] [Thread-4 (]: On test.data_project_1.not_null_stg_mediciones_valencia_fecha_carg.582baa8f9e: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "test.data_project_1.not_null_stg_mediciones_valencia_fecha_carg.582baa8f9e"} */
+
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select fecha_carg
+from "data_project_1"."analytics"."stg_mediciones_valencia"
+where fecha_carg is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m02:12:11.508553 [debug] [Thread-2 (]: SQL status: SELECT 1 in 0.007 seconds
+[0m02:12:11.509049 [debug] [Thread-1 (]: SQL status: BEGIN in 0.015 seconds
+[0m02:12:11.509981 [debug] [Thread-3 (]: Using postgres connection "test.data_project_1.not_null_stg_mediciones_valencia_id.e44a3bfb4e"
+[0m02:12:11.513958 [debug] [Thread-2 (]: On test.data_project_1.not_null_stg_mediciones_valencia_nombre_estacion.e581163046: ROLLBACK
+[0m02:12:11.514300 [debug] [Thread-4 (]: SQL status: SELECT 1 in 0.003 seconds
+[0m02:12:11.515196 [debug] [Thread-1 (]: Using postgres connection "test.data_project_1.unique_stg_mediciones_valencia_id.fcb6324170"
+[0m02:12:11.516338 [debug] [Thread-3 (]: On test.data_project_1.not_null_stg_mediciones_valencia_id.e44a3bfb4e: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "test.data_project_1.not_null_stg_mediciones_valencia_id.e44a3bfb4e"} */
+
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select id
+from "data_project_1"."analytics"."stg_mediciones_valencia"
+where id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m02:12:11.517936 [debug] [Thread-2 (]: On test.data_project_1.not_null_stg_mediciones_valencia_nombre_estacion.e581163046: Close
+[0m02:12:11.520830 [debug] [Thread-4 (]: On test.data_project_1.not_null_stg_mediciones_valencia_fecha_carg.582baa8f9e: ROLLBACK
+[0m02:12:11.522459 [debug] [Thread-1 (]: On test.data_project_1.unique_stg_mediciones_valencia_id.fcb6324170: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "test.data_project_1.unique_stg_mediciones_valencia_id.fcb6324170"} */
+
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+select
+    id as unique_field,
+    count(*) as n_records
+
+from "data_project_1"."analytics"."stg_mediciones_valencia"
+where id is not null
+group by id
+having count(*) > 1
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m02:12:11.525533 [info ] [Thread-2 (]: 5 of 10 PASS not_null_stg_mediciones_valencia_nombre_estacion .................. [[32mPASS[0m in 0.16s]
+[0m02:12:11.526465 [debug] [Thread-3 (]: SQL status: SELECT 1 in 0.002 seconds
+[0m02:12:11.527065 [debug] [Thread-4 (]: On test.data_project_1.not_null_stg_mediciones_valencia_fecha_carg.582baa8f9e: Close
+[0m02:12:11.529724 [debug] [Thread-2 (]: Finished running node test.data_project_1.not_null_stg_mediciones_valencia_nombre_estacion.e581163046
+[0m02:12:11.532801 [debug] [Thread-3 (]: On test.data_project_1.not_null_stg_mediciones_valencia_id.e44a3bfb4e: ROLLBACK
+[0m02:12:11.535119 [info ] [Thread-4 (]: 3 of 10 PASS not_null_stg_mediciones_valencia_fecha_carg ....................... [[32mPASS[0m in 0.18s]
+[0m02:12:11.536766 [debug] [Thread-2 (]: Began running node test.data_project_1.not_null_stg_mediciones_madrid_fecha_carg.716ed47dcf
+[0m02:12:11.538642 [debug] [Thread-3 (]: On test.data_project_1.not_null_stg_mediciones_valencia_id.e44a3bfb4e: Close
+[0m02:12:11.539647 [debug] [Thread-4 (]: Finished running node test.data_project_1.not_null_stg_mediciones_valencia_fecha_carg.582baa8f9e
+[0m02:12:11.539971 [debug] [Thread-1 (]: SQL status: SELECT 1 in 0.012 seconds
+[0m02:12:11.540723 [info ] [Thread-2 (]: 7 of 10 START test not_null_stg_mediciones_madrid_fecha_carg ................... [RUN]
+[0m02:12:11.542101 [info ] [Thread-3 (]: 4 of 10 PASS not_null_stg_mediciones_valencia_id ............................... [[32mPASS[0m in 0.18s]
+[0m02:12:11.543129 [debug] [Thread-4 (]: Began running node test.data_project_1.not_null_stg_mediciones_madrid_id.c139e76515
+[0m02:12:11.545944 [debug] [Thread-1 (]: On test.data_project_1.unique_stg_mediciones_valencia_id.fcb6324170: ROLLBACK
+[0m02:12:11.547069 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.data_project_1.not_null_stg_mediciones_valencia_nombre_estacion.e581163046, now test.data_project_1.not_null_stg_mediciones_madrid_fecha_carg.716ed47dcf)
+[0m02:12:11.548211 [debug] [Thread-3 (]: Finished running node test.data_project_1.not_null_stg_mediciones_valencia_id.e44a3bfb4e
+[0m02:12:11.549246 [info ] [Thread-4 (]: 8 of 10 START test not_null_stg_mediciones_madrid_id ........................... [RUN]
+[0m02:12:11.551028 [debug] [Thread-1 (]: On test.data_project_1.unique_stg_mediciones_valencia_id.fcb6324170: Close
+[0m02:12:11.552535 [debug] [Thread-2 (]: Began compiling node test.data_project_1.not_null_stg_mediciones_madrid_fecha_carg.716ed47dcf
+[0m02:12:11.554438 [debug] [Thread-3 (]: Began running node test.data_project_1.not_null_stg_mediciones_madrid_nombre_estacion.43047357f2
+[0m02:12:11.555674 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly test.data_project_1.not_null_stg_mediciones_valencia_fecha_carg.582baa8f9e, now test.data_project_1.not_null_stg_mediciones_madrid_id.c139e76515)
+[0m02:12:11.557386 [info ] [Thread-1 (]: 6 of 10 PASS unique_stg_mediciones_valencia_id ................................. [[32mPASS[0m in 0.19s]
+[0m02:12:11.562262 [debug] [Thread-2 (]: Writing injected SQL for node "test.data_project_1.not_null_stg_mediciones_madrid_fecha_carg.716ed47dcf"
+[0m02:12:11.563678 [info ] [Thread-3 (]: 9 of 10 START test not_null_stg_mediciones_madrid_nombre_estacion .............. [RUN]
+[0m02:12:11.565158 [debug] [Thread-4 (]: Began compiling node test.data_project_1.not_null_stg_mediciones_madrid_id.c139e76515
+[0m02:12:11.566470 [debug] [Thread-1 (]: Finished running node test.data_project_1.unique_stg_mediciones_valencia_id.fcb6324170
+[0m02:12:11.569886 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly test.data_project_1.not_null_stg_mediciones_valencia_id.e44a3bfb4e, now test.data_project_1.not_null_stg_mediciones_madrid_nombre_estacion.43047357f2)
+[0m02:12:11.574505 [debug] [Thread-4 (]: Writing injected SQL for node "test.data_project_1.not_null_stg_mediciones_madrid_id.c139e76515"
+[0m02:12:11.576066 [debug] [Thread-1 (]: Began running node test.data_project_1.unique_stg_mediciones_madrid_id.d23c45c57c
+[0m02:12:11.577497 [debug] [Thread-3 (]: Began compiling node test.data_project_1.not_null_stg_mediciones_madrid_nombre_estacion.43047357f2
+[0m02:12:11.580707 [debug] [Thread-2 (]: Began executing node test.data_project_1.not_null_stg_mediciones_madrid_fecha_carg.716ed47dcf
+[0m02:12:11.580253 [info ] [Thread-1 (]: 10 of 10 START test unique_stg_mediciones_madrid_id ............................ [RUN]
+[0m02:12:11.588330 [debug] [Thread-3 (]: Writing injected SQL for node "test.data_project_1.not_null_stg_mediciones_madrid_nombre_estacion.43047357f2"
+[0m02:12:11.592181 [debug] [Thread-2 (]: Writing runtime sql for node "test.data_project_1.not_null_stg_mediciones_madrid_fecha_carg.716ed47dcf"
+[0m02:12:11.594338 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.data_project_1.unique_stg_mediciones_valencia_id.fcb6324170, now test.data_project_1.unique_stg_mediciones_madrid_id.d23c45c57c)
+[0m02:12:11.594988 [debug] [Thread-4 (]: Began executing node test.data_project_1.not_null_stg_mediciones_madrid_id.c139e76515
+[0m02:12:11.597554 [debug] [Thread-1 (]: Began compiling node test.data_project_1.unique_stg_mediciones_madrid_id.d23c45c57c
+[0m02:12:11.600515 [debug] [Thread-4 (]: Writing runtime sql for node "test.data_project_1.not_null_stg_mediciones_madrid_id.c139e76515"
+[0m02:12:11.604567 [debug] [Thread-1 (]: Writing injected SQL for node "test.data_project_1.unique_stg_mediciones_madrid_id.d23c45c57c"
+[0m02:12:11.608246 [debug] [Thread-2 (]: Using postgres connection "test.data_project_1.not_null_stg_mediciones_madrid_fecha_carg.716ed47dcf"
+[0m02:12:11.609321 [debug] [Thread-3 (]: Began executing node test.data_project_1.not_null_stg_mediciones_madrid_nombre_estacion.43047357f2
+[0m02:12:11.610502 [debug] [Thread-2 (]: On test.data_project_1.not_null_stg_mediciones_madrid_fecha_carg.716ed47dcf: BEGIN
+[0m02:12:11.613635 [debug] [Thread-3 (]: Writing runtime sql for node "test.data_project_1.not_null_stg_mediciones_madrid_nombre_estacion.43047357f2"
+[0m02:12:11.614224 [debug] [Thread-4 (]: Using postgres connection "test.data_project_1.not_null_stg_mediciones_madrid_id.c139e76515"
+[0m02:12:11.615146 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m02:12:11.617922 [debug] [Thread-4 (]: On test.data_project_1.not_null_stg_mediciones_madrid_id.c139e76515: BEGIN
+[0m02:12:11.621131 [debug] [Thread-4 (]: Opening a new connection, currently in state closed
+[0m02:12:11.622806 [debug] [Thread-1 (]: Began executing node test.data_project_1.unique_stg_mediciones_madrid_id.d23c45c57c
+[0m02:12:11.629172 [debug] [Thread-1 (]: Writing runtime sql for node "test.data_project_1.unique_stg_mediciones_madrid_id.d23c45c57c"
+[0m02:12:11.630257 [debug] [Thread-2 (]: SQL status: BEGIN in 0.015 seconds
+[0m02:12:11.631393 [debug] [Thread-4 (]: SQL status: BEGIN in 0.010 seconds
+[0m02:12:11.632070 [debug] [Thread-3 (]: Using postgres connection "test.data_project_1.not_null_stg_mediciones_madrid_nombre_estacion.43047357f2"
+[0m02:12:11.632959 [debug] [Thread-2 (]: Using postgres connection "test.data_project_1.not_null_stg_mediciones_madrid_fecha_carg.716ed47dcf"
+[0m02:12:11.635159 [debug] [Thread-4 (]: Using postgres connection "test.data_project_1.not_null_stg_mediciones_madrid_id.c139e76515"
+[0m02:12:11.636692 [debug] [Thread-3 (]: On test.data_project_1.not_null_stg_mediciones_madrid_nombre_estacion.43047357f2: BEGIN
+[0m02:12:11.637990 [debug] [Thread-2 (]: On test.data_project_1.not_null_stg_mediciones_madrid_fecha_carg.716ed47dcf: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "test.data_project_1.not_null_stg_mediciones_madrid_fecha_carg.716ed47dcf"} */
+
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select fecha_carg
+from "data_project_1"."analytics"."stg_mediciones_madrid"
+where fecha_carg is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m02:12:11.639206 [debug] [Thread-4 (]: On test.data_project_1.not_null_stg_mediciones_madrid_id.c139e76515: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "test.data_project_1.not_null_stg_mediciones_madrid_id.c139e76515"} */
+
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select id
+from "data_project_1"."analytics"."stg_mediciones_madrid"
+where id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m02:12:11.640719 [debug] [Thread-3 (]: Opening a new connection, currently in state closed
+[0m02:12:11.644136 [debug] [Thread-1 (]: Using postgres connection "test.data_project_1.unique_stg_mediciones_madrid_id.d23c45c57c"
+[0m02:12:11.644720 [debug] [Thread-2 (]: SQL status: SELECT 1 in 0.003 seconds
+[0m02:12:11.645186 [debug] [Thread-4 (]: SQL status: SELECT 1 in 0.002 seconds
+[0m02:12:11.646108 [debug] [Thread-1 (]: On test.data_project_1.unique_stg_mediciones_madrid_id.d23c45c57c: BEGIN
+[0m02:12:11.648163 [debug] [Thread-2 (]: On test.data_project_1.not_null_stg_mediciones_madrid_fecha_carg.716ed47dcf: ROLLBACK
+[0m02:12:11.651119 [debug] [Thread-4 (]: On test.data_project_1.not_null_stg_mediciones_madrid_id.c139e76515: ROLLBACK
+[0m02:12:11.652096 [debug] [Thread-3 (]: SQL status: BEGIN in 0.011 seconds
+[0m02:12:11.652575 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m02:12:11.654492 [debug] [Thread-2 (]: On test.data_project_1.not_null_stg_mediciones_madrid_fecha_carg.716ed47dcf: Close
+[0m02:12:11.655596 [debug] [Thread-4 (]: On test.data_project_1.not_null_stg_mediciones_madrid_id.c139e76515: Close
+[0m02:12:11.656564 [debug] [Thread-3 (]: Using postgres connection "test.data_project_1.not_null_stg_mediciones_madrid_nombre_estacion.43047357f2"
+[0m02:12:11.658581 [info ] [Thread-2 (]: 7 of 10 PASS not_null_stg_mediciones_madrid_fecha_carg ......................... [[32mPASS[0m in 0.11s]
+[0m02:12:11.659762 [info ] [Thread-4 (]: 8 of 10 PASS not_null_stg_mediciones_madrid_id ................................. [[32mPASS[0m in 0.10s]
+[0m02:12:11.660868 [debug] [Thread-3 (]: On test.data_project_1.not_null_stg_mediciones_madrid_nombre_estacion.43047357f2: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "test.data_project_1.not_null_stg_mediciones_madrid_nombre_estacion.43047357f2"} */
+
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select nombre_estacion
+from "data_project_1"."analytics"."stg_mediciones_madrid"
+where nombre_estacion is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m02:12:11.662795 [debug] [Thread-2 (]: Finished running node test.data_project_1.not_null_stg_mediciones_madrid_fecha_carg.716ed47dcf
+[0m02:12:11.664040 [debug] [Thread-4 (]: Finished running node test.data_project_1.not_null_stg_mediciones_madrid_id.c139e76515
+[0m02:12:11.665490 [debug] [Thread-1 (]: SQL status: BEGIN in 0.013 seconds
+[0m02:12:11.667074 [debug] [Thread-3 (]: SQL status: SELECT 1 in 0.002 seconds
+[0m02:12:11.668848 [debug] [Thread-1 (]: Using postgres connection "test.data_project_1.unique_stg_mediciones_madrid_id.d23c45c57c"
+[0m02:12:11.671071 [debug] [Thread-3 (]: On test.data_project_1.not_null_stg_mediciones_madrid_nombre_estacion.43047357f2: ROLLBACK
+[0m02:12:11.672092 [debug] [Thread-1 (]: On test.data_project_1.unique_stg_mediciones_madrid_id.d23c45c57c: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "test.data_project_1.unique_stg_mediciones_madrid_id.d23c45c57c"} */
+
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+select
+    id as unique_field,
+    count(*) as n_records
+
+from "data_project_1"."analytics"."stg_mediciones_madrid"
+where id is not null
+group by id
+having count(*) > 1
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m02:12:11.673381 [debug] [Thread-3 (]: On test.data_project_1.not_null_stg_mediciones_madrid_nombre_estacion.43047357f2: Close
+[0m02:12:11.675076 [info ] [Thread-3 (]: 9 of 10 PASS not_null_stg_mediciones_madrid_nombre_estacion .................... [[32mPASS[0m in 0.11s]
+[0m02:12:11.676743 [debug] [Thread-3 (]: Finished running node test.data_project_1.not_null_stg_mediciones_madrid_nombre_estacion.43047357f2
+[0m02:12:11.677517 [debug] [Thread-1 (]: SQL status: SELECT 1 in 0.003 seconds
+[0m02:12:11.680824 [debug] [Thread-1 (]: On test.data_project_1.unique_stg_mediciones_madrid_id.d23c45c57c: ROLLBACK
+[0m02:12:11.683325 [debug] [Thread-1 (]: On test.data_project_1.unique_stg_mediciones_madrid_id.d23c45c57c: Close
+[0m02:12:11.686785 [info ] [Thread-1 (]: 10 of 10 PASS unique_stg_mediciones_madrid_id .................................. [[32mPASS[0m in 0.09s]
+[0m02:12:11.689983 [debug] [Thread-1 (]: Finished running node test.data_project_1.unique_stg_mediciones_madrid_id.d23c45c57c
+[0m02:12:11.695779 [debug] [MainThread]: Using postgres connection "master"
+[0m02:12:11.703580 [debug] [MainThread]: On master: BEGIN
+[0m02:12:11.705324 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m02:12:11.713351 [debug] [MainThread]: SQL status: BEGIN in 0.008 seconds
+[0m02:12:11.714622 [debug] [MainThread]: On master: COMMIT
+[0m02:12:11.715490 [debug] [MainThread]: Using postgres connection "master"
+[0m02:12:11.716713 [debug] [MainThread]: On master: COMMIT
+[0m02:12:11.718286 [debug] [MainThread]: SQL status: COMMIT in 0.000 seconds
+[0m02:12:11.719798 [debug] [MainThread]: On master: Close
+[0m02:12:11.720824 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m02:12:11.721996 [debug] [MainThread]: Connection 'test.data_project_1.unique_stg_mediciones_madrid_id.d23c45c57c' was properly closed.
+[0m02:12:11.723088 [debug] [MainThread]: Connection 'test.data_project_1.not_null_stg_mediciones_madrid_fecha_carg.716ed47dcf' was properly closed.
+[0m02:12:11.723995 [debug] [MainThread]: Connection 'test.data_project_1.not_null_stg_mediciones_madrid_id.c139e76515' was properly closed.
+[0m02:12:11.724745 [debug] [MainThread]: Connection 'test.data_project_1.not_null_stg_mediciones_madrid_nombre_estacion.43047357f2' was properly closed.
+[0m02:12:11.725787 [info ] [MainThread]: 
+[0m02:12:11.726877 [info ] [MainThread]: Finished running 8 data tests, 2 view models in 0 hours 0 minutes and 0.88 seconds (0.88s).
+[0m02:12:11.728571 [debug] [MainThread]: Command end result
+[0m02:12:11.776678 [debug] [MainThread]: Wrote artifact WritableManifest to /usr/app/dbt/target/manifest.json
+[0m02:12:11.786523 [debug] [MainThread]: Wrote artifact SemanticManifest to /usr/app/dbt/target/semantic_manifest.json
+[0m02:12:11.804321 [debug] [MainThread]: Wrote artifact RunExecutionResult to /usr/app/dbt/target/run_results.json
+[0m02:12:11.806676 [info ] [MainThread]: 
+[0m02:12:11.808626 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m02:12:11.810432 [info ] [MainThread]: 
+[0m02:12:11.812086 [info ] [MainThread]: Done. PASS=10 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=10
+[0m02:12:11.815085 [debug] [MainThread]: Resource report: {"command_name": "build", "command_success": true, "command_wall_clock_time": 2.337344, "process_in_blocks": "4736", "process_kernel_time": 0.478758, "process_mem_max_rss": "134004", "process_out_blocks": "0", "process_user_time": 2.668488}
+[0m02:12:11.817539 [debug] [MainThread]: Command `dbt build` succeeded at 02:12:11.817318 after 2.34 seconds
+[0m02:12:11.819283 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78530df5bbd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78530df5b790>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7853127e78d0>]}
+[0m02:12:11.820868 [debug] [MainThread]: Flushing usage events
+[0m02:12:12.394543 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m02:19:00.751623 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x758e49c97a50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x758e49c97bd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x758e49c97350>]}
+
+
+============================== 02:19:00.759443 | 75bbe8fd-bcc2-45a0-9f3e-1812c908bfe3 ==============================
+[0m02:19:00.759443 [info ] [MainThread]: Running with dbt=1.10.15
+[0m02:19:00.761272 [debug] [MainThread]: running dbt with arguments {'indirect_selection': 'eager', 'fail_fast': 'False', 'log_cache_events': 'False', 'target_path': 'None', 'invocation_command': 'dbt deps', 'static_parser': 'True', 'version_check': 'True', 'partial_parse': 'True', 'use_colors': 'True', 'quiet': 'False', 'warn_error': 'None', 'debug': 'False', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'send_anonymous_usage_stats': 'True', 'use_experimental_parser': 'False', 'printer_width': '80', 'empty': 'None', 'write_json': 'True', 'profiles_dir': '/usr/app/dbt', 'log_format': 'default', 'log_path': '/usr/app/dbt/logs', 'introspect': 'True', 'cache_selected_only': 'False'}
+[0m02:19:00.863803 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '75bbe8fd-bcc2-45a0-9f3e-1812c908bfe3', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x758e4a0ad310>]}
+[0m02:19:00.910547 [info ] [MainThread]: Warning: No packages were found in packages.yml
+[0m02:19:00.944033 [info ] [MainThread]: Warning: No packages were found in packages.yml
+[0m02:19:00.949602 [debug] [MainThread]: Resource report: {"command_name": "deps", "command_success": true, "command_wall_clock_time": 0.26582316, "process_in_blocks": "14744", "process_kernel_time": 0.572679, "process_mem_max_rss": "104444", "process_out_blocks": "0", "process_user_time": 1.488159}
+[0m02:19:00.952250 [debug] [MainThread]: Command `dbt deps` succeeded at 02:19:00.952012 after 0.27 seconds
+[0m02:19:00.954836 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x758e49c8d110>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x758e49c96350>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x758e49c971d0>]}
+[0m02:19:00.957445 [debug] [MainThread]: Flushing usage events
+[0m02:19:01.594519 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m02:19:03.459324 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78bd0386fd10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78bd03c885d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78bd0386ca50>]}
+
+
+============================== 02:19:03.465639 | 9b07ddb1-a00d-46a8-abbb-227a794b4aaf ==============================
+[0m02:19:03.465639 [info ] [MainThread]: Running with dbt=1.10.15
+[0m02:19:03.472360 [debug] [MainThread]: running dbt with arguments {'fail_fast': 'False', 'no_print': 'None', 'cache_selected_only': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'log_format': 'default', 'empty': 'False', 'use_experimental_parser': 'False', 'static_parser': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'debug': 'False', 'invocation_command': 'dbt build --target dev', 'use_colors': 'True', 'write_json': 'True', 'log_path': '/usr/app/dbt/logs', 'warn_error': 'None', 'profiles_dir': '/usr/app/dbt', 'send_anonymous_usage_stats': 'True', 'printer_width': '80', 'quiet': 'False', 'target_path': 'None', 'introspect': 'True', 'indirect_selection': 'eager', 'version_check': 'True'}
+[0m02:19:03.632090 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '9b07ddb1-a00d-46a8-abbb-227a794b4aaf', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78bd0251ccd0>]}
+[0m02:19:03.722825 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '9b07ddb1-a00d-46a8-abbb-227a794b4aaf', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78bd06596f10>]}
+[0m02:19:03.725359 [info ] [MainThread]: Registered adapter: postgres=1.9.1
+[0m02:19:03.793732 [debug] [MainThread]: checksum: 0f45fdd67cc51382d6521f874e757e7afa214ac7bb0178b13f1819cbe813499c, vars: {}, profile: , target: dev, version: 1.10.15
+[0m02:19:04.032694 [error] [MainThread]: Encountered an error:
+Parsing Error
+  Error reading data_project_1: marts/schema.yml - Runtime Error
+    Contents of file 'models/marts/schema.yml' are not valid. Dictionary expected.
+[0m02:19:04.035063 [debug] [MainThread]: Resource report: {"command_name": "build", "command_success": false, "command_wall_clock_time": 0.64569426, "process_in_blocks": "2808", "process_kernel_time": 0.280422, "process_mem_max_rss": "114292", "process_out_blocks": "0", "process_user_time": 1.617511}
+[0m02:19:04.036826 [debug] [MainThread]: Command `dbt build` failed at 02:19:04.036674 after 0.65 seconds
+[0m02:19:04.037956 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78bd0381fd10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78bd01916350>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78bd080771d0>]}
+[0m02:19:04.039441 [debug] [MainThread]: Flushing usage events
+[0m02:19:04.575159 [debug] [MainThread]: An error was encountered while trying to flush usage events
