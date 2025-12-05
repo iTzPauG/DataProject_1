@@ -2,6 +2,7 @@ import time
 import os
 import logging
 import requests
+from pull_db_gsheets import exportar_a_drive
 
 # =======================================================
 # VARIABLES GLOBALES
@@ -215,6 +216,7 @@ if __name__ == "__main__":
         records = fetch_data()
         if records:
             post_api(records)
+            exportar_a_drive('mediciones')
         else:
             logging.warning("[Madrid] ⚠️ No se obtuvieron registros.")
 
