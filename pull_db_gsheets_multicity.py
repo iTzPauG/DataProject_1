@@ -26,7 +26,7 @@ def exportar_a_google():
         # conexión con la DB
         with psycopg.connect(host=host, port=port, dbname=db_name, user=db_user, password=db_pass) as conn:
             with conn.cursor() as cur:
-                cur.execute("SELECT * FROM estaciones")
+                cur.execute("SELECT * FROM mediciones")
                 
                 # obtener nombres de columnas y filas
                 encabezados = [desc[0] for desc in cur.description]
@@ -39,7 +39,7 @@ def exportar_a_google():
         # conexión con google
         gc = gspread.service_account(filename=archivo_llave)
         hoja = gc.open(nombre_hoja)
-        pestana = hoja.worksheet("estaciones")
+        pestana = hoja.worksheet("mediciones")
 
         #Limpiamos para JSON
         datos_listos = []
