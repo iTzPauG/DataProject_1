@@ -1,5 +1,2 @@
+.env
 credentials.json
-dbt/target/*
-dbt/logs/*
-!dbt/target/.gitkeep
-!dbt/logs/.gitkeep

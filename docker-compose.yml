@@ -194,13 +194,13 @@ services:
       context: .
       dockerfile: dockerfile
     pull_policy: build
-    container_name: dashboard_consumer
+    container_name: dashboard_alertas
     env_file: .env
     depends_on:
       - consumer
     ports:
       - "8050:8050"
-    command: ["python", "dashboard_consumer.py"]
+    command: ["python", "dashboard_alertas.py"]
     restart: unless-stopped
     volumes:
           - shared_data:/shared

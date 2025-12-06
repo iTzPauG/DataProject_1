@@ -60,7 +60,7 @@ def enviar_alerta_poblacion(mensaje): # Manda la alerta a Kafka (alertas_poblaci
         value=json.dumps(mensaje, default=json_serializer, ensure_ascii=False).encode('utf-8')
     )
     producer.flush()
-    print(f"✅ Alerta enviada al topic 'alertas_poblacion'")
+    print(f"✅ Alerta enviada al topic 'alertas_confirmadas'")
 
 def enviar_alerta_CECOPI(mensaje): # Manda la alerta a Kafka (alertas_CECOPI))
     producer.produce(
@@ -68,7 +68,7 @@ def enviar_alerta_CECOPI(mensaje): # Manda la alerta a Kafka (alertas_CECOPI))
         value=json.dumps(mensaje, ensure_ascii=False).encode('utf-8')
     )
     producer.flush()
-    print(f"✅ Alerta enviada al topic 'alertas_CECOPI'")
+    print(f"✅ Alerta enviada al topic 'alertas_confirmadas'")
 
 
 ### Lógica principal
@@ -90,21 +90,14 @@ def revisar_calidad_aire():
 
         for sensor in sensores:
             mensaje = {}
-            nombre = sensor.get('nombre_estacion')
-            valor_no2 = sensor.get('no2')
-            valor_o3 = sensor.get('o3')
-            valor_pm10 = sensor.get('pm10')
-            valor_pm25 = sensor.get('pm25')
+            nombre = sensor.get('nombre_estacion')  # Cambiado de 'nombre' a 'nombre_estacion'
+            valor = sensor.get('no2')
             city = sensor.get('city')
 
-            # Si no hay nombre, saltamos este sensor
-            if not nombre:
-                print(f"⚠️ Sensor sin nombre, se omite.")
+            # Si no hay valor o nombre, saltamos este sensor
+            if valor is None or not nombre:
+                print(f"⚠️ Datos incompletos para el sensor {nombre}, se omite.")
                 continue
-
-            # Si no hay valor de NO2, usamos 0 para la lógica de alertas
-            if valor_no2 is None:
-                valor_no2 = 0
 
             # Inicializamos el estado de la estación si es la primera vez que la vemos
             if nombre not in estado_estaciones:
@@ -112,24 +105,11 @@ def revisar_calidad_aire():
 
             estado = estado_estaciones[nombre]
             
-            # Datos base del mensaje (siempre incluidos)
-            datos_base = {
-                "estacion": nombre,
-                "city": city,
-                "nivel_no2": valor_no2,
-                "nivel_o3": valor_o3,
-                "nivel_pm10": valor_pm10,
-                "nivel_pm25": valor_pm25,
-                "lon": sensor.get('lon'),
-                "lat": sensor.get('lat'),
-                "fecha_carg": sensor.get('fecha_carg'),
-                "fecha_envio": time.ctime()
-            }
 
             ##### Lógica de la alerta #####
             
             # CASO A: Supera el umbral
-            if valor_no2 > UMBRAL_NO2:
+            if valor > UMBRAL_NO2:
                 # Calculamos cuánto tiempo pasó desde el último aviso
                 tiempo_pasado = ahora - estado["ultimo_aviso"]
                 
@@ -138,22 +118,34 @@ def revisar_calidad_aire():
                     print("-" * 40)
                     if estado["activa"]:
                         mensaje = {
-                            **datos_base,
+                            "estacion": nombre,
+                            "city": city,
                             "tipo_aviso": "Recordatorio",
+                            "nivel_no2": valor,
                             "alerta_activa": True,
-                            "texto": f"Recordatorio: El nivel de NO2 en {nombre} ({city}) sigue alto: {valor_no2} µg/m³.",
+                            "texto": f"Recordatorio: El nivel de NO2 en {nombre} ({city}) sigue alto: {valor} µg/m³.",
+                            "lon": sensor.get('lon'),
+                            "lat": sensor.get('lat'),
+                            "fecha_carg": sensor.get('fecha_carg'),
+                            "fecha_envio": time.ctime()
                         }
                         print(f"⏰ RECORDATORIO DIARIO en {nombre} a las {time.ctime()}")
                     else:
                         mensaje = {
-                            **datos_base,
+                            "estacion": nombre,
+                            "city": city,
                             "tipo_aviso": "Activation",
+                            "nivel_no2": valor,
                             "alerta_activa": True,
-                            "texto": f"ALERTA: El nivel de NO2 en {nombre} ({city}) ha subido por encima del límite seguro. Valor actual: {valor_no2} µg/m³.",
+                            "texto": f"ALERTA: El nivel de NO2 en {nombre} ({city}) ha subido por encima del límite seguro. Valor actual: {valor} µg/m³.",
+                            "lon": sensor.get('lon'),
+                            "lat": sensor.get('lat'),
+                            "fecha_carg": sensor.get('fecha_carg'),
+                            "fecha_envio": time.ctime()
                         }
                         print(f"🚨 NUEVA ALERTA en {nombre}. Fecha de envío:{time.ctime()}")
                     
-                    print(f"   NO2: {valor_no2} µg/m³ | O3: {valor_o3} µg/m³ | PM10: {valor_pm10} µg/m³ | PM2.5: {valor_pm25} µg/m³")
+                    print(f"   Nivel NO2: {valor} µg/m³ (Límite: {UMBRAL_NO2})")
                     print("-" * 40)
                     
                     # Actualizamos el estado
@@ -165,19 +157,24 @@ def revisar_calidad_aire():
                 # Solo avisamos si antes ESTABA activa (la situación ha mejorado)
                 if estado["activa"]:
                     mensaje = {
-                        **datos_base,
-                        "tipo_aviso": "Deactivation",
-                        "alerta_activa": False,
-                        "texto": f"ALERTA: El nivel de NO2 en {nombre} ({city}) se ha restablecido a niveles seguros. Valor actual: {valor_no2} µg/m³.",
+                            "estacion": nombre,
+                            "city": city,
+                            "tipo_aviso": "Deactivation",
+                            "nivel_no2": valor,
+                            "alerta_activa": False,
+                            "texto": f"ALERTA: El nivel de NO2 en {nombre} ({city}) se ha restablecido a niveles seguros. Valor actual: {valor} µg/m³.",
+                            "lon": sensor.get('lon'),
+                            "lat": sensor.get('lat'),
+                            "fecha_carg": sensor.get('fecha_carg'),
+                            "fecha_envio": time.ctime()
                     }
                     print(f"✅ NIVEL RESTABLECIDO en {nombre}")
-                    print(f"   NO2: {valor_no2} µg/m³ | O3: {valor_o3} µg/m³ | PM10: {valor_pm10} µg/m³ | PM2.5: {valor_pm25} µg/m³")
+                    print(f"   El nivel ha bajado a {valor} µg/m³.")
 
                     estado["activa"] = False
-                    
             if mensaje:
                 enviar_alerta_poblacion(mensaje)
-                logging.info(f"Mensaje enviado para {nombre}")
+                logging.info(f"Mensaje {mensaje} enviado")
             else:
                 logging.debug("Sin cambios de estado para %s", nombre)
 

@@ -9,4 +9,4 @@ data_project_1:      # <-- Debe coincidir con "profile" en dbt_project.yml
       user: postgres
       password: postgres
       dbname: data_project_1
-      schema: analytics
+      schema: public
