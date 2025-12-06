@@ -100,6 +100,8 @@ if __name__ == "__main__":
         if records:
             post_api(records)
             exportar_a_drive('mediciones')
+            exportar_a_drive('mart_monthly_promedio')
+            exportar_a_drive('mart_hourly')
         else:
             logging.warning("⚠️ No se obtuvieron registros de la API externa.")
 
