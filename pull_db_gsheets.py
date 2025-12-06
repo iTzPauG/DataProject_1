@@ -30,6 +30,7 @@ def exportar_a_drive(tab):
                 # obtener nombres de columnas y filas
                 encabezados = [desc[0] for desc in cur.description]
                 datos_raw = cur.fetchall()
+                contenido_final = [encabezados] + list(datos_raw)
 
         print(f"{len(datos_raw)} registros encontrados")
 
@@ -58,8 +59,9 @@ def exportar_a_drive(tab):
 
         # limpiar y escribir
         pestana.clear()
-        pestana.append_row(encabezados)
-        pestana.append_rows(datos_listos)
+        # pestana.append_row(encabezados)
+        # pestana.append_rows(datos_listos)
+        pestana.update(range_name='A1', values=contenido_final)
 
         print(f"✅Hoja actualizada correctamente con la tabla {tab}.")
 
