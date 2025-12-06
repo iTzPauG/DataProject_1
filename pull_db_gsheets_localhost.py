@@ -73,4 +73,4 @@ def exportar_a_drive(tab):
         print(f"❌ Error: {e}")
 
 if __name__ == "__main__":
-    exportar_a_drive('estaciones')
+    exportar_a_drive('mart_monthly_promedio')
