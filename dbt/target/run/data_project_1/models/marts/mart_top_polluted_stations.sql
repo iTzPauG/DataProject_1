@@ -2,7 +2,7 @@
   
     
 
-  create  table "data_project_1"."analytics"."mart_top_polluted_stations__dbt_tmp"
+  create  table "data_project_1"."public"."mart_top_polluted_stations__dbt_tmp"
   
   
     as
@@ -12,7 +12,7 @@
 
 with daily_data as (
     select *
-    from "data_project_1"."analytics"."int_daily_avg"
+    from "data_project_1"."public"."int_daily_avg"
 ),
 
 ranked as (

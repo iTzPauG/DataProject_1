@@ -2,7 +2,7 @@
   
     
 
-  create  table "data_project_1"."analytics"."mart_hourly__dbt_tmp"
+  create  table "data_project_1"."public"."mart_hourly__dbt_tmp"
   
   
     as
@@ -12,7 +12,7 @@
 
 with hourly_data as (
     select * 
-    from "data_project_1"."analytics"."int_hourly_avg"
+    from "data_project_1"."public"."int_hourly_avg"
 )
 
 select

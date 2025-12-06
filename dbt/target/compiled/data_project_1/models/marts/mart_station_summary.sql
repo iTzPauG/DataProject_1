@@ -1,9 +1,9 @@
 
 
 with all_data as (
-    select * from "data_project_1"."analytics"."stg_mediciones_madrid"
+    select * from "data_project_1"."public"."stg_mediciones_madrid"
     union all
-    select * from "data_project_1"."analytics"."stg_mediciones_valencia"
+    select * from "data_project_1"."public"."stg_mediciones_valencia"
 ),
 
 daily_avg as (

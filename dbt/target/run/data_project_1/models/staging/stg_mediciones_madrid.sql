@@ -1,5 +1,5 @@
 
-  create view "data_project_1"."analytics"."stg_mediciones_madrid__dbt_tmp"
+  create view "data_project_1"."public"."stg_mediciones_madrid__dbt_tmp"
     
     
   as (

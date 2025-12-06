@@ -1,14 +1,14 @@
 
-  create view "data_project_1"."analytics"."int_monthly_avg__dbt_tmp"
+  create view "data_project_1"."public"."int_monthly_avg__dbt_tmp"
     
     
   as (
     
 
 with all_data as (
-    select * from "data_project_1"."analytics"."stg_mediciones_madrid"
+    select * from "data_project_1"."public"."stg_mediciones_madrid"
     union all
-    select * from "data_project_1"."analytics"."stg_mediciones_valencia"
+    select * from "data_project_1"."public"."stg_mediciones_valencia"
 )
 
 select

@@ -2,7 +2,7 @@
   
     
 
-  create  table "data_project_1"."analytics"."mart_fact_air_quality__dbt_tmp"
+  create  table "data_project_1"."public"."mart_fact_air_quality__dbt_tmp"
   
   
     as
@@ -11,13 +11,13 @@
     
 
 with daily_data as (
-    select * from "data_project_1"."analytics"."int_daily_avg"
+    select * from "data_project_1"."public"."int_daily_avg"
 ),
 weekly_data as (
-    select * from "data_project_1"."analytics"."mart_weekly_extended"
+    select * from "data_project_1"."public"."mart_weekly_extended"
 ),
 monthly_data as (
-    select * from "data_project_1"."analytics"."int_monthly_avg"
+    select * from "data_project_1"."public"."int_monthly_avg"
 )
 
 select
