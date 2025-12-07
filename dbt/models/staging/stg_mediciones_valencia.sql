@@ -14,8 +14,15 @@ select
     cast(pm25 as numeric) as pm25,
     fecha_carg,
     created_at, 
-    date_trunc('hour', fecha_carg) as fecha_hour,
-    date_trunc('day', fecha_carg) as fecha_day,
+    
+    -- SOLO HORA
+    strftime(fecha_carg, '%H:%M:%S') as fecha_hour,
+
+    -- SOLO FECHA (si la quieres)
+    cast(fecha_carg as date) as fecha_day,
+
+    -- Mes (si la necesitas)
     date_trunc('month', fecha_carg) as fecha_month
+
 from {{ source('raw', 'mediciones') }}
-where city='valencia'
+where city='valencia';

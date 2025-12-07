@@ -15,11 +15,19 @@ select
     cast(o3 as numeric) as o3,
     cast(pm10 as numeric) as pm10,
     cast(pm25 as numeric) as pm25,
-    fecha_carg,
+    fecha_day,
+    fecha_hour,
     created_at, 
-    date_trunc('hour', fecha_carg) as fecha_hour,
-    date_trunc('day', fecha_carg) as fecha_day,
+    
+    -- SOLO HORA
+    strftime(fecha_carg, '%H:%M:%S') as fecha_hour,
+
+    -- SOLO FECHA
+    cast(fecha_carg as date) as fecha_day,
+
+    -- MES (como primer día del mes)
     date_trunc('month', fecha_carg) as fecha_month
+
 from "data_project_1"."public"."mediciones"
-where city='madrid'
+where city='madrid';
   );
