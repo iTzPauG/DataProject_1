@@ -1,9 +1,12 @@
+
+
 with madrid as (
     select
         'madrid' as city,
         nombre_estacion,
         cast(fecha_carg as date) as fecha_day,
         to_char(fecha_carg, 'HH24:MI:SS') as fecha_hour,
+        fecha_carg,  -- <-- añadimos la columna original
         cast(no2 as numeric) as no2,
         cast(o3 as numeric) as o3,
         cast(pm10 as numeric) as pm10,
@@ -17,6 +20,7 @@ valencia as (
         nombre_estacion,
         cast(fecha_carg as date) as fecha_day,
         to_char(fecha_carg, 'HH24:MI:SS') as fecha_hour,
+        fecha_carg,  -- <-- añadimos la columna original
         cast(no2 as numeric) as no2,
         cast(o3 as numeric) as o3,
         cast(pm10 as numeric) as pm10,

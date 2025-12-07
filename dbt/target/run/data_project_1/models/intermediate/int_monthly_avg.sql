@@ -1,15 +1,23 @@
 
-  create view "data_project_1"."public"."int_monthly_avg__dbt_tmp"
+  
     
+
+  create  table "data_project_1"."public"."int_monthly_avg__dbt_tmp"
+  
+  
+    as
+  
+  (
     
-  as (
-    with madrid as (
+
+with madrid as (
     select
         'madrid' as city,
         nombre_estacion,
         cast(fecha_carg as date) as fecha_day,
         date_trunc('month', fecha_carg)::date as fecha_month,
         to_char(fecha_carg, 'HH24:MI:SS') as fecha_hour,
+        fecha_carg,  -- <-- añadimos la columna original
         cast(no2 as numeric) as no2,
         cast(o3 as numeric) as o3,
         cast(pm10 as numeric) as pm10,
@@ -24,6 +32,7 @@ valencia as (
         cast(fecha_carg as date) as fecha_day,
         date_trunc('month', fecha_carg)::date as fecha_month,
         to_char(fecha_carg, 'HH24:MI:SS') as fecha_hour,
+        fecha_carg,  -- <-- añadimos la columna original
         cast(no2 as numeric) as no2,
         cast(o3 as numeric) as o3,
         cast(pm10 as numeric) as pm10,
@@ -37,3 +46,4 @@ union all
 select *
 from valencia
   );
+  

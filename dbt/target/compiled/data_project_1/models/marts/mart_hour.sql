@@ -6,19 +6,21 @@ with hourly_data as (
         nombre_estacion,
         fecha_day,
         fecha_hour,
+        fecha_carg,
         avg(no2)  as no2_avg,
         avg(o3)   as o3_avg,
         avg(pm10) as pm10_avg,
         avg(pm25) as pm25_avg
     from "data_project_1"."public"."int_hourly_avg"
-    group by city, nombre_estacion, fecha_day, fecha_hour
+    group by city, nombre_estacion, fecha_day, fecha_hour, fecha_carg
 )
 
 select
     city,
     nombre_estacion,
     fecha_day,
-    to_char(fecha_hour::time, 'HH24:MI') as fecha_hour,
+    fecha_hour,  -- formato HH24:MI:SS
+    fecha_carg,
     coalesce(no2_avg,0)  as no2_avg,
     coalesce(o3_avg,0)   as o3_avg,
     coalesce(pm10_avg,0) as pm10_avg,
