@@ -24,6 +24,8 @@ COPY dashboard_alertas.py .
 COPY api.py .
 COPY pull_db_gsheets.py .
 COPY credentials.json .
+COPY ingestas/ingesta_madrid.py .
+COPY ingestas/ingesta_valencia.py .
 
 # Instalar dependencias Python
 RUN pip install --no-cache-dir --upgrade pip \
