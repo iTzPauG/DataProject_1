@@ -12,8 +12,15 @@ select
     cast(pm25 as numeric) as pm25,
     fecha_carg,
     created_at, 
-    date_trunc('hour', fecha_carg) as fecha_hour,
-    date_trunc('day', fecha_carg) as fecha_day,
+
+    -- SOLO HORA
+    to_char(fecha_carg, 'HH24:MI:SS') as fecha_hour,
+
+    -- SOLO FECHA
+    cast(fecha_carg as date) as fecha_day,
+
+    -- Mes
     date_trunc('month', fecha_carg) as fecha_month
+
 from "data_project_1"."public"."mediciones"
-where city='valencia'
+where city = 'valencia'
