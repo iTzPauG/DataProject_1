@@ -22,6 +22,8 @@ COPY producer.py .
 COPY kafka_consumer.py .
 COPY dashboard_alertas.py .
 COPY api.py .
+COPY pull_db_gsheets.py .
+COPY credentials.json .
 
 # Instalar dependencias Python
 RUN pip install --no-cache-dir --upgrade pip \
