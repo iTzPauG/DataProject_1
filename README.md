@@ -41,7 +41,7 @@ La arquitectura implementa un **sistema híbrido** que maneja el **análisis his
 | Componente | Justificación Estratégica Extendida | Archivos de Evidencia |
 | :--- | :--- | :--- |
 | **Bus de Eventos Kafka** | Es la **espina dorsal del *streaming***. Ofrece **desacoplamiento total**, **tolerancia a fallos** y capacidad para manejar **picos de alta concurrencia** (recibe "Nuevos Datos" vía CDC). | `/kafka/docker-compose.yml`, `producer.py`, `kafka_consumer.py`. |
-| **Dashboard de Alertas** | Componente dedicado a la **baja latencia**. Muestra **alertas casi instantáneamente**, crucial para el monitoreo operacional. | `dashboard_alertas.py`. |
+| **Dashboard de Alertas (Plotly)** | Componente dedicado a la **baja latencia**. Muestra **alertas casi instantáneamente**, crucial para el monitoreo operacional. | `dashboard_alertas.py`. |
 
 ### C. Transformación Analítica y Modelado (dbt) 🛠️
 
@@ -50,35 +50,41 @@ La arquitectura implementa un **sistema híbrido** que maneja el **análisis his
 | **dbt (Data Build Tool)** | Implementa el paradigma **ELT**. Permite **versionar** el código SQL en Git y realizar **pruebas automatizadas** de calidad de datos, garantizando la **confiabilidad** y **auditoría** del dato. | Estructura `/dbt`, pruebas `unique_...sql`. |
 | **Estructura en Capas** | Adopción del estándar **Staging → Intermediate → Marts** para crear un **linaje de datos claro** y modular, optimizando la mantenibilidad. | Directorios `/staging`, `/intermediate`, `/marts`. |
 
-## 3. 💾 Modelos de Datos: Diseño del Data Warehouse
+## 3. 💾 VISUALIZACIÓN DE LOS DATOS.
 
-El Data Warehouse de consumo se basa estrictamente en un conjunto de **Tablas de Hechos Pre-agregadas** (`mart_hourly` y `mart_monthly_promedio`) diseñadas para la máxima velocidad de consulta en Tableau BI.
+### A. DASHBOARD DE LA CALIDAD DEL AIRE
 
-### A. Tablas de Hechos 
+Los datos de este archivo provienen de la tabla mediciones que se encuentra en la base de datos Data_Project_1. 
 
-Ambas tablas comparten la dimensión de **Estación** (`city`, `nombre_estacion`).
+**Variables empleadas**:
 
-#### 1. Tabla de Hechos Horaria: `mart_hourly`
-
-Soporta análisis de alta granularidad y la lógica de clasificación y ranking.
-
-| Atributo | Rol Analítico | Definición / Lógica |
+| Columna | Descripción | Ejemplo de Dato |
 | :--- | :--- | :--- |
-| **`fecha_hour`** | Dimensión | Granularidad horaria. |
-| `no2_avg` a `pm25_avg` | Métrica Base | Promedios de contaminantes por hora. |
-| **`indice_contaminacion`** | Métrica Calculada | Índice de contaminación por hora, promedio de los cuatro contaminantes. |
-| **`nivel_no2`** | Métrica Clasificada | Clasificación de NO2 según umbrales (ej. 'Muy Alto', 'Alto', 'Moderado', 'Bajo'). |
-| **`ranking_pm25`** | Métrica Calculada | Ranking de PM2.5 por hora dentro de cada ciudad, optimizado para el top N en BI. |
+| **Lat, Lon** | Coordenadas geográficas de la estación (latitud y longitud). | 40.4514734, -3.6773491 |
+| **Id** | Identificador único de la estación. | 1813 |
+| **Nombre estación** | Nombre descriptivo de la estación de monitoreo. | Avda. Ramón y Cajal |
+| **Ciudad** | Ciudad donde se encuentra la estación. | Madrid |
+| **is_latest** | Indica si es el dato más reciente (`True` o `False`). | True |
+| **No2** | Concentración de **Dióxido de Nitrógeno** $(\text{NO}_2)$ en $\mu g/m^3$. | 9 |
+| **O3** | Concentración de **Ozono** $(\text{O}_3)$ en $\mu g/m^3$. | 49 |
+| **Pm10, Pm25** | Concentración de **Partículas en Suspensión** (diámetros $\le 10\mu m$ y $\le 2.5\mu m$). | 6, 4 |
 
-#### 2. Tabla de Hechos Mensual: `mart_monthly_promedio`
+**Objetivo de la visualización**
 
-Soporta análisis de tendencias a largo plazo y estacionalidad.
+El objetivo principal es conseguir un mapa interactivo que permita a los usuarios: 
+1. Identificar geográficamente todas las estaciones de monitoreo. 
+2. Evaluar rápidamente el nivel de un contaminante clave mediante la codifcación por color con marcadores. 
+3. Consultar los calores exactos de todos los contaminantes y los detalles de la estación al hacer clic sobre el marcador. 
 
-| Atributo | Rol Analítico | Definición / Lógica |
+**Mapeo de colores**:
+
+| Rango de contaminante | Color | Significado |
 | :--- | :--- | :--- |
-| **`fecha_month`** | Dimensión | Granularidad mensual. |
-| `no2_avg` a `pm25_avg` | Métrica Base | Promedios de contaminantes por mes. |
-| **`contaminacion_promedio`** | Métrica Calculada | Promedio general de los cuatro contaminantes para el mes. |
+| Bajo | Verde | Buena Calidad |
+| Medio | Amarillo | Calidad Aceptable | 
+| Alto | Rojo | Mala Calidad |
+
+
 
 ## 4. 🔎 Origen de Datos y Flujo de Entrega (BI)
 
@@ -150,3 +156,4 @@ Para detener todos los servicios y eliminar los contenedores (usar `-v` para bor
 docker-compose down
 ```
 # docker-compose down -v  (Si quieres borrar los datos de Postgres)
+
