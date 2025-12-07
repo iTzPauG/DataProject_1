@@ -12,18 +12,17 @@ select
     cast(o3 as numeric) as o3,
     cast(pm10 as numeric) as pm10,
     cast(pm25 as numeric) as pm25,
-    fecha_day,
-    fecha_hour,
+    fecha_carg,
     created_at, 
-    
+
     -- SOLO HORA
-    strftime(fecha_carg, '%H:%M:%S') as fecha_hour,
+    to_char(fecha_carg, 'HH24:MI:SS') as fecha_hour,
 
     -- SOLO FECHA
     cast(fecha_carg as date) as fecha_day,
 
-    -- MES (como primer día del mes)
+    -- Mes
     date_trunc('month', fecha_carg) as fecha_month
 
 from {{ source('raw', 'mediciones') }}
-where city='madrid';
+where city = 'madrid'

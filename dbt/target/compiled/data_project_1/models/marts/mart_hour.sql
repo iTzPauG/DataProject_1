@@ -1,4 +1,4 @@
-{{ config(materialized='table') }}
+
 
 with hourly_data as (
     select
@@ -10,7 +10,7 @@ with hourly_data as (
         avg(o3)   as o3_avg,
         avg(pm10) as pm10_avg,
         avg(pm25) as pm25_avg
-    from {{ ref('int_hourly_avg') }}
+    from "data_project_1"."public"."int_hourly_avg"
     group by city, nombre_estacion, fecha_day, fecha_hour
 )
 

@@ -19,43 +19,7 @@ models:
       - name: pm25_avg
         description: "Promedio horario de PM2.5."
 
-- name: int_daily_avg
-  description: "Promedios diarios de contaminantes por ciudad y estación."
-  columns:
-      - name: city
-        description: "Ciudad de la estación."
-      - name: nombre_estacion
-        description: "Nombre de la estación."
-      - name: fecha_day
-        description: "Fecha truncada al día."
-      - name: no2_avg
-        description: "Promedio diario de NO2."
-      - name: o3_avg
-        description: "Promedio diario de O3."
-      - name: pm10_avg
-        description: "Promedio diario de PM10."
-      - name: pm25_avg
-        description: "Promedio diario de PM2.5."
 
-- name: int_station_summary
-  description: "Resumen histórico por estación y ciudad, con promedio de contaminantes y rango de fechas."
-  columns:
-      - name: city
-        description: "Ciudad de la estación."
-      - name: nombre_estacion
-        description: "Nombre de la estación."
-      - name: no2_avg
-        description: "Promedio histórico de NO2."
-      - name: o3_avg
-        description: "Promedio histórico de O3."
-      - name: pm10_avg
-        description: "Promedio histórico de PM10."
-      - name: pm25_avg
-        description: "Promedio histórico de PM2.5."
-      - name: first_measurement
-        description: "Fecha de la primera medición registrada."
-      - name: last_measurement
-        description: "Fecha de la última medición registrada."
 
 - name: int_monthly_avg
   description: "Promedios mensuales de contaminantes por ciudad y estación."

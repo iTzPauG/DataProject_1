@@ -3,24 +3,35 @@
     
     
   as (
-    with all_data as (
-    select * from "data_project_1"."public"."stg_mediciones_madrid"
-    union all
-    select * from "data_project_1"."public"."stg_mediciones_valencia"
+    with madrid as (
+    select
+        'madrid' as city,
+        nombre_estacion,
+        cast(fecha_carg as date) as fecha_day,
+        to_char(fecha_carg, 'HH24:MI:SS') as fecha_hour,
+        cast(no2 as numeric) as no2,
+        cast(o3 as numeric) as o3,
+        cast(pm10 as numeric) as pm10,
+        cast(pm25 as numeric) as pm25
+    from "data_project_1"."public"."stg_mediciones_madrid"
+),
+
+valencia as (
+    select
+        'valencia' as city,
+        nombre_estacion,
+        cast(fecha_carg as date) as fecha_day,
+        to_char(fecha_carg, 'HH24:MI:SS') as fecha_hour,
+        cast(no2 as numeric) as no2,
+        cast(o3 as numeric) as o3,
+        cast(pm10 as numeric) as pm10,
+        cast(pm25 as numeric) as pm25
+    from "data_project_1"."public"."stg_mediciones_valencia"
 )
 
-select
-    city,
-    nombre_estacion,
-    fecha_hour,          -- fecha sin hora
-    fecha_day,           -- hora sin fecha
-
-    avg(no2) as no2_avg,
-    avg(o3) as o3_avg,
-    avg(pm10) as pm10_avg,
-    avg(pm25) as pm25_avg
-
-from all_data
-group by 1,2,3,4
-order by solo_hora, city, nombre_estacion;
+select *
+from madrid
+union all
+select *
+from valencia
   );
