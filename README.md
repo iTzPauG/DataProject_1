@@ -4,6 +4,13 @@
 
 Este proyecto se basa en el diseño e implementación de una **arquitectura moderna de Ingeniería de Datos (Data Engineering)** para la ingesta, almacenamiento, transformación y explotación de datos de la calidad del aire procedentes de los portales de Datos Abiertos de Madrid y Valencia.
 
+## 0. EQUIPO:
+1. PAU GARCIA
+
+2. DANIEL ADAM
+
+3. GEMMA BALAGUER
+
 ## 1. 🎯 Presentación y Objetivos del Proyecto
 
 El Data Project simula un entorno de trabajo real, requiriendo la integración de datos públicos, diseño arquitectónico y toma de decisiones técnicas para abordar la monitorización de la calidad del aire.
@@ -47,7 +54,7 @@ La arquitectura implementa un **sistema híbrido** que maneja el **análisis his
 
 El Data Warehouse de consumo se basa estrictamente en un conjunto de **Tablas de Hechos Pre-agregadas** (`mart_hourly` y `mart_monthly_promedio`) diseñadas para la máxima velocidad de consulta en Tableau BI.
 
-### A. Tablas de Hechos (Capa de Consumo Final)
+### A. Tablas de Hechos 
 
 Ambas tablas comparten la dimensión de **Estación** (`city`, `nombre_estacion`).
 
@@ -77,8 +84,6 @@ Soporta análisis de tendencias a largo plazo y estacionalidad.
 
 ### A. Datasets Explorados y Justificación
 
-### A. Datasets Explorados y Justificación
-
 | Dataset | Origen | Decisión | Justificación | URL |
 | :--- | :--- | :--- | :--- | :--- |
 | **Calidad del Aire - Tiempo Real** | API Madrid | **INCLUIDO** | Proporciona los datos horarios necesarios para el **monitoreo en tiempo real**. | `https://ciudadesabiertas.madrid.es/dynamicAPI/API/query/calair_tiemporeal.json?pageSize=5000` |
@@ -97,3 +102,51 @@ Soporta análisis de tendencias a largo plazo y estacionalidad.
 | **`producer.py` / `kafka_consumer.py`** | Streaming | Scripts de envío y recepción de datos por Kafka. |
 | **`/dbt/models`** | Transformación (ELT) | Contiene la lógica SQL de modelado (`staging`, `intermediate`, `marts`). |
 | **`pull_db_gsheets.py`** | Entrega BI | Script de *Reverse ETL* que extrae los *marts* para Tableau. |
+
+## 5. ⚙️ Ejecución del Proyecto
+
+El proyecto está diseñado para una ejecución automatizada de principio a fin usando Docker Compose.
+
+### A. Requisitos
+* Docker Desktop (o Docker Engine y Docker Compose).
+* Acceso a las APIs de datos abiertos (se requiere la configuración de credenciales si aplica, en el archivo `.env`).
+
+### B. Pasos de Ejecución (Comando Único)
+
+Desde el directorio raíz del proyecto:
+
+1.  **Arranque Completo del Pipeline (Batch y Streaming):**
+    Este comando construye las imágenes, lanza la infraestructura (DB, Kafka) y ejecuta automáticamente las ingestas iniciales, la transformación con dbt, y el flujo de streaming (producer, consumer, dashboard).
+
+    ```bash
+    docker-compose up -d --build
+    ```
+
+2.  **Verificación de Servicios:**
+    Asegúrate de que todos los contenedores estén levantados y sanos.
+
+    ```bash
+    docker-compose ps
+    ```
+
+3.  **Monitoreo del Dashboard:**
+    Accede al dashboard de alertas en tiempo real:
+
+    ```
+    Abrir navegador: http://localhost:8050
+    ```
+
+### C. Consulta y Administración
+| Servicio | URL Local | Descripción |
+| :--- | :--- | :--- |
+| **Dashboard** | `http://localhost:8050` | Visualización de alertas de baja latencia. |
+| **Kafka UI (Kafbat)** | `http://localhost:8080` | Monitoreo del flujo de mensajes. |
+| **pgAdmin** | `http://localhost:5050` | Acceso a PostgreSQL (servidor: `db`, puerto: 5432). |
+
+### D. Limpieza
+Para detener todos los servicios y eliminar los contenedores (usar `-v` para borrar también los datos persistentes de la base de datos):
+
+```bash
+docker-compose down
+```
+# docker-compose down -v  (Si quieres borrar los datos de Postgres)
