@@ -9,16 +9,14 @@ import threading
 # =============================================================================
 # CONFIGURACIÓN
 # =============================================================================
-alertas_recibidas = []
-datos_contaminantes = {}
+datos_estaciones = {}
 lock = threading.Lock()
 
-# decidir limites
 LIMITES = {
-    "NO₂": 100,
-    "O₃": 90,
-    "PM10": 25,
-    "PM2.5": 15
+    "NO₂": 40,
+    "O₃": 100,
+    "PM10": 50,
+    "PM2.5": 25
 }
 
 ZONAS_POR_CIUDAD = {
@@ -39,14 +37,35 @@ ZONAS_POR_CIUDAD = {
 }
 
 # =============================================================================
+# FUNCIONES AUXILIARES
+# =============================================================================
+def format_valor(val):
+    """Formatea valor: número con 1 decimal o 'N/D'"""
+    if val is None:
+        return "N/D"
+    return f"{val:.1f}"
+
+def get_valor_grafico(val):
+    """Devuelve valor para gráfico: número o 0 si es None"""
+    return val if val is not None else 0
+
+def tiene_datos(datos):
+    """Verifica si al menos un contaminante tiene datos"""
+    return any(datos.get(k) is not None for k in ["no2", "o3", "pm10", "pm25"])
+
+def contar_gases_disponibles(datos):
+    """Cuenta cuántos gases tienen datos disponibles"""
+    return sum(1 for k in ["no2", "o3", "pm10", "pm25"] if datos.get(k) is not None)
+
+# =============================================================================
 # KAFKA CONSUMER
 # =============================================================================
 def kafka_consumer_thread():
-    global alertas_recibidas, datos_contaminantes
+    global datos_estaciones
     
     conf = {
         'bootstrap.servers': os.getenv('KAFKA_BOOTSTRAP', 'localhost:29092'),
-        'group.id': 'grupo_dashboard_v3',
+        'group.id': 'grupo_dashboard_v5',
         'auto.offset.reset': 'latest'
     }
     
@@ -65,30 +84,29 @@ def kafka_consumer_thread():
             try:
                 datos = json.loads(msg.value().decode('utf-8'))
                 estacion = datos.get("estacion")
-                estado = datos.get("alerta_activa")
-                fecha_carg = datos.get("fecha_carg", "")
+                
+                if not estacion:
+                    continue
                 
                 with lock:
-                    datos_contaminantes[estacion] = {
-                        "no2": datos.get("nivel_no2", 0) or 0,
-                        "o3": datos.get("nivel_o3", 0) or 0,
-                        "pm10": datos.get("nivel_pm10", 0) or 0,
-                        "pm25": datos.get("nivel_pm25", 0) or 0,
-                        "fecha": fecha_carg
+                    datos_estaciones[estacion] = {
+                        "no2": datos.get("nivel_no2"),
+                        "o3": datos.get("nivel_o3"),
+                        "pm10": datos.get("nivel_pm10"),
+                        "pm25": datos.get("nivel_pm25"),
+                        "alerta_activa": datos.get("alerta_activa", False),
+                        "alertas_detalle": datos.get("alertas_detalle", []),
+                        "fecha": datos.get("fecha_carg", ""),
+                        "city": datos.get("city", "")
                     }
                 
-                if estado == True:
-                    print(f"🚨 ALERTA: {estacion}")
-                    with lock:
-                        alertas_recibidas.append({
-                            "estacion": estacion,
-                            "nivel_no2": datos.get("nivel_no2"),
-                            "fecha_carg": fecha_carg
-                        })
-            except:
-                pass
-    except:
-        pass
+                estado = "🔴 ALERTA" if datos.get("alerta_activa") else "🟢 OK"
+                print(f"📨 {estacion}: {estado}")
+                
+            except Exception as e:
+                print(f"Error procesando mensaje: {e}")
+    except Exception as e:
+        print(f"❌ Error consumer: {e}")
     finally:
         consumer.close()
 
@@ -96,28 +114,74 @@ def kafka_consumer_thread():
 # FUNCIONES GRÁFICOS
 # =============================================================================
 def crear_grafico_radar(datos):
-    if not datos:
+    # Sin datos
+    if not datos or not tiene_datos(datos):
         fig = go.Figure()
         fig.update_layout(
-            polar=dict(radialaxis=dict(visible=False), angularaxis=dict(visible=False)),
-            showlegend=False, height=300, margin=dict(l=20, r=20, t=20, b=20),
+            xaxis=dict(visible=False),
+            yaxis=dict(visible=False),
+            showlegend=False, height=280, margin=dict(l=20, r=20, t=20, b=20),
             paper_bgcolor='rgba(0,0,0,0)',
-            annotations=[dict(text="Sin datos", x=0.5, y=0.5, showarrow=False, font=dict(size=16, color="#999"))]
+            plot_bgcolor='rgba(0,0,0,0)',
+            annotations=[dict(text="Esperando datos...", x=0.5, y=0.5, xref="paper", yref="paper", showarrow=False, font=dict(size=14, color="#999"))]
         )
         return fig
     
+    # Verificar si hay suficientes gases para el radar (mínimo 3)
+    gases_disponibles = contar_gases_disponibles(datos)
+    if gases_disponibles <= 2:
+        fig = go.Figure()
+        fig.update_layout(
+            xaxis=dict(visible=False),
+            yaxis=dict(visible=False),
+            showlegend=False, height=280, margin=dict(l=20, r=20, t=20, b=20),
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)',
+            annotations=[
+                dict(
+                    text="📊 Vista radar no disponible",
+                    x=0.5, y=0.55,
+                    xref="paper", yref="paper",
+                    showarrow=False,
+                    font=dict(size=15, color="#555")
+                ),
+                dict(
+                    text=f"Esta estación solo mide {gases_disponibles} {'gases' if gases_disponibles > 1 else 'gas'}",
+                    x=0.5, y=0.42,
+                    xref="paper", yref="paper",
+                    showarrow=False,
+                    font=dict(size=12, color="#888")
+                )
+            ]
+        )
+        return fig
+    
+    # RADAR NORMAL (3+ gases)
     categorias = ["NO₂", "O₃", "PM10", "PM2.5"]
-    valores_raw = [datos.get("no2", 0), datos.get("o3", 0), datos.get("pm10", 0), datos.get("pm25", 0)]
+    valores_raw = [
+        get_valor_grafico(datos.get("no2")),
+        get_valor_grafico(datos.get("o3")),
+        get_valor_grafico(datos.get("pm10")),
+        get_valor_grafico(datos.get("pm25"))
+    ]
+    
+    valores_texto = [
+        format_valor(datos.get("no2")),
+        format_valor(datos.get("o3")),
+        format_valor(datos.get("pm10")),
+        format_valor(datos.get("pm25"))
+    ]
+    
     valores_norm = [min((v / LIMITES[cat]) * 100, 150) if LIMITES[cat] > 0 else 0 for v, cat in zip(valores_raw, categorias)]
     
     categorias_closed = categorias + [categorias[0]]
     valores_closed = valores_norm + [valores_norm[0]]
-    valores_raw_closed = valores_raw + [valores_raw[0]]
+    valores_texto_closed = valores_texto + [valores_texto[0]]
     
     max_pct = max(valores_norm) if valores_norm else 0
     if max_pct < 50:
         color_fill, color_line = "rgba(40, 167, 69, 0.3)", "rgb(40, 167, 69)"
-    elif max_pct < 75:
+    elif max_pct < 100:
         color_fill, color_line = "rgba(255, 193, 7, 0.3)", "rgb(255, 193, 7)"
     else:
         color_fill, color_line = "rgba(220, 53, 69, 0.3)", "rgb(220, 53, 69)"
@@ -126,13 +190,14 @@ def crear_grafico_radar(datos):
     fig.add_trace(go.Scatterpolar(
         r=[100] * 5, theta=categorias_closed, fill='toself',
         fillcolor='rgba(220, 53, 69, 0.1)', line=dict(color='rgba(220, 53, 69, 0.3)', dash='dash'),
-        hoverinfo='skip'
+        hoverinfo='skip', name='Límite'
     ))
     fig.add_trace(go.Scatterpolar(
         r=valores_closed, theta=categorias_closed, fill='toself',
         fillcolor=color_fill, line=dict(color=color_line, width=3),
-        customdata=valores_raw_closed,
-        hovertemplate='<b>%{theta}</b><br>%{customdata:.1f} µg/m³<extra></extra>'
+        customdata=valores_texto_closed,
+        hovertemplate='<b>%{theta}</b><br>%{customdata} µg/m³<extra></extra>',
+        name='Actual'
     ))
     fig.update_layout(
         polar=dict(
@@ -146,38 +211,56 @@ def crear_grafico_radar(datos):
     return fig
 
 def crear_grafico_barras(datos):
-    if not datos:
+    if not datos or not tiene_datos(datos):
         fig = go.Figure()
         fig.update_layout(
             showlegend=False, height=280, margin=dict(l=20, r=20, t=20, b=20),
             paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)',
-            annotations=[dict(text="Sin datos", x=0.5, y=0.5, showarrow=False, font=dict(size=16, color="#999"))]
+            annotations=[dict(text="Esperando datos...", x=0.5, y=0.5, showarrow=False, font=dict(size=14, color="#999"))]
         )
         return fig
     
     categorias = ["NO₂", "O₃", "PM10", "PM2.5"]
-    valores_raw = [datos.get("no2", 0), datos.get("o3", 0), datos.get("pm10", 0), datos.get("pm25", 0)]
+    valores_raw = [
+        get_valor_grafico(datos.get("no2")),
+        get_valor_grafico(datos.get("o3")),
+        get_valor_grafico(datos.get("pm10")),
+        get_valor_grafico(datos.get("pm25"))
+    ]
+    
+    valores_texto = [
+        format_valor(datos.get("no2")),
+        format_valor(datos.get("o3")),
+        format_valor(datos.get("pm10")),
+        format_valor(datos.get("pm25"))
+    ]
+    
     limites = [LIMITES[cat] for cat in categorias]
     
+    # Colores según nivel (gris si no hay datos)
     colores = []
-    for v, lim in zip(valores_raw, limites):
-        pct = (v / lim * 100) if lim > 0 else 0
-        if pct < 50:
-            colores.append("#28a745")
-        elif pct < 100:
-            colores.append("#ffc107")
+    for i, (v, lim) in enumerate(zip(valores_raw, limites)):
+        val_original = [datos.get("no2"), datos.get("o3"), datos.get("pm10"), datos.get("pm25")][i]
+        if val_original is None:
+            colores.append("#cccccc")  # Gris para N/D
         else:
-            colores.append("#dc3545")
+            pct = (v / lim * 100) if lim > 0 else 0
+            if pct < 50:
+                colores.append("#28a745")
+            elif pct < 100:
+                colores.append("#ffc107")
+            else:
+                colores.append("#dc3545")
     
     fig = go.Figure()
     fig.add_trace(go.Bar(
         x=categorias, y=valores_raw, marker_color=colores, name='Actual',
-        text=[f"{v:.1f}" for v in valores_raw], textposition='outside',
-        hovertemplate='<b>%{x}</b><br>%{y:.1f} µg/m³<extra></extra>'
+        text=valores_texto, textposition='outside',
+        hovertemplate='<b>%{x}</b><br>%{text} µg/m³<extra></extra>'
     ))
     fig.add_trace(go.Scatter(
-        x=categorias, y=limites, mode='markers+lines', name='Límite OMS',
-        line=dict(color='#dc3545', width=2, dash='dash'), marker=dict(size=6, symbol='diamond')
+        x=categorias, y=limites, mode='markers+lines', name='Límite',
+        line=dict(color="#66181f", width=2, dash='dash'), marker=dict(size=6, symbol='diamond')
     ))
     fig.update_layout(
         yaxis=dict(title="µg/m³", gridcolor='rgba(0,0,0,0.1)'),
@@ -188,7 +271,7 @@ def crear_grafico_barras(datos):
     return fig
 
 # =============================================================================
-# DASH APP - LAYOUT FIJO
+# DASH APP
 # =============================================================================
 app = Dash(__name__, suppress_callback_exceptions=True)
 
@@ -207,23 +290,19 @@ app.layout = html.Div([
         ], style={"display": "inline-block", "verticalAlign": "middle"}),
     ], style={"padding": "15px 25px", "backgroundColor": "#2c3e50"}),
 
-    # Contenido principal - ESTRUCTURA FIJA
+    # Contenido principal
     html.Div([
-        # Mensaje inicial (se oculta cuando hay selección)
+        # Mensaje inicial
         html.Div(id="mensaje-inicial", children=[
             html.H1("🌍 Monitor de Calidad del Aire", style={"color": "#2c3e50", "marginTop": "100px"}),
             html.P("Selecciona tu ciudad y zona en el menú superior", style={"fontSize": "18px", "color": "#666"})
         ], style={"textAlign": "center"}),
         
-        # Panel de datos (oculto inicialmente)
+        # Panel de datos
         html.Div(id="panel-datos", children=[
-            # Semáforo
             html.Div(id="semaforo-container", style={"textAlign": "center"}),
-            
-            # Info zona
             html.Div(id="info-zona", style={"textAlign": "center", "marginBottom": "15px"}),
             
-            # Contenedor de gráficos
             html.Div([
                 html.H3("📊 Niveles de Contaminantes", style={"textAlign": "center", "color": "#2c3e50", "marginBottom": "15px"}),
                 html.Div([
@@ -237,7 +316,6 @@ app.layout = html.Div([
                     ], style={"flex": "1", "minWidth": "320px"}),
                 ], style={"display": "flex", "flexWrap": "wrap", "justifyContent": "center", "gap": "10px"}),
                 
-                # Valores y timestamp
                 html.Div(id="valores-texto", style={"textAlign": "center", "marginTop": "15px"}),
             ], style={
                 "maxWidth": "850px", "margin": "15px auto", "padding": "20px",
@@ -279,14 +357,27 @@ def actualizar_semaforo(n, barrio):
         return None
     
     with lock:
-        alertas = [a for a in alertas_recibidas if a["estacion"] == barrio]
+        datos = datos_estaciones.get(barrio, {})
     
-    if alertas:
-        ultima = alertas[-1]
+    if not datos:
         return html.Div([
-            html.Div("🚨", style={"fontSize": "60px"}),
-            html.Div("¡ALERTA!", style={"fontSize": "20px", "fontWeight": "bold"}),
-            html.Div(f"{ultima['nivel_no2']} µg/m³", style={"fontSize": "22px"})
+            html.Div("⏳", style={"fontSize": "60px"}),
+            html.Div("Esperando datos...", style={"fontSize": "18px"})
+        ], style={
+            "width": "180px", "height": "180px", "borderRadius": "50%", "margin": "20px auto",
+            "backgroundColor": "#6c757d", "display": "flex", "flexDirection": "column",
+            "alignItems": "center", "justifyContent": "center", "color": "white"
+        })
+    
+    alerta_activa = datos.get("alerta_activa", False)
+    alertas_detalle = datos.get("alertas_detalle", [])
+    
+    if alerta_activa:
+        return html.Div([
+            html.Div("🚨", style={"fontSize": "50px"}),
+            html.Div("¡ALERTA!", style={"fontSize": "18px", "fontWeight": "bold"}),
+            html.Div([html.Div(a, style={"fontSize": "11px"}) for a in alertas_detalle[:2]], 
+                     style={"marginTop": "5px"})
         ], style={
             "width": "180px", "height": "180px", "borderRadius": "50%", "margin": "20px auto",
             "backgroundColor": "#dc3545", "display": "flex", "flexDirection": "column",
@@ -296,7 +387,7 @@ def actualizar_semaforo(n, barrio):
     else:
         return html.Div([
             html.Div("✅", style={"fontSize": "60px"}),
-            html.Div("AIRE LIMPIO", style={"fontSize": "20px", "fontWeight": "bold"})
+            html.Div("AIRE LIMPIO", style={"fontSize": "18px", "fontWeight": "bold"})
         ], style={
             "width": "180px", "height": "180px", "borderRadius": "50%", "margin": "20px auto",
             "backgroundColor": "#28a745", "display": "flex", "flexDirection": "column",
@@ -322,7 +413,7 @@ def actualizar_info(ciudad, barrio):
 )
 def actualizar_radar(n, barrio):
     with lock:
-        datos = datos_contaminantes.get(barrio, {}) if barrio else {}
+        datos = datos_estaciones.get(barrio, {}) if barrio else {}
     return crear_grafico_radar(datos)
 
 @app.callback(
@@ -331,7 +422,7 @@ def actualizar_radar(n, barrio):
 )
 def actualizar_barras(n, barrio):
     with lock:
-        datos = datos_contaminantes.get(barrio, {}) if barrio else {}
+        datos = datos_estaciones.get(barrio, {}) if barrio else {}
     return crear_grafico_barras(datos)
 
 @app.callback(
@@ -340,17 +431,29 @@ def actualizar_barras(n, barrio):
 )
 def actualizar_valores(n, barrio):
     with lock:
-        datos = datos_contaminantes.get(barrio, {}) if barrio else {}
+        datos = datos_estaciones.get(barrio, {}) if barrio else {}
     
     if not datos:
         return html.P("⏳ Esperando datos...", style={"color": "#999"})
     
+    def get_estilo(val):
+        """Devuelve estilo con fondo gris si es N/D"""
+        base = {"margin": "3px 8px", "padding": "6px 10px", "borderRadius": "4px", "fontSize": "13px"}
+        if val is None:
+            base["backgroundColor"] = "#e0e0e0"
+            base["color"] = "#666"
+        return base
+    
     return html.Div([
         html.Div([
-            html.Span(f"NO₂: {datos.get('no2', 0):.1f}", style={"margin": "3px 8px", "padding": "6px 10px", "backgroundColor": "#e3f2fd", "borderRadius": "4px", "fontSize": "13px"}),
-            html.Span(f"O₃: {datos.get('o3', 0):.1f}", style={"margin": "3px 8px", "padding": "6px 10px", "backgroundColor": "#e8f5e9", "borderRadius": "4px", "fontSize": "13px"}),
-            html.Span(f"PM10: {datos.get('pm10', 0):.1f}", style={"margin": "3px 8px", "padding": "6px 10px", "backgroundColor": "#fff3e0", "borderRadius": "4px", "fontSize": "13px"}),
-            html.Span(f"PM2.5: {datos.get('pm25', 0):.1f}", style={"margin": "3px 8px", "padding": "6px 10px", "backgroundColor": "#fce4ec", "borderRadius": "4px", "fontSize": "13px"}),
+            html.Span(f"NO₂: {format_valor(datos.get('no2'))} µg/m³", 
+                    style={**get_estilo(datos.get('no2')), "backgroundColor": "#e3f2fd"} if datos.get('no2') is not None else get_estilo(None)),
+            html.Span(f"O₃: {format_valor(datos.get('o3'))} µg/m³", 
+                    style={**get_estilo(datos.get('o3')), "backgroundColor": "#e8f5e9"} if datos.get('o3') is not None else get_estilo(None)),
+            html.Span(f"PM10: {format_valor(datos.get('pm10'))} µg/m³", 
+                    style={**get_estilo(datos.get('pm10')), "backgroundColor": "#fff3e0"} if datos.get('pm10') is not None else get_estilo(None)),
+            html.Span(f"PM2.5: {format_valor(datos.get('pm25'))} µg/m³", 
+                    style={**get_estilo(datos.get('pm25')), "backgroundColor": "#fce4ec"} if datos.get('pm25') is not None else get_estilo(None)),
         ], style={"display": "flex", "justifyContent": "center", "flexWrap": "wrap", "marginBottom": "8px"}),
         html.Div([
             html.Span("Actualizado: ", style={"color": "#999", "fontSize": "12px"}),
