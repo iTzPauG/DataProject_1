@@ -12,6 +12,10 @@ from decimal import Decimal
 ### Panel de control
 
 UMBRAL_NO2 = 10 # µg/m³
+UMBRAL_O3 = 10 # µg/m³
+UMBRAL_PM10 = 10 # µg/m³
+UMBRAL_PM25 = 10 # µg/m³
+umbrales = {"no2": UMBRAL_NO2, "o3": UMBRAL_O3, "pm10": UMBRAL_PM10, "pm25": UMBRAL_PM25 }
 INTERVALO_MINUTOS = 1
 TIEMPO_REPETICION_ALERTA = 60  # 24 horas en segundos
 
@@ -91,92 +95,95 @@ def revisar_calidad_aire():
         for sensor in sensores:
             mensaje = {}
             nombre = sensor.get('nombre_estacion')  # Cambiado de 'nombre' a 'nombre_estacion'
-            valor = sensor.get('no2')
             city = sensor.get('city')
-
-            # Si no hay valor o nombre, saltamos este sensor
-            if valor is None or not nombre:
-                print(f"⚠️ Datos incompletos para el sensor {nombre}, se omite.")
-                continue
 
             # Inicializamos el estado de la estación si es la primera vez que la vemos
             if nombre not in estado_estaciones:
-                estado_estaciones[nombre] = {"activa": False, "ultimo_aviso": 0}
+                estado_estaciones[nombre] = {}
 
-            estado = estado_estaciones[nombre]
-            
 
             ##### Lógica de la alerta #####
             
             # CASO A: Supera el umbral
-            if valor > UMBRAL_NO2:
-                # Calculamos cuánto tiempo pasó desde el último aviso
-                tiempo_pasado = ahora - estado["ultimo_aviso"]
-                
-                # Condición: Si NO estaba activa O si ya pasó un día (recordatorio)
-                if not estado["activa"] or tiempo_pasado > TIEMPO_REPETICION_ALERTA:
-                    print("-" * 40)
-                    if estado["activa"]:
-                        mensaje = {
-                            "estacion": nombre,
-                            "city": city,
-                            "tipo_aviso": "Recordatorio",
-                            "nivel_no2": valor,
-                            "alerta_activa": True,
-                            "texto": f"Recordatorio: El nivel de NO2 en {nombre} ({city}) sigue alto: {valor} µg/m³.",
-                            "lon": sensor.get('lon'),
-                            "lat": sensor.get('lat'),
-                            "fecha_carg": sensor.get('fecha_carg'),
-                            "fecha_envio": time.ctime()
-                        }
-                        print(f"⏰ RECORDATORIO DIARIO en {nombre} a las {time.ctime()}")
-                    else:
-                        mensaje = {
-                            "estacion": nombre,
-                            "city": city,
-                            "tipo_aviso": "Activation",
-                            "nivel_no2": valor,
-                            "alerta_activa": True,
-                            "texto": f"ALERTA: El nivel de NO2 en {nombre} ({city}) ha subido por encima del límite seguro. Valor actual: {valor} µg/m³.",
-                            "lon": sensor.get('lon'),
-                            "lat": sensor.get('lat'),
-                            "fecha_carg": sensor.get('fecha_carg'),
-                            "fecha_envio": time.ctime()
-                        }
-                        print(f"🚨 NUEVA ALERTA en {nombre}. Fecha de envío:{time.ctime()}")
-                    
-                    print(f"   Nivel NO2: {valor} µg/m³ (Límite: {UMBRAL_NO2})")
-                    print("-" * 40)
-                    
-                    # Actualizamos el estado
-                    estado["activa"] = True
-                    estado["ultimo_aviso"] = ahora
-            
-            # CASO B: Ya no supera el umbral (Bajada de nivel)
-            else:
-                # Solo avisamos si antes ESTABA activa (la situación ha mejorado)
-                if estado["activa"]:
-                    mensaje = {
-                            "estacion": nombre,
-                            "city": city,
-                            "tipo_aviso": "Deactivation",
-                            "nivel_no2": valor,
-                            "alerta_activa": False,
-                            "texto": f"ALERTA: El nivel de NO2 en {nombre} ({city}) se ha restablecido a niveles seguros. Valor actual: {valor} µg/m³.",
-                            "lon": sensor.get('lon'),
-                            "lat": sensor.get('lat'),
-                            "fecha_carg": sensor.get('fecha_carg'),
-                            "fecha_envio": time.ctime()
-                    }
-                    print(f"✅ NIVEL RESTABLECIDO en {nombre}")
-                    print(f"   El nivel ha bajado a {valor} µg/m³.")
+            for gas, umbral in umbrales.items():
+                valor = sensor.get(gas)
+                if valor is None:
+                    continue
 
-                    estado["activa"] = False
-            if mensaje:
-                enviar_alerta_poblacion(mensaje)
-                logging.info(f"Mensaje {mensaje} enviado")
-            else:
-                logging.debug("Sin cambios de estado para %s", nombre)
+                if gas not in estado_estaciones[nombre]:
+                    estado_estaciones[nombre][gas] = {"activa": False, "ultimo_aviso": 0}
+
+                estado_gas = estado_estaciones[nombre][gas]
+                mensaje = {}
+
+                if valor > umbral:
+                    # Calculamos cuánto tiempo pasó desde el último aviso
+                    tiempo_pasado = ahora - estado_gas["ultimo_aviso"]
+                    
+                    # Condición: Si NO estaba activa O si ya pasó un día (recordatorio)
+                    if not estado_gas["activa"] or tiempo_pasado > TIEMPO_REPETICION_ALERTA:
+                        print("-" * 40)
+                        if estado_gas["activa"]:
+                            mensaje = {
+                                "estacion": nombre,
+                                "city": city,
+                                "tipo_aviso": "Recordatorio",
+                                f"nivel_{gas}": valor,
+                                "alerta_activa": True,
+                                "texto": f"Recordatorio: El nivel de {gas} en {nombre} ({city}) sigue alto: {valor} µg/m³.",
+                                "lon": sensor.get('lon'),
+                                "lat": sensor.get('lat'),
+                                "fecha_carg": sensor.get('fecha_carg'),
+                                "fecha_envio": time.ctime()
+                            }
+                            print(f"⏰ RECORDATORIO DIARIO en {nombre} a las {time.ctime()}")
+                        else:
+                            mensaje = {
+                                "estacion": nombre,
+                                "city": city,
+                                "tipo_aviso": "Activation",
+                                f"nivel_{gas}": valor,
+                                "alerta_activa": True,
+                                "texto": f"ALERTA: El nivel de {gas} en {nombre} ({city}) ha subido por encima del límite seguro. Valor actual: {valor} µg/m³.",
+                                "lon": sensor.get('lon'),
+                                "lat": sensor.get('lat'),
+                                "fecha_carg": sensor.get('fecha_carg'),
+                                "fecha_envio": time.ctime()
+                            }
+                            print(f"🚨 NUEVA ALERTA en {nombre}. Fecha de envío:{time.ctime()}")
+                        
+                        print(f"   Nivel {gas}: {valor} µg/m³ (Límite: {umbral})")
+                        print("-" * 40)
+                        
+                        # Actualizamos el estado
+                        estado_gas["activa"] = True
+                        estado_gas["ultimo_aviso"] = ahora
+                
+                # CASO B: Ya no supera el umbral (Bajada de nivel)
+                else:
+                    # Solo avisamos si antes ESTABA activa (la situación ha mejorado)
+                    if estado_gas["activa"]:
+                        mensaje = {
+                                "estacion": nombre,
+                                "city": city,
+                                "tipo_aviso": "Deactivation",
+                                f"nivel_{gas}": valor,
+                                "alerta_activa": False,
+                                "texto": f"ALERTA: El nivel de {gas} en {nombre} ({city}) se ha restablecido a niveles seguros. Valor actual: {valor} µg/m³.",
+                                "lon": sensor.get('lon'),
+                                "lat": sensor.get('lat'),
+                                "fecha_carg": sensor.get('fecha_carg'),
+                                "fecha_envio": time.ctime()
+                        }
+                        print(f"✅ NIVEL DE {gas} RESTABLECIDO en {nombre}")
+                        print(f"   El nivel ha bajado a {valor} µg/m³.")
+
+                        estado_gas["activa"] = False
+                if mensaje:
+                    enviar_alerta_poblacion(mensaje)
+                    logging.info(f"Mensaje de {gas} enviado")
+                else:
+                    logging.debug("Sin cambios de estado para %s", nombre)
 
     except Exception as e:
         print(f"❌ Error conectando la Base de datos: {e}")
@@ -184,8 +191,11 @@ def revisar_calidad_aire():
 
 ### Bucle
 print(f"*** Monitor Iniciado ***")
-print(f"- Umbral: {UMBRAL_NO2} µg/m³")
-print(f"- Recordatorio de alerta persistente: Cada 24 horas")
+print(f"Umbrales establecidos:")
+for gas, umbral in umbrales.items():
+    print(f"{gas.upper()} - {umbral} µg/m³")
+
+print(f"- Recordatorio de alerta persistente: Cada {TIEMPO_REPETICION_ALERTA / 3600} horas")
 
 while True:
     revisar_calidad_aire()
