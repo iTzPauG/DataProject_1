@@ -13,6 +13,7 @@ alertas_recibidas = []
 datos_contaminantes = {}
 lock = threading.Lock()
 
+# decidir limites
 LIMITES = {
     "NO₂": 100,
     "O₃": 90,
