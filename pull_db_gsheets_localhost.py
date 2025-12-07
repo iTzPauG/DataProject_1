@@ -3,20 +3,26 @@ import gspread
 import os
 from decimal import Decimal
 from datetime import date, datetime
+from dotenv import load_dotenv
 
+load_dotenv()
+
+
+
+
+# variables de conexión
+# usamos 'localhost' porque el script corre en windows
+host = "localhost"
+port = os.getenv("DB_PORT")
+db_name = os.getenv("POSTGRES_DB")
+db_user = os.getenv("POSTGRES_USER")
+db_pass = os.getenv("POSTGRES_PASSWORD")
 
 def exportar_a_drive(tab):
     # Config googe sheets
     nombre_hoja = "DatosAire"
     archivo_llave = "credentials.json"
     tab = str(tab)
-
-    #conexion a la db
-    host = "db"
-    port = os.getenv("DB_PORT")
-    db_name = os.getenv("POSTGRES_DB")
-    db_user = os.getenv("POSTGRES_USER")
-    db_pass = os.getenv("POSTGRES_PASSWORD")
 
 
     print(f"Descargando datos de la DB, tabla {tab}...")
@@ -30,7 +36,6 @@ def exportar_a_drive(tab):
                 # obtener nombres de columnas y filas
                 encabezados = [desc[0] for desc in cur.description]
                 datos_raw = cur.fetchall()
-                
 
         print(f"{len(datos_raw)} registros encontrados")
 
@@ -59,13 +64,13 @@ def exportar_a_drive(tab):
 
         # limpiar y escribir
         pestana.clear()
-        # pestana.append_row(encabezados)
-        # pestana.append_rows(datos_listos)
-        contenido_final = [encabezados] + list(datos_listos)
-        pestana.update(range_name='A1', values=contenido_final)
+        pestana.append_row(encabezados)
+        pestana.append_rows(datos_listos)
 
         print(f"✅Hoja actualizada correctamente con la tabla {tab}.")
 
     except Exception as e:
         print(f"❌ Error: {e}")
 
+if __name__ == "__main__":
+    exportar_a_drive('mart_monthly_promedio')
