@@ -13963,3 +13963,387 @@ LINE 33: where city='madrid';
 [0m19:46:18.193706 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x75a988aada50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x75a98cf5ef50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x75a98b46bd10>]}
 [0m19:46:18.195505 [debug] [MainThread]: Flushing usage events
 [0m19:46:18.811328 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m19:52:02.432790 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x716260c5c4d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x716260f9a050>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x716260c5d590>]}
+
+
+============================== 19:52:02.445336 | a22f2662-9f69-4fb6-a0da-ab18caaf3c22 ==============================
+[0m19:52:02.445336 [info ] [MainThread]: Running with dbt=1.10.15
+[0m19:52:02.447597 [debug] [MainThread]: running dbt with arguments {'use_experimental_parser': 'False', 'send_anonymous_usage_stats': 'True', 'invocation_command': 'dbt deps', 'static_parser': 'True', 'write_json': 'True', 'indirect_selection': 'eager', 'warn_error': 'None', 'use_colors': 'True', 'printer_width': '80', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'cache_selected_only': 'False', 'profiles_dir': '/usr/app/dbt', 'partial_parse': 'True', 'version_check': 'True', 'target_path': 'None', 'fail_fast': 'False', 'debug': 'False', 'empty': 'None', 'log_path': '/usr/app/dbt/logs', 'introspect': 'True', 'log_format': 'default', 'quiet': 'False', 'no_print': 'None', 'log_cache_events': 'False'}
+[0m19:52:02.562502 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'a22f2662-9f69-4fb6-a0da-ab18caaf3c22', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x716260b8ba90>]}
+[0m19:52:02.577814 [info ] [MainThread]: Warning: No packages were found in packages.yml
+[0m19:52:02.593778 [info ] [MainThread]: Warning: No packages were found in packages.yml
+[0m19:52:02.597305 [debug] [MainThread]: Resource report: {"command_name": "deps", "command_success": true, "command_wall_clock_time": 0.245387, "process_in_blocks": "27664", "process_kernel_time": 0.855104, "process_mem_max_rss": "104688", "process_out_blocks": "0", "process_user_time": 1.426525}
+[0m19:52:02.598808 [debug] [MainThread]: Command `dbt deps` succeeded at 19:52:02.598656 after 0.25 seconds
+[0m19:52:02.600592 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x716261c400d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x716260c55810>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71626552ae50>]}
+[0m19:52:02.601894 [debug] [MainThread]: Flushing usage events
+[0m19:52:03.221909 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m19:52:05.086928 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e8e9b1123d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e8e9b117b10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e8e9b0ba450>]}
+
+
+============================== 19:52:05.093322 | 33853d3e-310d-478c-863a-e3d4d7282832 ==============================
+[0m19:52:05.093322 [info ] [MainThread]: Running with dbt=1.10.15
+[0m19:52:05.099361 [debug] [MainThread]: running dbt with arguments {'debug': 'False', 'write_json': 'True', 'introspect': 'True', 'partial_parse': 'True', 'profiles_dir': '/usr/app/dbt', 'use_colors': 'True', 'invocation_command': 'dbt build --target dev', 'version_check': 'True', 'warn_error': 'None', 'log_path': '/usr/app/dbt/logs', 'quiet': 'False', 'no_print': 'None', 'static_parser': 'True', 'empty': 'False', 'send_anonymous_usage_stats': 'True', 'printer_width': '80', 'log_format': 'default', 'cache_selected_only': 'False', 'log_cache_events': 'False', 'target_path': 'None', 'fail_fast': 'False', 'indirect_selection': 'eager', 'use_experimental_parser': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])'}
+[0m19:52:05.242736 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '33853d3e-310d-478c-863a-e3d4d7282832', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e8e9b0ac410>]}
+[0m19:52:05.295636 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '33853d3e-310d-478c-863a-e3d4d7282832', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e8e9de33110>]}
+[0m19:52:05.301515 [info ] [MainThread]: Registered adapter: postgres=1.9.1
+[0m19:52:05.366952 [debug] [MainThread]: checksum: 0f45fdd67cc51382d6521f874e757e7afa214ac7bb0178b13f1819cbe813499c, vars: {}, profile: , target: dev, version: 1.10.15
+[0m19:52:05.751895 [debug] [MainThread]: Partial parsing enabled: 1 files deleted, 1 files added, 0 files changed.
+[0m19:52:05.754109 [debug] [MainThread]: Partial parsing: added file: data_project_1://models/marts/mart_hour.sql
+[0m19:52:05.756307 [debug] [MainThread]: Partial parsing: deleted file: data_project_1://models/marts/mart_hourly.sql
+[0m19:52:05.973354 [warn ] [MainThread]: [[33mWARNING[0m]: Did not find matching node for patch with name 'mart_hourly' in the 'models' section of file 'models/marts/schema.yml'
+[0m19:52:06.161987 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '33853d3e-310d-478c-863a-e3d4d7282832', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e8e9de9dd90>]}
+[0m19:52:06.279507 [debug] [MainThread]: Wrote artifact WritableManifest to /usr/app/dbt/target/manifest.json
+[0m19:52:06.287110 [debug] [MainThread]: Wrote artifact SemanticManifest to /usr/app/dbt/target/semantic_manifest.json
+[0m19:52:06.347142 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '33853d3e-310d-478c-863a-e3d4d7282832', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e8e981f4090>]}
+[0m19:52:06.349161 [info ] [MainThread]: Found 14 models, 8 data tests, 1 source, 459 macros
+[0m19:52:06.355857 [info ] [MainThread]: 
+[0m19:52:06.357744 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m19:52:06.359466 [info ] [MainThread]: 
+[0m19:52:06.364945 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m19:52:06.378223 [debug] [ThreadPool]: Acquiring new postgres connection 'list_data_project_1'
+[0m19:52:06.426070 [debug] [ThreadPool]: Using postgres connection "list_data_project_1"
+[0m19:52:06.427548 [debug] [ThreadPool]: On list_data_project_1: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "connection_name": "list_data_project_1"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m19:52:06.428906 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m19:52:06.448147 [debug] [ThreadPool]: SQL status: SELECT 5 in 0.019 seconds
+[0m19:52:06.452762 [debug] [ThreadPool]: On list_data_project_1: Close
+[0m19:52:06.456560 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_data_project_1, now list_data_project_1_public)
+[0m19:52:06.466232 [debug] [ThreadPool]: Using postgres connection "list_data_project_1_public"
+[0m19:52:06.467921 [debug] [ThreadPool]: On list_data_project_1_public: BEGIN
+[0m19:52:06.469511 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m19:52:06.487754 [debug] [ThreadPool]: SQL status: BEGIN in 0.018 seconds
+[0m19:52:06.489668 [debug] [ThreadPool]: Using postgres connection "list_data_project_1_public"
+[0m19:52:06.491299 [debug] [ThreadPool]: On list_data_project_1_public: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "connection_name": "list_data_project_1_public"} */
+select
+      'data_project_1' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'public'
+    union all
+    select
+      'data_project_1' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'public'
+    union all
+    select
+      'data_project_1' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'public'
+  
+[0m19:52:06.515680 [debug] [ThreadPool]: SQL status: SELECT 13 in 0.023 seconds
+[0m19:52:06.519099 [debug] [ThreadPool]: On list_data_project_1_public: ROLLBACK
+[0m19:52:06.520586 [debug] [ThreadPool]: On list_data_project_1_public: Close
+[0m19:52:06.529676 [debug] [MainThread]: Using postgres connection "master"
+[0m19:52:06.531429 [debug] [MainThread]: On master: BEGIN
+[0m19:52:06.532939 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m19:52:06.545327 [debug] [MainThread]: SQL status: BEGIN in 0.012 seconds
+[0m19:52:06.547064 [debug] [MainThread]: Using postgres connection "master"
+[0m19:52:06.548663 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "connection_name": "master"} */
+select distinct
+        dependent_namespace.nspname as dependent_schema,
+        dependent_class.relname as dependent_name,
+        referenced_namespace.nspname as referenced_schema,
+        referenced_class.relname as referenced_name
+
+    -- Query for views: views are entries in pg_class with an entry in pg_rewrite, but we avoid
+    -- a seq scan on pg_rewrite by leveraging the fact there is an "internal" row in pg_depend for
+    -- the view...
+    from pg_class as dependent_class
+    join pg_namespace as dependent_namespace on dependent_namespace.oid = dependent_class.relnamespace
+    join pg_depend as dependent_depend on dependent_depend.refobjid = dependent_class.oid
+        and dependent_depend.classid = 'pg_rewrite'::regclass
+        and dependent_depend.refclassid = 'pg_class'::regclass
+        and dependent_depend.deptype = 'i'
+
+    -- ... and via pg_depend (that has a row per column, hence the need for "distinct" above, and
+    -- making sure to exclude the internal row to avoid a view appearing to depend on itself)...
+    join pg_depend as joining_depend on joining_depend.objid = dependent_depend.objid
+        and joining_depend.classid = 'pg_rewrite'::regclass
+        and joining_depend.refclassid = 'pg_class'::regclass
+        and joining_depend.refobjid != dependent_depend.refobjid
+
+    -- ... we can find the tables they query from in pg_class, but excluding system tables. Note we
+    -- don't need need to exclude _dependent_ system tables, because they only query from other
+    -- system tables, and so are automatically excluded by excluding _referenced_ system tables
+    join pg_class as referenced_class on referenced_class.oid = joining_depend.refobjid
+    join pg_namespace as referenced_namespace on referenced_namespace.oid = referenced_class.relnamespace
+        and referenced_namespace.nspname != 'information_schema'
+        and referenced_namespace.nspname not like 'pg\_%'
+
+    order by
+        dependent_schema, dependent_name, referenced_schema, referenced_name;
+[0m19:52:06.571904 [debug] [MainThread]: SQL status: SELECT 19 in 0.022 seconds
+[0m19:52:06.580326 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '33853d3e-310d-478c-863a-e3d4d7282832', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e8e890b3190>]}
+[0m19:52:06.583010 [debug] [MainThread]: On master: ROLLBACK
+[0m19:52:06.584744 [debug] [MainThread]: Using postgres connection "master"
+[0m19:52:06.585944 [debug] [MainThread]: On master: BEGIN
+[0m19:52:06.587592 [debug] [MainThread]: SQL status: BEGIN in 0.000 seconds
+[0m19:52:06.588762 [debug] [MainThread]: On master: COMMIT
+[0m19:52:06.589961 [debug] [MainThread]: Using postgres connection "master"
+[0m19:52:06.591353 [debug] [MainThread]: On master: COMMIT
+[0m19:52:06.594388 [debug] [MainThread]: SQL status: COMMIT in 0.000 seconds
+[0m19:52:06.595669 [debug] [MainThread]: On master: Close
+[0m19:52:06.605888 [debug] [Thread-1 (]: Began running node model.data_project_1.stg_mediciones_madrid
+[0m19:52:06.606463 [debug] [Thread-2 (]: Began running node model.data_project_1.stg_mediciones_valencia
+[0m19:52:06.609429 [info ] [Thread-1 (]: 1 of 22 START sql view model public.stg_mediciones_madrid ...................... [RUN]
+[0m19:52:06.611402 [info ] [Thread-2 (]: 2 of 22 START sql view model public.stg_mediciones_valencia .................... [RUN]
+[0m19:52:06.613204 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_data_project_1_public, now model.data_project_1.stg_mediciones_madrid)
+[0m19:52:06.615343 [debug] [Thread-2 (]: Acquiring new postgres connection 'model.data_project_1.stg_mediciones_valencia'
+[0m19:52:06.617466 [debug] [Thread-1 (]: Began compiling node model.data_project_1.stg_mediciones_madrid
+[0m19:52:06.618919 [debug] [Thread-2 (]: Began compiling node model.data_project_1.stg_mediciones_valencia
+[0m19:52:06.629019 [debug] [Thread-1 (]: Writing injected SQL for node "model.data_project_1.stg_mediciones_madrid"
+[0m19:52:06.634342 [debug] [Thread-2 (]: Writing injected SQL for node "model.data_project_1.stg_mediciones_valencia"
+[0m19:52:06.647451 [debug] [Thread-1 (]: Began executing node model.data_project_1.stg_mediciones_madrid
+[0m19:52:06.663970 [debug] [Thread-2 (]: Began executing node model.data_project_1.stg_mediciones_valencia
+[0m19:52:06.690370 [debug] [Thread-1 (]: Writing runtime sql for node "model.data_project_1.stg_mediciones_madrid"
+[0m19:52:06.691791 [debug] [Thread-2 (]: Writing runtime sql for node "model.data_project_1.stg_mediciones_valencia"
+[0m19:52:06.701476 [debug] [Thread-2 (]: Using postgres connection "model.data_project_1.stg_mediciones_valencia"
+[0m19:52:06.702158 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.stg_mediciones_madrid"
+[0m19:52:06.703316 [debug] [Thread-2 (]: On model.data_project_1.stg_mediciones_valencia: BEGIN
+[0m19:52:06.704512 [debug] [Thread-1 (]: On model.data_project_1.stg_mediciones_madrid: BEGIN
+[0m19:52:06.705694 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m19:52:06.706860 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m19:52:06.719377 [debug] [Thread-2 (]: SQL status: BEGIN in 0.014 seconds
+[0m19:52:06.719980 [debug] [Thread-1 (]: SQL status: BEGIN in 0.013 seconds
+[0m19:52:06.721493 [debug] [Thread-2 (]: Using postgres connection "model.data_project_1.stg_mediciones_valencia"
+[0m19:52:06.723114 [debug] [Thread-1 (]: Using postgres connection "model.data_project_1.stg_mediciones_madrid"
+[0m19:52:06.724349 [debug] [Thread-2 (]: On model.data_project_1.stg_mediciones_valencia: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.stg_mediciones_valencia"} */
+
+  create view "data_project_1"."public"."stg_mediciones_valencia__dbt_tmp"
+    
+    
+  as (
+    
+
+select
+    id,
+    nombre_estacion,
+    'valencia' as city,
+    cast(lon as numeric) as lon,
+    cast(lat as numeric) as lat,
+    cast(no2 as numeric) as no2,
+    cast(o3 as numeric) as o3,
+    cast(pm10 as numeric) as pm10,
+    cast(pm25 as numeric) as pm25,
+    fecha_carg,
+    created_at, 
+    
+    -- SOLO HORA
+    strftime(fecha_carg, '%H:%M:%S') as fecha_hour,
+
+    -- SOLO FECHA (si la quieres)
+    cast(fecha_carg as date) as fecha_day,
+
+    -- Mes (si la necesitas)
+    date_trunc('month', fecha_carg) as fecha_month
+
+from "data_project_1"."public"."mediciones"
+where city='valencia';
+  );
+[0m19:52:06.725968 [debug] [Thread-1 (]: On model.data_project_1.stg_mediciones_madrid: /* {"app": "dbt", "dbt_version": "1.10.15", "profile_name": "data_project_1", "target_name": "dev", "node_id": "model.data_project_1.stg_mediciones_madrid"} */
+
+  create view "data_project_1"."public"."stg_mediciones_madrid__dbt_tmp"
+    
+    
+  as (
+    
+
+select
+    id,
+    nombre_estacion,
+    'madrid' as city,
+    cast(lon as numeric) as lon,
+    cast(lat as numeric) as lat,
+    cast(no2 as numeric) as no2,
+    cast(o3 as numeric) as o3,
+    cast(pm10 as numeric) as pm10,
+    cast(pm25 as numeric) as pm25,
+    fecha_day,
+    fecha_hour,
+    created_at, 
+    
+    -- SOLO HORA
+    strftime(fecha_carg, '%H:%M:%S') as fecha_hour,
+
+    -- SOLO FECHA
+    cast(fecha_carg as date) as fecha_day,
+
+    -- MES (como primer día del mes)
+    date_trunc('month', fecha_carg) as fecha_month
+
+from "data_project_1"."public"."mediciones"
+where city='madrid';
+  );
+[0m19:52:06.728536 [debug] [Thread-2 (]: Postgres adapter: Postgres error: syntax error at or near ";"
+LINE 32: where city='valencia';
+                              ^
+
+[0m19:52:06.730038 [debug] [Thread-1 (]: Postgres adapter: Postgres error: syntax error at or near ";"
+LINE 33: where city='madrid';
+                            ^
+
+[0m19:52:06.730610 [debug] [Thread-2 (]: On model.data_project_1.stg_mediciones_valencia: ROLLBACK
+[0m19:52:06.731736 [debug] [Thread-1 (]: On model.data_project_1.stg_mediciones_madrid: ROLLBACK
+[0m19:52:06.733645 [debug] [Thread-2 (]: On model.data_project_1.stg_mediciones_valencia: Close
+[0m19:52:06.734869 [debug] [Thread-1 (]: On model.data_project_1.stg_mediciones_madrid: Close
+[0m19:52:06.740365 [debug] [Thread-1 (]: Database Error in model stg_mediciones_madrid (models/staging/stg_mediciones_madrid.sql)
+  syntax error at or near ";"
+  LINE 33: where city='madrid';
+                              ^
+  compiled code at target/run/data_project_1/models/staging/stg_mediciones_madrid.sql
+[0m19:52:06.741353 [debug] [Thread-2 (]: Database Error in model stg_mediciones_valencia (models/staging/stg_mediciones_valencia.sql)
+  syntax error at or near ";"
+  LINE 32: where city='valencia';
+                                ^
+  compiled code at target/run/data_project_1/models/staging/stg_mediciones_valencia.sql
+[0m19:52:06.743733 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '33853d3e-310d-478c-863a-e3d4d7282832', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e8e991c1a90>]}
+[0m19:52:06.745616 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '33853d3e-310d-478c-863a-e3d4d7282832', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e8e89004610>]}
+[0m19:52:06.748239 [error] [Thread-1 (]: 1 of 22 ERROR creating sql view model public.stg_mediciones_madrid ............. [[31mERROR[0m in 0.13s]
+[0m19:52:06.749700 [error] [Thread-2 (]: 2 of 22 ERROR creating sql view model public.stg_mediciones_valencia ........... [[31mERROR[0m in 0.13s]
+[0m19:52:06.750772 [debug] [Thread-1 (]: Finished running node model.data_project_1.stg_mediciones_madrid
+[0m19:52:06.751699 [debug] [Thread-2 (]: Finished running node model.data_project_1.stg_mediciones_valencia
+[0m19:52:06.752703 [debug] [Thread-7 (]: Marking all children of 'model.data_project_1.stg_mediciones_madrid' to be skipped because of status 'error'.  Reason: Database Error in model stg_mediciones_madrid (models/staging/stg_mediciones_madrid.sql)
+  syntax error at or near ";"
+  LINE 33: where city='madrid';
+                              ^
+  compiled code at target/run/data_project_1/models/staging/stg_mediciones_madrid.sql.
+[0m19:52:06.755113 [debug] [Thread-7 (]: Marking all children of 'model.data_project_1.stg_mediciones_valencia' to be skipped because of status 'error'.  Reason: Database Error in model stg_mediciones_valencia (models/staging/stg_mediciones_valencia.sql)
+  syntax error at or near ";"
+  LINE 32: where city='valencia';
+                                ^
+  compiled code at target/run/data_project_1/models/staging/stg_mediciones_valencia.sql.
+[0m19:52:06.755811 [debug] [Thread-4 (]: Began running node test.data_project_1.not_null_stg_mediciones_madrid_fecha_carg.716ed47dcf
+[0m19:52:06.756288 [debug] [Thread-3 (]: Began running node test.data_project_1.not_null_stg_mediciones_madrid_id.c139e76515
+[0m19:52:06.756674 [debug] [Thread-1 (]: Began running node test.data_project_1.not_null_stg_mediciones_madrid_nombre_estacion.43047357f2
+[0m19:52:06.757039 [debug] [Thread-2 (]: Began running node test.data_project_1.unique_stg_mediciones_madrid_id.d23c45c57c
+[0m19:52:06.758212 [info ] [Thread-4 (]: 3 of 22 SKIP test not_null_stg_mediciones_madrid_fecha_carg .................... [[33mSKIP[0m]
+[0m19:52:06.760619 [info ] [Thread-3 (]: 4 of 22 SKIP test not_null_stg_mediciones_madrid_id ............................ [[33mSKIP[0m]
+[0m19:52:06.762693 [info ] [Thread-1 (]: 5 of 22 SKIP test not_null_stg_mediciones_madrid_nombre_estacion ............... [[33mSKIP[0m]
+[0m19:52:06.764106 [info ] [Thread-2 (]: 6 of 22 SKIP test unique_stg_mediciones_madrid_id .............................. [[33mSKIP[0m]
+[0m19:52:06.765118 [debug] [Thread-4 (]: Finished running node test.data_project_1.not_null_stg_mediciones_madrid_fecha_carg.716ed47dcf
+[0m19:52:06.766127 [debug] [Thread-3 (]: Finished running node test.data_project_1.not_null_stg_mediciones_madrid_id.c139e76515
+[0m19:52:06.767019 [debug] [Thread-1 (]: Finished running node test.data_project_1.not_null_stg_mediciones_madrid_nombre_estacion.43047357f2
+[0m19:52:06.767853 [debug] [Thread-2 (]: Finished running node test.data_project_1.unique_stg_mediciones_madrid_id.d23c45c57c
+[0m19:52:06.768784 [debug] [Thread-4 (]: Began running node test.data_project_1.not_null_stg_mediciones_valencia_fecha_carg.582baa8f9e
+[0m19:52:06.769008 [debug] [Thread-7 (]: Marking all children of 'test.data_project_1.not_null_stg_mediciones_madrid_fecha_carg.716ed47dcf' to be skipped because of status 'skipped'. 
+[0m19:52:06.769925 [debug] [Thread-3 (]: Began running node test.data_project_1.not_null_stg_mediciones_valencia_id.e44a3bfb4e
+[0m19:52:06.770992 [debug] [Thread-1 (]: Began running node test.data_project_1.not_null_stg_mediciones_valencia_nombre_estacion.e581163046
+[0m19:52:06.771919 [debug] [Thread-2 (]: Began running node test.data_project_1.unique_stg_mediciones_valencia_id.fcb6324170
+[0m19:52:06.772755 [info ] [Thread-4 (]: 7 of 22 SKIP test not_null_stg_mediciones_valencia_fecha_carg .................. [[33mSKIP[0m]
+[0m19:52:06.773888 [debug] [Thread-7 (]: Marking all children of 'test.data_project_1.not_null_stg_mediciones_madrid_id.c139e76515' to be skipped because of status 'skipped'. 
+[0m19:52:06.775557 [info ] [Thread-3 (]: 8 of 22 SKIP test not_null_stg_mediciones_valencia_id .......................... [[33mSKIP[0m]
+[0m19:52:06.777196 [info ] [Thread-1 (]: 9 of 22 SKIP test not_null_stg_mediciones_valencia_nombre_estacion ............. [[33mSKIP[0m]
+[0m19:52:06.779169 [info ] [Thread-2 (]: 10 of 22 SKIP test unique_stg_mediciones_valencia_id ........................... [[33mSKIP[0m]
+[0m19:52:06.780163 [debug] [Thread-4 (]: Finished running node test.data_project_1.not_null_stg_mediciones_valencia_fecha_carg.582baa8f9e
+[0m19:52:06.781077 [debug] [Thread-7 (]: Marking all children of 'test.data_project_1.not_null_stg_mediciones_madrid_nombre_estacion.43047357f2' to be skipped because of status 'skipped'. 
+[0m19:52:06.782340 [debug] [Thread-3 (]: Finished running node test.data_project_1.not_null_stg_mediciones_valencia_id.e44a3bfb4e
+[0m19:52:06.783257 [debug] [Thread-1 (]: Finished running node test.data_project_1.not_null_stg_mediciones_valencia_nombre_estacion.e581163046
+[0m19:52:06.784095 [debug] [Thread-2 (]: Finished running node test.data_project_1.unique_stg_mediciones_valencia_id.fcb6324170
+[0m19:52:06.785880 [debug] [Thread-7 (]: Marking all children of 'test.data_project_1.unique_stg_mediciones_madrid_id.d23c45c57c' to be skipped because of status 'skipped'. 
+[0m19:52:06.788755 [debug] [Thread-7 (]: Marking all children of 'test.data_project_1.not_null_stg_mediciones_valencia_fecha_carg.582baa8f9e' to be skipped because of status 'skipped'. 
+[0m19:52:06.789851 [debug] [Thread-7 (]: Marking all children of 'test.data_project_1.not_null_stg_mediciones_valencia_id.e44a3bfb4e' to be skipped because of status 'skipped'. 
+[0m19:52:06.791063 [debug] [Thread-7 (]: Marking all children of 'test.data_project_1.not_null_stg_mediciones_valencia_nombre_estacion.e581163046' to be skipped because of status 'skipped'. 
+[0m19:52:06.792669 [debug] [Thread-7 (]: Marking all children of 'test.data_project_1.unique_stg_mediciones_valencia_id.fcb6324170' to be skipped because of status 'skipped'. 
+[0m19:52:06.794821 [debug] [Thread-4 (]: Began running node model.data_project_1.int_daily_avg
+[0m19:52:06.795380 [debug] [Thread-3 (]: Began running node model.data_project_1.int_hourly_avg
+[0m19:52:06.796045 [debug] [Thread-1 (]: Began running node model.data_project_1.int_monthly_avg
+[0m19:52:06.796923 [debug] [Thread-2 (]: Began running node model.data_project_1.int_station_summary
+[0m19:52:06.798028 [info ] [Thread-4 (]: 11 of 22 SKIP relation public.int_daily_avg .................................... [[33mSKIP[0m]
+[0m19:52:06.799511 [info ] [Thread-3 (]: 12 of 22 SKIP relation public.int_hourly_avg ................................... [[33mSKIP[0m]
+[0m19:52:06.800833 [info ] [Thread-1 (]: 13 of 22 SKIP relation public.int_monthly_avg .................................. [[33mSKIP[0m]
+[0m19:52:06.801962 [info ] [Thread-2 (]: 14 of 22 SKIP relation public.int_station_summary .............................. [[33mSKIP[0m]
+[0m19:52:06.803080 [debug] [Thread-4 (]: Finished running node model.data_project_1.int_daily_avg
+[0m19:52:06.804024 [debug] [Thread-3 (]: Finished running node model.data_project_1.int_hourly_avg
+[0m19:52:06.804944 [debug] [Thread-1 (]: Finished running node model.data_project_1.int_monthly_avg
+[0m19:52:06.805957 [debug] [Thread-2 (]: Finished running node model.data_project_1.int_station_summary
+[0m19:52:06.806781 [debug] [Thread-4 (]: Began running node model.data_project_1.mart_station_summary
+[0m19:52:06.807166 [debug] [Thread-7 (]: Marking all children of 'model.data_project_1.int_daily_avg' to be skipped because of status 'skipped'. 
+[0m19:52:06.812591 [info ] [Thread-4 (]: 15 of 22 SKIP relation public.mart_station_summary ............................. [[33mSKIP[0m]
+[0m19:52:06.814358 [debug] [Thread-7 (]: Marking all children of 'model.data_project_1.int_hourly_avg' to be skipped because of status 'skipped'. 
+[0m19:52:06.814993 [debug] [Thread-3 (]: Began running node model.data_project_1.mart_daily_promedio
+[0m19:52:06.815358 [debug] [Thread-1 (]: Began running node model.data_project_1.mart_top_polluted_stations
+[0m19:52:06.815788 [debug] [Thread-2 (]: Began running node model.data_project_1.mart_weekly_extended
+[0m19:52:06.816370 [debug] [Thread-4 (]: Finished running node model.data_project_1.mart_station_summary
+[0m19:52:06.817545 [debug] [Thread-7 (]: Marking all children of 'model.data_project_1.int_monthly_avg' to be skipped because of status 'skipped'. 
+[0m19:52:06.818611 [info ] [Thread-3 (]: 16 of 22 SKIP relation public.mart_daily_promedio .............................. [[33mSKIP[0m]
+[0m19:52:06.819562 [info ] [Thread-1 (]: 17 of 22 SKIP relation public.mart_top_polluted_stations ....................... [[33mSKIP[0m]
+[0m19:52:06.820685 [info ] [Thread-2 (]: 18 of 22 SKIP relation public.mart_weekly_extended ............................. [[33mSKIP[0m]
+[0m19:52:06.821737 [debug] [Thread-4 (]: Began running node model.data_project_1.mart_alerts
+[0m19:52:06.822870 [debug] [Thread-7 (]: Marking all children of 'model.data_project_1.int_station_summary' to be skipped because of status 'skipped'. 
+[0m19:52:06.824089 [debug] [Thread-3 (]: Finished running node model.data_project_1.mart_daily_promedio
+[0m19:52:06.825787 [debug] [Thread-1 (]: Finished running node model.data_project_1.mart_top_polluted_stations
+[0m19:52:06.827693 [debug] [Thread-2 (]: Finished running node model.data_project_1.mart_weekly_extended
+[0m19:52:06.829134 [info ] [Thread-4 (]: 19 of 22 SKIP relation public.mart_alerts ...................................... [[33mSKIP[0m]
+[0m19:52:06.830330 [debug] [Thread-7 (]: Marking all children of 'model.data_project_1.mart_station_summary' to be skipped because of status 'skipped'. 
+[0m19:52:06.831422 [debug] [Thread-3 (]: Began running node model.data_project_1.mart_hour
+[0m19:52:06.832270 [debug] [Thread-1 (]: Began running node model.data_project_1.mart_monthly_promedio
+[0m19:52:06.833977 [debug] [Thread-4 (]: Finished running node model.data_project_1.mart_alerts
+[0m19:52:06.835094 [debug] [Thread-7 (]: Marking all children of 'model.data_project_1.mart_daily_promedio' to be skipped because of status 'skipped'. 
+[0m19:52:06.836236 [info ] [Thread-3 (]: 20 of 22 SKIP relation public.mart_hour ........................................ [[33mSKIP[0m]
+[0m19:52:06.837341 [info ] [Thread-1 (]: 21 of 22 SKIP relation public.mart_monthly_promedio ............................ [[33mSKIP[0m]
+[0m19:52:06.839178 [debug] [Thread-7 (]: Marking all children of 'model.data_project_1.mart_top_polluted_stations' to be skipped because of status 'skipped'. 
+[0m19:52:06.840498 [debug] [Thread-3 (]: Finished running node model.data_project_1.mart_hour
+[0m19:52:06.842531 [debug] [Thread-1 (]: Finished running node model.data_project_1.mart_monthly_promedio
+[0m19:52:06.844425 [debug] [Thread-7 (]: Marking all children of 'model.data_project_1.mart_weekly_extended' to be skipped because of status 'skipped'. 
+[0m19:52:06.847554 [debug] [Thread-7 (]: Marking all children of 'model.data_project_1.mart_alerts' to be skipped because of status 'skipped'. 
+[0m19:52:06.848304 [debug] [Thread-2 (]: Began running node model.data_project_1.mart_fact_air_quality
+[0m19:52:06.849150 [debug] [Thread-7 (]: Marking all children of 'model.data_project_1.mart_hour' to be skipped because of status 'skipped'. 
+[0m19:52:06.850312 [info ] [Thread-2 (]: 22 of 22 SKIP relation public.mart_fact_air_quality ............................ [[33mSKIP[0m]
+[0m19:52:06.851439 [debug] [Thread-7 (]: Marking all children of 'model.data_project_1.mart_monthly_promedio' to be skipped because of status 'skipped'. 
+[0m19:52:06.852591 [debug] [Thread-2 (]: Finished running node model.data_project_1.mart_fact_air_quality
+[0m19:52:06.854499 [debug] [Thread-7 (]: Marking all children of 'model.data_project_1.mart_fact_air_quality' to be skipped because of status 'skipped'. 
+[0m19:52:06.857796 [debug] [MainThread]: Using postgres connection "master"
+[0m19:52:06.859527 [debug] [MainThread]: On master: BEGIN
+[0m19:52:06.861517 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m19:52:06.874942 [debug] [MainThread]: SQL status: BEGIN in 0.013 seconds
+[0m19:52:06.876819 [debug] [MainThread]: On master: COMMIT
+[0m19:52:06.878797 [debug] [MainThread]: Using postgres connection "master"
+[0m19:52:06.880479 [debug] [MainThread]: On master: COMMIT
+[0m19:52:06.882196 [debug] [MainThread]: SQL status: COMMIT in 0.000 seconds
+[0m19:52:06.883678 [debug] [MainThread]: On master: Close
+[0m19:52:06.885315 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m19:52:06.886839 [debug] [MainThread]: Connection 'model.data_project_1.stg_mediciones_madrid' was properly closed.
+[0m19:52:06.888273 [debug] [MainThread]: Connection 'model.data_project_1.stg_mediciones_valencia' was properly closed.
+[0m19:52:06.889944 [info ] [MainThread]: 
+[0m19:52:06.892251 [info ] [MainThread]: Finished running 8 table models, 8 data tests, 6 view models in 0 hours 0 minutes and 0.53 seconds (0.53s).
+[0m19:52:06.894995 [debug] [MainThread]: Command end result
+[0m19:52:06.963173 [debug] [MainThread]: Wrote artifact WritableManifest to /usr/app/dbt/target/manifest.json
+[0m19:52:06.974755 [debug] [MainThread]: Wrote artifact SemanticManifest to /usr/app/dbt/target/semantic_manifest.json
+[0m19:52:06.993259 [debug] [MainThread]: Wrote artifact RunExecutionResult to /usr/app/dbt/target/run_results.json
+[0m19:52:06.995417 [info ] [MainThread]: 
+[0m19:52:06.997118 [info ] [MainThread]: [31mCompleted with 2 errors, 0 partial successes, and 0 warnings:[0m
+[0m19:52:06.998785 [info ] [MainThread]: 
+[0m19:52:07.000349 [error] [MainThread]: [31mFailure in model stg_mediciones_madrid (models/staging/stg_mediciones_madrid.sql)[0m
+[0m19:52:07.001965 [error] [MainThread]:   Database Error in model stg_mediciones_madrid (models/staging/stg_mediciones_madrid.sql)
+  syntax error at or near ";"
+  LINE 33: where city='madrid';
+                              ^
+  compiled code at target/run/data_project_1/models/staging/stg_mediciones_madrid.sql
+[0m19:52:07.003529 [info ] [MainThread]: 
+[0m19:52:07.007304 [info ] [MainThread]:   compiled code at target/compiled/data_project_1/models/staging/stg_mediciones_madrid.sql
+[0m19:52:07.009529 [info ] [MainThread]: 
+[0m19:52:07.011627 [error] [MainThread]: [31mFailure in model stg_mediciones_valencia (models/staging/stg_mediciones_valencia.sql)[0m
+[0m19:52:07.013223 [error] [MainThread]:   Database Error in model stg_mediciones_valencia (models/staging/stg_mediciones_valencia.sql)
+  syntax error at or near ";"
+  LINE 32: where city='valencia';
+                                ^
+  compiled code at target/run/data_project_1/models/staging/stg_mediciones_valencia.sql
+[0m19:52:07.014726 [info ] [MainThread]: 
+[0m19:52:07.015916 [info ] [MainThread]:   compiled code at target/compiled/data_project_1/models/staging/stg_mediciones_valencia.sql
+[0m19:52:07.018812 [info ] [MainThread]: 
+[0m19:52:07.019876 [info ] [MainThread]: Done. PASS=0 WARN=0 ERROR=2 SKIP=20 NO-OP=0 TOTAL=22
+[0m19:52:07.023371 [debug] [MainThread]: Resource report: {"command_name": "build", "command_success": false, "command_wall_clock_time": 2.0252514, "process_in_blocks": "4648", "process_kernel_time": 0.413453, "process_mem_max_rss": "131836", "process_out_blocks": "0", "process_user_time": 2.332199}
+[0m19:52:07.024818 [debug] [MainThread]: Command `dbt build` failed at 19:52:07.024674 after 2.03 seconds
+[0m19:52:07.025986 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e8e9b109690>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e8e9b112f50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e8e9b36e390>]}
+[0m19:52:07.027083 [debug] [MainThread]: Flushing usage events
+[0m19:52:07.491899 [debug] [MainThread]: An error was encountered while trying to flush usage events
