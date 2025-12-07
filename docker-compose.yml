@@ -47,23 +47,22 @@ services:
     networks:
       - kafka-net
   dbt:
-      build:
-        context: .
-        dockerfile: dockerfile
-      pull_policy: build
-      container_name: dbt
-      volumes:
-          - ./:/usr/app/dbt
-          - ./profiles.yml:/root/.dbt/profiles.yml
-      environment:
-          - DBT_PROFILES_DIR=/usr/app/dbt
-      working_dir: /usr/app/dbt/dbt_project
-      entrypoint: ["/bin/bash"]
-      tty: true
-      depends_on:
-          - db
-      networks:
-        - kafka-net
+    build:
+      context: .
+      dockerfile: dockerfile
+    pull_policy: build
+    container_name: dbt
+    volumes:
+        - ./dbt:/usr/app/dbt
+        - ~/.dbt:/root/.dbt
+    working_dir: /usr/app/dbt
+    command: >
+        bash -c "dbt deps && dbt build --target dev"
+    depends_on:
+        - db
+    networks:
+      - kafka-net
+
 
   zookeeper:
       image: confluentinc/cp-zookeeper:7.3.0
@@ -195,13 +194,13 @@ services:
       context: .
       dockerfile: dockerfile
     pull_policy: build
-    container_name: dashboard_consumer
+    container_name: dashboard_alertas
     env_file: .env
     depends_on:
       - consumer
     ports:
       - "8050:8050"
-    command: ["python", "dashboard_consumer.py"]
+    command: ["python", "dashboard_alertas.py"]
     restart: unless-stopped
     volumes:
           - shared_data:/shared
