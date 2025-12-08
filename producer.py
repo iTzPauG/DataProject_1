@@ -11,15 +11,18 @@ from decimal import Decimal
 
 ### Panel de control
 
-UMBRAL_NO2 = 10 # µg/m³
+UMBRAL_NO2 = 40 # µg/m³
+UMBRAL_O3 = 100 # µg/m³
+UMBRAL_PM10 = 50 # µg/m³
+UMBRAL_PM25 = 25 # µg/m³
+
 INTERVALO_MINUTOS = 1
-TIEMPO_REPETICION_ALERTA = 60  # 24 horas en segundos
+TIEMPO_REPETICION_ALERTA = 3600  # 1 hora en segundos
 
 
 ### Configurar el producer de Kafka
 
 conf = {
-    # inside docker-compose use kafka:29092 (internal advertised listener)
     'bootstrap.servers': os.getenv("KAFKA_BOOTSTRAP", "kafka:29092")
 }
 DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://postgres:postgres@db:5432/data_project_1")
@@ -28,12 +31,12 @@ producer = Producer(conf)
 
 ### Funciones
 
-def json_serializer(obj): # Cambia las variables datetime y decimal a formatos serializables JSON para ingestarlos en el producer
+def json_serializer(obj):
     """Función auxiliar para convertir objetos no serializables a JSON"""
     if isinstance(obj, (datetime, date)):
-        return obj.isoformat()  # Convierte fecha a texto ISO 8601
+        return obj.isoformat()
     if isinstance(obj, Decimal):
-        return float(obj)       # Convierte Decimal a float
+        return float(obj)
     raise TypeError(f"Type {type(obj)} not serializable")
 
 def fetch_from_db():
@@ -54,138 +57,133 @@ def fetch_from_db():
         logging.error("DB fetch error: %s", e)
         return []
 
-def enviar_alerta_poblacion(mensaje): # Manda la alerta a Kafka (alertas_poblacion)
+def enviar_alerta_poblacion(mensaje):
     producer.produce(
         topic='alertas_poblacion',
         value=json.dumps(mensaje, default=json_serializer, ensure_ascii=False).encode('utf-8')
     )
     producer.flush()
-    print(f"✅ Alerta enviada al topic 'alertas_confirmadas'")
 
-def enviar_alerta_CECOPI(mensaje): # Manda la alerta a Kafka (alertas_CECOPI))
-    producer.produce(
-        topic='alertas_CECOPI',
-        value=json.dumps(mensaje, ensure_ascii=False).encode('utf-8')
-    )
-    producer.flush()
-    print(f"✅ Alerta enviada al topic 'alertas_confirmadas'")
+def evaluar_alertas(no2, o3, pm10, pm25):
+    """Evalúa qué gases están en alerta y devuelve lista de alertas activas"""
+    alertas = []
+    if no2 is not None and no2 > UMBRAL_NO2:
+        alertas.append(f"NO₂: {no2:.1f} µg/m³")
+    if o3 is not None and o3 > UMBRAL_O3:
+        alertas.append(f"O₃: {o3:.1f} µg/m³")
+    if pm10 is not None and pm10 > UMBRAL_PM10:
+        alertas.append(f"PM10: {pm10:.1f} µg/m³")
+    if pm25 is not None and pm25 > UMBRAL_PM25:
+        alertas.append(f"PM2.5: {pm25:.1f} µg/m³")
+    return alertas
+
+def format_value(val):
+    """Formatea valor para log: número o N/D"""
+    return f"{val:.1f}" if val is not None else "N/D"
 
 
 ### Lógica principal
 
-estado_estaciones = {} # Diccionario para guardar el estado de cada estación. Estructura: { "NombreEstacion": { "activa": True/False, "ultimo_aviso": tiempo_unix } }
+estado_estaciones = {}
 
 def revisar_calidad_aire():
     ahora = time.time()
     hora_legible = time.strftime('%H:%M:%S')
-    print(f"[{hora_legible}] ⏳ Consultando sensores (desde DB)...")
+    print(f"\n[{hora_legible}] ⏳ Consultando sensores...")
     
     try:
-        mensaje = {}
         sensores = fetch_from_db()
 
-        print(f"🔍 DEBUG: Se han encontrado {len(sensores)} sensores en la BD.")
+        print(f"📡 Sensores encontrados: {len(sensores)}")
         if len(sensores) == 0:
-            print("⚠️ LA BASE DE DATOS ESTÁ VACÍA O NO DEVUELVE DATOS.")
+            print("⚠️ LA BASE DE DATOS ESTÁ VACÍA.")
+            return
 
         for sensor in sensores:
-            mensaje = {}
-            nombre = sensor.get('nombre_estacion')  # Cambiado de 'nombre' a 'nombre_estacion'
-            valor = sensor.get('no2')
+            nombre = sensor.get('nombre_estacion')
             city = sensor.get('city')
-
-            # Si no hay valor o nombre, saltamos este sensor
-            if valor is None or not nombre:
-                print(f"⚠️ Datos incompletos para el sensor {nombre}, se omite.")
+            
+            if not nombre:
                 continue
 
-            # Inicializamos el estado de la estación si es la primera vez que la vemos
+            # Obtener valores (mantener None si no hay datos)
+            no2 = sensor.get('no2')
+            o3 = sensor.get('o3')
+            pm10 = sensor.get('pm10')
+            pm25 = sensor.get('pm25')
+
+            # Inicializar estado si no existe
             if nombre not in estado_estaciones:
-                estado_estaciones[nombre] = {"activa": False, "ultimo_aviso": 0}
+                estado_estaciones[nombre] = {"alerta_activa": False, "ultimo_aviso": 0}
 
             estado = estado_estaciones[nombre]
             
-
-            ##### Lógica de la alerta #####
+            # Evaluar si hay alertas
+            alertas = evaluar_alertas(no2, o3, pm10, pm25)
+            hay_alerta = len(alertas) > 0
             
-            # CASO A: Supera el umbral
-            if valor > UMBRAL_NO2:
-                # Calculamos cuánto tiempo pasó desde el último aviso
-                tiempo_pasado = ahora - estado["ultimo_aviso"]
+            # Determinar tipo de mensaje
+            tiempo_pasado = ahora - estado["ultimo_aviso"]
+            
+            if hay_alerta:
+                if not estado["alerta_activa"]:
+                    tipo_aviso = "Activation"
+                    print(f"🚨 NUEVA ALERTA en {nombre}: {', '.join(alertas)}")
+                elif tiempo_pasado > TIEMPO_REPETICION_ALERTA:
+                    tipo_aviso = "Recordatorio"
+                    print(f"⏰ RECORDATORIO en {nombre}: {', '.join(alertas)}")
+                else:
+                    tipo_aviso = "Update"
                 
-                # Condición: Si NO estaba activa O si ya pasó un día (recordatorio)
-                if not estado["activa"] or tiempo_pasado > TIEMPO_REPETICION_ALERTA:
-                    print("-" * 40)
-                    if estado["activa"]:
-                        mensaje = {
-                            "estacion": nombre,
-                            "city": city,
-                            "tipo_aviso": "Recordatorio",
-                            "nivel_no2": valor,
-                            "alerta_activa": True,
-                            "texto": f"Recordatorio: El nivel de NO2 en {nombre} ({city}) sigue alto: {valor} µg/m³.",
-                            "lon": sensor.get('lon'),
-                            "lat": sensor.get('lat'),
-                            "fecha_carg": sensor.get('fecha_carg'),
-                            "fecha_envio": time.ctime()
-                        }
-                        print(f"⏰ RECORDATORIO DIARIO en {nombre} a las {time.ctime()}")
-                    else:
-                        mensaje = {
-                            "estacion": nombre,
-                            "city": city,
-                            "tipo_aviso": "Activation",
-                            "nivel_no2": valor,
-                            "alerta_activa": True,
-                            "texto": f"ALERTA: El nivel de NO2 en {nombre} ({city}) ha subido por encima del límite seguro. Valor actual: {valor} µg/m³.",
-                            "lon": sensor.get('lon'),
-                            "lat": sensor.get('lat'),
-                            "fecha_carg": sensor.get('fecha_carg'),
-                            "fecha_envio": time.ctime()
-                        }
-                        print(f"🚨 NUEVA ALERTA en {nombre}. Fecha de envío:{time.ctime()}")
-                    
-                    print(f"   Nivel NO2: {valor} µg/m³ (Límite: {UMBRAL_NO2})")
-                    print("-" * 40)
-                    
-                    # Actualizamos el estado
-                    estado["activa"] = True
-                    estado["ultimo_aviso"] = ahora
+                estado["alerta_activa"] = True
+                estado["ultimo_aviso"] = ahora
+                
+            else:
+                if estado["alerta_activa"]:
+                    tipo_aviso = "Deactivation"
+                    print(f"✅ ALERTA DESACTIVADA en {nombre}")
+                    estado["alerta_activa"] = False
+                else:
+                    tipo_aviso = "Normal"
             
-            # CASO B: Ya no supera el umbral (Bajada de nivel)
-            else:
-                # Solo avisamos si antes ESTABA activa (la situación ha mejorado)
-                if estado["activa"]:
-                    mensaje = {
-                            "estacion": nombre,
-                            "city": city,
-                            "tipo_aviso": "Deactivation",
-                            "nivel_no2": valor,
-                            "alerta_activa": False,
-                            "texto": f"ALERTA: El nivel de NO2 en {nombre} ({city}) se ha restablecido a niveles seguros. Valor actual: {valor} µg/m³.",
-                            "lon": sensor.get('lon'),
-                            "lat": sensor.get('lat'),
-                            "fecha_carg": sensor.get('fecha_carg'),
-                            "fecha_envio": time.ctime()
-                    }
-                    print(f"✅ NIVEL RESTABLECIDO en {nombre}")
-                    print(f"   El nivel ha bajado a {valor} µg/m³.")
-
-                    estado["activa"] = False
-            if mensaje:
-                enviar_alerta_poblacion(mensaje)
-                logging.info(f"Mensaje {mensaje} enviado")
-            else:
-                logging.debug("Sin cambios de estado para %s", nombre)
+            # SIEMPRE enviar mensaje con todos los datos (None si no hay)
+            mensaje = {
+                "estacion": nombre,
+                "city": city,
+                "nivel_no2": no2,
+                "nivel_o3": o3,
+                "nivel_pm10": pm10,
+                "nivel_pm25": pm25,
+                "alerta_activa": hay_alerta,
+                "tipo_aviso": tipo_aviso,
+                "alertas_detalle": alertas,
+                "lon": sensor.get('lon'),
+                "lat": sensor.get('lat'),
+                "fecha_carg": sensor.get('fecha_carg'),
+                "fecha_envio": time.ctime()
+            }
+            
+            enviar_alerta_poblacion(mensaje)
+            
+            # Log resumido
+            estado_icono = "🔴" if hay_alerta else "🟢"
+            print(f"   {estado_icono} {nombre}: NO₂={format_value(no2)} | O₃={format_value(o3)} | PM10={format_value(pm10)} | PM2.5={format_value(pm25)}")
 
     except Exception as e:
-        print(f"❌ Error conectando la Base de datos: {e}")
+        print(f"❌ Error: {e}")
 
 
 ### Bucle
-print(f"*** Monitor Iniciado ***")
-print(f"- Umbral: {UMBRAL_NO2} µg/m³")
-print(f"- Recordatorio de alerta persistente: Cada 24 horas")
+print(f"{'='*50}")
+print(f"*** Monitor de Calidad del Aire Iniciado ***")
+print(f"{'='*50}")
+print(f"Umbrales:")
+print(f"  NO₂:   {UMBRAL_NO2} µg/m³")
+print(f"  O₃:    {UMBRAL_O3} µg/m³")
+print(f"  PM10:  {UMBRAL_PM10} µg/m³")
+print(f"  PM2.5: {UMBRAL_PM25} µg/m³")
+print(f"Intervalo: {INTERVALO_MINUTOS * 10} segundos")
+print(f"{'='*50}\n")
 
 while True:
     revisar_calidad_aire()

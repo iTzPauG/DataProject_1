@@ -16,12 +16,14 @@ COPY ./dbt /usr/app/dbt
 # Copiar el resto del código Python
 WORKDIR /app
 COPY requirements.txt .
-COPY ingesta.py .
-COPY ingestas/ ./ingestas/
 COPY producer.py .
-COPY kafka_consumer.py .
-COPY dashboard_alertas.py .
+COPY dashboard_consumer.py .
 COPY api.py .
+COPY pull_db_gsheets.py .
+COPY credentials.json .
+COPY ingestas/ingesta_madrid.py .
+COPY ingestas/ingesta_valencia.py .
+COPY ingesta.py .
 
 # Instalar dependencias Python
 RUN pip install --no-cache-dir --upgrade pip \
