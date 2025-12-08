@@ -75,7 +75,7 @@ Monitoreo en tiempo real de la calidad del aire para ciudadanos:
 |----------------|-------------|
 | Semáforo visual | Verde (OK) / Rojo (Alerta) |
 | Gráfico Radar | Comparativa de 4 contaminantes |
-| Gráfico Barras | Niveles vs límites OMS |
+| Gráfico Barras | Niveles vs límites |
 | Actualización | Cada 2 segundos |
 
 ### 📈 Dashboard Experto (Autoridades)
